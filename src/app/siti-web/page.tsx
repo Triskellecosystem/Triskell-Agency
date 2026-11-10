@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { PageHero } from "@/components/sections/PageHero";
-import { SiteProcess } from "@/components/sections/SiteProcess";
+import { SitePath } from "@/components/sections/SitePath";
 import { SitesHelix } from "@/components/sections/SitesHelix";
 import { SitesWall } from "@/components/sections/WebsitesTeaser";
 import { Button } from "@/components/ui/Button";
@@ -37,11 +37,11 @@ export default function SitesPage() {
       <Section id="percorso" labelledBy="percorso-title">
         <SectionHeading id="percorso-title" overline="Come lo creiamo" title={p.processTitle} line={p.processLine} align="center" />
         <Reveal y={16} blur={0} className="mt-10">
-          <SiteProcess />
+          <SitePath />
         </Reveal>
       </Section>
 
-      <section id="portfolio" aria-labelledby="portfolio-title" className="relative isolate pt-[clamp(3rem,6vw,5rem)]">
+      <section id="portfolio" aria-labelledby="portfolio-title" className="hx-section relative isolate pt-[clamp(3rem,6vw,5rem)]">
         <div className="container-x">
           <SectionHeading id="portfolio-title" overline="Portfolio" title="Tutti i siti che [abbiamo creato]" line="Ristoranti, ospitalità, brand, software: ognuno su misura." align="center" />
         </div>

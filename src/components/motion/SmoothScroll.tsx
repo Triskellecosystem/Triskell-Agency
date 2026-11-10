@@ -20,9 +20,8 @@ export function SmoothScroll() {
       let acc = 0;
       let lastEvent = 0;
       const lenis = new Lenis({
-        duration: 0.95,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        wheelMultiplier: 0.9,
+        lerp: 0.16,
+        wheelMultiplier: 1.15,
         anchors: true,
         autoRaf: true,
         virtualScroll: ({ deltaY, event }) => {
@@ -31,7 +30,7 @@ export function SmoothScroll() {
           if (now - lastEvent > 150) acc = 0;
           lastEvent = now;
           acc += Math.abs(deltaY);
-          if (acc < 14) {
+          if (acc < 6) {
             event.preventDefault();
             return false;
           }

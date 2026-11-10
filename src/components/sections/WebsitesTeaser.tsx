@@ -5,7 +5,7 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
-import { SitesShowcase } from "./SitesShowcase";
+import { SitesMarquee } from "./SitesMarquee";
 
 const points = [
   { icon: "zap", text: "Veloci e perfetti sul telefono" },
@@ -73,7 +73,7 @@ export function WebsitesTeaser() {
         ))}
       </RevealGroup>
       <Reveal y={20} blur={0} className="mt-8">
-        <SitesShowcase />
+        <SitesMarquee />
       </Reveal>
     </Section>
   );

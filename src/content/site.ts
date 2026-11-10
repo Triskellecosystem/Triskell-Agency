@@ -311,12 +311,12 @@ export const site = {
     line: "Arriva un contatto dalla campagna: Irelia gli scrive subito, raccoglie quando vuole essere richiamato e tu chiami un cliente già pronto.",
     badges: ["H24 sempre attivo", "Risposte immediate", "Scrive in modo naturale"],
     steps: [
-      { icon: "click", title: "Campagna attiva", text: "Meta Ads porta un contatto" },
-      { icon: "bot", title: "Irelia scrive", text: "In pochi secondi, H24" },
-      { icon: "clock", title: "Fascia oraria", text: "Il cliente sceglie quando" },
-      { icon: "phone", title: "Tu richiami", text: "Cliente già caldo" },
-      { icon: "calendar", title: "Prova fissata", text: "E concordata al telefono" },
-      { icon: "bell", title: "Promemoria", text: "Irelia gliela ricorda" },
+      { icon: "click", title: "La campagna ti porta un contatto", text: "Una persona vede la tua pubblicità su Instagram o Facebook e lascia i suoi dati: è un lead, cioè un possibile cliente." },
+      { icon: "bot", title: "Irelia gli scrive subito", text: "In pochi secondi gli manda un messaggio su WhatsApp, a qualsiasi ora, anche di notte o nel weekend." },
+      { icon: "clock", title: "Gli chiede quando richiamarlo", text: "Con un tono naturale si fa dire il momento migliore per sentirvi, così non chiami a vuoto." },
+      { icon: "phone", title: "Tu lo chiami all'ora giusta", text: "Trovi tutto pronto: nome, richiesta e orario. Parli con una persona già interessata." },
+      { icon: "calendar", title: "Fissate l'appuntamento", text: "Al telefono concordate la prova, la visita o la consulenza." },
+      { icon: "bell", title: "Irelia gli ricorda l'appuntamento", text: "Prima dell'incontro gli manda un promemoria, così si presenta e non si dimentica." },
     ] satisfies Array<{ icon: IconName; title: string; text: string }>,
     chat: {
       name: "Aura Beauty Lab",
@@ -510,7 +510,7 @@ export const site = {
     best: {
       overline: "La base più scelta",
       title: "Il pacchetto [più scelto]",
-      line: "Niente pacchetti fissi: questa è la base da cui partono quasi tutti. Dopo la call la adattiamo alla tua attività.",
+      line: "Niente pacchetti fissi: questa è la base da cui partono quasi tutti.\nDopo la call la adattiamo alla tua attività.",
       badge: "Personalizzabile",
       numbers: [
         { value: "12", unit: "contenuti al mese", note: "3 a settimana" },
@@ -782,15 +782,15 @@ export const site = {
     visitDemo: "Vuoi un sito così?",
     featured: ["sfizi", "mani", "chiodo"],
     items: [
-      { id: "lyamflow", name: "LyamFlow", category: "Software · sito incluso", domain: "lyamflow.com", url: "https://lyamflow.com", image: "/sites/lyamflow.jpg" },
-      { id: "doubletwenty", name: "The Double Twenty", category: "Brand · Made in Italy", domain: "thedoubletwenty.it", url: "https://thedoubletwenty.it", image: "/sites/doubletwenty.jpg" },
-      { id: "nutrex", name: "Nutrex Lab", category: "Sito online", domain: "nutrexlab.it", url: "https://nutrexlab.it", image: "/sites/nutrex.jpg" },
-      { id: "uniqueos", name: "Unique OS", category: "Sito online", domain: "unique-os-three.vercel.app", url: "https://unique-os-three.vercel.app", image: "/sites/uniqueos.jpg" },
       { id: "sfizi", name: "Sfizi Partenopei", category: "Ristorazione · Lugano", domain: "sfizipartenopeilugano.ch", url: "https://sfizipartenopeilugano.ch", image: "/sites/sfizi.jpg", tall: "/sites/sfizi-full.jpg" },
-      { id: "alleria", name: "Alleria Trattoria Pizzeria", category: "Ristorazione · Lugano", domain: "alleriatrattoriapizzeria.ch", url: "https://alleriatrattoriapizzeria.ch", image: "/sites/alleria.jpg" },
       { id: "chiodo", name: "Ristorante Il Chiodo", category: "Ristorazione", domain: "ristorante-il-chiodo.vercel.app", url: "https://ristorante-il-chiodo.vercel.app", image: "/sites/chiodo.jpg" },
-      { id: "aurea", name: "Aurea Wellness", category: "Esempio · Benessere", domain: "aurea-wellness.it", url: "/contatti", image: "/sites/demo.jpg", tall: "/sites/demo-full.jpg", demo: true }, // TODO: sostituire con un sito reale
+      { id: "alleria", name: "Alleria Trattoria Pizzeria", category: "Ristorazione · Lugano", domain: "alleriatrattoriapizzeria.ch", url: "https://alleriatrattoriapizzeria.ch", image: "/sites/alleria.jpg" },
       { id: "mani", name: "Affittacamere Manì", category: "Ospitalità · Sicilia", domain: "affittacamere-mani.vercel.app", url: "https://affittacamere-mani.vercel.app", image: "/sites/mani.jpg" },
+      { id: "uniqueos", name: "Unique OS", category: "Sito online", domain: "unique-os-three.vercel.app", url: "https://unique-os-three.vercel.app", image: "/sites/uniqueos.jpg" },
+      { id: "nutrex", name: "Nutrex Lab", category: "Sito online", domain: "nutrexlab.it", url: "https://nutrexlab.it", image: "/sites/nutrex.jpg" },
+      { id: "doubletwenty", name: "The Double Twenty", category: "Brand · Made in Italy", domain: "thedoubletwenty.it", url: "https://thedoubletwenty.it", image: "/sites/doubletwenty.jpg" },
+      { id: "lyamflow", name: "LyamFlow", category: "Software · sito incluso", domain: "lyamflow.com", url: "https://lyamflow.com", image: "/sites/lyamflow.jpg" },
+      { id: "aurea", name: "Aurea Wellness", category: "Esempio · Benessere", domain: "aurea-wellness.it", url: "/contatti", image: "/sites/demo.jpg", tall: "/sites/demo-full.jpg", demo: true }, // TODO: sostituire con un sito reale
     ] satisfies SiteItem[],
   },
 

@@ -1,5 +1,4 @@
 import { site } from "@/content/site";
-import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 import { TechBackdrop } from "@/components/ui/TechBackdrop";
 import { Reveal } from "@/components/motion/Reveal";
@@ -27,11 +26,6 @@ export function SocialFinale() {
       </Reveal>
       <Reveal delay={0.2} y={14} blur={0}>
         <p className="mx-auto mt-5 max-w-xl text-lead text-fg-2">{f.text}</p>
-        <div className="mt-7 flex justify-center">
-          <Button href="/contatti" size="lg" icon="calendar" iconPosition="start" pulse>
-            Prenota la call gratuita
-          </Button>
-        </div>
       </Reveal>
     </Section>
   );

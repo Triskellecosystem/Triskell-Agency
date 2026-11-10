@@ -49,7 +49,7 @@ export function SectionHeading({ id, overline, title, line, align = "left", clas
       <SplitReveal id={id} text={title} as="h2" className={cn("text-h2 text-fg", oneLine && "sm:whitespace-nowrap")} />
       {line && (
         <Reveal delay={0.25} blur={4} y={14}>
-          <p className="mt-3.5 max-w-xl text-lead text-fg-2">{line}</p>
+          <p className="mt-3.5 max-w-xl whitespace-pre-line text-lead text-fg-2">{line}</p>
         </Reveal>
       )}
     </header>

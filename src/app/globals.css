@@ -2097,8 +2097,8 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 
 /* Sfumatura dorata in prospettiva dietro i telefoni */
 .pe-gold { perspective: 700px; perspective-origin: 50% 20%; }
-.pe-gold::before { content: ""; position: absolute; left: 10%; right: 10%; top: 8%; height: 70%; border-radius: 9999px; background: radial-gradient(closest-side, rgb(247 200 92 / 0.32), rgb(247 200 92 / 0.1) 55%, transparent); filter: blur(30px); }
-.pe-gold > span { position: absolute; left: -10%; right: -10%; bottom: 0; height: 60%; transform-origin: 50% 100%; transform: rotateX(72deg); background: radial-gradient(50% 70% at 50% 100%, rgb(247 200 92 / 0.45), rgb(247 200 92 / 0.08) 60%, transparent 75%), repeating-linear-gradient(90deg, rgb(253 224 138 / 0.18) 0 1px, transparent 1px 70px); -webkit-mask: linear-gradient(0deg, transparent, #000 30%, #000 50%, transparent); mask: linear-gradient(0deg, transparent, #000 30%, #000 50%, transparent); }
+.pe-gold::before { content: ""; position: absolute; left: -5%; right: -5%; top: -6%; height: 100%; border-radius: 9999px; background: radial-gradient(closest-side, rgb(255 214 120 / 0.85), rgb(233 163 58 / 0.4) 50%, rgb(233 163 58 / 0.12) 70%, transparent); filter: blur(40px); }
+.pe-gold > span { position: absolute; left: -10%; right: -10%; bottom: 0; height: 60%; transform-origin: 50% 100%; transform: rotateX(72deg); background: radial-gradient(55% 75% at 50% 100%, rgb(247 200 92 / 0.7), rgb(247 200 92 / 0.18) 60%, transparent 78%), repeating-linear-gradient(90deg, rgb(253 224 138 / 0.3) 0 1px, transparent 1px 70px); -webkit-mask: linear-gradient(0deg, transparent, #000 30%, #000 50%, transparent); mask: linear-gradient(0deg, transparent, #000 30%, #000 50%, transparent); }
 
 /* Percorso del sito che si costruisce */
 .spc-pop { animation: spc-pop 0.6s var(--ease-out-expo) both; }
@@ -2133,3 +2133,41 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 @keyframes gc-toast { 0% { opacity: 0; transform: translate3d(20px, 6px, 0); } 5%, 26% { opacity: 1; transform: none; } 32%, 100% { opacity: 0; transform: translate3d(0, -8px, 0); } }
 @media (prefers-reduced-motion: reduce) { .gc-line { stroke-dashoffset: 0; } .gc-area, .gc-dot { opacity: 1; transform: none; } .gc.is-on .gc-line, .gc.is-on .gc-dot, .gc.is-on .gc-ping, .gc.is-on .gc-toast { animation: none; } }
 @media (max-width: 640px) { .hx { --hx-w: 76vw; --hx-r: 70vw; } }
+
+/* Siti che scorrono su due file (home) */
+.smq { perspective: 1400px; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.smq-plane { transform: rotateX(12deg) rotateZ(-2deg); transform-style: preserve-3d; }
+.smq-row { animation: smq-l 60s linear infinite; }
+.smq-row[data-dir="1"] { animation-name: smq-r; animation-duration: 70s; }
+.smq-row:hover, .smq-row:focus-within { animation-play-state: paused; }
+@keyframes smq-l { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
+@keyframes smq-r { from { transform: translate3d(-50%, 0, 0); } to { transform: translate3d(0, 0, 0); } }
+@media (prefers-reduced-motion: reduce) { .smq-row { animation: none; } .smq { overflow-x: auto; } }
+
+/* Confronto a carte che si girano */
+.cmp4-row { opacity: 0; transform: translate3d(0, 24px, 0) rotateX(-30deg); transition: opacity 0.6s, transform 0.8s var(--ease-out-expo); transition-delay: calc(0.1s + var(--i) * 0.12s); }
+[data-revealed] .cmp4-row { opacity: 1; transform: none; }
+.cmp4-card { perspective: 900px; }
+.cmp4-inner { transform-style: preserve-3d; transition: transform 0.7s var(--ease-out-expo); }
+.cmp4-inner.is-on { transform: rotateX(180deg); }
+.cmp4-face { grid-area: 1 / 1; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.cmp4-back { transform: rotateX(180deg); }
+@media (prefers-reduced-motion: reduce) { .cmp4-row { opacity: 1; transform: none; transition: none; } .cmp4-inner { transition: none; } }
+
+/* Sfondo della spirale dei siti: pavimento con anelli d'oro che ruotano, colonna di luce, scintille che salgono */
+.hxb { perspective: 900px; overflow: hidden; }
+.hxb-glow { position: absolute; left: 50%; top: 50%; width: 120vmax; aspect-ratio: 1; transform: translate(-50%, -50%); background: radial-gradient(closest-side, rgb(11 129 177 / 0.28), rgb(247 200 92 / 0.08) 45%, transparent 70%); }
+.hxb-beam { position: absolute; left: 50%; top: 0; bottom: 0; width: 18rem; transform: translateX(-50%); background: linear-gradient(90deg, transparent, rgb(247 200 92 / 0.12) 40%, rgb(255 236 180 / 0.22) 50%, rgb(247 200 92 / 0.12) 60%, transparent); filter: blur(8px); }
+.hxb-floor, .hxb-top { position: absolute; left: 50%; width: 110vmin; aspect-ratio: 1; transform-style: preserve-3d; }
+.hxb-floor { bottom: -10vmin; transform: translateX(-50%) translateY(48%) rotateX(76deg) rotateZ(var(--rot, 0deg)); }
+.hxb-top { top: -12vmin; transform: translateX(-50%) translateY(-40%) rotateX(-74deg) rotateZ(calc(var(--rot, 0deg) * -1)); opacity: 0.5; }
+.hxb-floor i, .hxb-top i { position: absolute; inset: 0; border-radius: 9999px; border: 2px solid rgb(247 200 92 / 0.55); box-shadow: 0 0 30px rgb(247 200 92 / 0.35), inset 0 0 30px rgb(247 200 92 / 0.18); }
+.hxb-floor i:nth-child(1) { border-style: dashed; border-width: 3px; }
+.hxb-floor i:nth-child(2) { inset: 14%; border-color: rgb(120 210 255 / 0.5); box-shadow: 0 0 24px rgb(58 164 212 / 0.4); }
+.hxb-floor i:nth-child(3) { inset: 28%; }
+.hxb-floor i:nth-child(4) { inset: 42%; background: radial-gradient(circle, rgb(247 200 92 / 0.45), transparent 70%); border-color: rgb(253 224 138 / 0.9); }
+.hxb-top i:nth-child(2) { inset: 20%; border-style: dashed; }
+.hxb-spark { position: absolute; bottom: -2%; width: 3px; height: 3px; border-radius: 9999px; background: #fde08a; box-shadow: 0 0 8px 2px rgb(247 200 92 / 0.7); animation: hxb-rise 9s linear infinite; opacity: 0; }
+@keyframes hxb-rise { 0% { transform: translate3d(0, 0, 0); opacity: 0; } 10% { opacity: 1; } 80% { opacity: 0.8; } 100% { transform: translate3d(20px, -100vh, 0); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .hxb-spark { animation: none; display: none; } }
+.st3-noring .st3-ring { display: none; }

@@ -67,6 +67,23 @@ export function SitesHelix() {
   return (
     <div ref={box} className="relative" style={{ height: `${n * 55 + 60}vh` }}>
       <div className="sticky top-0 flex h-[100svh] flex-col items-center justify-center overflow-hidden pt-[var(--header-h)]">
+        <div aria-hidden="true" className="hxb pointer-events-none absolute inset-0 -z-10" style={{ "--rot": `${p * 24}deg` } as React.CSSProperties}>
+          <span className="hxb-glow" />
+          <span className="hxb-beam" />
+          <span className="hxb-floor">
+            <i />
+            <i />
+            <i />
+            <i />
+          </span>
+          <span className="hxb-top">
+            <i />
+            <i />
+          </span>
+          {Array.from({ length: 18 }, (_, k) => (
+            <b key={k} className="hxb-spark" style={{ left: `${(k * 37) % 100}%`, animationDelay: `${-(k * 0.83) % 9}s`, animationDuration: `${7 + (k % 5)}s` }} />
+          ))}
+        </div>
         <div className="hx relative h-[62vh] w-full">
           <span aria-hidden="true" className="hx-axis" />
           <div className="hx-stage absolute left-1/2 top-1/2">
@@ -106,7 +123,7 @@ export function SitesHelix() {
             })}
           </div>
         </div>
-        <div className="relative z-10 mt-4 flex flex-col items-center text-center">
+        <div className="relative z-10 mt-4 flex flex-col items-center rounded-3xl bg-[radial-gradient(closest-side,rgb(2_18_33/0.85),transparent)] px-10 py-2 text-center">
           <p className="font-mono text-[0.6875rem] font-bold text-gold-300">
             {String(front + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}
           </p>

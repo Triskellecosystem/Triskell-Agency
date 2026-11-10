@@ -47,7 +47,7 @@ export default function SocialPage() {
       <SocialPillars />
       <ProfileExamples />
       <Section id="crescita" labelledBy="crescita-title" className="overflow-hidden">
-        <Stage3D kind="horizon" />
+        <Stage3D tone="gold" view="right" className="st3-noring" />
         <div className="grid items-center gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
           <div>
             <SectionHeading id="crescita-title" overline="Il risultato" title="Un profilo che [cresce ogni giorno]" line="Contenuti costanti e campagne attive: follower, messaggi e richieste arrivano tutti i giorni." />
@@ -74,7 +74,7 @@ export default function SocialPage() {
 
 
       <SocialFinale />
-      <CtaBand content={site.cta.agency} />
+      <CtaBand />
     </>
   );
 }
