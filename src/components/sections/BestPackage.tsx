@@ -12,7 +12,7 @@ export function BestPackage() {
   const b = site.metodo.best;
   const [open, setOpen] = useState(false);
   return (
-    <BeamCard className="mx-auto max-w-5xl">
+    <BeamCard className="best-pulse mx-auto max-w-5xl">
       <div className="relative overflow-hidden rounded-[inherit] bg-[linear-gradient(150deg,#2b2410,var(--color-night-raised)_45%,#0b2a46)]">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-5 py-4 sm:px-7">
           <p className="flex items-center gap-2 font-display text-[1.0625rem] font-bold text-fg">

@@ -40,7 +40,7 @@ export function CaseGrid({ limit }: { limit?: number }) {
                 <span className="mt-3 grid grid-cols-2 gap-2 border-t border-white/[0.07] pt-2.5">
                   {c.stats.map((st, k) => (
                     <span key={st.label} className="min-w-0">
-                      <span className={`block truncate font-display text-[1.0625rem] font-bold leading-none tracking-[-0.02em] sm:text-[1.25rem] ${k === 0 ? "text-gold" : "text-azure-300"}`}>{st.value}</span>
+                      <span className={`cg-num block truncate font-display text-[1.0625rem] font-bold leading-none tracking-[-0.02em] sm:text-[1.25rem] ${k === 0 ? "text-gold" : "text-azure-300"}`} style={{ "--d": `${i * 0.12 + k * 0.08}s` } as React.CSSProperties}>{st.value}</span>
                       <span className="mt-1 block truncate text-[0.5625rem] font-semibold uppercase tracking-wider text-fg-3">{st.label}</span>
                     </span>
                   ))}

@@ -24,8 +24,8 @@ export function Rodaggio() {
     const run = () => {
       const t0 = performance.now();
       const step = (now: number) => {
-        const k = Math.min(1, (now - t0) / 1800);
-        setP(1 - Math.pow(1 - k, 2));
+        const k = Math.min(1, (now - t0) / 3200);
+        setP(k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2);
         if (k < 1) raf = requestAnimationFrame(step);
       };
       raf = requestAnimationFrame(step);
@@ -37,7 +37,7 @@ export function Rodaggio() {
         if (reduced) raf = requestAnimationFrame(() => setP(1));
         else run();
       },
-      { threshold: 0.35 },
+      { threshold: 0.6 },
     );
     io.observe(el);
     return () => {

@@ -85,6 +85,7 @@ import {
   Music,
   Car,
   Hourglass,
+  Handshake,
   type LucideProps,
 } from "lucide-react";
 
@@ -175,6 +176,7 @@ const icons = {
   music: Music,
   car: Car,
   hourglass: Hourglass,
+  "handshake-2": Handshake,
 } as const;
 
 export type IconName = keyof typeof icons;

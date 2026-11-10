@@ -1,8 +1,8 @@
 import { site } from "@/content/site";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
-import { CountUp } from "@/components/motion/CountUp";
 import { DigitalCursor } from "@/components/motion/DigitalCursor";
+import { HeroNumbers } from "./HeroNumbers";
 import { LivePhone } from "./LivePhone";
 
 /**
@@ -50,16 +50,7 @@ export function AgencyHero() {
             ))}
           </ul>
 
-          <dl className="mt-10 grid max-w-xl animate-[fade-in_0.8s_0.7s_var(--ease-soft)_both] grid-cols-4 divide-x divide-white/10 border-t border-white/10 pt-5">
-            {hero.keyNumbers.map((n) => (
-              <div key={n.label} className="flex flex-col px-3 first:pl-0">
-                <dd className="font-display text-[clamp(1.25rem,1rem+1vw,1.75rem)] font-bold leading-none tracking-[-0.03em]">
-                  <CountUp {...n} className="hero-num text-gold" duration={0.9} />
-                </dd>
-                <dt className="mt-1.5 text-[0.6875rem] leading-snug text-fg-3">{n.label}</dt>
-              </div>
-            ))}
-          </dl>
+          <HeroNumbers items={hero.keyNumbers} />
         </div>
 
         <div className="hidden lg:col-span-6 lg:block">

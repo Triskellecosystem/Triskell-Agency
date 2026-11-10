@@ -33,7 +33,7 @@ export function MetodoTeaser() {
           <p className="text-center text-[0.75rem] font-bold uppercase tracking-[0.22em] text-fg-2">La base che consigliamo</p>
           <RevealGroup className="mt-5 grid grid-cols-3 divide-x divide-white/10 rounded-[1.25rem] border border-gold-300/30 bg-[linear-gradient(120deg,rgb(43_36_16/0.6),rgb(5_31_54/0.6))]" stagger={0.15}>
             {nums.map((n) => (
-              <RevealItem key={n.unit} y={14} className="px-3 py-6 text-center sm:py-8">
+              <RevealItem key={n.unit} y={14} className="zoom-in px-3 py-6 text-center sm:py-8">
                 <p className="font-display text-[clamp(2.75rem,1.8rem+4vw,5rem)] font-bold leading-none tracking-[-0.06em]">
                   <CountUp value={n.value} prefix={n.prefix} className="text-gold" duration={1.6} />
                 </p>
@@ -53,6 +53,7 @@ export function MetodoTeaser() {
           </Button>
         </Reveal>
       </div>
+      <span aria-hidden="true" className="sec-line absolute inset-x-0 bottom-0 h-px" />
     </section>
   );
 }

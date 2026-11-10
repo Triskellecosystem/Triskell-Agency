@@ -9,7 +9,7 @@ import { Reveal } from "@/components/motion/Reveal";
 export function RecordingOptions() {
   const r = site.social.recording;
   return (
-    <Section id="riprese" labelledBy="riprese-title">
+    <Section id="riprese" labelledBy="riprese-title" className="sq-bg">
       <TechBackdrop tone="azure" rich />
       <SectionHeading id="riprese-title" overline={r.overline} title={r.title} line={r.line} align="center" />
       <div className="relative mx-auto mt-9 grid max-w-4xl gap-4 md:grid-cols-2 md:gap-6">

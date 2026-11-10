@@ -37,8 +37,8 @@ export function LivePhone({ className, compact, tabs, salesLabel = "Vendite chiu
       window.clearInterval(a);
       window.clearInterval(b);
       if (e?.isIntersecting) {
-        a = window.setInterval(() => setF((x) => x + 1), 140);
-        b = window.setInterval(() => setM((x) => x + 1), 1500);
+        a = window.setInterval(() => setF((x) => x + 1), 650);
+        b = window.setInterval(() => setM((x) => x + 1), 2400);
       }
     });
     io.observe(el);
@@ -49,10 +49,10 @@ export function LivePhone({ className, compact, tabs, salesLabel = "Vendite chiu
     };
   }, []);
 
-  const followers = 78500 + f * 3 + (f % 4);
-  const today = 200 + f * 3 + (f % 4);
-  const requests = 18 + Math.floor(f / 9);
-  const sales = 6 + Math.floor(f / 26);
+  const followers = 78500 + f * 2 + (f % 3);
+  const today = 200 + Math.floor(f / 2) * 5; // +200, +205, +210…: sale a scatti leggibili
+  const requests = 18 + Math.floor(f / 4);
+  const sales = 6 + Math.floor(f / 10);
   const msgs = Array.from({ length: compact ? 3 : 4 }, (_, k) => {
     const n = m - k;
     const i = ((n % MESSAGES.length) + MESSAGES.length) % MESSAGES.length;
@@ -108,24 +108,27 @@ export function LivePhone({ className, compact, tabs, salesLabel = "Vendite chiu
           <Image src="/social-examples/hd/vertis.webp" alt="" width={852} height={1846} sizes="(min-width: 640px) 18rem, 80vw" priority className="block h-auto w-full" />
           {/* follower dentro lo schermo */}
           <span className="absolute grid place-items-center bg-white" style={{ left: "51%", top: "10.25%", width: "20.5%", height: "2.3%" }}>
-            <span key={followers} className="lp2-count font-sans font-bold leading-none text-[#111]" style={{ fontSize: "4.1cqw" }}>
+            <span key={followers} className="lp2-in font-sans font-bold leading-none text-[#111]" style={{ fontSize: "4.1cqw" }}>
               {nf(followers)}
             </span>
           </span>
           <span className="lp2-plus absolute rounded-full bg-[#e1306c] px-[2cqw] py-[0.6cqw] font-bold text-white shadow-lg" style={{ left: "55%", top: "4.6%", fontSize: "3.4cqw" }} key={`p${f}`}>
-            +{1 + (f % 4)}
+            +{1 + (f % 3)}
           </span>
         </div>
-        <p className="mt-3 flex items-center justify-center gap-2 text-[0.75rem] font-semibold text-fg-2">
-          <span className="agent-live h-2 w-2 rounded-full bg-lime-300" />
-          <span key={today} className="lp2-count text-gold-200">+{nf(today)}</span> follower oggi
-        </p>
         {tabs && <p className="mt-1 text-center text-[0.625rem] text-fg-3">Trascina il telefono per vedere la campagna</p>}
       </div>
 
       {/* messaggi + numeri, a lato */}
       <div className="flex flex-col gap-2.5">
-        <p className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-fg-3">Nuovi messaggi</p>
+        <div className="lp2-today relative overflow-hidden rounded-2xl border border-gold-300/50 bg-[linear-gradient(135deg,rgb(247_200_92/0.16),rgb(13_39_61/0.85))] px-4 py-3">
+          <p className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-gold-200">Solo oggi</p>
+          <p className="mt-0.5 flex items-baseline gap-2">
+            <span key={today} className="lp2-tick font-display text-[2.25rem] font-bold leading-none tracking-[-0.04em] text-gold">+{nf(today)}</span>
+            <span className="text-[0.8125rem] font-semibold text-fg-2">nuovi follower</span>
+          </p>
+        </div>
+        <p className="mt-1 text-[0.625rem] font-bold uppercase tracking-[0.16em] text-fg-3">Nuovi messaggi</p>
         <ul className="flex flex-col gap-2">
           {msgs.map(({ n, i, msg }, k) => (
             <li key={n} className={cn("flex items-center gap-2.5 rounded-2xl rounded-tl-md border px-3 py-2.5 backdrop-blur-md", k === 0 ? "lp2-fly border-gold-300/50 bg-[rgb(13_39_61/0.9)] shadow-[0_0_30px_-10px_rgb(247_200_92/0.6)]" : "border-white/10 bg-[rgb(13_39_61/0.6)]")} style={{ opacity: 1 - k * 0.18 }}>

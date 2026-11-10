@@ -10,53 +10,54 @@ const shots = [
   { id: "lumina", alt: "Esempio di profilo Instagram di uno studio dentistico" },
 ];
 
-/* posizione di ogni telefono rispetto a quello davanti: 0 = centro, 1 = destra, 2 = sinistra */
-const POS = [
-  "z-20 translate-x-0 rotate-0 scale-100",
-  "z-10 translate-x-[58%] rotate-[9deg] scale-[0.82] opacity-90",
-  "z-10 -translate-x-[58%] -rotate-[9deg] scale-[0.82] opacity-90",
-];
-
 /**
- * Tre profili Instagram di esempio a ventaglio. Passando il mouse (o toccando) un telefono dietro, ruota e viene
- * davanti ingrandito; gli altri si spostano ai lati. Transizioni solo su transform/opacity.
+ * Tre profili di esempio a ventaglio. Basta muovere il mouse sopra: la zona del ventaglio sotto il cursore (sinistra,
+ * centro, destra) decide quale telefono viene davanti; il cambio è lento e morbido. Su telefono si tocca.
+ * Il ventaglio segue anche leggermente il mouse in 3D.
  */
 export function PhoneFan() {
   const [front, setFront] = useState(0);
-  const lock = useRef(0);
-  const intent = useRef(0);
-  // cambio "con calma": aspetta un istante prima di girare e poi non accetta altri cambi finché il movimento non è finito
-  const bring = (i: number) => {
-    window.clearTimeout(intent.current);
-    intent.current = window.setTimeout(() => {
-      if (performance.now() < lock.current) return;
-      setFront((f) => {
-        if (f === i) return f;
-        lock.current = performance.now() + 900;
-        return i;
-      });
-    }, 180);
+  const box = useRef<HTMLDivElement>(null);
+  const posOf = (i: number) => (i - front + 3) % 3; // 0 davanti, 1 destra, 2 sinistra
+
+  const onMove = (e: React.PointerEvent) => {
+    const el = box.current;
+    if (!el || e.pointerType !== "mouse") return;
+    const r = el.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width;
+    el.style.setProperty("--ry", `${((x - 0.5) * 10).toFixed(2)}deg`);
+    const zone = x < 0.33 ? 0 : x > 0.67 ? 2 : 1;
+    if (zone === 1) return;
+    // trova quale telefono sta in quella posizione e portalo davanti
+    const wantPos = zone === 0 ? 2 : 1;
+    const target = shots.findIndex((_, i) => posOf(i) === wantPos);
+    if (target >= 0 && target !== front) setFront(target);
   };
+
   return (
-    <div className="pf relative mx-auto h-[33rem] w-full max-w-[34rem]">
-      <span aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[30rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgb(58_164_212/0.4),rgb(58_164_212/0.08)_55%,transparent_72%)] blur-xl" />
-      {shots.map((s, i) => {
-        const pos = (i - front + 3) % 3;
-        return (
-          <button
-            key={s.id}
-            type="button"
-            aria-label={`Mostra in primo piano: ${s.alt}`}
-            onMouseEnter={() => bring(i)}
-            onMouseLeave={() => window.clearTimeout(intent.current)}
-            onFocus={() => setFront(i)}
-            onClick={() => setFront(i)}
-            className={cn("pf-phone absolute left-1/2 top-0 -ml-[7.25rem] w-[14.5rem] overflow-hidden rounded-[1.8rem] border-[5px] border-[#1d2a3a] bg-black shadow-[0_40px_80px_-30px_rgb(0_0_0/0.9)] transition-[transform,opacity,box-shadow] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]", POS[pos], pos === 0 && "shadow-[0_40px_80px_-30px_rgb(0_0_0/0.95),0_0_50px_-14px_rgb(247_200_92/0.55)]")}
-          >
-            <Image src={`/social-examples/${s.id}.webp`} alt={s.alt} width={520} height={1126} sizes="14.5rem" priority={i === 0} className="block h-auto w-full" />
-          </button>
-        );
-      })}
+    <div
+      ref={box}
+      onPointerMove={onMove}
+      onPointerLeave={() => box.current?.style.setProperty("--ry", "0deg")}
+      className="pf relative mx-auto h-[33rem] w-full max-w-[34rem] [perspective:1400px]"
+    >
+      <span aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[32rem] w-[32rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgb(58_164_212/0.45),rgb(58_164_212/0.1)_55%,transparent_72%)] blur-xl" />
+      <div className="pf-stage absolute inset-0 [transform-style:preserve-3d]">
+        {shots.map((s, i) => {
+          const pos = posOf(i);
+          return (
+            <button
+              key={s.id}
+              type="button"
+              aria-label={`Mostra in primo piano: ${s.alt}`}
+              onClick={() => setFront(i)}
+              className={cn("pf-phone absolute left-1/2 top-0 -ml-[7.25rem] w-[14.5rem] overflow-hidden rounded-[1.8rem] border-[5px] border-[#1d2a3a] bg-black", `pf-pos-${pos}`)}
+            >
+              <Image src={`/social-examples/${s.id}.webp`} alt={s.alt} width={520} height={1126} sizes="14.5rem" priority={i === 0} className="block h-auto w-full" />
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
