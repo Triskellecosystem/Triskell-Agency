@@ -32,7 +32,7 @@ export default function SocialPage() {
           Prenota la call gratuita
         </Button>
         <Button href="#cosa-facciamo" variant="secondary" size="md" icon="arrow-down">
-          Come lavoriamo
+          Cosa facciamo
         </Button>
         <ul className="flex w-full flex-wrap gap-x-5 gap-y-1.5 pt-1">
           {s.heroPoints.map((p) => (
