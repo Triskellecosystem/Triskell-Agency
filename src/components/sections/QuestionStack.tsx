@@ -1,53 +1,50 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { site } from "@/content/site";
 import { cn } from "@/lib/cn";
+import { Icon } from "@/components/ui/Icon";
 
 /**
- * Domande a comparsa, compatte: la domanda attiva in primo piano (una riga, grande), sotto l'elenco di tutte le
- * domande come barre cliccabili che si riempiono mentre aspettano il turno. Cambia da sola; un clic la sceglie.
+ * Le domande, tutte visibili: righe grandi che si accendono al passaggio del mouse (barra d'oro, scivolano un po'),
+ * e con un clic si spuntano "Mi riconosco". In alto il contatore delle risposte e, appena ce n'è una, l'invito.
+ * Niente timer: nessuna attesa, nessun salto.
  */
 export function QuestionStack() {
   const items = site.forWho.items;
-  const ref = useRef<HTMLDivElement>(null);
-  const [cur, setCur] = useState(0);
-  const [run, setRun] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    let t = 0;
-    const io = new IntersectionObserver(([e]) => {
-      window.clearInterval(t);
-      setRun(!!e?.isIntersecting);
-      if (e?.isIntersecting) t = window.setInterval(() => setCur((c) => (c + 1) % items.length), 2800);
-    });
-    io.observe(el);
-    return () => {
-      io.disconnect();
-      window.clearInterval(t);
-    };
-  }, [items.length]);
+  const [picked, setPicked] = useState<number[]>([]);
+  const toggle = (i: number) => setPicked((p) => (p.includes(i) ? p.filter((x) => x !== i) : [...p, i]));
+  const n = picked.length;
 
   return (
-    <div ref={ref} className="w-full">
-      <div className="relative h-[6.5rem] overflow-hidden rounded-[1.25rem] border border-gold-300/50 bg-[linear-gradient(120deg,#13314f,#082036_70%)] shadow-[0_30px_60px_-30px_rgb(0_0_0/0.9),0_0_40px_-18px_rgb(247_200_92/0.5)]">
-        <span aria-hidden="true" className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-gold-300 to-azure-300" />
-        <p key={cur} className="qs2 absolute inset-0 flex items-center gap-4 px-6 sm:px-8">
-          <span className="font-mono text-[0.8125rem] font-bold text-gold-300">{String(cur + 1).padStart(2, "0")}</span>
-          <span className="font-display text-[clamp(1.25rem,1rem+1.2vw,2rem)] font-bold leading-tight tracking-[-0.03em] text-fg">{items[cur]!.title}</span>
-        </p>
-      </div>
-      <ul className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
-        {items.map((it, i) => (
-          <li key={it.title}>
-            <button type="button" onClick={() => setCur(i)} className={cn("relative w-full overflow-hidden rounded-xl border px-3 py-2 text-left text-[0.75rem] font-semibold leading-snug transition-colors duration-300", i === cur ? "border-gold-300/60 bg-gold-300/[0.08] text-fg" : "border-white/10 bg-white/[0.03] text-fg-3 hover:text-fg-2")}>
-              {it.title}
-              {i === cur && <span key={`${cur}-${run}`} className={cn("absolute bottom-0 left-0 h-[2px] w-full origin-left bg-gold-300", run ? "sx-progress" : "")} style={{ animationDuration: "2800ms" }} />}
-            </button>
-          </li>
-        ))}
+    <div className="w-full">
+      <p className="mb-3 flex items-center justify-between text-[0.75rem] font-semibold text-fg-3">
+        <span>Clicca le domande in cui ti riconosci</span>
+        <span className={cn("rounded-full px-2.5 py-0.5 font-bold transition-colors", n ? "bg-lime-300 text-night" : "bg-white/10 text-fg-2")}>
+          {n} / {items.length}
+        </span>
+      </p>
+      <ul className="qs3 space-y-2">
+        {items.map((it, i) => {
+          const on = picked.includes(i);
+          return (
+            <li key={it.title} className="qs3-row" style={{ "--i": i } as React.CSSProperties}>
+              <button
+                type="button"
+                aria-pressed={on}
+                onClick={() => toggle(i)}
+                className={cn("group/q relative flex w-full items-center gap-4 overflow-hidden rounded-2xl border px-5 py-3.5 text-left transition-[border-color,background-color,transform] duration-300 ease-out-expo hover:translate-x-1.5", on ? "border-lime-300/60 bg-lime-300/[0.07]" : "border-white/10 bg-[rgb(13_39_61/0.55)] hover:border-gold-300/60")}
+              >
+                <span aria-hidden="true" className={cn("absolute inset-y-0 left-0 w-1 origin-top transition-transform duration-300", on ? "scale-y-100 bg-lime-300" : "scale-y-0 bg-gold-300 group-hover/q:scale-y-100")} />
+                <span className="font-mono text-[0.75rem] font-bold text-gold-300">{String(i + 1).padStart(2, "0")}</span>
+                <span className="flex-1 font-display text-[clamp(1rem,0.9rem+0.5vw,1.25rem)] font-bold leading-tight tracking-[-0.02em] text-fg">{it.title}</span>
+                <span className={cn("grid h-7 w-7 shrink-0 place-items-center rounded-full border-2 transition-[background-color,border-color,transform] duration-300", on ? "scale-110 border-lime-300 bg-lime-300 text-night" : "border-white/25 text-transparent group-hover/q:border-gold-300")}>
+                  <Icon name="check" className="h-4 w-4" strokeWidth={3} />
+                </span>
+              </button>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

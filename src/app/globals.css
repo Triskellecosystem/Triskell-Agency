@@ -1853,3 +1853,17 @@ main > section:nth-of-type(even) { background-image: linear-gradient(180deg, tra
 @keyframes pbg-x { to { background-position: 0 0, 64px 0; } }
 @keyframes pbg-tiles { to { background-position: 0 130px, 0 130px, 130px 0; } }
 @media (prefers-reduced-motion: reduce) { .pbg-plane { animation: none !important; } }
+
+/* Video da set */
+.scv-frame { transform: rotateY(var(--tx, 0deg)) rotateX(var(--ty, 0deg)); transition: transform 0.8s var(--ease-out-expo); box-shadow: 0 50px 100px -40px rgb(0 0 0 / 0.95); z-index: 1; }
+.scv-ring { background: conic-gradient(from var(--a, 0deg), var(--color-gold-200), rgb(58 164 212 / 0.4) 25%, var(--color-gold-400) 50%, rgb(58 164 212 / 0.4) 75%, var(--color-gold-200)); animation: svc2-spin 6s linear infinite; }
+.scv-c { position: absolute; width: 22px; height: 22px; border-color: rgb(255 255 255 / 0.75); border-style: solid; pointer-events: none; }
+.scv-c--a { left: 12px; top: 40px; border-width: 2px 0 0 2px; } .scv-c--b { right: 12px; top: 40px; border-width: 2px 2px 0 0; }
+.scv-c--c { left: 12px; bottom: 56px; border-width: 0 0 2px 2px; } .scv-c--d { right: 12px; bottom: 56px; border-width: 0 2px 2px 0; }
+.scv-rec { box-shadow: 0 0 10px #ff3b30; animation: agent-live 1.2s ease-out infinite; }
+[data-reveal] .scv-frame, .scv-frame { }
+@media (prefers-reduced-motion: reduce) { .scv-ring, .scv-rec { animation: none; } }
+.qs3-row { opacity: 0; transform: translate3d(calc((var(--i) - 2.5) * 0px - 40px), 0, 0); transition: opacity 0.6s, transform 0.8s var(--ease-out-expo); transition-delay: calc(0.1s + var(--i) * 0.09s); }
+.qs3-row:nth-child(even) { transform: translate3d(40px, 0, 0); }
+[data-revealed] .qs3-row { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .qs3-row { opacity: 1; transform: none; transition: none; } }

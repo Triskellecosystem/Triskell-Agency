@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import { useState } from "react";
 import { site, type CaseStudy } from "@/content/site";
 import { Icon } from "@/components/ui/Icon";

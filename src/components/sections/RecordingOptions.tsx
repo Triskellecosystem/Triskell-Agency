@@ -3,6 +3,7 @@ import { PerspectiveBg } from "@/components/ui/PerspectiveBg";
 import { cn } from "@/lib/cn";
 import { Icon } from "@/components/ui/Icon";
 import { Section, SectionHeading } from "@/components/ui/Section";
+import { SceneVideo } from "@/components/ui/SceneVideo";
 import { TechBackdrop } from "@/components/ui/TechBackdrop";
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -14,6 +15,9 @@ export function RecordingOptions() {
         <PerspectiveBg variant="ceiling" />
       <TechBackdrop tone="azure" rich />
       <SectionHeading id="riprese-title" overline={r.overline} title={r.title} line={r.line} align="center" />
+      <Reveal y={30} blur={0} from="scale" className="mx-auto mt-9 max-w-3xl">
+        <SceneVideo src="/video/riprese-2.mp4" poster="/video/riprese-2.jpg" label="Una ripresa guidata: ti aiutiamo anche a registrare" />
+      </Reveal>
       <div className="relative mx-auto mt-9 grid max-w-4xl gap-4 md:grid-cols-2 md:gap-6">
         <span aria-hidden="true" className="absolute left-1/2 top-1/2 z-[2] hidden h-9 w-9 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-gold-300 bg-night font-display text-[0.75rem] font-bold text-gold-300 md:grid">
           o
@@ -43,6 +47,7 @@ export function RecordingOptions() {
           </Reveal>
         ))}
       </div>
+      <p className="mt-8 text-center text-[0.75rem] text-fg-3">Collaborazioni da minimo 6 mesi · il tempo per far crescere davvero il profilo</p>
     </Section>
   );
 }

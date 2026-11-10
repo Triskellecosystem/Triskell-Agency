@@ -17,15 +17,13 @@ const shots = [
 const N = shots.length;
 
 /**
- * Ventaglio di profili di esempio (otto): uno davanti, due ai lati, gli altri nascosti dietro. Muovendo il mouse
- * verso sinistra o destra passa al precedente/successivo con un movimento lento; da solo ruota ogni pochi secondi.
+ * Ventaglio di profili di esempio (otto): uno davanti, due ai lati, gli altri nascosti dietro. Basta un clic (o un
+ * tocco) su un telefono dietro per portarlo davanti; da solo ruota ogni pochi secondi quando il mouse non è sopra.
  * Il ventaglio segue anche leggermente il mouse in 3D. Su telefono si tocca.
  */
 export function PhoneFan() {
   const [front, setFront] = useState(0);
   const box = useRef<HTMLDivElement>(null);
-  const lastZone = useRef(1);
-  const cooldown = useRef(0);
   const hover = useRef(false);
 
   useEffect(() => {
@@ -36,11 +34,6 @@ export function PhoneFan() {
     return () => window.clearInterval(t);
   }, []);
 
-  const go = (d: number) => {
-    if (performance.now() < cooldown.current) return;
-    cooldown.current = performance.now() + 1000;
-    setFront((f) => (f + d + N) % N);
-  };
 
   const onMove = (e: React.PointerEvent) => {
     const el = box.current;
@@ -49,11 +42,6 @@ export function PhoneFan() {
     const r = el.getBoundingClientRect();
     const x = (e.clientX - r.left) / r.width;
     el.style.setProperty("--ry", `${((x - 0.5) * 10).toFixed(2)}deg`);
-    const zone = x < 0.3 ? 0 : x > 0.7 ? 2 : 1;
-    if (zone === lastZone.current) return;
-    lastZone.current = zone;
-    if (zone === 0) go(-1);
-    if (zone === 2) go(1);
   };
 
   return (
@@ -62,7 +50,6 @@ export function PhoneFan() {
       onPointerMove={onMove}
       onPointerLeave={() => {
         box.current?.style.setProperty("--ry", "0deg");
-        lastZone.current = 1;
         hover.current = false;
       }}
       className="pf relative mx-auto h-[33rem] w-full max-w-[34rem] [perspective:1400px]"
@@ -78,7 +65,11 @@ export function PhoneFan() {
               type="button"
               tabIndex={pos < 3 ? 0 : -1}
               aria-label={`Mostra in primo piano: ${s.alt}`}
-              onClick={() => setFront(i)}
+              onPointerDown={(e) => {
+                e.preventDefault();
+                setFront(i);
+              }}
+              onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setFront(i)}
               className={cn("pf-phone absolute left-1/2 top-0 -ml-[7.25rem] w-[14.5rem] overflow-hidden rounded-[1.8rem] border-[5px] border-[#1d2a3a] bg-black", `pf-pos-${pos}`)}
             >
               <Image src={`/social-examples/${s.id}.webp`} alt={s.alt} width={520} height={1126} sizes="14.5rem" priority={i < 3} className="block h-auto w-full" />

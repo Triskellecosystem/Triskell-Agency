@@ -31,12 +31,13 @@ const MESSAGES = [
  */
 const PROFILES = {
   vertis: { img: "/social-examples/hd/vertis.webp", base: 78500, name: "Prova gratuita · Vertis Fitness", top: "10.25%" },
+  essentia: { img: "/social-examples/hd/essentia.webp", base: 52800, name: "Trattamento omaggio · Essentia", top: "10%" },
   lavie: { img: "/social-examples/hd/lavie.webp", base: 36900, name: "Consulenza gratuita · La Vie Beauty", top: "10%" },
 } as const;
 
 export function LivePhone({ className, compact, tabs, salesLabel = "Vendite chiuse", profile = "vertis" }: { className?: string; compact?: boolean; tabs?: boolean; salesLabel?: string; profile?: keyof typeof PROFILES }) {
   const P = PROFILES[profile];
-  const LIST = profile === "lavie" ? BEAUTY : MESSAGES;
+  const LIST = profile === "vertis" ? MESSAGES : BEAUTY;
   const [tab, setTab] = useState<0 | 1>(0);
   const drag = useRef<number | null>(null);
   const ref = useRef<HTMLDivElement>(null);

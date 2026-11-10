@@ -13,6 +13,7 @@ import { TechBackdrop } from "@/components/ui/TechBackdrop";
 import { DigitalCursor } from "@/components/motion/DigitalCursor";
 import { Reveal } from "@/components/motion/Reveal";
 import { site } from "@/content/site";
+import { SceneVideo } from "@/components/ui/SceneVideo";
 
 export const metadata: Metadata = {
   title: "Il Metodo Triskell",
@@ -62,6 +63,23 @@ export default function MetodoPage() {
         <Reveal y={10} blur={0} className="mt-10">
           <MetodoEquation fly />
         </Reveal>
+      </Section>
+
+      <Section id="registrazione" labelledBy="registrazione-title" className="overflow-hidden">
+        <PerspectiveBg variant="ceiling" />
+        <div className="grid items-center gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)]">
+          <div>
+            <SectionHeading id="registrazione-title" overline="Le riprese" title="Se vuoi, [ti aiutiamo anche a registrare]" line="Veniamo noi sul posto, oppure ti guidiamo passo passo: script pronti, inquadrature e call per imparare." />
+            <Reveal y={12} blur={0} delay={0.2} className="mt-7 flex flex-wrap gap-3">
+              <Button href="/social#riprese" size="md" variant="secondary" icon="arrow-right">
+                Come funzionano le riprese
+              </Button>
+            </Reveal>
+          </div>
+          <Reveal y={30} blur={0} from="scale">
+            <SceneVideo src="/video/riprese-2.mp4" poster="/video/riprese-2.jpg" label="Una ripresa guidata per i contenuti social" />
+          </Reveal>
+        </div>
       </Section>
 
       <Section id="differenza" labelledBy="differenza-title" className="cmp-band">

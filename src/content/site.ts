@@ -280,7 +280,7 @@ export const site = {
     overline: "Per chi è",
     title: "È per te se [ti riconosci]",
     answer: "Sì",
-    closing: "Se hai risposto sì almeno una volta, parliamone.",
+    closing: "Se ti sei riconosciuto anche in una sola domanda, parliamone.",
     line: "Attività locali, professionisti e aziende che vogliono crescere senza perdere tempo.",
     items: [
       { icon: "users", title: "Vuoi più clienti ogni mese?", text: "" },

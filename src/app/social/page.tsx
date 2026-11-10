@@ -8,11 +8,9 @@ import { PhoneFan } from "@/components/sections/PhoneFan";
 import { LivePhone } from "@/components/sections/LivePhone";
 import { PerspectiveBg } from "@/components/ui/PerspectiveBg";
 import { RecordingOptions } from "@/components/sections/RecordingOptions";
-import { Rodaggio } from "@/components/sections/Rodaggio";
 import { SocialFinale } from "@/components/sections/SocialFinale";
 import { SocialPillars } from "@/components/sections/SocialPillars";
 import { StepRail } from "@/components/sections/StepRail";
-import { SupportBand } from "@/components/sections/SupportBand";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Section, SectionHeading } from "@/components/ui/Section";
@@ -28,7 +26,6 @@ export const metadata: Metadata = {
 
 export default function SocialPage() {
   const s = site.social;
-  const m = site.metodo;
   return (
     <>
       <PageHero overline={s.overline} title={s.title} line={s.line} crumbs={[{ label: "Social media" }]} aside={<PhoneFan />} alignTop backdrop={<div aria-hidden="true" className="tiles3d absolute inset-0 -z-10"><span className="tiles3d-plane" /></div>}>
@@ -61,7 +58,7 @@ export default function SocialPage() {
               </Button>
             </Reveal>
           </div>
-          <LivePhone profile="vertis" salesLabel="Prove fissate" />
+          <LivePhone profile="essentia" salesLabel="Prenotazioni" />
         </div>
       </Section>
 
@@ -88,13 +85,6 @@ export default function SocialPage() {
         </div>
       </Section>
 
-      <Section id="rodaggio-social" labelledBy="rodaggio-social-title" className="py-[clamp(2.5rem,1.6rem+2.6vw,4rem)]">
-        <SectionHeading id="rodaggio-social-title" overline={m.rodaggio.overline} title={m.rodaggio.title} line="Il tempo per creare la struttura, metterla in moto e vedere i risultati." />
-        <div className="mt-8 space-y-4">
-          <Rodaggio />
-          <SupportBand />
-        </div>
-      </Section>
 
       <SocialFinale />
       <CtaBand content={site.cta.agency} />
