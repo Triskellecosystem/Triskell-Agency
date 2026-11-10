@@ -1,40 +1,98 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { site } from "@/content/site";
-import { Reveal } from "@/components/motion/Reveal";
+import { cn } from "@/lib/cn";
+import { Icon } from "@/components/ui/Icon";
 
 /**
- * Rodaggio di 6 mesi, semplice: una barra divisa nelle tre fasi (larghe quanto i mesi che durano) che si riempie
- * da sinistra, un punto d'oro che la percorre e il traguardo "Risultati" alla fine.
+ * Rodaggio di 6 mesi, legato allo scroll: mentre scorri la linea avanza mese dopo mese (i mesi si accendono, la fase
+ * attiva si evidenzia) e quando arriva in fondo "esplode": dal traguardo partono richieste, numeri e clienti.
+ * Reversibile. Con movimento ridotto è già tutto completo.
  */
 export function Rodaggio() {
   const r = site.metodo.rodaggio;
+  const ref = useRef<HTMLDivElement>(null);
+  const [p, setP] = useState(0);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      if (reduced) return setP(1);
+      const b = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      // 0 quando il blocco entra dal basso, 1 quando il suo centro passa il 40% dello schermo
+      const v = (vh - b.top) / (vh * 0.42 + b.height * 0.5);
+      setP(Math.min(1, Math.max(0, v)));
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  const month = p * 6; // 0 → 6
+  const done = p >= 0.98;
+
   return (
-    <Reveal y={20} blur={0}>
-      <div className="rd2 rounded-[1.25rem] border border-white/10 bg-white/[0.02] p-5 sm:p-7">
-        <div className="flex items-baseline justify-between gap-3">
-          <p className="font-display text-[1rem] font-semibold text-fg">
-            <span className="text-gold font-bold">6 mesi</span> per far partire tutto
-          </p>
-          <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-fg-3">{r.badge}</p>
+    <div ref={ref} className="rd3 relative rounded-[1.5rem] border border-white/10 bg-[linear-gradient(150deg,rgb(13_39_61/0.7),rgb(1_15_28/0.7))] p-5 sm:p-8">
+      <div className="relative pt-2">
+        {/* binario */}
+        <div className="relative h-2 rounded-full bg-white/10">
+          <div className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-azure-300 via-gold-300 to-gold-200 shadow-[0_0_18px_rgb(247_200_92/0.6)]" style={{ width: `${p * 100}%` }} />
+          <span className="absolute top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold-200 shadow-[0_0_20px_6px_rgb(247_200_92/0.65)]" style={{ left: `${p * 100}%` }} />
+          {Array.from({ length: 7 }, (_, i) => (
+            <span key={i} className={cn("absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 transition-colors duration-300", month >= i ? "border-gold-200 bg-gold-300" : "border-white/30 bg-night")} style={{ left: `${(i / 6) * 100}%` }} />
+          ))}
         </div>
-        <div className="relative mt-6">
-          <div className="flex h-2.5 gap-1 overflow-hidden rounded-full">
-            {r.phases.map((p, i) => (
-              <span key={p.title} className="relative h-full overflow-hidden rounded-full bg-white/10" style={{ flex: p.to - p.from + 1 }}>
-                <span className="rd2-fill absolute inset-0 origin-left rounded-full" style={{ transitionDelay: `${0.2 + i * 0.5}s`, background: ["var(--color-azure-300)", "linear-gradient(90deg,var(--color-azure-300),var(--color-gold-300))", "var(--color-gold-300)"][i] }} />
-              </span>
-            ))}
-          </div>
-          <span aria-hidden="true" className="rd2-dot absolute top-1/2 h-4 w-4 -translate-y-1/2 rounded-full bg-gold-200 shadow-[0_0_14px_4px_rgb(247_200_92/0.6)]" />
-        </div>
-        <ol className="mt-4 flex gap-1">
-          {r.phases.map((p) => (
-            <li key={p.title} className="min-w-0" style={{ flex: p.to - p.from + 1 }}>
-              <p className="font-mono text-[0.625rem] font-semibold uppercase tracking-wider text-fg-3">{p.from === p.to ? `Mese ${p.from}` : `Mesi ${p.from}–${p.to}`}</p>
-              <p className="mt-0.5 truncate font-display text-[0.875rem] font-semibold text-fg sm:text-[0.9375rem]">{p.title}</p>
+        <ol className="mt-3 grid grid-cols-6 text-center">
+          {Array.from({ length: 6 }, (_, i) => (
+            <li key={i} className={cn("font-mono text-[0.625rem] font-bold uppercase tracking-wider transition-colors duration-300 sm:text-[0.6875rem]", month >= i + 0.5 ? "text-gold-200" : "text-fg-3")}>
+              Mese {i + 1}
             </li>
           ))}
         </ol>
+
+        {/* fasi */}
+        <ol className="mt-5 flex gap-2">
+          {r.phases.map((ph, i) => {
+            const active = month >= ph.from - 1 + 0.2 && month <= ph.to + 0.2;
+            const passed = month > ph.to;
+            return (
+              <li key={ph.title} className={cn("min-w-0 rounded-xl border p-3 transition-[border-color,background-color,transform] duration-500", active ? "-translate-y-1 border-gold-300/70 bg-gold-300/[0.08]" : passed ? "border-azure-300/30 bg-azure-300/[0.04]" : "border-white/[0.07] bg-white/[0.02]")} style={{ flex: ph.to - ph.from + 1 }}>
+                <p className="font-mono text-[0.625rem] font-bold uppercase tracking-wider text-fg-3">{ph.from === ph.to ? `Mese ${ph.from}` : `Mesi ${ph.from}–${ph.to}`}</p>
+                <p className={cn("mt-0.5 font-display text-[0.875rem] font-bold sm:text-[1rem]", active ? "text-gold-200" : "text-fg")}>
+                  {i + 1}. {ph.title}
+                </p>
+                <p className="mt-0.5 hidden text-[0.75rem] leading-snug text-fg-3 sm:block">{ph.text}</p>
+              </li>
+            );
+          })}
+        </ol>
       </div>
-    </Reveal>
+
+      {/* esplosione finale */}
+      <div className={cn("rd3-burst pointer-events-none relative mt-6 flex min-h-[5.5rem] flex-wrap items-center justify-center gap-2", done && "is-on")}>
+        <span aria-hidden="true" className="rd3-flash absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full" />
+        {r.burst.map((b, i) => (
+          <span key={b} className="rd3-chip relative inline-flex items-center gap-1.5 rounded-full border border-gold-300/50 bg-night/80 px-3 py-1.5 text-[0.8125rem] font-bold text-gold-100 shadow-[0_0_24px_-6px_rgb(247_200_92/0.7)]" style={{ "--i": i, "--x": `${(i % 3 - 1) * 60}px`, "--y": `${i < 3 ? -30 : 30}px` } as React.CSSProperties}>
+            <Icon name={["users", "trending", "calendar", "zap", "handshake", "target"][i % 6] as "users"} className="h-3.5 w-3.5 text-gold-300" strokeWidth={2.2} />
+            {b}
+          </span>
+        ))}
+        {!done && <span className="absolute text-[0.75rem] text-fg-3">Scorri: arriviamo al sesto mese…</span>}
+      </div>
+    </div>
   );
 }

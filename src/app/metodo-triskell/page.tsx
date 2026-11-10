@@ -1,36 +1,37 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { BaseConsigliata } from "@/components/sections/BaseConsigliata";
+import { BestPackage } from "@/components/sections/BestPackage";
 import { Compare } from "@/components/sections/Compare";
-import { IncludedBlocks } from "@/components/sections/IncludedBlocks";
 import { Contact } from "@/components/sections/Contact";
 import { CtaBand } from "@/components/sections/CtaBand";
-import { MetodoFormula } from "@/components/sections/MetodoFormula";
-import { PhoneProfile } from "@/components/sections/PhoneProfile";
+import { MetodoEquation } from "@/components/sections/MetodoEquation";
+import { MetodoPhone } from "@/components/sections/MetodoPhone";
 import { Rodaggio } from "@/components/sections/Rodaggio";
-import { SupportBand } from "@/components/sections/SupportBand";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { TechBackdrop } from "@/components/ui/TechBackdrop";
 import { DigitalCursor } from "@/components/motion/DigitalCursor";
 import { Reveal } from "@/components/motion/Reveal";
-import { demoProfiles } from "@/content/demo-profiles";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Il Metodo Triskell",
-  description: "Social + campagne (+ sito, se serve): la combinazione che fa crescere il profilo e porta clienti. Collaborazioni da minimo 6 mesi, tutto su misura.",
+  description: "Social + campagne (+ sito, se serve) = più clienti. La base più scelta: 12 contenuti e 4–5 campagne al mese, collaborazione da minimo 6 mesi, tutto su misura.",
   alternates: { canonical: "/metodo-triskell" },
 };
 
+const FORMULA = [
+  { t: "Social", c: "text-azure-300", icon: "smartphone" },
+  { t: "+", op: true },
+  { t: "Campagne", c: "text-gold-300", icon: "click" },
+  { t: "+", op: true },
+  { t: "Sito web", c: "text-fg-2", icon: "monitor", note: "se serve" },
+  { t: "=", op: true },
+  { t: "Più clienti", c: "text-gold", icon: "trending" },
+] as const;
+
 export default function MetodoPage() {
   const m = site.metodo;
-  const links = [
-    { icon: "smartphone", title: "Gestione social", href: "/social" },
-    { icon: "monitor", title: "Siti web", href: "/siti-web" },
-    { icon: "trending", title: "Risultati", href: "/risultati" },
-  ] as const;
   return (
     <>
       <section aria-labelledby="metodo-title" className="relative isolate overflow-hidden pb-[clamp(2.5rem,5vw,4rem)] pt-[calc(var(--header-h)+clamp(2rem,5vh,3.5rem))]">
@@ -40,79 +41,73 @@ export default function MetodoPage() {
           <span className="ah-dots" />
         </div>
         <DigitalCursor className="-z-10" />
-        <div className="container-x grid items-center gap-x-12 gap-y-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+        <div className="container-x grid items-center gap-x-10 gap-y-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
           <div>
-            <p className="animate-[fade-in_0.8s_var(--ease-soft)_both] text-[0.6875rem] font-semibold uppercase tracking-[0.2em] text-fg-3">{m.overline}</p>
-            <h1 id="metodo-title" className="mt-3 animate-[line-up_1s_var(--ease-out-expo)_backwards] font-display text-[clamp(2.75rem,1.8rem+3.8vw,5rem)] font-bold leading-[0.95] tracking-[-0.045em] text-fg">
+            <p className="animate-[fade-in_0.8s_var(--ease-soft)_both] text-[0.6875rem] font-semibold uppercase tracking-[0.22em] text-gold-300">{m.overline}</p>
+            <h1 id="metodo-title" className="mt-2 animate-[line-up_1s_var(--ease-out-expo)_backwards] font-display text-[clamp(3rem,2rem+4vw,5.5rem)] font-bold leading-[0.92] tracking-[-0.05em] text-fg">
               Metodo <span className="text-gold">Triskell</span>
             </h1>
-            <p className="mt-3 font-display text-[clamp(1.25rem,1rem+1vw,1.75rem)] font-semibold tracking-[-0.02em] text-fg-2">
-              Social <span className="text-gold-300">+</span> Campagne
+            <p className="mt-6 flex flex-wrap items-center gap-x-2.5 gap-y-1 font-display text-[clamp(1.375rem,1.05rem+1.3vw,2.125rem)] font-bold leading-tight tracking-[-0.03em]">
+              {FORMULA.map((f, i) =>
+                "op" in f ? (
+                  <span key={i} className="mf-op grid h-9 w-9 place-items-center rounded-full border-2 border-gold-300/70 text-[1.25rem] text-gold-300">{f.t}</span>
+                ) : (
+                  <span key={i} className={`inline-flex items-center gap-1.5 ${f.c}`}>
+                    <Icon name={f.icon} className="h-[0.8em] w-[0.8em]" strokeWidth={2.2} />
+                    {f.t}
+                    {"note" in f && <span className="text-[0.45em] font-semibold uppercase tracking-wider text-fg-3">({f.note})</span>}
+                  </span>
+                ),
+              )}
             </p>
-            <p className="mt-4 max-w-md text-[0.9375rem] leading-relaxed text-fg-2">{m.line}</p>
-            <MetodoFormula className="mt-6" />
+            <p className="mt-5 max-w-md text-[0.9375rem] leading-relaxed text-fg-2">{m.line}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/contatti" size="md" icon="calendar" iconPosition="start" pulse>
+              <Button href="/contatti" size="lg" icon="calendar" iconPosition="start" pulse>
                 Prenota la call gratuita
               </Button>
-              <Button href="#rodaggio" size="md" variant="secondary" icon="arrow-down">
-                Come funziona
+              <Button href="#base" size="lg" variant="secondary" icon="arrow-down">
+                La base più scelta
               </Button>
             </div>
           </div>
-          <div className="relative">
-            <span aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgb(58_164_212/0.2),rgb(247_200_92/0.08)_45%,transparent_70%)] blur-2xl" />
-            <PhoneProfile profile={demoProfiles[1]!} campaign />
-          </div>
+          <MetodoPhone />
         </div>
       </section>
 
-      <Section id="incluso" labelledBy="incluso-title">
-        <TechBackdrop tone="gold" rich />
-        <SectionHeading id="incluso-title" overline={m.included.overline} title={m.included.title} line={m.included.line} align="center" />
-        <div className="mt-9">
-          <IncludedBlocks />
-        </div>
+      <Section id="formula" labelledBy="formula-title" className="mt-band">
+        <TechBackdrop tone="gold" cursor rich />
+        <SectionHeading id="formula-title" overline="Come funziona" title="Ogni parte [spinge le altre]" align="center" />
+        <Reveal y={10} blur={0} className="mt-9">
+          <MetodoEquation />
+        </Reveal>
       </Section>
 
-      <Section id="differenza" labelledBy="differenza-title">
+      <Section id="base" labelledBy="base-title">
+        <TechBackdrop tone="azure" rich />
+        <SectionHeading id="base-title" overline={m.best.overline} title={m.best.title} line={m.best.line} align="center" />
+        <Reveal y={20} blur={0} className="mt-9">
+          <BestPackage />
+        </Reveal>
+      </Section>
+
+      <Section id="differenza" labelledBy="differenza-title" className="cmp-band">
         <SectionHeading id="differenza-title" overline={m.compare.overline} title={m.compare.title} line={m.compare.line} align="center" />
         <div className="mt-9">
           <Compare them={m.compare.them} us={m.compare.us} rows={m.compare.rows} />
         </div>
         <Reveal y={12} blur={0} className="mt-8 flex justify-center">
-          <Button href="/contatti" size="md" icon="calendar" iconPosition="start" pulse>
+          <Button href="/contatti" size="lg" icon="calendar" iconPosition="start" pulse>
             Prenota la call gratuita
           </Button>
         </Reveal>
       </Section>
 
-      <Section id="rodaggio" labelledBy="rodaggio-title" className="py-[clamp(2.5rem,1.6rem+2.6vw,4rem)]">
-        <TechBackdrop tone="azure" rich />
-        <SectionHeading id="rodaggio-title" overline={m.rodaggio.overline} title={m.rodaggio.title} line="Struttura, messa in moto, risultati. Con meno tempo i risultati restano troppo relativi." />
-        <div className="mt-8">
+      <Section id="rodaggio" labelledBy="rodaggio-title">
+        <TechBackdrop tone="gold" rich />
+        <SectionHeading id="rodaggio-title" overline={m.rodaggio.overline} title={m.rodaggio.title} line="Il tempo per creare la struttura, metterla in moto e vedere i risultati. Con meno tempo i risultati restano troppo relativi." />
+        <div className="mt-9">
           <Rodaggio />
         </div>
-      </Section>
-
-      <Section id="base" labelledBy="base-title" className="py-[clamp(2.5rem,1.6rem+2.6vw,4rem)]">
-        <SectionHeading id="base-title" overline={m.base.overline} title={m.base.title} line="Ogni attività è un caso a sé. Ma c'è una base che consigliamo sempre." />
-        <div className="mt-8 space-y-4">
-          <BaseConsigliata />
-          <SupportBand />
-        </div>
-        <Reveal y={14} blur={0} className="mt-8 flex flex-wrap items-center gap-2">
-          <span className="mr-1 text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-fg-3">Approfondisci</span>
-          {links.map((l) => (
-            <Link key={l.title} href={l.href} className="group/l inline-flex items-center gap-2 rounded-full border border-white/10 py-1.5 pl-1.5 pr-3 text-[0.8125rem] font-semibold text-fg transition-colors hover:border-gold-300/60">
-              <span className="grid h-6 w-6 place-items-center rounded-full bg-gold-300/10 text-gold-300">
-                <Icon name={l.icon} className="h-3.5 w-3.5" strokeWidth={2} />
-              </span>
-              {l.title}
-              <Icon name="arrow-right" className="h-3.5 w-3.5 text-gold-300 transition-transform group-hover/l:translate-x-0.5" />
-            </Link>
-          ))}
-        </Reveal>
       </Section>
 
       <CtaBand content={site.cta.agency} />

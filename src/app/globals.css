@@ -1270,8 +1270,9 @@ html[data-no-loader] .loader { display: none; }
 
 /* Effetto mouse Agency: griglia di puntini che si accende attorno al cursore + alone */
 .dc { --cx: -400px; --cy: -400px; }
-.dc > span { position: absolute; inset: 0; opacity: 0; transition: opacity 0.5s var(--ease-out-expo); }
-.dc[data-on] > span { opacity: 1; }
+.dc > span, .dc > svg { position: absolute; inset: 0; opacity: 0; transition: opacity 0.5s var(--ease-out-expo); }
+.dc[data-on] > span, .dc[data-on] > svg { opacity: 1; }
+.dc-trail { filter: drop-shadow(0 0 4px rgb(247 200 92 / 0.6)); }
 .dc-glow { background: radial-gradient(circle 220px at var(--cx) var(--cy), rgb(58 164 212 / 0.14), rgb(247 200 92 / 0.06) 45%, transparent 70%); }
 .dc-grid {
   background-image: radial-gradient(circle at center, rgb(247 200 92 / 0.85) 1px, transparent 1.6px);
@@ -1514,3 +1515,13 @@ html[data-no-loader] .loader { display: none; }
 .res-cell::after { content: ""; position: absolute; inset: 0; background: linear-gradient(105deg, transparent 40%, rgb(255 236 180 / 0.08) 50%, transparent 60%); transform: translateX(-100%); animation: res-shine 5s calc(var(--i, 0) * 0.6s) ease-in-out infinite; pointer-events: none; }
 @keyframes res-shine { 0%, 60% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 @media (prefers-reduced-motion: reduce) { .cg-next-ring, [data-revealed] .res-num, [data-revealed] .res-burst, .res-cell::after { animation: none; } }
+
+/* Rodaggio: esplosione al sesto mese */
+.rd3-chip { opacity: 0; transform: translate3d(0, 0, 0) scale(0.3); transition: opacity 0.4s, transform 0.7s var(--ease-out-expo); transition-delay: calc(var(--i, 0) * 0.07s); }
+.rd3-burst.is-on .rd3-chip { opacity: 1; transform: none; animation: rd3-chip 0.9s calc(var(--i, 0) * 0.07s) var(--ease-out-expo) backwards; }
+@keyframes rd3-chip { 0% { transform: translate3d(calc(var(--x) * -1), calc(var(--y) * -1), 0) scale(0.2); opacity: 0; } 60% { transform: translate3d(calc(var(--x) * 0.15), calc(var(--y) * 0.15), 0) scale(1.12); opacity: 1; } 100% { transform: none; } }
+.rd3-flash { background: radial-gradient(circle, rgb(255 225 140 / 0.7), transparent 70%); opacity: 0; transform: scale(0.2); }
+.rd3-burst.is-on .rd3-flash { animation: rd3-flash 1s ease-out; }
+@keyframes rd3-flash { 0% { opacity: 1; transform: translate(-50%, -50%) scale(0.2); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(3); } }
+@media (prefers-reduced-motion: reduce) { .rd3-chip { opacity: 1; transform: none; transition: none; } .rd3-burst.is-on .rd3-chip, .rd3-burst.is-on .rd3-flash { animation: none; } }
+.cmp-band::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(50% 60% at 50% 50%, rgb(58 164 212 / 0.14), transparent 70%); }

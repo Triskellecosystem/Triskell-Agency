@@ -459,8 +459,8 @@ export const site = {
     ] satisfies Array<{ icon: IconName; title: string; text: string }>,
     /** Collaborazione minima e rodaggio. */
     rodaggio: {
-      overline: "Collaborazioni da minimo 6 mesi",
-      title: "Serve un [tempo di rodaggio]",
+      overline: "Il tempo di rodaggio",
+      title: "Collaborazione da [minimo 6 mesi]",
       line: "Per creare la struttura, metterla in moto e vedere i risultati servono almeno 6 mesi. Con meno tempo non è possibile coordinare tutto: l'abbiamo visto in tanti casi, i risultati restano troppo relativi.",
       months: 6,
       phases: [
@@ -469,6 +469,7 @@ export const site = {
         { from: 4, to: 6, title: "Vediamo i risultati", text: "Ottimizziamo ciò che funziona e spingiamo dove rende di più." },
       ],
       badge: "Minimo 6 mesi",
+      burst: ["+60 lead al mese", "+1.200 follower", "Prove prenotate", "+25K€ fatturato", "Clienti fidelizzati", "Campagne ottimizzate"],
     },
     /** Niente pacchetti fissi: base consigliata. */
     base: {
@@ -511,6 +512,25 @@ export const site = {
         { icon: "headphones", title: "Assistenza", value: "24/7", unit: "per le emergenze", points: ["Referente diretto", "WhatsApp e telefono", "Extra urgenti rapidi"] },
       ] satisfies Array<{ icon: IconName; title: string; value: string; unit: string; points: string[] }>,
       site: "E se serve, rifacciamo anche il sito.",
+    },
+    best: {
+      overline: "La base più scelta",
+      title: "Il pacchetto [più scelto]",
+      line: "Niente pacchetti fissi: questa è la base da cui partono quasi tutti. Dopo la call la adattiamo alla tua attività.",
+      badge: "Personalizzabile",
+      numbers: [
+        { value: "12", unit: "contenuti al mese", note: "3 a settimana" },
+        { value: "4–5", unit: "campagne al mese", note: "Meta Ads e Google Ads" },
+        { value: "6", unit: "mesi minimo", note: "il tempo per far crescere tutto" },
+      ],
+      toggle: "Scopri cosa include",
+      groups: [
+        { icon: "smartphone", title: "Gestione social", items: ["Script pronti da leggere", "Riprese sul posto o guida per registrare", "Editing professionale", "Pubblicazione e gestione del profilo"] },
+        { icon: "click", title: "Campagne", items: ["Meta Ads e Google Ads", "Creatività fatte dai tuoi contenuti", "Test e ottimizzazione continua", "Contatti che arrivano ogni giorno"] },
+        { icon: "compass", title: "Strategia", items: ["Call iniziali incluse", "Piano su misura per la tua attività", "Posizionamento e messaggi chiari", "Analisi dei risultati insieme"] },
+        { icon: "headphones", title: "Assistenza", items: ["Un referente diretto", "WhatsApp e telefono", "Sempre disponibili per le emergenze", "Extra urgenti in tempi rapidi"] },
+      ] satisfies Array<{ icon: IconName; title: string; items: string[] }>,
+      extra: "Se serve, rifacciamo anche il sito.",
     },
     compare: {
       overline: "La differenza",
