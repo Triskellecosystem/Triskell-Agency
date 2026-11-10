@@ -6,6 +6,7 @@ import { cn } from "@/lib/cn";
 import { BeamCard } from "@/components/ui/BeamCard";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
+import { CountUp } from "@/components/motion/CountUp";
 
 /** La base più scelta: tre numeri grandi in una scheda con bordo oro rotante e la tendina "Scopri cosa include". */
 export function BestPackage() {
@@ -22,15 +23,21 @@ export function BestPackage() {
           <span className="rounded-full border border-lime-300/50 px-3 py-0.5 text-[0.6875rem] font-bold uppercase tracking-wider text-lime-300">{b.badge}</span>
         </div>
         <dl className="grid divide-white/10 sm:grid-cols-3 sm:divide-x">
-          {b.numbers.map((n) => (
-            <div key={n.unit} className="px-5 py-6 text-center sm:py-8">
-              <dd className="font-display text-[clamp(3rem,2rem+3.6vw,4.75rem)] font-bold leading-none tracking-[-0.06em] text-gold">{n.value}</dd>
+          {b.numbers.map((n, i) => {
+            const m = n.value.match(/^(.*?)(\d+)$/);
+            return (
+            <div key={n.unit} className="bp-cell relative px-5 py-6 text-center sm:py-8" style={{ "--i": i } as React.CSSProperties}>
+              <span aria-hidden="true" className="bp-ring" />
+              <dd className="font-display text-[clamp(3rem,2rem+3.6vw,4.75rem)] font-bold leading-none tracking-[-0.06em]">
+                {m ? <CountUp value={Number(m[2])} prefix={m[1]} className="text-gold" duration={1.4} /> : <span className="text-gold">{n.value}</span>}
+              </dd>
               <dt className="mt-2 font-display text-[1.0625rem] font-bold text-fg">{n.unit}</dt>
               <p className="mt-0.5 text-[0.75rem] text-fg-3">{n.note}</p>
             </div>
-          ))}
+            );
+          })}
         </dl>
-        <button type="button" aria-expanded={open} aria-controls="best-inc" onClick={() => setOpen(!open)} className="flex w-full items-center justify-center gap-2 border-t border-white/10 py-3.5 font-display text-[0.9375rem] font-bold text-gold-200 transition-colors hover:bg-gold-300/[0.06]">
+        <button type="button" aria-expanded={open} aria-controls="best-inc" onClick={() => setOpen(!open)} className="bp-toggle relative flex w-full overflow-hidden items-center justify-center gap-2 border-t border-white/10 py-3.5 font-display text-[0.9375rem] font-bold text-gold-200 transition-colors hover:bg-gold-300/[0.06]">
           {b.toggle}
           <Icon name="chevron-down" className={cn("h-4 w-4 transition-transform duration-300", open && "rotate-180")} strokeWidth={2.4} />
         </button>

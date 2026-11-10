@@ -1,6 +1,5 @@
 import { site } from "@/content/site";
 import { Button } from "@/components/ui/Button";
-import { Icon } from "@/components/ui/Icon";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { TechBackdrop } from "@/components/ui/TechBackdrop";
 import { CountUp } from "@/components/motion/CountUp";
@@ -13,10 +12,6 @@ export function Results() {
   return (
     <Section id={results.id} labelledBy="results-title">
       <TechBackdrop tone="azure" cursor rich />
-      <div aria-hidden="true" className="res-hands pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <Icon name="handshake-2" className="res-hands-ico absolute right-[34%] top-[18rem] h-[16rem] w-[16rem] -translate-y-1/2 translate-x-1/2" strokeWidth={0.5} />
-        <span className="absolute right-[34%] top-[18rem] h-[16rem] w-[30rem] -translate-y-1/2 translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(247_200_92/0.12),transparent)]" />
-      </div>
       <div className="flex flex-wrap items-end justify-between gap-5">
         <SectionHeading id="results-title" overline={results.overline} title={results.title} line={results.line} />
         <Reveal y={12} blur={0}>

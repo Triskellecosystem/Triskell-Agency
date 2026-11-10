@@ -29,7 +29,7 @@ export default function SocialPage() {
   const m = site.metodo;
   return (
     <>
-      <PageHero overline={s.overline} title={s.title} line={s.line} crumbs={[{ label: "Social media" }]} aside={<PhoneFan />} alignTop>
+      <PageHero overline={s.overline} title={s.title} line={s.line} crumbs={[{ label: "Social media" }]} aside={<PhoneFan />} alignTop backdrop={<div aria-hidden="true" className="tiles3d absolute inset-0 -z-10"><span className="tiles3d-plane" /></div>}>
         <Button href="/contatti" size="md" icon="calendar" iconPosition="start" pulse>
           Prenota la call gratuita
         </Button>

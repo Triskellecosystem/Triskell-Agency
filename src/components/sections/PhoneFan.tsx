@@ -18,6 +18,8 @@ const shots = [
 export function PhoneFan() {
   const [front, setFront] = useState(0);
   const box = useRef<HTMLDivElement>(null);
+  const lastZone = useRef(1);
+  const cooldown = useRef(0);
   const posOf = (i: number) => (i - front + 3) % 3; // 0 davanti, 1 destra, 2 sinistra
 
   const onMove = (e: React.PointerEvent) => {
@@ -26,8 +28,12 @@ export function PhoneFan() {
     const r = el.getBoundingClientRect();
     const x = (e.clientX - r.left) / r.width;
     el.style.setProperty("--ry", `${((x - 0.5) * 10).toFixed(2)}deg`);
-    const zone = x < 0.33 ? 0 : x > 0.67 ? 2 : 1;
-    if (zone === 1) return;
+    const zone = x < 0.3 ? 0 : x > 0.7 ? 2 : 1;
+    // si cambia solo quando il mouse ENTRA in una zona (non a ogni movimento) e non durante il movimento precedente
+    if (zone === lastZone.current) return;
+    lastZone.current = zone;
+    if (zone === 1 || performance.now() < cooldown.current) return;
+    cooldown.current = performance.now() + 1100;
     // trova quale telefono sta in quella posizione e portalo davanti
     const wantPos = zone === 0 ? 2 : 1;
     const target = shots.findIndex((_, i) => posOf(i) === wantPos);
@@ -38,7 +44,10 @@ export function PhoneFan() {
     <div
       ref={box}
       onPointerMove={onMove}
-      onPointerLeave={() => box.current?.style.setProperty("--ry", "0deg")}
+      onPointerLeave={() => {
+        box.current?.style.setProperty("--ry", "0deg");
+        lastZone.current = 1;
+      }}
       className="pf relative mx-auto h-[33rem] w-full max-w-[34rem] [perspective:1400px]"
     >
       <span aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[32rem] w-[32rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgb(58_164_212/0.45),rgb(58_164_212/0.1)_55%,transparent_72%)] blur-xl" />

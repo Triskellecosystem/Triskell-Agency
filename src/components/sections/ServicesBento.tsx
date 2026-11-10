@@ -50,8 +50,8 @@ export function ServicesBento({ items }: { items: Service[] }) {
                     </ul>
                     {s.kpi && (
                       <p className="mt-auto flex items-baseline gap-2 border-t border-white/[0.08] pt-3">
-                        <span className="font-display text-[1.375rem] font-bold leading-none tracking-[-0.03em]" style={{ color: "var(--c)" }}>{s.kpi.value}</span>
-                        <span className="text-[0.6875rem] leading-tight text-fg-3">{s.kpi.label}</span>
+                        <span className="sv-kpi font-display text-[2rem] font-bold leading-none tracking-[-0.04em]" style={{ color: "var(--c)", textShadow: "0 0 24px color-mix(in srgb, var(--c) 45%, transparent)" }}>{s.kpi.value}</span>
+                        <span className="text-[0.75rem] font-medium leading-tight text-fg-2">{s.kpi.label}</span>
                       </p>
                     )}
                   </div>

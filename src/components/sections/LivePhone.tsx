@@ -52,6 +52,7 @@ export function LivePhone({ className, compact, tabs, salesLabel = "Vendite chiu
   const followers = 78500 + f * 2 + (f % 3);
   const today = 200 + Math.floor(f / 2) * 5; // +200, +205, +210…: sale a scatti leggibili
   const requests = 18 + Math.floor(f / 4);
+  const campLeads = 18 + Math.floor(f / 2);
   const sales = 6 + Math.floor(f / 10);
   const msgs = Array.from({ length: compact ? 3 : 4 }, (_, k) => {
     const n = m - k;
@@ -87,7 +88,7 @@ export function LivePhone({ className, compact, tabs, salesLabel = "Vendite chiu
               <p className="mt-[1.5cqw] text-[4.6cqw] font-bold text-white">Prova gratuita · Vertis Fitness</p>
               <div className="mt-[4cqw] rounded-xl bg-white/[0.05] p-[4cqw]">
                 <p className="text-[3.4cqw] text-fg-3">Contatti oggi</p>
-                <p key={requests} className="lp2-count font-display text-[13cqw] font-bold leading-none text-gold">{requests}</p>
+                <p key={campLeads} className="lp2-count font-display text-[13cqw] font-bold leading-none text-gold">{campLeads}</p>
                 <div className="mt-[4cqw] flex h-[22cqw] items-end gap-1">
                   {[30, 42, 38, 55, 48, 62, 70, 66, 82, 94].map((h, k) => (
                     <span key={k} className="pp-bar flex-1 rounded-sm bg-gradient-to-t from-azure-400 to-gold-300" style={{ height: `${h}%`, animationDelay: `${k * 0.07}s` }} />
@@ -95,7 +96,7 @@ export function LivePhone({ className, compact, tabs, salesLabel = "Vendite chiu
                 </div>
               </div>
               <dl className="mt-[3cqw] grid grid-cols-2 gap-[2.5cqw]">
-                {[["Costo/contatto", "2,10 €"], ["Persone raggiunte", nf(14200 + f * 9)], ["Click sul profilo", nf(1318 + f)], ["Prove prenotate", String(sales)]].map(([k, v]) => (
+                {[["Costo/contatto", "2,10 €"], ["Persone raggiunte", nf(14200 + f * 23)], ["Click sul profilo", nf(1318 + f * 3)], ["Prove prenotate", String(sales)]].map(([k, v]) => (
                   <div key={k} className="rounded-lg bg-white/[0.05] p-[2.5cqw]">
                     <dt className="text-[3cqw] text-fg-3">{k}</dt>
                     <dd className="font-display text-[5cqw] font-bold text-white">{v}</dd>
@@ -112,10 +113,15 @@ export function LivePhone({ className, compact, tabs, salesLabel = "Vendite chiu
               {nf(followers)}
             </span>
           </span>
-          <span className="lp2-plus absolute rounded-full bg-[#e1306c] px-[2cqw] py-[0.6cqw] font-bold text-white shadow-lg" style={{ left: "55%", top: "4.6%", fontSize: "3.4cqw" }} key={`p${f}`}>
-            +{1 + (f % 3)}
-          </span>
         </div>
+        {/* +N follower: escono dallo schermo, grandi, e salgono piano */}
+        <span aria-hidden="true" className="pointer-events-none absolute -right-6 top-[9%] z-30 h-0 w-0 sm:-right-10">
+          {[f, f - 1].filter((x) => x > 0).map((x) => (
+            <span key={x} className="lp2-bubble absolute right-0 top-0 inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-[linear-gradient(135deg,#ff4f8b,#e1306c)] px-3.5 py-1.5 font-display text-[1.125rem] font-bold text-white shadow-[0_10px_30px_-8px_rgb(225_48_108/0.9)]">
+              <span className="text-[0.9rem]">♥</span>+{1 + (x % 3)} follower
+            </span>
+          ))}
+        </span>
         {tabs && <p className="mt-1 text-center text-[0.625rem] text-fg-3">Trascina il telefono per vedere la campagna</p>}
       </div>
 

@@ -24,37 +24,50 @@ export function SocialPillars() {
                 <Icon name={p.icon} className="h-6 w-6" strokeWidth={1.8} />
               </span>
               <span className="spl-card mt-4 w-full rounded-2xl border border-white/10 bg-[linear-gradient(160deg,rgb(13_39_61/0.8),rgb(4_33_58/0.6))] px-3 py-4">
-                <span aria-hidden="true" className={`spl-viz spl-viz--${i} mx-auto mb-3 block h-16 w-full max-w-[11rem] overflow-hidden rounded-lg border border-white/10 bg-night/60`}>
+                <span aria-hidden="true" className={`spl-viz spl-viz--${i} relative mx-auto mb-3 block h-20 w-full max-w-[12rem] overflow-hidden rounded-xl border border-white/10 bg-[linear-gradient(160deg,#0b2236,#061826)]`}>
                   {i === 0 && (
-                    <span className="flex h-full flex-col justify-center gap-1.5 px-3">
-                      <i style={{ "--w": "80%" } as React.CSSProperties} />
-                      <i style={{ "--w": "62%", animationDelay: "0.4s" } as React.CSSProperties} />
-                      <i style={{ "--w": "72%", animationDelay: "0.8s" } as React.CSSProperties} />
+                    <span className="absolute inset-0 flex flex-col justify-center gap-[5px] px-3.5">
+                      <span className="mb-0.5 flex items-center gap-1 text-[0.5rem] font-bold uppercase tracking-wider text-gold-300"><b className="spl-bulb" />Script · Reel 07</span>
+                      <i style={{ "--w": "86%" } as React.CSSProperties} />
+                      <i style={{ "--w": "64%", animationDelay: "0.45s" } as React.CSSProperties} />
+                      <i style={{ "--w": "74%", animationDelay: "0.9s" } as React.CSSProperties} />
+                      <i style={{ "--w": "40%", animationDelay: "1.35s" } as React.CSSProperties} />
                     </span>
                   )}
                   {i === 1 && (
-                    <span className="relative block h-full">
+                    <span className="absolute inset-0">
+                      <span className="spl-scene absolute inset-0" />
                       <b className="spl-rec">REC</b>
+                      <b className="spl-time">00:12</b>
+                      <span className="spl-batt" />
                       <em className="spl-corner spl-corner--a" />
                       <em className="spl-corner spl-corner--b" />
                       <em className="spl-corner spl-corner--c" />
                       <em className="spl-corner spl-corner--d" />
+                      <span className="spl-focus" />
                     </span>
                   )}
                   {i === 2 && (
-                    <span className="relative flex h-full flex-col justify-center gap-1.5 px-2">
-                      <span className="spl-clips flex gap-1"><i /><i /><i /><i /></span>
-                      <span className="spl-clips spl-clips--b flex gap-1"><i /><i /><i /></span>
+                    <span className="absolute inset-0 flex flex-col justify-center gap-1.5 px-2.5">
+                      <span className="flex items-center justify-between font-mono text-[0.5rem] text-fg-3"><span>00:00</span><span>00:15</span><span>00:30</span></span>
+                      <span className="spl-clips flex gap-[3px]"><i /><i /><i /><i /><i /></span>
+                      <span className="spl-clips spl-clips--b flex gap-[3px]"><i /><i /><i /></span>
+                      <span className="spl-wave flex h-2.5 items-end gap-[2px]">{Array.from({ length: 22 }, (_, k) => <i key={k} style={{ animationDelay: `${k * 0.06}s` }} />)}</span>
                       <b className="spl-head" />
                     </span>
                   )}
                   {i === 3 && (
-                    <span className="relative flex h-full items-center justify-center gap-3">
-                      <span className="spl-post grid h-10 w-8 place-items-end rounded bg-[linear-gradient(160deg,#f7c85c,#e1306c)] p-0.5" />
-                      <span className="text-left leading-tight">
-                        <span className="spl-heart block text-[0.875rem] text-[#e1306c]">♥</span>
-                        <span className="block font-mono text-[0.625rem] font-bold text-fg-2">+1.240</span>
+                    <span className="absolute inset-0 flex items-center justify-center gap-3">
+                      <span className="spl-post relative block h-14 w-11 overflow-hidden rounded-md bg-[linear-gradient(160deg,#f7c85c,#e1306c)]">
+                        <span className="absolute inset-x-1 bottom-1 h-1 rounded bg-white/70" />
+                        <span className="absolute inset-x-1 bottom-2.5 h-1 w-1/2 rounded bg-white/50" />
                       </span>
+                      <span className="text-left leading-tight">
+                        <span className="spl-heart block text-[1rem] text-[#e1306c]">♥</span>
+                        <span className="block font-mono text-[0.625rem] font-bold text-fg">+1.240</span>
+                        <span className="block text-[0.5rem] text-fg-3">visualizzazioni</span>
+                      </span>
+                      <span className="spl-notif absolute right-1.5 top-1.5 rounded-full bg-lime-300 px-1.5 text-[0.5rem] font-bold text-night">Pubblicato</span>
                     </span>
                   )}
                 </span>
@@ -66,6 +79,7 @@ export function SocialPillars() {
           ))}
         </ol>
       </Reveal>
+      <span aria-hidden="true" className="sec-line absolute inset-x-0 bottom-0 h-px" />
     </Section>
   );
 }

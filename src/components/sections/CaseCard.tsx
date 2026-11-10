@@ -64,32 +64,32 @@ export function CaseCard({ item, priority = false }: { item: CaseStudy; href?: s
 }
 
 /** "Il prossimo potrebbe essere il tuo": la card che deve attirare subito l'occhio (bordo oro rotante, alone, pulsazione). */
-export function NextCaseCard({ className }: { className?: string }) {
+export function NextCaseCard({ className, compact }: { className?: string; compact?: boolean }) {
   const n = site.portfolio.next;
   return (
     <div className={cn("next-blink relative h-full", className)}>
       <span aria-hidden="true" className="btn-halo pointer-events-none absolute -inset-3 rounded-[2rem] bg-gold-300/25 blur-2xl" />
       <BeamCard className="relative h-full">
-        <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-[inherit] bg-[linear-gradient(160deg,var(--color-cobalt-600),var(--color-surface-2)_55%,var(--color-night-glow))] p-6 sm:p-7">
+        <div className={cn("relative flex h-full flex-col justify-between overflow-hidden rounded-[inherit] bg-[linear-gradient(160deg,var(--color-cobalt-600),var(--color-surface-2)_55%,var(--color-night-glow))]", compact ? "p-4" : "p-6 sm:p-7")}>
           <div aria-hidden="true" className="bg-grid absolute inset-0 opacity-40 [mask-image:radial-gradient(80%_70%_at_50%_30%,#000,transparent)]" />
           <div aria-hidden="true" className="pointer-events-none absolute -right-12 -top-12 h-52 w-52 rounded-full bg-[radial-gradient(circle,rgb(247_200_92/0.35),transparent_68%)]" />
           <div className="relative">
-            <p className="mt-5 text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-gold-300">{n.overline}</p>
-            <h3 className="mt-2 font-display text-[clamp(1.625rem,1.3rem+1vw,2.25rem)] font-bold leading-[1.08] tracking-[-0.03em] text-fg">{n.title}</h3>
+            <p className={cn("text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-gold-300", !compact && "mt-5")}>{n.overline}</p>
+            <h3 className={cn("mt-2 font-display font-bold leading-[1.08] tracking-[-0.03em] text-fg", compact ? "text-[1.25rem]" : "text-[clamp(1.625rem,1.3rem+1vw,2.25rem)]")}>{n.title}</h3>
 
-            <dl className="mt-6 grid grid-cols-2 gap-4 border-y border-gold-400/30 py-4">
+            <dl className={cn("grid grid-cols-2 gap-4 border-y border-gold-400/30", compact ? "mt-3 py-2.5" : "mt-6 py-4")}>
               {n.stats.map((st) => (
                 <div key={st.label}>
                   <dd>
-                    <CountUp {...st} className="text-gold font-display text-[clamp(1.75rem,1.4rem+1.2vw,2.5rem)] font-bold leading-none tracking-[-0.04em]" />
+                    <CountUp {...st} className={cn("text-gold font-display font-bold leading-none tracking-[-0.04em]", compact ? "text-[1.5rem]" : "text-[clamp(1.75rem,1.4rem+1.2vw,2.5rem)]")} />
                   </dd>
                   <dt className="mt-1.5 text-[0.6875rem] font-semibold uppercase tracking-wider text-fg-2">{st.label}</dt>
                 </div>
               ))}
             </dl>
           </div>
-          <div className="relative mt-6 flex flex-col items-start gap-3">
-            <Button href={n.primary.href} size="md" icon="arrow-right" pulse>
+          <div className={cn("relative flex flex-col items-start", compact ? "mt-3 gap-2" : "mt-6 gap-3")}>
+            <Button href={n.primary.href} size={compact ? "sm" : "md"} icon="arrow-right" pulse>
               {n.primary.label}
             </Button>
             <Link href={n.secondary.href} className="inline-flex items-center gap-2 text-small font-semibold text-fg transition-colors hover:text-gold-200">

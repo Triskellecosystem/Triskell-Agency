@@ -31,14 +31,17 @@ export function MetodoTeaser() {
 
         <Reveal y={14} blur={0} className="mx-auto mt-12 max-w-4xl">
           <p className="text-center text-[0.75rem] font-bold uppercase tracking-[0.22em] text-fg-2">La base che consigliamo</p>
-          <RevealGroup className="mt-5 grid grid-cols-3 divide-x divide-white/10 rounded-[1.25rem] border border-gold-300/30 bg-[linear-gradient(120deg,rgb(43_36_16/0.6),rgb(5_31_54/0.6))]" stagger={0.15}>
-            {nums.map((n) => (
-              <RevealItem key={n.unit} y={14} className="zoom-in px-3 py-6 text-center sm:py-8">
-                <p className="font-display text-[clamp(2.75rem,1.8rem+4vw,5rem)] font-bold leading-none tracking-[-0.06em]">
-                  <CountUp value={n.value} prefix={n.prefix} className="text-gold" duration={1.6} />
-                </p>
-                <p className="mt-2 font-display text-[clamp(0.9375rem,0.8rem+0.5vw,1.25rem)] font-bold text-fg">{n.unit}</p>
-                <p className="mt-0.5 text-[0.75rem] text-fg-3">{n.label}</p>
+          <RevealGroup className="mt-5 grid grid-cols-3 gap-2.5 sm:gap-4" stagger={0.2}>
+            {nums.map((n, i) => (
+              <RevealItem key={n.unit} y={0} className="bx h-full" >
+                <div className="bx-card relative h-full overflow-hidden rounded-[1.25rem] border border-gold-300/40 bg-[linear-gradient(150deg,rgb(247_200_92/0.14),rgb(5_31_54/0.75))] px-2 py-6 text-center shadow-[0_24px_50px_-26px_rgb(0_0_0/0.9)] sm:py-8" style={{ "--i": i } as React.CSSProperties}>
+                  <span aria-hidden="true" className="bx-shine" />
+                  <p className="font-display text-[clamp(2.5rem,1.7rem+3.4vw,4.5rem)] font-bold leading-none tracking-[-0.06em]">
+                    <CountUp value={n.value} prefix={n.prefix} className="text-gold" duration={1.4} />
+                  </p>
+                  <p className="mt-2 font-display text-[clamp(0.9375rem,0.8rem+0.5vw,1.25rem)] font-bold text-fg">{n.unit}</p>
+                  <p className="mt-0.5 text-[0.75rem] text-fg-3">{n.label}</p>
+                </div>
               </RevealItem>
             ))}
           </RevealGroup>
