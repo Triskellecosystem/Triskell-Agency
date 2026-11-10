@@ -1,0 +1,162 @@
+/* ==========================================================================
+   Triskell Agency (stile Triskell Ecosystem) — Design tokens
+   Fonte: misure reali dalla grafica di riferimento. Vedi docs/design-tokens.md
+   Nessun colore hardcoded nei componenti: solo questi token.
+   ========================================================================== */
+
+@theme {
+  /* --- Sfondi e superfici -------------------------------------------------- */
+  --color-night: #010f1c;
+  --color-night-deep: #000c18;
+  --color-night-glow: #011a30;
+  --color-night-raised: #051f36;
+  --color-surface: #061725;
+  --color-surface-2: #0d273d;
+  --color-surface-3: #1a2940;
+
+  /* --- Bordi ----------------------------------------------------------------- */
+  --color-line: #152f47;
+  --color-line-strong: #233750;
+  --color-line-neutral: #888f97;
+
+  /* --- Testo ----------------------------------------------------------------- */
+  --color-fg: #f2f6fb;
+  --color-fg-2: #ced2da;
+  --color-fg-3: #91979a;
+
+  /* --- Oro ------------------------------------------------------------------ */
+  --color-gold-100: #fff7be;
+  --color-gold-200: #fdda5a;
+  --color-gold-300: #f7c85c;
+  --color-gold-400: #ecb851;
+  --color-gold-500: #dea112;
+  --color-gold-600: #c3850e;
+  --color-gold-700: #86550b;
+  --color-gold-800: #5e3605;
+  --color-gold-btn-end: #da9c25;
+
+  /* --- Cobalt --------------------------------------------------------------- */
+  --color-cobalt-900: #031125;
+  --color-cobalt-800: #032046;
+  --color-cobalt-700: #083059;
+  --color-cobalt-600: #0d3e66;
+  --color-cobalt-500: #054f82;
+  --color-cobalt-400: #0b5a8d;
+  --color-cobalt-300: #216a9e;
+
+  /* --- Azure ---------------------------------------------------------------- */
+  --color-azure-500: #138dc8;
+  --color-azure-400: #2a90c3;
+  --color-azure-300: #3aa4d4;
+  --color-azure-glow: #0b81b1;
+  /* Rosso "brace": identifica William (come l'azzurro identifica Tomaso) */
+  --color-ember-200: #ffb199;
+  --color-ember-300: #ff7a52;
+  --color-ember-400: #ff4d2e;
+  --color-ember-500: #e63a1f;
+  --color-ember-700: #7a1d12;
+
+  /* Verde "fatto": spunte e stato attivo dell'agente AI */
+  --color-lime-300: #7fe0a0;
+
+  /* --- Tipografia ----------------------------------------------------------- */
+  --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Scala fluida (clamp) */
+  --text-hero: clamp(2.25rem, 1rem + 3.6vw, 4.5rem);
+  --text-hero--line-height: 1.02;
+  --text-hero--letter-spacing: -0.035em;
+  --text-h2: clamp(1.875rem, 1.25rem + 2.5vw, 3.25rem);
+  --text-h2--line-height: 1.08;
+  --text-h2--letter-spacing: -0.03em;
+  --text-h3: clamp(1.25rem, 1.05rem + 0.8vw, 1.75rem);
+  --text-h3--line-height: 1.2;
+  --text-h3--letter-spacing: -0.02em;
+  --text-lead: clamp(1.0625rem, 0.98rem + 0.35vw, 1.25rem);
+  --text-lead--line-height: 1.5;
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.5;
+  --text-overline: 0.75rem;
+  --text-overline--line-height: 1;
+  --text-overline--letter-spacing: 0.18em;
+  --text-metric: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);
+  --text-metric--line-height: 1;
+  --text-metric--letter-spacing: -0.04em;
+
+  /* --- Raggi ---------------------------------------------------------------- */
+  --radius-card: 1.125rem;
+  --radius-tile: 0.875rem;
+  --radius-pill: 999px;
+
+  /* --- Ombre / glow ------------------------------------------------------- */
+  --shadow-glow-gold: 0 0 0 1px rgb(247 200 92 / 0.35), 0 10px 40px -8px rgb(255 185 27 / 0.45);
+  --shadow-glow-azure: 0 0 0 1px rgb(11 129 177 / 0.45), 0 10px 50px -10px rgb(11 129 177 / 0.55);
+  --shadow-card: 0 24px 60px -30px rgb(0 0 0 / 0.8);
+
+  /* --- Easing (3 curve) ----------------------------------------------------- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+
+  /* --- Breakpoints (mobile-first) ------------------------------------------ */
+  --breakpoint-xs: 22.5rem; /* 360 */
+  --breakpoint-md: 48rem; /* 768 */
+  --breakpoint-lg: 64rem; /* 1024 */
+  --breakpoint-xl: 90rem; /* 1440 */
+  --breakpoint-2xl: 120rem; /* 1920 */
+}
+
+:root {
+  /* Ruoli semantici (alias leggibili per CSS custom) */
+  --bg: var(--color-night);
+  --surface: var(--color-surface);
+  --surface-elevated: var(--color-surface-2);
+  --border: var(--color-line);
+  --text-primary: var(--color-fg);
+  --text-secondary: var(--color-fg-2);
+  --accent-gold: var(--color-gold-300);
+  --accent-cobalt: var(--color-cobalt-500);
+  --accent-azure: var(--color-azure-400);
+
+  /* Glow */
+  --glow-gold: rgb(255 185 27 / 0.45);
+  --glow-azure: rgb(11 129 177 / 0.55);
+  --glow-cobalt: rgb(5 76 137 / 0.6);
+
+  /* Gradienti */
+  --gradient-gold-btn: linear-gradient(180deg, #fdd873 0%, var(--color-gold-300) 45%, var(--color-gold-btn-end) 100%);
+  --gradient-gold-text: linear-gradient(180deg, var(--color-gold-200) 0%, var(--color-gold-400) 55%, var(--color-gold-600) 100%);
+  --gradient-gold-metal: linear-gradient(135deg, var(--color-gold-100) 0%, var(--color-gold-200) 28%, var(--color-gold-500) 62%, var(--color-gold-700) 100%);
+  --gradient-beam: conic-gradient(
+    from 0deg,
+    rgb(247 200 92 / 0.28) 0deg,
+    var(--color-gold-300) 70deg,
+    var(--color-gold-100) 105deg,
+    rgb(247 200 92 / 0.28) 200deg,
+    rgb(247 200 92 / 0.28) 360deg
+  );
+  --gradient-beam-azure: conic-gradient(
+    from 0deg,
+    rgb(42 144 195 / 0.25) 0deg,
+    var(--color-azure-400) 70deg,
+    #bfeaff 105deg,
+    rgb(42 144 195 / 0.25) 200deg,
+    rgb(42 144 195 / 0.25) 360deg
+  );
+  --gradient-bg-hero: radial-gradient(60% 55% at 72% 12%, rgb(5 76 137 / 0.55) 0%, rgb(1 26 48 / 0.7) 45%, transparent 75%);
+  --gradient-bg-cta: radial-gradient(55% 60% at 15% 100%, rgb(5 56 96 / 0.7) 0%, transparent 70%);
+
+  /* Durate */
+  --dur-fast: 200ms;
+  --dur-base: 400ms;
+  --dur-slow: 700ms;
+
+  /* Layout */
+  --container-max: 80rem;
+  --gutter: clamp(1.25rem, 0.6rem + 3vw, 3.5rem);
+  --header-h: 4.5rem;
+  --header-h-compact: 3.5rem;
+}
