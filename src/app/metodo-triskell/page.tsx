@@ -76,7 +76,7 @@ export default function MetodoPage() {
               </Button>
             </Reveal>
           </div>
-          <Reveal y={30} blur={0} from="scale">
+          <Reveal y={0} blur={0} className="scv-reveal">
             <SceneVideo src="/video/riprese-2.mp4" poster="/video/riprese-2.jpg" label="Una ripresa guidata per i contenuti social" />
           </Reveal>
         </div>

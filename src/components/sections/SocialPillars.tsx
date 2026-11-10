@@ -14,7 +14,7 @@ export function SocialPillars() {
     <Section id="cosa-facciamo" labelledBy="cosa-title" className="spl-band overflow-hidden">
       <PerspectiveBg variant="floor" />
       <SectionHeading id="cosa-title" overline="Cosa facciamo" title="Ci occupiamo [di tutto]" line="Tu ci dai poco tempo. Noi facciamo crescere il profilo." align="center" />
-      <Reveal y={30} blur={0} from="scale" className="mx-auto mt-10 max-w-4xl">
+      <Reveal y={0} blur={0} className="scv-reveal mx-auto mt-9 max-w-3xl">
         <SceneVideo src="/video/riprese-1.mp4" poster="/video/riprese-1.jpg" label="Una ripresa sul posto per i contenuti social di un cliente" />
       </Reveal>
       <Reveal y={10} blur={0} className="relative mx-auto mt-8 max-w-4xl">

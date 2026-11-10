@@ -15,7 +15,7 @@ export function RecordingOptions() {
         <PerspectiveBg variant="ceiling" />
       <TechBackdrop tone="azure" rich />
       <SectionHeading id="riprese-title" overline={r.overline} title={r.title} line={r.line} align="center" />
-      <Reveal y={30} blur={0} from="scale" className="mx-auto mt-9 max-w-3xl">
+      <Reveal y={0} blur={0} className="scv-reveal mx-auto mt-9 max-w-2xl">
         <SceneVideo src="/video/riprese-2.mp4" poster="/video/riprese-2.jpg" label="Una ripresa guidata: ti aiutiamo anche a registrare" />
       </Reveal>
       <div className="relative mx-auto mt-9 grid max-w-4xl gap-4 md:grid-cols-2 md:gap-6">

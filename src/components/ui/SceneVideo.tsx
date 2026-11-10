@@ -50,7 +50,9 @@ export function SceneVideo({ src, poster, label, className }: { src: string; pos
 
   return (
     <div ref={box} onPointerMove={onMove} onPointerLeave={() => { box.current?.style.setProperty("--tx", "0deg"); box.current?.style.setProperty("--ty", "0deg"); }} className={cn("scv relative isolate [perspective:1400px]", className)}>
-      <span aria-hidden="true" className="phone-glow !-z-10 !w-[105%] opacity-80" />
+      <span aria-hidden="true" className="scv-glow" />
+      <span aria-hidden="true" className="scv-bar scv-bar--t" />
+      <span aria-hidden="true" className="scv-bar scv-bar--b" />
       <div className="scv-frame relative rounded-[1.5rem] p-[2px]">
         <span aria-hidden="true" className="scv-ring absolute inset-0 rounded-[inherit]" />
         <div className="relative overflow-hidden rounded-[calc(1.5rem-2px)] bg-black">

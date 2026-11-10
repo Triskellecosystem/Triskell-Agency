@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
+import { Icon } from "@/components/ui/Icon";
 
 const shots = [
   { id: "vertis", alt: "Esempio di profilo Instagram: palestra" },
@@ -55,7 +56,7 @@ export function PhoneFan() {
       className="pf relative mx-auto h-[33rem] w-full max-w-[34rem] [perspective:1400px]"
     >
       <span aria-hidden="true" className="phone-glow" />
-      <div className="pf-stage absolute inset-0 [transform-style:preserve-3d]">
+      <div className="pf-stage absolute inset-0">
         {shots.map((s, i) => {
           const d = (i - front + N) % N; // 0 davanti, 1 destra, N-1 sinistra, altri nascosti
           const pos = d === 0 ? 0 : d === 1 ? 1 : d === N - 1 ? 2 : d <= N / 2 ? 3 : 4;
@@ -65,11 +66,7 @@ export function PhoneFan() {
               type="button"
               tabIndex={pos < 3 ? 0 : -1}
               aria-label={`Mostra in primo piano: ${s.alt}`}
-              onPointerDown={(e) => {
-                e.preventDefault();
-                setFront(i);
-              }}
-              onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setFront(i)}
+              onClick={() => setFront(i)}
               className={cn("pf-phone absolute left-1/2 top-0 -ml-[7.25rem] w-[14.5rem] overflow-hidden rounded-[1.8rem] border-[5px] border-[#1d2a3a] bg-black", `pf-pos-${pos}`)}
             >
               <Image src={`/social-examples/${s.id}.webp`} alt={s.alt} width={520} height={1126} sizes="14.5rem" priority={i < 3} className="block h-auto w-full" />
@@ -77,7 +74,13 @@ export function PhoneFan() {
           );
         })}
       </div>
-      <div className="absolute inset-x-0 bottom-0 flex justify-center gap-1.5">
+      <button type="button" aria-label="Profilo precedente" onClick={() => setFront((f) => (f - 1 + N) % N)} className="absolute left-0 top-[42%] z-30 grid h-10 w-10 place-items-center rounded-full border border-white/20 bg-night/70 text-fg backdrop-blur transition-colors hover:border-gold-300 hover:text-gold-300">
+        <Icon name="chevron-left" className="h-5 w-5" strokeWidth={2.2} />
+      </button>
+      <button type="button" aria-label="Profilo successivo" onClick={() => setFront((f) => (f + 1) % N)} className="absolute right-0 top-[42%] z-30 grid h-10 w-10 place-items-center rounded-full border border-white/20 bg-night/70 text-fg backdrop-blur transition-colors hover:border-gold-300 hover:text-gold-300">
+        <Icon name="chevron-right" className="h-5 w-5" strokeWidth={2.2} />
+      </button>
+      <div className="absolute inset-x-0 bottom-0 z-30 flex justify-center gap-1.5">
         {shots.map((s, i) => (
           <button key={s.id} type="button" aria-label={s.alt} onClick={() => setFront(i)} className={cn("h-1.5 rounded-full transition-all duration-500", i === front ? "w-6 bg-gold-300" : "w-1.5 bg-white/25")} />
         ))}
