@@ -427,8 +427,8 @@ html.menu-open { overflow: hidden; }
 @keyframes btn-ping { 0% { transform: scale(1); opacity: 0.85; } 70%, 100% { transform: scale(1.22, 1.5); opacity: 0; } }
 @keyframes btn-halo { 0%, 100% { opacity: 0.35; transform: scale(0.96); } 50% { opacity: 0.95; transform: scale(1.08); } }
 .btn-ping { animation: btn-ping 1.9s var(--ease-out-expo) infinite; }
-@keyframes btn-blink { 0%, 100% { filter: brightness(1); box-shadow: var(--shadow-glow-gold); } 50% { filter: brightness(1.16); box-shadow: 0 0 0 1px rgb(255 247 190 / 0.6), 0 0 38px 4px rgb(255 195 60 / 0.65); } }
-.btn-blink { animation: btn-blink 1.5s ease-in-out infinite; }
+@keyframes btn-blink { 0% { filter: brightness(1); box-shadow: 0 0 0 0 rgb(247 200 92 / 0.75), 0 0 18px 0 rgb(255 195 60 / 0.45); } 50% { filter: brightness(1.22); box-shadow: 0 0 0 7px rgb(247 200 92 / 0.18), 0 0 44px 6px rgb(255 195 60 / 0.75); } 100% { filter: brightness(1); box-shadow: 0 0 0 12px rgb(247 200 92 / 0), 0 0 18px 0 rgb(255 195 60 / 0.45); } }
+.btn-blink { animation: btn-blink 1.3s ease-out infinite; }
 .btn-blink:hover { animation: none; filter: brightness(1.1); box-shadow: 0 0 0 1px rgb(255 247 190 / 0.7), 0 0 44px 2px rgb(255 185 27 / 0.6); }
 @media (prefers-reduced-motion: reduce) { .btn-blink { animation: none; } }
 .btn-halo { animation: btn-halo 1.9s ease-in-out infinite; }
@@ -986,7 +986,7 @@ html[data-no-loader] .loader { display: none; }
   .symflat[data-active="0"] .sf-spiral[data-i="0"], .symflat[data-active="1"] .sf-spiral[data-i="1"], .symflat[data-active="2"] .sf-spiral[data-i="2"] { opacity: 1; }
   /* pulsanti vivi: riflesso che passa, alone che respira, e un piccolo "tocco" quando si preme */
   .btn-m-primary { animation: btn-m-breathe 2.6s ease-in-out infinite; }
-  .btn-m-primary.btn-blink { animation: btn-blink 1.5s ease-in-out infinite; }
+  .btn-m-primary.btn-blink { animation: btn-blink 1.3s ease-out infinite; }
   .btn-m-shine { opacity: 1 !important; animation: shine 3.4s var(--ease-out-expo) infinite !important; }
   .btn-m-secondary { animation: btn-m-edge 3.2s ease-in-out infinite; }
   .btn-m-primary:active, .btn-m-secondary:active { transform: scale(0.97); }
@@ -1196,8 +1196,8 @@ html[data-no-loader] .loader { display: none; }
 .cta-round:hover .cta-ring { animation-duration: 6s; }
 
 /* Muro di siti inclinato */
-.sw { perspective: 1600px; mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent), linear-gradient(180deg, transparent, #000 8%, #000 92%, transparent); mask-composite: intersect; }
-.sw-plane { transform: translate(-50%, -50%) rotateX(16deg) rotateZ(-6deg); transform-style: preserve-3d; }
+.sw { perspective: 1600px; mask-image: linear-gradient(180deg, transparent, #000 7%, #000 93%, transparent); }
+.sw-plane { transform: translate(-50%, -50%) rotateX(10deg) rotateZ(-3deg); transform-style: preserve-3d; }
 @keyframes sw-up { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, -50%, 0); } }
 .sw-col { animation: sw-up 32s linear infinite; }
 .sw-col--0 { animation-delay: -6s; }
@@ -1454,3 +1454,63 @@ html[data-no-loader] .loader { display: none; }
 .pe-phone { transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s; }
 .pe-item:hover .pe-phone { transform: translateY(-6px) scale(1.06); box-shadow: 0 30px 60px -24px rgb(0 0 0 / 0.9), 0 0 0 1px rgb(247 200 92 / 0.5), 0 0 40px -10px rgb(247 200 92 / 0.45); }
 @media (prefers-reduced-motion: reduce) { .pe .pe-track { width: max-content; } .pe .pe-item[aria-hidden="true"] { display: none; } .pe { overflow-x: auto; } }
+
+/* Hero: collage di telefoni + notifiche */
+.hc-p { transition: transform 0.6s var(--ease-out-expo); }
+.hc-p--a { animation: hc-float 6s ease-in-out infinite; }
+.hc-p--b { transform: rotate(-8deg) scale(0.86); opacity: 0.9; }
+.hc-p--c { transform: rotate(8deg) scale(0.86); opacity: 0.9; }
+.hc-phones:hover .hc-p--b { transform: rotate(-12deg) scale(0.88) translateX(-14px); }
+.hc-phones:hover .hc-p--c { transform: rotate(12deg) scale(0.88) translateX(14px); }
+@keyframes hc-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -10px; } }
+@keyframes hc-pop { 0% { transform: scale(1.15); filter: brightness(1.5); } 100% { transform: none; filter: none; } }
+.hc-pop { display: inline-block; animation: hc-pop 0.5s var(--ease-out-expo); }
+.hc-new { animation: chat-msg 0.5s var(--ease-out-expo) backwards; }
+@media (prefers-reduced-motion: reduce) { .hc-p--a, .hc-pop, .hc-new { animation: none; } }
+
+/* Equazione del Metodo Triskell */
+.mt-band::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(60% 50% at 50% 0%, rgb(247 200 92 / 0.1), transparent 70%), linear-gradient(180deg, transparent, rgb(5 31 54 / 0.5) 50%, transparent); }
+.meq-tile, .meq-op { opacity: 0; transform: translate3d(0, 22px, 0) scale(0.95); transition: opacity 0.6s var(--ease-out-expo), transform 0.7s var(--ease-out-expo); transition-delay: calc(0.15s + var(--i, 0) * 0.3s); }
+.meq-op { transition-delay: calc(0.3s + var(--i, 0) * 0.3s); }
+[data-revealed] .meq-tile, [data-revealed] .meq-op { opacity: 1; transform: none; }
+.meq-tile:hover { transform: translateY(-4px); }
+[data-revealed] .meq-op > span { animation: mf-op 2.2s 1.4s ease-in-out infinite; }
+[data-revealed] .meq-res { animation: mf-result 2.6s 1.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .meq-tile, .meq-op { opacity: 1; transform: none; transition: none; } }
+.qs-card { transition: transform 0.7s var(--ease-out-expo), opacity 0.6s var(--ease-out-expo), border-color 0.4s, background 0.4s; transform-origin: 50% 100%; }
+@keyframes qs-yes { 0%, 40% { transform: scale(0); } 70% { transform: scale(1.25); } 100% { transform: scale(1); } }
+.qs-yes { animation: qs-yes 0.9s var(--ease-out-expo) both; }
+/* Servizi: bordo colorato per ognuno, che gira al passaggio del mouse */
+.svc2-ring { background: linear-gradient(160deg, color-mix(in srgb, var(--c) 70%, transparent), color-mix(in srgb, var(--c) 10%, transparent) 45%, color-mix(in srgb, var(--c) 45%, transparent)); transition: opacity 0.4s; }
+.svc2::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; box-shadow: 0 0 40px -8px var(--c); transition: opacity 0.4s; }
+.svc2:hover::after { opacity: 0.7; }
+.svc2:hover .svc2-ring { background: conic-gradient(from var(--a, 0deg), var(--c), transparent 30%, var(--c) 60%, transparent 85%, var(--c)); animation: svc2-spin 2.4s linear infinite; }
+@property --a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@keyframes svc2-spin { to { --a: 360deg; } }
+
+/* Pulsante della fascia oro: lampeggia con un anello scuro che si espande */
+@keyframes cta-btn { 0% { box-shadow: 0 0 0 0 rgb(1 15 28 / 0.55), 0 14px 30px -12px rgb(1 15 28 / 0.8); } 70% { box-shadow: 0 0 0 12px rgb(1 15 28 / 0), 0 14px 30px -12px rgb(1 15 28 / 0.8); } 100% { box-shadow: 0 0 0 0 rgb(1 15 28 / 0), 0 14px 30px -12px rgb(1 15 28 / 0.8); } }
+@keyframes cta-btn-glow { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.45); } }
+.cta-btn { animation: cta-btn 1.4s ease-out infinite; }
+.cta-btn > span { animation: cta-btn-glow 1.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .cta-btn, .cta-btn > span { animation: none; } }
+@keyframes adv-in { from { opacity: 0; transform: translate3d(0, 10px, 0); } to { opacity: 1; transform: none; } }
+.adv-in { animation: adv-in 0.5s var(--ease-out-expo) backwards; }
+@keyframes ai-step { 0%, 12% { border-color: rgb(247 200 92 / 0.7); box-shadow: 0 0 22px -6px rgb(247 200 92 / 0.55); } 18%, 100% { border-color: rgb(58 164 212 / 0.25); box-shadow: none; } }
+[data-revealed] .ai-step { animation: ai-step 6s calc(1s + var(--i, 0) * 1s) infinite; }
+@media (prefers-reduced-motion: reduce) { .adv-in, [data-revealed] .ai-step { animation: none; } }
+
+/* Prossimo caso: bordo oro che gira */
+.cg-next-ring { background: conic-gradient(from var(--a, 0deg), var(--color-gold-200), transparent 25%, var(--color-gold-400) 50%, transparent 75%, var(--color-gold-200)); animation: svc2-spin 4s linear infinite; }
+.cg-next:hover .cg-next-ring { animation-duration: 1.5s; }
+
+/* Contatori dei risultati: lampo quando compaiono */
+.res-num { display: inline-block; }
+[data-revealed] .res-num { animation: res-flash 1.1s calc(0.2s + var(--i, 0) * 0.2s) var(--ease-out-expo) backwards; }
+@keyframes res-flash { 0% { transform: scale(0.6); opacity: 0; filter: blur(6px); } 55% { transform: scale(1.18); opacity: 1; filter: blur(0); text-shadow: 0 0 30px rgb(247 200 92 / 0.9); } 100% { transform: scale(1); text-shadow: none; } }
+.res-burst { position: absolute; left: 1.5rem; top: 1.75rem; width: 3rem; height: 3rem; border-radius: 9999px; background: radial-gradient(circle, rgb(247 200 92 / 0.7), transparent 70%); opacity: 0; pointer-events: none; }
+[data-revealed] .res-burst { animation: res-burst 1.2s calc(0.3s + var(--i, 0) * 0.2s) ease-out; }
+@keyframes res-burst { 0% { transform: scale(0.2); opacity: 0.9; } 100% { transform: scale(4); opacity: 0; } }
+.res-cell::after { content: ""; position: absolute; inset: 0; background: linear-gradient(105deg, transparent 40%, rgb(255 236 180 / 0.08) 50%, transparent 60%); transform: translateX(-100%); animation: res-shine 5s calc(var(--i, 0) * 0.6s) ease-in-out infinite; pointer-events: none; }
+@keyframes res-shine { 0%, 60% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+@media (prefers-reduced-motion: reduce) { .cg-next-ring, [data-revealed] .res-num, [data-revealed] .res-burst, .res-cell::after { animation: none; } }

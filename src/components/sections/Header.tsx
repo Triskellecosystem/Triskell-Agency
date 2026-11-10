@@ -254,7 +254,7 @@ export function Header() {
 
           <div className="flex items-center gap-5 xl:gap-7">
             <div className="hidden lg:block">
-              <Button href={site.nav.cta.href} size="sm" icon="calendar" iconPosition="start">
+              <Button href={site.nav.cta.href} size="sm" icon="calendar" iconPosition="start" pulse>
                 {site.nav.cta.label}
               </Button>
             </div>

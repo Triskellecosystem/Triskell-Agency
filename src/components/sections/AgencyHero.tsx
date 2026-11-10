@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { CountUp } from "@/components/motion/CountUp";
 import { DigitalCursor } from "@/components/motion/DigitalCursor";
+import { HeroCollage } from "./HeroCollage";
 
 /**
  * Hero di Triskell Agency: testo a sinistra (etichetta, domanda, una riga, pulsanti, garanzie, numeri che crescono),
@@ -21,7 +22,7 @@ export function AgencyHero() {
       <DigitalCursor className="-z-10" />
 
       <div className="container-x grid items-center gap-x-10 gap-y-12 lg:grid-cols-12">
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-6">
           <p className="inline-flex animate-[fade-in_0.8s_var(--ease-soft)_both] items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] py-1 pl-1 pr-3 text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-fg-2 backdrop-blur">
             <span className="rounded-full bg-[image:var(--gradient-gold-btn)] px-2 py-0.5 text-[0.625rem] font-bold text-night">NEW</span>
             {hero.overline}
@@ -61,8 +62,9 @@ export function AgencyHero() {
           </dl>
         </div>
 
-        {/* colonna destra libera: qui andrà l'elemento visivo della hero */}
-        <div aria-hidden="true" className="hidden lg:col-span-5 lg:block" />
+        <div className="hidden lg:col-span-6 lg:block">
+          <HeroCollage />
+        </div>
       </div>
     </section>
   );

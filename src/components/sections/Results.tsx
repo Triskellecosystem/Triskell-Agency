@@ -23,8 +23,9 @@ export function Results() {
       <Reveal y={16} blur={0} className="mt-8">
         <dl className="res-counters grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.06] md:grid-cols-4">
           {results.counters.map((c) => (
-            <div key={c.label} className="relative bg-[rgb(6_20_34/0.95)] px-4 py-4">
-              <dd className="font-display text-[clamp(1.5rem,1.2rem+1.2vw,2.25rem)] font-bold leading-none tracking-[-0.04em]">
+            <div key={c.label} className="res-cell relative overflow-hidden bg-[rgb(6_20_34/0.95)] px-4 py-5" style={{ "--i": results.counters.indexOf(c) } as React.CSSProperties}>
+              <span aria-hidden="true" className="res-burst" />
+              <dd className="res-num relative font-display text-[clamp(1.75rem,1.3rem+1.6vw,2.75rem)] font-bold leading-none tracking-[-0.04em]">
                 <CountUp {...c} className="text-gold" duration={2.4} />
               </dd>
               <dt className="mt-1.5 text-[0.6875rem] font-medium text-fg-3">{c.label}</dt>

@@ -54,18 +54,26 @@ export function CaseGrid({ limit }: { limit?: number }) {
           </li>
         ))}
         <li className="cg-item" style={{ "--i": items.length } as React.CSSProperties}>
-          <Link
-            href="/contatti"
-            className="cg-next group/nx relative flex h-full min-h-[14rem] flex-col justify-between overflow-hidden rounded-2xl border border-gold-300/60 bg-[linear-gradient(160deg,#3a2c08,var(--color-night-raised)_70%)] p-4 transition-[box-shadow] duration-[var(--dur-base)] hover:shadow-[0_0_44px_-10px_rgb(247_200_92/0.6)]"
-          >
-            <span className="grid h-10 w-10 place-items-center rounded-xl bg-[image:var(--gradient-gold-btn)] text-night">
-              <Icon name="sparkles" className="h-5 w-5" strokeWidth={2} />
-            </span>
-            <span>
-              <span className="block font-display text-[1.125rem] font-bold leading-tight text-fg">Il prossimo caso può essere il tuo</span>
-              <span className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-[image:var(--gradient-gold-btn)] px-3 py-1.5 text-[0.75rem] font-bold text-night">
-                Prenota la call
-                <Icon name="arrow-right" className="h-3.5 w-3.5 transition-transform group-hover/nx:translate-x-0.5" />
+          <Link href="/contatti" className="cg-next group/nx relative block h-full min-h-[14rem] overflow-hidden rounded-2xl p-[1.5px]">
+            <span aria-hidden="true" className="cg-next-ring absolute inset-0 rounded-[inherit]" />
+            <span className="relative flex h-full flex-col justify-between overflow-hidden rounded-[calc(1rem-1.5px)] bg-[radial-gradient(120%_90%_at_100%_0%,#5a440c,#1a1405_55%,var(--color-night))] p-4">
+              <span aria-hidden="true" className="pointer-events-none absolute -right-6 -top-8 font-display text-[7rem] font-bold leading-none text-gold-300/10">8</span>
+              <span className="relative">
+                <span className="text-[0.625rem] font-bold uppercase tracking-[0.18em] text-gold-300">Prossimo caso studio</span>
+                <span className="mt-2 block font-display text-[1.25rem] font-bold leading-[1.1] tracking-[-0.02em] text-fg">
+                  La tua attività,
+                  <br />
+                  <span className="text-gold">qui tra 6 mesi.</span>
+                </span>
+              </span>
+              <span className="relative">
+                <span className="block text-[0.75rem] leading-snug text-fg-2">Contatti, prenotazioni e fatturato: partiamo da una call gratuita.</span>
+                <span className="cta-btn mt-3 inline-flex items-center gap-1.5 rounded-full bg-[image:var(--gradient-gold-btn)] py-2 pl-3.5 pr-2 text-[0.8125rem] font-bold text-night">
+                  Voglio essere il prossimo
+                  <span className="grid h-6 w-6 place-items-center rounded-full bg-night text-gold-300">
+                    <Icon name="arrow-right" className="h-3.5 w-3.5 transition-transform group-hover/nx:translate-x-0.5" />
+                  </span>
+                </span>
               </span>
             </span>
           </Link>

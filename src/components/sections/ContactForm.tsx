@@ -246,7 +246,7 @@ export function ContactForm() {
         )}
       </div>
 
-      <Button type="submit" size="md" className="w-full sm:w-auto" icon={status === "sending" ? "loader" : "send"} disabled={status === "sending"}>
+      <Button type="submit" size="lg" pulse className="w-full sm:w-auto" icon={status === "sending" ? "loader" : "send"} disabled={status === "sending"}>
         {status === "sending" ? form.sending : form.submit}
       </Button>
     </form>

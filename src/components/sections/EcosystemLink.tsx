@@ -59,7 +59,7 @@ export function EcosystemLink() {
         </RevealGroup>
 
         <Reveal className="mt-10 flex justify-center" y={14} blur={0}>
-          <Button href={e.cta.href} size="md" icon="arrow-up-right" target="_blank" rel="noopener noreferrer">
+          <Button href={e.cta.href} size="lg" icon="arrow-up-right" target="_blank" rel="noopener noreferrer" pulse>
             {e.cta.label}
           </Button>
         </Reveal>

@@ -297,8 +297,8 @@ export const site = {
   /** Servizi completi. */
   services: {
     overline: "Servizi",
-    title: "Tutto in [un solo team]",
-    line: "Dalle campagne all'AI: deleghi a noi, noi ci mettiamo i risultati.",
+    title: "I nostri [servizi]",
+    line: "",
     items: [
       { icon: "click", title: "Meta Ads e Google Ads", text: "Campagne che portano contatti e clienti veri.", kpi: { value: "30–60", label: "lead al mese per cliente" }, details: ["Strategia e obiettivi di campagna", "Creatività e testi, anche con l'AI", "Test A/B: teniamo ciò che funziona", "Ottimizzazione e report costanti"] },
       { icon: "smartphone", title: "Gestione social media", text: "Più visibilità al profilo, il minimo impegno per te.", kpi: { value: "12", label: "contenuti al mese: la base consigliata" }, details: ["Script pronti e indicazioni per le riprese", "Editing professionale dei video", "Pubblicazione e gestione del profilo", "Report mensile con i numeri"], href: "/social" },
@@ -313,26 +313,42 @@ export const site = {
 
   /** Agenti AI e automazioni: la sezione "delega all'AI". */
   ai: {
-    overline: "Agenti AI",
-    title: "Un assistente AI che [risponde al posto tuo]",
-    line: "Su WhatsApp, Instagram e sito: risponde ai clienti, fissa gli appuntamenti e li ricorda. Anche di notte.",
+    overline: "In collaborazione con Irelia AI",
+    title: "L'assistente AI che [ti scalda i contatti]",
+    line: "Arriva un contatto dalla campagna: Irelia gli scrive subito, raccoglie quando vuole essere richiamato e tu chiami un cliente già pronto.",
+    badges: ["H24 sempre attivo", "Risposte immediate", "Scrive in modo naturale"],
     steps: [
-      { icon: "messages", title: "Il cliente scrive", text: "Anche alle 23:40" },
-      { icon: "bot", title: "L'AI risponde", text: "In meno di 30 secondi" },
-      { icon: "calendar", title: "Prenota", text: "Direttamente in agenda" },
-      { icon: "bell", title: "Ricorda", text: "Promemoria automatico" },
+      { icon: "click", title: "Campagna attiva", text: "Meta Ads porta un contatto" },
+      { icon: "bot", title: "Irelia scrive", text: "In pochi secondi, H24" },
+      { icon: "clock", title: "Fascia oraria", text: "Il cliente sceglie quando" },
+      { icon: "phone", title: "Tu richiami", text: "Cliente già caldo" },
+      { icon: "calendar", title: "Prova fissata", text: "E concordata al telefono" },
+      { icon: "bell", title: "Promemoria", text: "Irelia gliela ricorda" },
     ] satisfies Array<{ icon: IconName; title: string; text: string }>,
     chat: {
       name: "Aura Beauty Lab",
-      status: "Assistente AI · online",
+      status: "Irelia · assistente AI · online",
+      lead: "Nuovo contatto da Meta Ads · Martina",
       messages: [
-        { from: "user", text: "Ciao! Avete posto domani per una pulizia viso?", time: "23:41" },
-        { from: "ai", text: "Ciao Giulia! 😊 Sì, domani alle 18:30 o alle 19:30. Quale preferisci?", time: "23:41" },
-        { from: "user", text: "18:30 perfetto", time: "23:42" },
-        { from: "ai", text: "Fatto! Ti aspettiamo domani alle 18:30. Ti mando un promemoria 2 ore prima.", time: "23:42" },
+        { from: "ai", text: "Ciao Martina! Sono Giulia, l'assistente di Aura Beauty Lab 😊 Ho visto che ti interessa la consulenza gratuita.", time: "21:14" },
+        { from: "ai", text: "In che fascia oraria preferisci essere richiamata?", time: "21:14" },
+        { from: "user", text: "Domani dopo le 18, grazie!", time: "21:16" },
+        { from: "ai", text: "Perfetto! Ti chiamiamo domani tra le 18 e le 19. A presto ✨", time: "21:16" },
       ],
-      booked: "Appuntamento aggiunto in agenda · domani 18:30",
+      booked: "Lead caldo · da richiamare domani 18–19",
+      reminder: "Promemoria inviato: prova giovedì 18:30",
     },
+    advantagesLabel: "Scopri i vantaggi del nostro assistente digitale",
+    advantages: [
+      { icon: "zap", title: "Risponde in pochi secondi", text: "Anche di notte e nei weekend: nessun contatto aspetta." },
+      { icon: "messages", title: "Scrive come una persona", text: "Tono naturale e cordiale, su misura della tua attività." },
+      { icon: "target", title: "Nessun lead perso", text: "Ogni contatto delle campagne viene seguito, sempre." },
+      { icon: "clock", title: "Raccoglie la fascia oraria", text: "Richiami quando il cliente è disponibile e interessato." },
+      { icon: "bell", title: "Ricorda gli appuntamenti", text: "Promemoria automatici: meno disdette e assenze." },
+      { icon: "database", title: "Collegato al tuo CRM", text: "Contatti, note e stato del cliente in un posto solo." },
+      { icon: "timer", title: "Ti fa risparmiare ore", text: "Il lavoro ripetitivo lo fa Irelia, tu chiudi le vendite." },
+      { icon: "shield", title: "Seguito da noi", text: "Lo configuriamo, lo alleniamo e lo miglioriamo nel tempo." },
+    ] satisfies Array<{ icon: IconName; title: string; text: string }>,
     console: {
       title: "Il tuo agente AI",
       status: "Al lavoro",
@@ -352,7 +368,7 @@ export const site = {
       ] satisfies Metric[],
       hours: "Ore restituite a te",
     },
-    cta: { label: "Voglio il mio agente AI", href: "/contatti" },
+    cta: { label: "Voglio il mio assistente AI", href: "/contatti" },
   },
 
   /** Prima / dopo. */
@@ -654,8 +670,8 @@ export const site = {
   /** Collegamento a Triskell Ecosystem: l'infrastruttura dietro l'agenzia. */
   ecosystem: {
     overline: "Dietro l'agenzia",
-    title: "Parte di [Triskell Ecosystem]",
-    line: "Marketing, AI, automazioni e formazione che lavorano insieme.",
+    title: "Un ecosistema [molto più ampio]",
+    line: "Triskell Agency è solo una parte: dietro c'è Triskell Ecosystem, con marketing, AI, automazioni e formazione.",
     nodeLabel: "Triskell Ecosystem",
     branches: [
       { icon: "rocket", name: "Agency", text: "Deleghi a noi marketing, ADV, siti, CRM e AI.", here: true, href: "/" },
@@ -663,7 +679,7 @@ export const site = {
       { icon: "film", name: "Contenuti e community", text: "Tutorial e novità sull'AI per oltre 15.000 persone.", href: "https://youtube.com/@triskellecosystem" },
     ] satisfies Array<{ icon: IconName; name: string; text: string; href: string; here?: true }>,
     here: "Sei qui",
-    cta: { label: "Scopri Triskell Ecosystem", href: ECOSYSTEM_URL },
+    cta: { label: "Scopri tutto Triskell Ecosystem", href: ECOSYSTEM_URL },
   },
 
   /** Fasce "Prenota ora", riusate in più punti del sito. */
@@ -956,7 +972,7 @@ export const site = {
   contact: {
     id: "contatti",
     title: "Vuoi più clienti per [la tua attività]?",
-    line: "Raccontaci il tuo progetto: ti ricontattiamo noi entro 24 ore.",
+    line: "Prenota la tua call gratuita: ti richiamiamo entro 24 ore con un piano su misura.",
     perks: [
       { icon: "calendar", label: "Consulenza gratuita" },
       { icon: "clock", label: "30 minuti" },
