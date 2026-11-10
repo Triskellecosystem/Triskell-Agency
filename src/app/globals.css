@@ -1525,3 +1525,29 @@ html[data-no-loader] .loader { display: none; }
 @keyframes rd3-flash { 0% { opacity: 1; transform: translate(-50%, -50%) scale(0.2); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(3); } }
 @media (prefers-reduced-motion: reduce) { .rd3-chip { opacity: 1; transform: none; transition: none; } .rd3-burst.is-on .rd3-chip, .rd3-burst.is-on .rd3-flash { animation: none; } }
 .cmp-band::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(50% 60% at 50% 50%, rgb(58 164 212 / 0.14), transparent 70%); }
+.pe-band::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(60% 55% at 50% 60%, rgb(225 48 108 / 0.1), transparent 70%), radial-gradient(40% 40% at 20% 30%, rgb(58 164 212 / 0.1), transparent 70%); }
+
+/* Social: "Ci occupiamo di tutto" */
+.spl-band::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgb(5 31 54 / 0.55), transparent 70%), repeating-linear-gradient(90deg, rgb(255 255 255 / 0.025) 0 1px, transparent 1px 80px); }
+.spl-sep { background: linear-gradient(90deg, transparent, var(--color-gold-300) 30%, var(--color-azure-300) 70%, transparent); box-shadow: 0 0 18px rgb(247 200 92 / 0.5); }
+.spl-rail { background: rgb(255 255 255 / 0.1); overflow: hidden; border-radius: 2px; }
+.spl-runner { position: absolute; top: 0; bottom: 0; width: 25%; background: linear-gradient(90deg, transparent, var(--color-gold-200), transparent); animation: spl-run 4.8s linear infinite; }
+@keyframes spl-run { from { left: -25%; } to { left: 100%; } }
+.spl-item { opacity: 0; transform: translate3d(0, 26px, 0) scale(0.9); transition: opacity 0.6s var(--ease-out-expo), transform 0.7s var(--ease-out-expo); transition-delay: calc(0.15s + var(--i, 0) * 0.25s); }
+[data-revealed] .spl-item { opacity: 1; transform: none; }
+@keyframes spl-lit { 0%, 20% { background: var(--color-gold-300); color: var(--color-night); box-shadow: 0 0 0 6px var(--color-night), 0 0 30px rgb(247 200 92 / 0.7); } 25%, 100% { background: var(--color-night); color: var(--color-gold-300); } }
+@keyframes spl-card { 0%, 20% { border-color: rgb(247 200 92 / 0.6); transform: translateY(-4px); } 25%, 100% { border-color: rgb(255 255 255 / 0.1); transform: none; } }
+[data-revealed] .spl-ico { animation: spl-lit 4.8s calc(1.2s + var(--i, 0) * 1.2s) infinite; }
+[data-revealed] .spl-card { animation: spl-card 4.8s calc(1.2s + var(--i, 0) * 1.2s) infinite; }
+@media (prefers-reduced-motion: reduce) { .spl-runner, [data-revealed] .spl-ico, [data-revealed] .spl-card { animation: none; } .spl-item { opacity: 1; transform: none; } }
+
+/* Binario dei passi: una luce lo percorre in loop */
+.sr-fill::after { content: ""; position: absolute; inset: -3px auto -3px 0; width: 12%; background: linear-gradient(90deg, transparent, #fff8d6, transparent); filter: blur(1px); animation: sr-run 3.2s 1.8s linear infinite; opacity: 0; }
+@media (max-width: 767px) { .sr-fill::after { display: none; } }
+@keyframes sr-run { 0% { left: -12%; opacity: 1; } 100% { left: 100%; opacity: 1; } }
+[data-revealed] .sr-step .sr-node { animation: sr-node 3.2s calc(1.8s + var(--i, 0) * (3.2s / var(--n, 6))) infinite; }
+@keyframes sr-node { 0%, 12% { background: var(--color-gold-300); color: var(--color-night); box-shadow: 0 0 0 5px var(--color-night), 0 0 22px rgb(247 200 92 / 0.7); } 20%, 100% { } }
+@media (prefers-reduced-motion: reduce) { .sr-fill::after, [data-revealed] .sr-step .sr-node { animation: none; } }
+.inc-li { opacity: 0; transform: translate3d(-10px, 0, 0); transition: opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo); transition-delay: calc(0.3s + var(--j, 0) * 1s); }
+[data-revealed] .inc-li { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .inc-li { opacity: 1; transform: none; transition: none; } }

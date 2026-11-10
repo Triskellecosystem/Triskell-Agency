@@ -609,7 +609,7 @@ export const site = {
     pillars: [
       { icon: "pen", title: "Pensiamo", text: "Strategia, idee e script pronti" },
       { icon: "camera", title: "Registriamo", text: "Da noi, o ti guidiamo noi" },
-      { icon: "scissors", title: "Montiamo", text: "Editing professionale" },
+      { icon: "scissors", title: "Editiamo", text: "Montaggio professionale" },
       { icon: "send", title: "Pubblichiamo", text: "Al momento giusto, ogni settimana" },
     ] satisfies Array<{ icon: IconName; title: string; text: string }>,
     compare: {
@@ -629,7 +629,7 @@ export const site = {
     finale: {
       title: "Il minimo impegno per te. [Il massimo per il tuo profilo.]",
       text: "Tu ci dai poco tempo. Noi ci occupiamo di tutto il resto.",
-      words: ["Ordiniamo", "Montiamo", "Scriviamo", "Pubblichiamo", "Misuriamo", "Miglioriamo"],
+      words: ["Ordiniamo", "Editiamo", "Scriviamo", "Pubblichiamo", "Misuriamo", "Miglioriamo"],
     },
   },
 

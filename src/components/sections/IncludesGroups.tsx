@@ -32,8 +32,8 @@ export function IncludesGroups() {
                   <span className="font-mono text-[0.6875rem] font-semibold text-fg-3">{String(gi + 1).padStart(2, "0")}</span>
                 </div>
                 <ul className="mt-3 space-y-1.5">
-                  {g.items.map((it) => (
-                    <li key={it} className="flex items-start gap-2 text-[0.8125rem] leading-snug text-fg-2">
+                  {g.items.map((it, k) => (
+                    <li key={it} className="inc-li flex items-start gap-2 text-[0.8125rem] leading-snug text-fg-2" style={{ "--j": gi * 0.25 + k * 0.12 } as React.CSSProperties}>
                       <Icon name="check" className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold-300" strokeWidth={2.6} />
                       {it}
                     </li>
