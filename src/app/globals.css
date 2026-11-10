@@ -1881,3 +1881,48 @@ main > section:nth-of-type(even) { background-image: linear-gradient(180deg, tra
 @keyframes scv-bar-t { 0% { top: 50%; opacity: 1; } 90% { top: 0; opacity: 1; } 100% { top: 0; opacity: 0; } }
 @keyframes scv-bar-b { 0% { top: 50%; opacity: 1; } 90% { top: 100%; opacity: 1; } 100% { top: 100%; opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .scv-reveal .scv-frame { clip-path: none; transform: none; transition: none; } .scv-glow { opacity: 1; } }
+
+/* ==========================================================================
+   Stage3D: stanza in prospettiva, luxury
+   ========================================================================== */
+.st3 { --mx: 0; --my: 0; --sy: 0; perspective: 900px; perspective-origin: calc(50% + var(--mx) * -6%) calc(42% + var(--my) * -6%); }
+.st3-room { position: absolute; inset: -10%; transform-style: preserve-3d; transform: translate3d(calc(var(--mx) * -14px), calc(var(--sy) * 30px), 0); transition: transform 0.6s var(--ease-out-expo); }
+.st3-wall { position: absolute; left: 22%; right: 22%; top: 18%; bottom: 40%; border-radius: 1rem; background:
+    radial-gradient(60% 70% at 50% 60%, rgb(247 200 92 / 0.16), transparent 70%),
+    linear-gradient(rgb(58 164 212 / 0.12) 1px, transparent 1px) 0 0 / 40px 40px,
+    linear-gradient(90deg, rgb(58 164 212 / 0.12) 1px, transparent 1px) 0 0 / 40px 40px;
+  transform: translateZ(-420px); box-shadow: 0 0 120px 20px rgb(11 129 177 / 0.25); mask-image: radial-gradient(closest-side, #000 60%, transparent); }
+.st3-floor, .st3-ceil { position: absolute; left: -40%; right: -40%; height: 90%; overflow: hidden; }
+.st3-floor { top: 58%; transform: rotateX(78deg); transform-origin: 50% 0%; mask-image: linear-gradient(180deg, transparent, #000 20%); }
+.st3-ceil { bottom: 66%; transform: rotateX(-78deg); transform-origin: 50% 100%; opacity: 0.5; mask-image: linear-gradient(0deg, transparent, #000 25%); }
+.st3-floor i, .st3-ceil i { position: absolute; inset: -60px 0 0; background-image: linear-gradient(rgb(58 164 212 / 0.32) 1px, transparent 1px), linear-gradient(90deg, rgb(58 164 212 / 0.32) 1px, transparent 1px); background-size: 60px 60px; animation: st3-run 3.5s linear infinite; }
+.st3-ceil i { animation-direction: reverse; animation-duration: 6s; }
+.st3-floor::after { content: ""; position: absolute; left: 30%; right: 30%; top: 0; height: 60%; background: radial-gradient(50% 60% at 50% 0%, rgb(247 200 92 / 0.25), transparent 70%); }
+@keyframes st3-run { to { transform: translateY(60px); } }
+.st3-beam { position: absolute; top: -10%; width: 14%; height: 120%; background: linear-gradient(180deg, rgb(247 200 92 / 0.0), rgb(247 200 92 / 0.12) 40%, rgb(58 164 212 / 0.08) 70%, transparent); filter: blur(18px); transform-origin: 50% 0%; animation: st3-beam 9s ease-in-out infinite; }
+.st3-beam--a { left: 18%; transform: rotate(14deg); }
+.st3-beam--b { left: 48%; transform: rotate(-4deg); animation-delay: -3s; }
+.st3-beam--c { left: 74%; transform: rotate(-16deg); animation-delay: -6s; }
+@keyframes st3-beam { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+.st3-dust i { position: absolute; border-radius: 9999px; background: #ffe7a3; box-shadow: 0 0 8px 1px rgb(247 200 92 / 0.8); opacity: 0.6; animation: st3-dust 8s ease-in-out infinite; transform: translate3d(calc(var(--mx) * var(--z) * -8px), calc(var(--my) * var(--z) * -8px), 0); }
+@keyframes st3-dust { 0%, 100% { margin-top: 0; opacity: 0.15; } 50% { margin-top: -26px; opacity: 0.9; } }
+.st3-vignette { position: absolute; inset: 0; background: radial-gradient(90% 80% at 50% 45%, transparent 55%, rgb(3 22 40 / 0.85)); }
+.st3--azure .st3-beam { background: linear-gradient(180deg, transparent, rgb(58 164 212 / 0.18) 40%, transparent); }
+@media (prefers-reduced-motion: reduce) { .st3 *, .st3-room { animation: none !important; transition: none; } }
+.spl-vrail { background: rgb(255 255 255 / 0.1); overflow: hidden; border-radius: 2px; }
+.spl-vrunner { position: absolute; left: 0; right: 0; height: 25%; background: linear-gradient(180deg, transparent, var(--color-gold-200), transparent); animation: spl-vrun 4.8s linear infinite; }
+@keyframes spl-vrun { from { top: -25%; } to { top: 100%; } }
+.spl-item { transform: translate3d(60px, 0, 0); }
+@media (prefers-reduced-motion: reduce) { .spl-vrunner { animation: none; } }
+.rv-bar { transition: height 1.3s cubic-bezier(0.16, 1, 0.3, 1); }
+@keyframes rv-badge { from { opacity: 0; transform: translate3d(0, 10px, 0) scale(0.9); } to { opacity: 1; transform: none; } }
+.rv-badge { animation: rv-badge 0.5s var(--ease-out-expo); }
+@keyframes qs-res-card { from { transform: translate3d(0, 16px, 0) scale(0.97); filter: blur(4px); } to { transform: none; filter: none; } }
+.qs-res-card { animation: qs-res-card 0.6s var(--ease-out-expo); }
+
+/* Luxury: riflesso lento sull'oro dei titoli e grana finissima su tutta la pagina */
+h1 .text-gold, h2 .text-gold { background-image: linear-gradient(100deg, var(--color-gold-400) 0%, var(--color-gold-200) 20%, #fff3c4 28%, var(--color-gold-200) 36%, var(--color-gold-500) 60%, var(--color-gold-300) 100%); background-size: 250% 100%; animation: gold-sheen 7s ease-in-out infinite; }
+@keyframes gold-sheen { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0% 0; } }
+body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: 0.045; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+@media (prefers-reduced-motion: reduce) { h1 .text-gold, h2 .text-gold { animation: none; } }

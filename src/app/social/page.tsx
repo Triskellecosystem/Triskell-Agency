@@ -7,6 +7,7 @@ import { ProfileExamples } from "@/components/sections/ProfileExamples";
 import { PhoneFan } from "@/components/sections/PhoneFan";
 import { LivePhone } from "@/components/sections/LivePhone";
 import { PerspectiveBg } from "@/components/ui/PerspectiveBg";
+import { Stage3D } from "@/components/ui/Stage3D";
 import { RecordingOptions } from "@/components/sections/RecordingOptions";
 import { SocialFinale } from "@/components/sections/SocialFinale";
 import { SocialPillars } from "@/components/sections/SocialPillars";
@@ -28,7 +29,7 @@ export default function SocialPage() {
   const s = site.social;
   return (
     <>
-      <PageHero overline={s.overline} title={s.title} line={s.line} crumbs={[{ label: "Social media" }]} aside={<PhoneFan />} alignTop backdrop={<div aria-hidden="true" className="tiles3d absolute inset-0 -z-10"><span className="tiles3d-plane" /></div>}>
+      <PageHero overline={s.overline} title={s.title} line={s.line} crumbs={[{ label: "Social media" }]} aside={<PhoneFan />} alignTop backdrop={<Stage3D tone="azure" />}>
         <Button href="/contatti" size="md" icon="calendar" iconPosition="start" pulse>
           Prenota la call gratuita
         </Button>

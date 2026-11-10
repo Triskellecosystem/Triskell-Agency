@@ -4,6 +4,7 @@ import { useState } from "react";
 import { site } from "@/content/site";
 import { cn } from "@/lib/cn";
 import { Icon } from "@/components/ui/Icon";
+import { Button } from "@/components/ui/Button";
 
 /**
  * Le domande, tutte visibili: righe grandi che si accendono al passaggio del mouse (barra d'oro, scivolano un po'),
@@ -46,6 +47,37 @@ export function QuestionStack() {
           );
         })}
       </ul>
+
+      {/* risultato: compare appena si spunta qualcosa e cambia con il punteggio */}
+      <div className={cn("qs-res grid transition-[grid-template-rows,opacity] duration-500 ease-out-expo", n ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0")}>
+        <div className="overflow-hidden">
+          <div key={verdict(n).k} className="qs-res-card relative mt-4 overflow-hidden rounded-2xl border border-gold-300/60 bg-[linear-gradient(120deg,#4a3808,#0b2a46_70%)] p-5 shadow-[0_0_50px_-16px_rgb(247_200_92/0.6)]">
+            <span aria-hidden="true" className="cta-gold-shine opacity-30" />
+            <div className="relative flex flex-wrap items-center gap-x-6 gap-y-4">
+              <div className="relative grid h-16 w-16 shrink-0 place-items-center">
+                <svg viewBox="0 0 40 40" className="absolute inset-0 h-full w-full -rotate-90" aria-hidden="true">
+                  <circle cx="20" cy="20" r="17" fill="none" stroke="rgb(255 255 255 / 0.12)" strokeWidth="3" />
+                  <circle cx="20" cy="20" r="17" fill="none" stroke="var(--color-gold-300)" strokeWidth="3" strokeLinecap="round" strokeDasharray={`${(n / items.length) * 106.8} 106.8`} className="transition-[stroke-dasharray] duration-700" />
+                </svg>
+                <span className="font-display text-[1.125rem] font-bold text-gold">{n}/{items.length}</span>
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="font-display text-[1.125rem] font-bold leading-tight text-fg">{verdict(n).title}</p>
+                <p className="mt-1 text-[0.8125rem] leading-snug text-fg-2">{verdict(n).text}</p>
+              </div>
+              <Button href="/contatti" size="md" icon="calendar" iconPosition="start" pulse>
+                Prenota la call gratuita
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
+}
+
+function verdict(n: number) {
+  if (n >= 5) return { k: "c", title: "È proprio il momento di parlarne.", text: "Ti riconosci quasi in tutto: in 30 minuti ti mostriamo come sistemare tutto, passo per passo." };
+  if (n >= 3) return { k: "b", title: "Ci sono margini enormi di crescita.", text: "Più di una cosa ti frena: prenota una call gratuita e vediamo insieme da dove partire." };
+  return { k: "a", title: "Forse è il caso di fare due chiacchiere.", text: "Anche una sola di queste cose ti fa perdere clienti. Parliamone gratis, senza impegno." };
 }

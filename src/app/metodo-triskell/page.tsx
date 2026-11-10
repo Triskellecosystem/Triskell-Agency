@@ -14,6 +14,7 @@ import { DigitalCursor } from "@/components/motion/DigitalCursor";
 import { Reveal } from "@/components/motion/Reveal";
 import { site } from "@/content/site";
 import { SceneVideo } from "@/components/ui/SceneVideo";
+import { Stage3D } from "@/components/ui/Stage3D";
 
 export const metadata: Metadata = {
   title: "Il Metodo Triskell",
@@ -32,6 +33,7 @@ export default function MetodoPage() {
           <span className="ah-aurora ah-aurora--b" />
           <span className="ah-dots" />
         </div>
+        <Stage3D />
         <DigitalCursor className="-z-10" />
         <div className="container-x grid items-center gap-x-10 gap-y-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
           <div>

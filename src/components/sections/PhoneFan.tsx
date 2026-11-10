@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
-import { Icon } from "@/components/ui/Icon";
 
 const shots = [
   { id: "vertis", alt: "Esempio di profilo Instagram: palestra" },
@@ -18,14 +17,28 @@ const shots = [
 const N = shots.length;
 
 /**
- * Ventaglio di profili di esempio (otto): uno davanti, due ai lati, gli altri nascosti dietro. Basta un clic (o un
- * tocco) su un telefono dietro per portarlo davanti; da solo ruota ogni pochi secondi quando il mouse non è sopra.
+ * Ventaglio di profili di esempio (otto): uno davanti, due ai lati, gli altri nascosti dietro. Basta portare il mouse
+ * (o cliccare / toccare) un telefono dietro per farlo venire davanti; da solo ruota quando il mouse non è sopra.
  * Il ventaglio segue anche leggermente il mouse in 3D. Su telefono si tocca.
  */
 export function PhoneFan() {
   const [front, setFront] = useState(0);
   const box = useRef<HTMLDivElement>(null);
   const hover = useRef(false);
+  const intent = useRef(0);
+  // passando il mouse su un telefono dietro, dopo un istante viene davanti (senza cliccare)
+  // per evitare il "giro continuo" quando i telefoni scivolano sotto il cursore fermo: serve un vero movimento del mouse
+  const cursor = useRef({ x: 0, y: 0 });
+  const lastBring = useRef({ x: -999, y: -999 });
+  const bring = (i: number) => {
+    const c = cursor.current;
+    if (Math.hypot(c.x - lastBring.current.x, c.y - lastBring.current.y) < 60) return;
+    window.clearTimeout(intent.current);
+    intent.current = window.setTimeout(() => {
+      lastBring.current = { ...cursor.current };
+      setFront(i);
+    }, 160);
+  };
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -40,6 +53,7 @@ export function PhoneFan() {
     const el = box.current;
     if (!el || e.pointerType !== "mouse") return;
     hover.current = true;
+    cursor.current = { x: e.clientX, y: e.clientY };
     const r = el.getBoundingClientRect();
     const x = (e.clientX - r.left) / r.width;
     el.style.setProperty("--ry", `${((x - 0.5) * 10).toFixed(2)}deg`);
@@ -67,6 +81,8 @@ export function PhoneFan() {
               tabIndex={pos < 3 ? 0 : -1}
               aria-label={`Mostra in primo piano: ${s.alt}`}
               onClick={() => setFront(i)}
+              onMouseEnter={() => pos !== 0 && bring(i)}
+              onMouseLeave={() => window.clearTimeout(intent.current)}
               className={cn("pf-phone absolute left-1/2 top-0 -ml-[7.25rem] w-[14.5rem] overflow-hidden rounded-[1.8rem] border-[5px] border-[#1d2a3a] bg-black", `pf-pos-${pos}`)}
             >
               <Image src={`/social-examples/${s.id}.webp`} alt={s.alt} width={520} height={1126} sizes="14.5rem" priority={i < 3} className="block h-auto w-full" />
@@ -74,12 +90,6 @@ export function PhoneFan() {
           );
         })}
       </div>
-      <button type="button" aria-label="Profilo precedente" onClick={() => setFront((f) => (f - 1 + N) % N)} className="absolute left-0 top-[42%] z-30 grid h-10 w-10 place-items-center rounded-full border border-white/20 bg-night/70 text-fg backdrop-blur transition-colors hover:border-gold-300 hover:text-gold-300">
-        <Icon name="chevron-left" className="h-5 w-5" strokeWidth={2.2} />
-      </button>
-      <button type="button" aria-label="Profilo successivo" onClick={() => setFront((f) => (f + 1) % N)} className="absolute right-0 top-[42%] z-30 grid h-10 w-10 place-items-center rounded-full border border-white/20 bg-night/70 text-fg backdrop-blur transition-colors hover:border-gold-300 hover:text-gold-300">
-        <Icon name="chevron-right" className="h-5 w-5" strokeWidth={2.2} />
-      </button>
       <div className="absolute inset-x-0 bottom-0 z-30 flex justify-center gap-1.5">
         {shots.map((s, i) => (
           <button key={s.id} type="button" aria-label={s.alt} onClick={() => setFront(i)} className={cn("h-1.5 rounded-full transition-all duration-500", i === front ? "w-6 bg-gold-300" : "w-1.5 bg-white/25")} />

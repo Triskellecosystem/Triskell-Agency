@@ -5,7 +5,7 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Spotlight } from "@/components/ui/Spotlight";
 import { TechBackdrop } from "@/components/ui/TechBackdrop";
 import { CountUp } from "@/components/motion/CountUp";
-import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 
 /**
  * Muro dei numeri: sei tessere enormi che entrano alternate dai lati, il numero cresce, una barra si riempie e un
@@ -42,17 +42,6 @@ export function NumbersWall() {
         ))}
       </RevealGroup>
 
-      <Reveal y={18} blur={0} className="mt-3">
-        <ul className="grid gap-3 rounded-xl border border-gold-400/25 bg-[linear-gradient(135deg,#2b2410,#0a1626_55%,#0b2a46)] p-3 max-md:grid-cols-2 md:grid-cols-4">
-          {n.proof.map((p) => (
-            <li key={p.who + p.label} className="flex flex-col items-center text-center md:border-r md:border-line md:last:border-r-0">
-              <span className="font-display text-[1.25rem] font-bold leading-none tracking-[-0.03em] text-azure-300">{p.value}</span>
-              <span className="mt-1 text-[0.75rem] font-semibold text-fg">{p.label}</span>
-              <span className="mt-0.5 text-[0.75rem] text-fg-3">{p.who}</span>
-            </li>
-          ))}
-        </ul>
-      </Reveal>
     </Section>
   );
 }
