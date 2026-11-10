@@ -29,25 +29,25 @@ function cameraAt(keys: CameraKey[], t: number) {
 function PhaseContent({ ph, tone, big }: { ph: PersonPhase; tone: Person["tone"]; big?: boolean }) {
   const accent = tone === "azure" ? "text-azure-300" : "text-ember-300";
   return (
-    <>
-      <p className="flex items-center gap-2.5 text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-gold-300">
-        <span aria-hidden="true" className="h-px w-7 bg-gold-300/70" />
+    <div className="ps-card">
+      <p className="flex items-center gap-2 font-mono text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-gold-300">
+        <span aria-hidden="true" className="ps-card-dot h-1.5 w-1.5 rounded-full bg-gold-300" />
         {ph.kicker}
       </p>
       <h3
         className={cn(
           "mt-3 font-display font-bold tracking-[-0.03em] text-fg [text-wrap:balance]",
-          ph.quote ? "text-[clamp(1.5rem,1.1rem+1.6vw,2.375rem)] leading-[1.14]" : big ? "text-[clamp(2.25rem,1.4rem+3.2vw,4rem)] leading-[1.02]" : "text-[clamp(1.75rem,1.2rem+2vw,2.75rem)] leading-[1.06]",
+          ph.quote ? "text-[clamp(1.25rem,1rem+1vw,1.75rem)] leading-[1.18]" : big ? "text-[clamp(1.875rem,1.3rem+2vw,2.75rem)] leading-[1.04]" : "text-[clamp(1.5rem,1.1rem+1.3vw,2.125rem)] leading-[1.08]",
         )}
       >
         {ph.title}
       </h3>
-      {ph.text && <p className="mt-4 max-w-md text-[1.0625rem] leading-relaxed text-fg-2">{ph.text}</p>}
+      {ph.text && <p className="mt-3 max-w-md text-[0.9375rem] leading-relaxed text-fg-2">{ph.text}</p>}
       {ph.stats && (
-        <dl className="mt-6 flex gap-8 max-md:flex-wrap max-md:gap-x-6 max-md:gap-y-4">
+        <dl className="mt-5 flex gap-7 max-md:flex-wrap max-md:gap-x-6 max-md:gap-y-4">
           {ph.stats.map((st) => (
             <div key={st.label}>
-              <dd className={cn("font-display text-[clamp(2.5rem,2rem+2vw,3.75rem)] max-md:text-[2.25rem] font-extrabold leading-none tracking-[-0.045em]", accent)}>{st.value}</dd>
+              <dd className={cn("font-display text-[clamp(1.875rem,1.5rem+1.2vw,2.5rem)] font-extrabold leading-none tracking-[-0.045em]", accent)}>{st.value}</dd>
               <dt className="mt-1.5 text-[0.8125rem] text-fg-2">{st.label}</dt>
             </div>
           ))}
@@ -63,16 +63,16 @@ function PhaseContent({ ph, tone, big }: { ph: PersonPhase; tone: Person["tone"]
         </ul>
       )}
       {ph.blocks && (
-        <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+        <ul className="mt-4 grid gap-2 sm:grid-cols-2">
           {ph.blocks.map((b, bi) => (
-            <li key={b.title} className={cn("rounded-2xl border p-4 backdrop-blur-sm", tone === "azure" ? "border-azure-300/35 bg-azure-400/[0.07]" : "border-ember-300/35 bg-ember-400/[0.07]")}>
-              <p className="font-display text-[1.0625rem] font-semibold tracking-tight text-fg"><span className={cn("mr-2 text-[0.8125rem]", accent)}>{String(bi + 1).padStart(2, "0")}</span>{b.title}</p>
-              <p className="mt-1 text-[0.875rem] leading-snug text-fg-2">{b.text}</p>
+            <li key={b.title} className={cn("rounded-xl border p-3 backdrop-blur-sm", tone === "azure" ? "border-azure-300/35 bg-azure-400/[0.07]" : "border-ember-300/35 bg-ember-400/[0.07]")}>
+              <p className="font-display text-[0.9375rem] font-semibold tracking-tight text-fg"><span className={cn("mr-2 font-mono text-[0.6875rem]", accent)}>{String(bi + 1).padStart(2, "0")}</span>{b.title}</p>
+              <p className="mt-0.5 text-[0.8125rem] leading-snug text-fg-2">{b.text}</p>
             </li>
           ))}
         </ul>
       )}
-    </>
+    </div>
   );
 }
 

@@ -45,12 +45,12 @@ export function TeamIntro() {
       const e1 = smooth(0.02, 0.3, p); // la linea si allarga
       const e2 = smooth(0.22, 0.62, p); // la finestra si apre
       const e3 = smooth(0.12, 0.9, p); // zoom/assestamento
-      fr.style.clipPath = `inset(${((1 - e2) * 50).toFixed(2)}% ${((1 - e1) * 49).toFixed(2)}% round ${(1.5 * e2 + 0.1).toFixed(2)}rem)`;
+      fr.style.clipPath = `circle(${(4 + e1 * 10 + e2 * 66).toFixed(2)}% at 50% 50%)`;
       fr.style.filter = `brightness(${(1 + (1 - e2) * 0.9).toFixed(2)})`;
       if (img) img.style.transform = `scale(${(1.35 - e3 * 0.35).toFixed(3)})`;
       if (beam.current) {
-        beam.current.style.opacity = (e1 * (1 - smooth(0.55, 0.72, p))).toFixed(3);
-        beam.current.style.transform = `scaleX(${(0.05 + e1 * 0.95).toFixed(3)})`;
+        beam.current.style.opacity = (e1 * (1 - e2)).toFixed(3);
+        beam.current.style.transform = `translate(-50%, -50%) scale(${(0.18 + e1 * 0.22 + e2 * 1.3).toFixed(3)})`;
       }
       if (sweep.current) {
         const s = smooth(0.5, 0.88, p);

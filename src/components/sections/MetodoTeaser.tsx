@@ -36,9 +36,9 @@ export function MetodoTeaser() {
             <dl className="mt-8 grid max-w-lg grid-cols-3 divide-x divide-white/10 border-y border-white/10 py-4">
               {m.facts.map((f) => (
                 <div key={f.label} className="px-3 first:pl-0">
-                  <dd className="font-display text-[1.75rem] font-bold leading-none tracking-[-0.04em] text-gold">
+                  <dd className="whitespace-nowrap font-display text-[1.375rem] font-bold leading-none tracking-[-0.04em] text-gold sm:text-[1.75rem]">
                     {f.value}
-                    <span className="ml-1 text-[0.8125rem] font-semibold tracking-normal text-fg">{f.unit}</span>
+                    <span className="mt-1 block text-[0.75rem] font-semibold tracking-normal text-fg sm:ml-1 sm:mt-0 sm:inline sm:text-[0.8125rem]">{f.unit}</span>
                   </dd>
                   <dt className="mt-1 text-[0.6875rem] text-fg-3">{f.label}</dt>
                 </div>

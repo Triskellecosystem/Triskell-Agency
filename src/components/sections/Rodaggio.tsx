@@ -1,46 +1,36 @@
 import { site } from "@/content/site";
-import { Icon } from "@/components/ui/Icon";
 import { Reveal } from "@/components/motion/Reveal";
 
 /**
- * Il rodaggio di 6 mesi: una barra divisa in mesi che si riempie mese dopo mese quando entra nello schermo,
- * con le tre fasi sotto (struttura → messa in moto → risultati) e il bollino "Minimo 6 mesi".
+ * Rodaggio di 6 mesi, semplice: una barra divisa nelle tre fasi (larghe quanto i mesi che durano) che si riempie
+ * da sinistra, un punto d'oro che la percorre e il traguardo "Risultati" alla fine.
  */
-export function Rodaggio({ compact = false }: { compact?: boolean }) {
+export function Rodaggio() {
   const r = site.metodo.rodaggio;
-  const months = Array.from({ length: r.months }, (_, i) => i + 1);
   return (
-    <Reveal y={24} blur={0}>
-      <div className="rd relative overflow-hidden rounded-[1.75rem] border border-gold-400/35 bg-[linear-gradient(150deg,var(--color-surface-2),var(--color-night-raised))] p-5 sm:p-8">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <p className="inline-flex items-center gap-2 font-display text-[1.0625rem] font-bold text-fg">
-            <Icon name="hourglass" className="h-5 w-5 text-gold-300" strokeWidth={1.8} />
-            {compact ? r.overline : "Il percorso dei primi 6 mesi"}
+    <Reveal y={20} blur={0}>
+      <div className="rd2 rounded-[1.25rem] border border-white/10 bg-white/[0.02] p-5 sm:p-7">
+        <div className="flex items-baseline justify-between gap-3">
+          <p className="font-display text-[1rem] font-semibold text-fg">
+            <span className="text-gold font-bold">6 mesi</span> per far partire tutto
           </p>
-          <span className="rd-badge rounded-full bg-[image:var(--gradient-gold-btn)] px-3.5 py-1 text-[0.75rem] font-bold uppercase tracking-wider text-night">{r.badge}</span>
+          <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-fg-3">{r.badge}</p>
         </div>
-
-        {/* mesi */}
-        <ol className="mt-6 grid grid-cols-6 gap-1.5 sm:gap-2">
-          {months.map((m) => (
-            <li key={m} className="text-center">
-              <span className="block h-3 overflow-hidden rounded-full bg-line">
-                <span className="rd-fill block h-full w-full origin-left rounded-full bg-gradient-to-r from-gold-500 via-gold-300 to-azure-300" style={{ transitionDelay: `${0.2 + m * 0.22}s` }} />
+        <div className="relative mt-6">
+          <div className="flex h-2.5 gap-1 overflow-hidden rounded-full">
+            {r.phases.map((p, i) => (
+              <span key={p.title} className="relative h-full overflow-hidden rounded-full bg-white/10" style={{ flex: p.to - p.from + 1 }}>
+                <span className="rd2-fill absolute inset-0 origin-left rounded-full" style={{ transitionDelay: `${0.2 + i * 0.5}s`, background: ["var(--color-azure-300)", "linear-gradient(90deg,var(--color-azure-300),var(--color-gold-300))", "var(--color-gold-300)"][i] }} />
               </span>
-              <span className="mt-2 block font-mono text-[0.6875rem] font-semibold text-fg-3 sm:text-[0.75rem]">Mese {m}</span>
-            </li>
-          ))}
-        </ol>
-
-        {/* fasi */}
-        <ol className="mt-5 grid gap-3 sm:grid-cols-6">
-          {r.phases.map((p, i) => (
-            <li key={p.title} className="rd-phase rounded-2xl border border-line bg-night/40 p-4 sm:[grid-column:var(--gc)]" style={{ "--gc": `${p.from} / ${p.to + 1}`, transitionDelay: `${0.5 + i * 0.35}s` } as React.CSSProperties}>
-              <p className="font-mono text-[0.6875rem] font-semibold uppercase tracking-wider text-azure-300">
-                {p.from === p.to ? `Mese ${p.from}` : `Mesi ${p.from}–${p.to}`}
-              </p>
-              <p className="mt-1 font-display text-[1rem] font-bold text-fg">{p.title}</p>
-              {!compact && <p className="mt-1 text-[0.875rem] leading-snug text-fg-2">{p.text}</p>}
+            ))}
+          </div>
+          <span aria-hidden="true" className="rd2-dot absolute top-1/2 h-4 w-4 -translate-y-1/2 rounded-full bg-gold-200 shadow-[0_0_14px_4px_rgb(247_200_92/0.6)]" />
+        </div>
+        <ol className="mt-4 flex gap-1">
+          {r.phases.map((p) => (
+            <li key={p.title} className="min-w-0" style={{ flex: p.to - p.from + 1 }}>
+              <p className="font-mono text-[0.625rem] font-semibold uppercase tracking-wider text-fg-3">{p.from === p.to ? `Mese ${p.from}` : `Mesi ${p.from}–${p.to}`}</p>
+              <p className="mt-0.5 truncate font-display text-[0.875rem] font-semibold text-fg sm:text-[0.9375rem]">{p.title}</p>
             </li>
           ))}
         </ol>

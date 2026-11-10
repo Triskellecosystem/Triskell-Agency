@@ -13,26 +13,28 @@ export function IncludesGroups() {
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeading id="incluso-title" overline={inc.overline} title={inc.title} line={inc.line} />
         <p className="font-display leading-none">
-          <span className="text-gold text-[clamp(3.5rem,2.5rem+4vw,6rem)] font-bold tracking-[-0.06em]">{total}</span>
-          <span className="ml-2 text-[1rem] font-semibold text-fg-2">cose di cui ci occupiamo</span>
+          <span className="text-gold text-[clamp(2.5rem,2rem+2vw,3.5rem)] font-bold tracking-[-0.05em]">{total}</span>
+          <span className="ml-2 text-[0.8125rem] font-semibold text-fg-2">attività incluse</span>
         </p>
       </div>
-      <RevealGroup className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" stagger={0.08} alternate>
+      <RevealGroup className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" stagger={0.07}>
         {inc.groups.map((g, gi) => (
           <RevealItem key={g.title} y={24} className="h-full">
-            <Spotlight className="h-full rounded-[1.5rem] border border-line bg-[linear-gradient(165deg,var(--color-surface-2),var(--color-night-raised))] p-6 transition-[border-color] duration-[var(--dur-base)] hover:border-gold-300/60" size={340}>
+            <Spotlight className="h-full rounded-[1.125rem] border border-white/[0.08] bg-[linear-gradient(165deg,var(--color-surface-2),var(--color-night-raised))] p-4 transition-[border-color] duration-[var(--dur-base)] hover:border-gold-300/60" size={340}>
               <div className="relative z-[2]">
                 <div className="flex items-center justify-between">
-                  <span className="grid h-12 w-12 place-items-center rounded-2xl border border-gold-400/45 bg-gold-300/10 text-gold-300">
-                    <Icon name={g.icon} className="h-6 w-6" strokeWidth={1.6} />
+                  <span className="flex items-center gap-2.5">
+                    <span className="grid h-8 w-8 place-items-center rounded-lg bg-gold-300/10 text-gold-300">
+                      <Icon name={g.icon} className="h-4 w-4" strokeWidth={1.9} />
+                    </span>
+                    <h3 className="font-display text-[1rem] font-bold tracking-tight text-fg">{g.title}</h3>
                   </span>
-                  <span className="font-mono text-[0.8125rem] font-semibold text-fg-3">{String(gi + 1).padStart(2, "0")}</span>
+                  <span className="font-mono text-[0.6875rem] font-semibold text-fg-3">{String(gi + 1).padStart(2, "0")}</span>
                 </div>
-                <h3 className="mt-4 font-display text-[1.375rem] font-bold tracking-tight text-fg">{g.title}</h3>
-                <ul className="mt-4 space-y-2.5">
+                <ul className="mt-3 space-y-1.5">
                   {g.items.map((it) => (
-                    <li key={it} className="flex items-start gap-2.5 text-[0.9375rem] leading-snug text-fg-2">
-                      <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-gold-300" strokeWidth={2.6} />
+                    <li key={it} className="flex items-start gap-2 text-[0.8125rem] leading-snug text-fg-2">
+                      <Icon name="check" className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold-300" strokeWidth={2.6} />
                       {it}
                     </li>
                   ))}

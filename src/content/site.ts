@@ -474,11 +474,11 @@ export const site = {
      ------------------------------------------------------------------------ */
   social: {
     overline: "Gestione social media",
-    title: "Tu registri. [Al resto pensiamo noi.]",
-    line: "Strategia, script, editing, pubblicazione e crescita del profilo: un team che segue i tuoi social ogni giorno, mentre tu pensi alla tua attività.",
-    heroPoints: ["Script pronti da leggere", "Editing professionale", "Pubblicazione e report"],
-    processTitle: "Come lavoriamo, [passo dopo passo]",
-    processLine: "Dalla prima call al profilo che cresce: sai sempre cosa succede e cosa ricevi.",
+    title: "Più visibilità al tuo profilo. [Il minimo impegno per te.]",
+    line: "Strategia, script, riprese, editing e pubblicazione: ci occupiamo noi di quasi tutto.",
+    heroPoints: ["Script pronti", "Editing professionale", "Pubblicazione e report"],
+    processTitle: "Come [lavoriamo]",
+    processLine: "Sei passi, dalla prima call al profilo che cresce.",
     getLabel: "Ricevi",
     steps: [
       { icon: "phone", title: "Call iniziali", text: "Conosciamo la tua attività, gli obiettivi e il tuo pubblico. Il numero di call dipende dalla collaborazione.", get: "Un piano su misura" },
@@ -491,30 +491,30 @@ export const site = {
     recording: {
       overline: "Le riprese",
       title: "Veniamo noi, [o registri tu]",
-      line: "Scegli tu come registrare i contenuti: cambia molto il prezzo finale, non la qualità del lavoro.",
+      line: "Cambia il prezzo, non la qualità.",
       options: [
         {
           id: "posto",
           icon: "car",
           title: "Veniamo noi sul posto",
           tag: "Investimento maggiore",
-          text: "Ogni mese, o ogni tot mesi, veniamo direttamente da te e registriamo tutto noi.",
-          points: ["Riprese professionali sul posto", "Frequenza scelta da te: mensile o a blocchi", "Tu ci metti solo la faccia", "Montaggio e pubblicazione inclusi"],
+          text: "Ogni mese o a blocchi, registriamo noi da te.",
+          points: ["Riprese professionali", "Frequenza scelta da te", "Montaggio e pubblicazione inclusi"],
         },
         {
           id: "autonomia",
           icon: "video",
           title: "Registri in autonomia",
           tag: "Costa meno",
-          text: "Registri tu, ma non sei mai da solo: ti prepariamo tutto e ti insegniamo come fare.",
-          points: ["Call in cui ti spieghiamo personalmente come registrare", "Script pronti: li leggi, li memorizzi e registri", "Tutti i cambi di inquadratura indicati", "Ci mandi i video: li ordiniamo, montiamo e pubblichiamo noi"],
+          text: "Registri tu, guidato passo per passo.",
+          points: ["Call per imparare a registrare", "Script e inquadrature pronti", "Montaggio e pubblicazione nostri"],
         },
       ] satisfies Array<{ id: string; icon: IconName; title: string; tag: string; text: string; points: string[] }>,
     },
     includes: {
       overline: "Cosa è incluso",
-      title: "Tutto quello che [facciamo per te]",
-      line: "Una lista lunga, perché il lavoro dietro un profilo che cresce è tanto. Te lo togliamo noi.",
+      title: "Di cosa [ci occupiamo]",
+      line: "Il lavoro dietro un profilo che cresce. Lo facciamo noi.",
       groups: [
         { icon: "pen", title: "Strategia", items: ["Analisi del profilo e dei concorrenti", "Piano editoriale mensile", "Idee e format su misura", "Script per ogni contenuto"] },
         { icon: "camera", title: "Riprese", items: ["Indicazioni su luci e inquadrature", "Cambi di inquadratura nello script", "Call di formazione alle riprese", "Riprese sul posto (se scelte)"] },
@@ -525,8 +525,8 @@ export const site = {
       ] satisfies Array<{ icon: IconName; title: string; items: string[] }>,
     },
     finale: {
-      title: "Dopo aver registrato, [non devi più pensare a niente]",
-      text: "Ordiniamo, montiamo, scriviamo, pubblichiamo e misuriamo. Tu torni a fare il tuo lavoro: ai tuoi social pensiamo noi.",
+      title: "Il minimo impegno per te. [Il massimo per il tuo profilo.]",
+      text: "Tu ci dai poco tempo. Noi ci occupiamo di tutto il resto.",
       words: ["Ordiniamo", "Montiamo", "Scriviamo", "Pubblichiamo", "Misuriamo", "Miglioriamo"],
     },
   },
@@ -537,9 +537,9 @@ export const site = {
   sitiProcess: {
     overline: "Siti web",
     title: "Dalla prima call al [sito finito]",
-    line: "Ti seguiamo in ogni passaggio: decidiamo lo stile insieme, rivediamo tutto quante volte serve e ti consegniamo un sito pronto a portarti clienti.",
-    processTitle: "Il percorso, [dall'idea al sito online]",
-    processLine: "Ogni passaggio ha un risultato chiaro: sai sempre a che punto siamo.",
+    line: "Stile scelto insieme, revisioni incluse, sito pronto a portarti clienti.",
+    processTitle: "Il [percorso]",
+    processLine: "Sette passi, dall'idea al sito online.",
     getLabel: "Ricevi",
     steps: [
       { icon: "phone", title: "Call iniziale", text: "Capiamo la tua attività, i tuoi clienti e cosa deve fare il sito per te.", get: "Obiettivi chiari" },
@@ -551,9 +551,9 @@ export const site = {
       { icon: "headphones", title: "Assistenza dopo", text: "Non ti lasciamo solo: restiamo per modifiche, aggiornamenti e dubbi.", get: "Un referente sempre" },
     ] satisfies Array<{ icon: IconName; title: string; text: string; get: string }>,
     includes: {
-      overline: "Cosa è incluso",
-      title: "Un sito [fatto e finito]",
-      line: "Non solo bello: veloce, chiaro e costruito per trasformare i visitatori in clienti.",
+      overline: "Incluso",
+      title: "Cosa è [incluso]",
+      line: "Non solo bello: veloce e costruito per portarti clienti.",
       items: [
         { icon: "palette", title: "Design su misura", text: "Niente modelli uguali per tutti." },
         { icon: "smartphone", title: "Perfetto sul telefono", text: "La maggior parte delle visite arriva da lì." },
