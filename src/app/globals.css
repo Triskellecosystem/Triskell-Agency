@@ -1397,7 +1397,7 @@ html[data-no-loader] .loader { display: none; }
 .mv-list { margin-top: 0.6rem; display: grid; gap: 0.3rem; font-size: clamp(0.6875rem, 0.6rem + 0.3vw, 0.8125rem); color: var(--color-fg-2); max-width: 46%; }
 .mv-c--r .mv-list { justify-items: end; }
 .mv-list li::before { content: "✓ "; color: var(--color-gold-300); font-weight: 700; }
-.mv-core { position: absolute; left: 50%; top: 50%; translate: -50% -50%; z-index: 2; display: grid; place-items: center; text-align: center; width: clamp(5.75rem, 4.5rem + 3vw, 7.25rem); aspect-ratio: 1; border-radius: 9999px; background: var(--gradient-gold-btn); box-shadow: 0 0 0 6px rgb(247 200 92 / 0.15), 0 0 60px rgb(247 200 92 / 0.55); padding: 0.75rem; transform: scale(0); transition: transform 0.7s 0.9s var(--ease-out-expo); }
+.mv-core { --cw: clamp(5.75rem, 4.5rem + 3vw, 7.25rem); position: absolute; left: calc(50% - var(--cw) / 2); top: calc(50% - var(--cw) / 2); z-index: 2; display: grid; place-items: center; align-content: center; text-align: center; width: var(--cw); height: var(--cw); border-radius: 9999px; background: var(--gradient-gold-btn); box-shadow: 0 0 0 6px rgb(247 200 92 / 0.15), 0 0 60px rgb(247 200 92 / 0.55); padding: 0.75rem; transform: scale(0); transition: transform 0.7s 0.9s var(--ease-out-expo); }
 [data-revealed] .mv-core { transform: scale(1); animation: mv-core 2.6s 1.6s ease-in-out infinite; }
 @keyframes mv-core { 0%, 100% { box-shadow: 0 0 0 6px rgb(247 200 92 / 0.15), 0 0 50px rgb(247 200 92 / 0.45); } 50% { box-shadow: 0 0 0 12px rgb(247 200 92 / 0.06), 0 0 80px rgb(247 200 92 / 0.75); } }
 .mv-logo { width: 2.5rem; height: 2.5rem; filter: drop-shadow(0 4px 8px rgb(0 0 0 / 0.35)); }
@@ -1411,7 +1411,9 @@ html[data-no-loader] .loader { display: none; }
   [data-revealed] .mv-c--l { transform: translate(-50%, 0) ; }
   [data-revealed] .mv-c--r { transform: translate(-50%, 0); }
   .mv-c--l { justify-content: flex-start; padding-top: 3rem; }
-  .mv-c--r { justify-content: flex-end; padding-bottom: 3rem; }
+  .mv-c--r { justify-content: flex-start; padding-top: 6.25rem; }
+  .mv-core { --cw: 5.5rem; }
+  .mv-core p { font-size: 0.75rem; }
   .mv-c--r .mv-title { flex-direction: row; }
   .mv-list, .mv-c--r .mv-list { justify-items: center; max-width: 80%; }
 }
