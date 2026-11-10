@@ -1,6 +1,7 @@
 import { site } from "@/content/site";
 import { cn } from "@/lib/cn";
 import { Icon, type IconName } from "@/components/ui/Icon";
+import { ResultCounter } from "./ResultCounter";
 
 type Tile = { icon: IconName; name: string; points: string[]; kind: "a" | "b" | "opt" | "res"; tag?: string };
 
@@ -8,7 +9,7 @@ type Tile = { icon: IconName; name: string; points: string[]; kind: "a" | "b" | 
  * Il Metodo Triskell come equazione grande: Social + Campagne + Sito (se serve) = Più clienti.
  * Le tessere entrano una dopo l'altra, i segni pulsano, la tessera del risultato si accende per ultima.
  */
-export function MetodoEquation({ className }: { className?: string }) {
+export function MetodoEquation({ className, fly }: { className?: string; fly?: boolean }) {
   const v = site.metodo.venn;
   const tiles: Tile[] = [
     { icon: "smartphone", name: v.social.title, points: v.social.points, kind: "a" },
@@ -18,7 +19,7 @@ export function MetodoEquation({ className }: { className?: string }) {
   ];
   const ops = ["+", "+", "="];
   return (
-    <div className={cn("meq grid items-stretch gap-2 lg:grid-cols-[1fr_auto_1fr_auto_0.85fr_auto_1.1fr] lg:gap-3", className)} role="group" aria-label="Social più Campagne più Sito web se serve uguale Più clienti">
+    <div className={cn("meq grid", fly && "meq--fly", " items-stretch gap-2 lg:grid-cols-[1fr_auto_1fr_auto_0.85fr_auto_1.1fr] lg:gap-3", className)} role="group" aria-label="Social più Campagne più Sito web se serve uguale Più clienti">
       {tiles.map((t, i) => (
         <div key={t.name} className="contents">
           <div
@@ -36,6 +37,16 @@ export function MetodoEquation({ className }: { className?: string }) {
               <Icon name={t.icon} className="h-5 w-5" strokeWidth={2} />
             </span>
             <p className={cn("mt-4 font-display text-[clamp(1.375rem,1.1rem+1vw,1.875rem)] font-bold leading-none tracking-[-0.03em]", t.kind === "res" ? "text-gold" : "text-fg")}>{t.name}</p>
+            {t.kind === "res" && (
+              <>
+                <span aria-hidden="true" className="meq-sparks">
+                  {Array.from({ length: 10 }, (_, k) => (
+                    <i key={k} style={{ "--k": k } as React.CSSProperties} />
+                  ))}
+                </span>
+                <ResultCounter />
+              </>
+            )}
             <ul className="mt-3 space-y-1">
               {t.points.map((p) => (
                 <li key={p} className="flex items-start gap-1.5 text-[0.8125rem] leading-snug text-fg-2">

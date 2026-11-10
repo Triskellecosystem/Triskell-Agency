@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { site } from "@/content/site";
 import { cn } from "@/lib/cn";
-import { Icon } from "@/components/ui/Icon";
 
 /**
  * Domande a comparsa: una carta alla volta arriva in primo piano, le precedenti scivolano dietro (più piccole e
@@ -48,23 +47,10 @@ export function QuestionStack() {
               zIndex: 10 - d,
             }}
           >
-            <span className="flex items-center justify-between">
-              <span className={cn("grid h-10 w-10 place-items-center rounded-xl", i % 2 ? "bg-gold-300/15 text-gold-300" : "bg-azure-300/15 text-azure-300")}>
-                <Icon name={it.icon} className="h-5 w-5" strokeWidth={2} />
-              </span>
-              <span className="font-mono text-[0.6875rem] font-bold text-fg-3">
-                {String(i + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
-              </span>
+            <span className="font-mono text-[0.6875rem] font-bold text-fg-3">
+              {String(i + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
             </span>
-            <p className="mt-4 flex flex-wrap items-end justify-between gap-3">
-              <span className="font-display text-[clamp(1.375rem,1.1rem+1.2vw,2rem)] font-bold leading-[1.1] tracking-[-0.03em] text-fg">{it.title}</span>
-              {d === 0 && (
-                <span key={cur} className="qs-yes inline-flex items-center gap-1 rounded-full bg-lime-300 px-3 py-1 text-[0.8125rem] font-bold text-night">
-                  <Icon name="check" className="h-3.5 w-3.5" strokeWidth={3} />
-                  {site.forWho.answer}
-                </span>
-              )}
-            </p>
+            <p className="mt-3 font-display text-[clamp(1.5rem,1.15rem+1.4vw,2.25rem)] font-bold leading-[1.1] tracking-[-0.03em] text-fg [text-wrap:balance]">{it.title}</p>
           </div>
         );
       })}

@@ -67,17 +67,13 @@ export function CaseCard({ item, priority = false }: { item: CaseStudy; href?: s
 export function NextCaseCard({ className }: { className?: string }) {
   const n = site.portfolio.next;
   return (
-    <div className={cn("relative h-full", className)}>
+    <div className={cn("next-blink relative h-full", className)}>
       <span aria-hidden="true" className="btn-halo pointer-events-none absolute -inset-3 rounded-[2rem] bg-gold-300/25 blur-2xl" />
       <BeamCard className="relative h-full">
         <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-[inherit] bg-[linear-gradient(160deg,var(--color-cobalt-600),var(--color-surface-2)_55%,var(--color-night-glow))] p-6 sm:p-7">
           <div aria-hidden="true" className="bg-grid absolute inset-0 opacity-40 [mask-image:radial-gradient(80%_70%_at_50%_30%,#000,transparent)]" />
           <div aria-hidden="true" className="pointer-events-none absolute -right-12 -top-12 h-52 w-52 rounded-full bg-[radial-gradient(circle,rgb(247_200_92/0.35),transparent_68%)]" />
           <div className="relative">
-            <span className="relative inline-grid h-14 w-14 place-items-center rounded-2xl bg-[image:var(--gradient-gold-btn)] text-night shadow-glow-gold">
-              <span aria-hidden="true" className="btn-ping absolute inset-0 rounded-2xl border-2 border-gold-200" />
-              <Icon name="sparkles" className="h-7 w-7" strokeWidth={1.8} />
-            </span>
             <p className="mt-5 text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-gold-300">{n.overline}</p>
             <h3 className="mt-2 font-display text-[clamp(1.625rem,1.3rem+1vw,2.25rem)] font-bold leading-[1.08] tracking-[-0.03em] text-fg">{n.title}</h3>
 

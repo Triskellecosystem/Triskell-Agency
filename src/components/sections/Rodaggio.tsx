@@ -6,7 +6,7 @@ import { cn } from "@/lib/cn";
 import { Icon } from "@/components/ui/Icon";
 
 /**
- * Rodaggio di 6 mesi, legato allo scroll: mentre scorri la linea avanza mese dopo mese (i mesi si accendono, la fase
+ * Rodaggio di 6 mesi: appena il blocco entra nello schermo la linea avanza da sola mese dopo mese (i mesi si accendono, la fase
  * attiva si evidenzia) e quando arriva in fondo "esplode": dal traguardo partono richieste, numeri e clienti.
  * Reversibile. Con movimento ridotto è già tutto completo.
  */
@@ -20,24 +20,28 @@ export function Rodaggio() {
     if (!el) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let raf = 0;
-    const update = () => {
-      raf = 0;
-      if (reduced) return setP(1);
-      const b = el.getBoundingClientRect();
-      const vh = window.innerHeight;
-      // 0 quando il blocco entra dal basso, 1 quando il suo centro passa il 40% dello schermo
-      const v = (vh - b.top) / (vh * 0.42 + b.height * 0.5);
-      setP(Math.min(1, Math.max(0, v)));
+    let started = false;
+    const run = () => {
+      const t0 = performance.now();
+      const step = (now: number) => {
+        const k = Math.min(1, (now - t0) / 1800);
+        setP(1 - Math.pow(1 - k, 2));
+        if (k < 1) raf = requestAnimationFrame(step);
+      };
+      raf = requestAnimationFrame(step);
     };
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (!e?.isIntersecting || started) return;
+        started = true;
+        if (reduced) raf = requestAnimationFrame(() => setP(1));
+        else run();
+      },
+      { threshold: 0.35 },
+    );
+    io.observe(el);
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      io.disconnect();
       cancelAnimationFrame(raf);
     };
   }, []);
@@ -91,7 +95,6 @@ export function Rodaggio() {
             {b}
           </span>
         ))}
-        {!done && <span className="absolute text-[0.75rem] text-fg-3">Scorri: arriviamo al sesto mese…</span>}
       </div>
     </div>
   );

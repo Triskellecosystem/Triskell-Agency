@@ -84,15 +84,6 @@ export function DigitalCursor({ className }: { className?: string }) {
     <div ref={ref} aria-hidden="true" className={cn("dc pointer-events-none absolute inset-0 overflow-hidden", className)}>
       <span className="dc-glow" />
       <span className="dc-grid" />
-      <svg className="dc-trail absolute inset-0 h-full w-full">
-        <defs>
-          <linearGradient id="dc-g" x1="0" x2="1">
-            <stop offset="0%" stopColor="rgb(58 164 212 / 0)" />
-            <stop offset="100%" stopColor="rgb(247 200 92 / 0.85)" />
-          </linearGradient>
-        </defs>
-        <path fill="none" stroke="url(#dc-g)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
     </div>
   );
 }

@@ -327,10 +327,10 @@ export const site = {
     ] satisfies Array<{ icon: IconName; title: string; text: string }>,
     chat: {
       name: "Aura Beauty Lab",
-      status: "Irelia · assistente AI · online",
-      lead: "Nuovo contatto da Meta Ads · Martina",
+      status: "Irelia · il tuo assistente AI",
+      lead: "Nuovo contatto da Meta Ads",
       messages: [
-        { from: "ai", text: "Ciao Martina! Sono Giulia, l'assistente di Aura Beauty Lab 😊 Ho visto che ti interessa la consulenza gratuita.", time: "21:14" },
+        { from: "ai", text: "Ciao! Sono Irelia, l'assistente di Aura Beauty Lab 😊 Ho visto che ti interessa la consulenza gratuita.", time: "21:14" },
         { from: "ai", text: "In che fascia oraria preferisci essere richiamata?", time: "21:14" },
         { from: "user", text: "Domani dopo le 18, grazie!", time: "21:16" },
         { from: "ai", text: "Perfetto! Ti chiamiamo domani tra le 18 e le 19. A presto ✨", time: "21:16" },
@@ -711,7 +711,7 @@ export const site = {
       { icon: "clock", label: "30 minuti" },
       { icon: "check", label: "Nessun impegno" },
     ] satisfies Array<{ icon: IconName; label: string }>,
-    home: { title: "Vuoi più clienti già dal prossimo mese?", lines: ["Vuoi più clienti", "già dal prossimo mese?"], text: "Prenota la tua call gratuita: ti diciamo come far crescere la tua attività." } satisfies CtaContent,
+    home: { title: "Vuoi più clienti già dal primo mese?", lines: ["Vuoi più clienti", "già dal primo mese?"], text: "Prenota la tua call gratuita: ti diciamo come far crescere la tua attività." } satisfies CtaContent,
     results: { title: "Vuoi risultati come questi?", lines: ["Vuoi risultati", "come questi?"], text: "Prenota ora la tua call gratuita." } satisfies CtaContent,
     ai: { title: "Vuoi delegare il lavoro all'AI?", lines: ["Vuoi delegare", "il lavoro all'AI?"], text: "In una call gratuita ti mostriamo cosa può fare un agente AI per te." } satisfies CtaContent,
     agency: { title: "Vuoi delegarci il marketing?", lines: ["Vuoi delegarci", "il marketing?"], text: "Una call gratuita: capiamo la tua situazione e ti diciamo cosa possiamo fare." } satisfies CtaContent,

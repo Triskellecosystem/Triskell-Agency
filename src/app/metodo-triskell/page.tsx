@@ -4,10 +4,9 @@ import { Compare } from "@/components/sections/Compare";
 import { Contact } from "@/components/sections/Contact";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { MetodoEquation } from "@/components/sections/MetodoEquation";
-import { MetodoPhone } from "@/components/sections/MetodoPhone";
+import { LivePhone } from "@/components/sections/LivePhone";
 import { Rodaggio } from "@/components/sections/Rodaggio";
 import { Button } from "@/components/ui/Button";
-import { Icon } from "@/components/ui/Icon";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { TechBackdrop } from "@/components/ui/TechBackdrop";
 import { DigitalCursor } from "@/components/motion/DigitalCursor";
@@ -20,15 +19,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/metodo-triskell" },
 };
 
-const FORMULA = [
-  { t: "Social", c: "text-azure-300", icon: "smartphone" },
-  { t: "+", op: true },
-  { t: "Campagne", c: "text-gold-300", icon: "click" },
-  { t: "+", op: true },
-  { t: "Sito web", c: "text-fg-2", icon: "monitor", note: "se serve" },
-  { t: "=", op: true },
-  { t: "Più clienti", c: "text-gold", icon: "trending" },
-] as const;
 
 export default function MetodoPage() {
   const m = site.metodo;
@@ -47,18 +37,8 @@ export default function MetodoPage() {
             <h1 id="metodo-title" className="mt-2 animate-[line-up_1s_var(--ease-out-expo)_backwards] font-display text-[clamp(3rem,2rem+4vw,5.5rem)] font-bold leading-[0.92] tracking-[-0.05em] text-fg">
               Metodo <span className="text-gold">Triskell</span>
             </h1>
-            <p className="mt-6 flex flex-wrap items-center gap-x-2.5 gap-y-1 font-display text-[clamp(1.375rem,1.05rem+1.3vw,2.125rem)] font-bold leading-tight tracking-[-0.03em]">
-              {FORMULA.map((f, i) =>
-                "op" in f ? (
-                  <span key={i} className="mf-op grid h-9 w-9 place-items-center rounded-full border-2 border-gold-300/70 text-[1.25rem] text-gold-300">{f.t}</span>
-                ) : (
-                  <span key={i} className={`inline-flex items-center gap-1.5 ${f.c}`}>
-                    <Icon name={f.icon} className="h-[0.8em] w-[0.8em]" strokeWidth={2.2} />
-                    {f.t}
-                    {"note" in f && <span className="text-[0.45em] font-semibold uppercase tracking-wider text-fg-3">({f.note})</span>}
-                  </span>
-                ),
-              )}
+            <p className="mt-4 font-display text-[clamp(1.25rem,1rem+1vw,1.75rem)] font-bold tracking-[-0.02em] text-fg-2">
+              Social <span className="text-gold-300">+</span> Campagne
             </p>
             <p className="mt-5 max-w-md text-[0.9375rem] leading-relaxed text-fg-2">{m.line}</p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -70,23 +50,15 @@ export default function MetodoPage() {
               </Button>
             </div>
           </div>
-          <MetodoPhone />
+          <LivePhone tabs salesLabel="Prove fissate" />
         </div>
       </section>
 
       <Section id="formula" labelledBy="formula-title" className="mt-band">
         <TechBackdrop tone="gold" cursor rich />
-        <SectionHeading id="formula-title" overline="Come funziona" title="Ogni parte [spinge le altre]" align="center" />
-        <Reveal y={10} blur={0} className="mt-9">
-          <MetodoEquation />
-        </Reveal>
-      </Section>
-
-      <Section id="base" labelledBy="base-title">
-        <TechBackdrop tone="azure" rich />
-        <SectionHeading id="base-title" overline={m.best.overline} title={m.best.title} line={m.best.line} align="center" />
-        <Reveal y={20} blur={0} className="mt-9">
-          <BestPackage />
+        <SectionHeading id="formula-title" overline="Metodo Triskell" title="Ogni parte [a supporto delle altre]" align="center" />
+        <Reveal y={10} blur={0} className="mt-10">
+          <MetodoEquation fly />
         </Reveal>
       </Section>
 
@@ -99,6 +71,14 @@ export default function MetodoPage() {
           <Button href="/contatti" size="lg" icon="calendar" iconPosition="start" pulse>
             Prenota la call gratuita
           </Button>
+        </Reveal>
+      </Section>
+
+      <Section id="base" labelledBy="base-title">
+        <TechBackdrop tone="azure" rich />
+        <SectionHeading id="base-title" overline={m.best.overline} title={m.best.title} line={m.best.line} align="center" />
+        <Reveal y={20} blur={0} className="mt-9">
+          <BestPackage />
         </Reveal>
       </Section>
 
