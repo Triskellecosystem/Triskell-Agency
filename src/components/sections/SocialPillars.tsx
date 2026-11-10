@@ -24,7 +24,7 @@ export function SocialPillars() {
         <ol className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {s.pillars.map((p, i) => (
             <li key={p.title} className="spl-item flex flex-col items-center text-center" style={{ "--i": i } as React.CSSProperties}>
-              <span className="spl-ico relative z-[1] h-5 w-5 rounded-full border-2 border-gold-300 bg-night shadow-[0_0_0_5px_var(--color-night)]" />
+              <span className="spl-ico relative z-[1] h-5 w-5 max-md:hidden rounded-full border-2 border-gold-300 bg-night shadow-[0_0_0_5px_var(--color-night)]" />
               <span className="spl-card mt-3 w-full rounded-2xl border border-white/10 bg-[linear-gradient(160deg,rgb(13_39_61/0.8),rgb(4_33_58/0.6))] px-3 py-3.5">
                 <span className="block font-mono text-[0.625rem] font-bold text-gold-300">0{i + 1}</span>
                 <span className="mt-0.5 block font-display text-[1.25rem] font-bold text-fg">{p.title}</span>

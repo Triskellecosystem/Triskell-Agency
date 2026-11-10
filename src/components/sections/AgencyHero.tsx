@@ -51,6 +51,9 @@ export function AgencyHero() {
           </ul>
 
           <HeroNumbers items={hero.keyNumbers} />
+          <div className="mt-12 lg:hidden">
+            <LivePhone compact />
+          </div>
         </div>
 
         <div className="hidden lg:col-span-6 lg:block">

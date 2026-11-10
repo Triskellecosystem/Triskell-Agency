@@ -18,7 +18,7 @@ export function CaseGrid({ limit }: { limit?: number }) {
   const [open, setOpen] = useState<CaseStudy | null>(null);
   return (
     <>
-      <ul className="cg grid gap-3 max-md:grid-cols-2 md:grid-cols-4">
+      <ul className="cg grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((c, i) => (
           <li key={c.id} className="cg-item" style={{ "--i": i } as React.CSSProperties}>
             <button
