@@ -30,7 +30,7 @@ export function CtaBand({ content }: { content: CtaContent }) {
                   ))}
                 </ul>
               </div>
-              <Link href={cta.href} className="cta-btn group/cb relative inline-flex w-full items-center justify-between gap-4 rounded-full bg-night py-3 pl-7 pr-3 font-display text-[1.0625rem] font-bold text-fg shadow-[0_14px_30px_-12px_rgb(1_15_28/0.8)] transition-transform duration-[var(--dur-base)] hover:scale-[1.04] sm:w-auto sm:min-w-[16rem]">
+              <Link href={cta.href} className="cta-btn group/cb relative inline-flex items-center justify-center gap-3 self-center justify-self-center rounded-full bg-night py-3 pl-7 pr-3 font-display text-[1.0625rem] font-bold text-fg shadow-[0_14px_30px_-12px_rgb(1_15_28/0.8)] transition-transform duration-[var(--dur-base)] hover:scale-[1.04] lg:justify-self-end">
                 {cta.button}
                 <span className="grid h-10 w-10 place-items-center rounded-full bg-[image:var(--gradient-gold-btn)] text-night">
                   <Icon name="arrow-up-right" className="cta-arrow h-5 w-5" strokeWidth={2.4} />

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { site } from "@/content/site";
 import { cn } from "@/lib/cn";
+import { BeamCard } from "@/components/ui/BeamCard";
 import { Icon } from "@/components/ui/Icon";
 
 /**
@@ -39,10 +40,13 @@ export function AiChat() {
   const typing = step >= 1 && shownMsgs < n && next?.from === "ai";
 
   return (
-    <div ref={ref} aria-hidden="true" className="mx-auto w-full max-w-sm">
-      {/* notifica del nuovo contatto: sta FUORI dalla chat, sopra, e non copre nulla */}
-      <div className="mb-3 flex h-12 items-center justify-center">
-        <div key={step === 0 ? "lead-on" : "lead"} className={cn("lead-pop inline-flex items-center gap-2.5 rounded-2xl border border-gold-300/50 bg-[rgb(13_39_61/0.9)] py-2 pl-2 pr-4 shadow-[0_14px_30px_-12px_rgb(0_0_0/0.9),0_0_30px_-10px_rgb(247_200_92/0.6)] backdrop-blur", step === 0 && "lead-pop--on")}>
+    <div ref={ref} aria-hidden="true" className="relative mx-auto w-full max-w-sm">
+      <span className="phone-glow" />
+      <BeamCard className="relative">
+      <div className="relative rounded-[inherit] bg-[linear-gradient(160deg,#0d2a44,#061a2d)] p-2.5">
+      {/* notifica del nuovo contatto: dentro la cornice, sopra la chat, non copre nulla */}
+      <div className="mb-2.5 flex items-center">
+        <div key={step === 0 ? "lead-on" : "lead"} className={cn("lead-pop flex w-full items-center gap-2.5 rounded-2xl border border-gold-300/40 bg-[rgb(13_39_61/0.9)] py-2 pl-2 pr-4", step === 0 && "lead-pop--on")}>
           <span className="grid h-8 w-8 place-items-center rounded-xl bg-[#0866ff] text-white">
             <Icon name="click" className="h-4 w-4" strokeWidth={2.2} />
           </span>
@@ -50,9 +54,10 @@ export function AiChat() {
             <span className="block text-[0.8125rem] font-bold text-fg">{c.lead}</span>
             <span className="block text-[0.6875rem] text-fg-3">Irelia gli scrive subito</span>
           </span>
+          <span className="ml-auto inline-flex items-center gap-1 text-[0.625rem] font-bold uppercase tracking-wider text-lime-300"><span className="agent-live h-1.5 w-1.5 rounded-full bg-lime-300" />ora</span>
         </div>
       </div>
-    <div className="w-full overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0b141a] shadow-[0_40px_80px_-30px_rgb(0_0_0/0.9),0_0_60px_-24px_rgb(127_224_160/0.4)]">
+    <div className="w-full overflow-hidden rounded-[1.1rem] border border-white/10 bg-[#0b141a]">
       <div className="flex items-center gap-2.5 bg-[#1f2c34] px-4 py-3">
         <span className="grid h-9 w-9 place-items-center rounded-full font-display text-[0.875rem] font-bold text-white" style={{ background: "linear-gradient(135deg,#f9d7c5,#c98a6b)" }}>
           A
@@ -96,6 +101,8 @@ export function AiChat() {
         )}
       </div>
     </div>
+      </div>
+      </BeamCard>
     </div>
   );
 }

@@ -15,6 +15,7 @@ interface SectionProps {
 export function Section({ id, labelledBy, className, innerClassName, children }: SectionProps) {
   return (
     <section id={id} aria-labelledby={labelledBy} className={cn("relative isolate py-[clamp(3rem,1.8rem+3.6vw,5.25rem)]", className)}>
+      <span aria-hidden="true" className="sec-divider pointer-events-none absolute inset-x-0 top-0 h-px" />
       <div className={cn("container-x", innerClassName)}>{children}</div>
     </section>
   );

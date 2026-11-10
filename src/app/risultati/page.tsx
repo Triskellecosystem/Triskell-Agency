@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { NumbersWall } from "@/components/sections/NumbersWall";
-import { Icon } from "@/components/ui/Icon";
 import { PageHero } from "@/components/sections/PageHero";
 import { ResultsVisual } from "@/components/sections/ResultsVisual";
 import { CaseCard, NextCaseCard } from "@/components/sections/CaseCard";
@@ -19,7 +18,7 @@ export default function PortfolioPage() {
   const { portfolio, results } = site;
   return (
     <>
-      <PageHero overline={portfolio.overline} title={portfolio.title} line={portfolio.line} crumbs={[{ label: "Risultati" }]} aside={<ResultsVisual />} backdrop={<div aria-hidden="true" className="absolute inset-0 -z-10 overflow-hidden"><div className="tiles3d absolute inset-0"><span className="tiles3d-plane" /></div><Icon name="handshake-2" className="res-hands-ico absolute left-[30%] top-[60%] h-[26rem] w-[26rem]" strokeWidth={0.6} /></div>} />
+      <PageHero overline={portfolio.overline} title={portfolio.title} line={portfolio.line} crumbs={[{ label: "Risultati" }]} aside={<ResultsVisual />} backdrop={<div aria-hidden="true" className="absolute inset-0 -z-10 overflow-hidden"><div className="tiles3d absolute inset-0"><span className="tiles3d-plane" /></div></div>} />
       <div className="container-x"><span aria-hidden="true" className="sec-line block h-px" /></div>
       <NumbersWall />
       <Section id="progetti" labelledBy="progetti-title" className="pt-[clamp(1rem,2vw,2rem)]">

@@ -1,43 +1,59 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
 
 const shots = [
-  { id: "vertis", alt: "Esempio di profilo Instagram di una palestra" },
-  { id: "essentia", alt: "Esempio di profilo Instagram di un centro benessere" },
-  { id: "lumina", alt: "Esempio di profilo Instagram di uno studio dentistico" },
+  { id: "vertis", alt: "Esempio di profilo Instagram: palestra" },
+  { id: "essentia", alt: "Esempio di profilo Instagram: centro benessere" },
+  { id: "lumina", alt: "Esempio di profilo Instagram: studio dentistico" },
+  { id: "nocciolo", alt: "Esempio di profilo Instagram: ristorante" },
+  { id: "lavie", alt: "Esempio di profilo Instagram: centro estetico" },
+  { id: "bianchi", alt: "Esempio di profilo Instagram: osteopata" },
+  { id: "donnamaria", alt: "Esempio di profilo Instagram: pizzeria" },
+  { id: "dubai", alt: "Esempio di profilo Instagram: immobiliare" },
 ];
+const N = shots.length;
 
 /**
- * Tre profili di esempio a ventaglio. Basta muovere il mouse sopra: la zona del ventaglio sotto il cursore (sinistra,
- * centro, destra) decide quale telefono viene davanti; il cambio è lento e morbido. Su telefono si tocca.
- * Il ventaglio segue anche leggermente il mouse in 3D.
+ * Ventaglio di profili di esempio (otto): uno davanti, due ai lati, gli altri nascosti dietro. Muovendo il mouse
+ * verso sinistra o destra passa al precedente/successivo con un movimento lento; da solo ruota ogni pochi secondi.
+ * Il ventaglio segue anche leggermente il mouse in 3D. Su telefono si tocca.
  */
 export function PhoneFan() {
   const [front, setFront] = useState(0);
   const box = useRef<HTMLDivElement>(null);
   const lastZone = useRef(1);
   const cooldown = useRef(0);
-  const posOf = (i: number) => (i - front + 3) % 3; // 0 davanti, 1 destra, 2 sinistra
+  const hover = useRef(false);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const t = window.setInterval(() => {
+      if (!hover.current) setFront((f) => (f + 1) % N);
+    }, 3500);
+    return () => window.clearInterval(t);
+  }, []);
+
+  const go = (d: number) => {
+    if (performance.now() < cooldown.current) return;
+    cooldown.current = performance.now() + 1000;
+    setFront((f) => (f + d + N) % N);
+  };
 
   const onMove = (e: React.PointerEvent) => {
     const el = box.current;
     if (!el || e.pointerType !== "mouse") return;
+    hover.current = true;
     const r = el.getBoundingClientRect();
     const x = (e.clientX - r.left) / r.width;
     el.style.setProperty("--ry", `${((x - 0.5) * 10).toFixed(2)}deg`);
     const zone = x < 0.3 ? 0 : x > 0.7 ? 2 : 1;
-    // si cambia solo quando il mouse ENTRA in una zona (non a ogni movimento) e non durante il movimento precedente
     if (zone === lastZone.current) return;
     lastZone.current = zone;
-    if (zone === 1 || performance.now() < cooldown.current) return;
-    cooldown.current = performance.now() + 1100;
-    // trova quale telefono sta in quella posizione e portalo davanti
-    const wantPos = zone === 0 ? 2 : 1;
-    const target = shots.findIndex((_, i) => posOf(i) === wantPos);
-    if (target >= 0 && target !== front) setFront(target);
+    if (zone === 0) go(-1);
+    if (zone === 2) go(1);
   };
 
   return (
@@ -47,25 +63,33 @@ export function PhoneFan() {
       onPointerLeave={() => {
         box.current?.style.setProperty("--ry", "0deg");
         lastZone.current = 1;
+        hover.current = false;
       }}
       className="pf relative mx-auto h-[33rem] w-full max-w-[34rem] [perspective:1400px]"
     >
-      <span aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[32rem] w-[32rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgb(58_164_212/0.45),rgb(58_164_212/0.1)_55%,transparent_72%)] blur-xl" />
+      <span aria-hidden="true" className="phone-glow" />
       <div className="pf-stage absolute inset-0 [transform-style:preserve-3d]">
         {shots.map((s, i) => {
-          const pos = posOf(i);
+          const d = (i - front + N) % N; // 0 davanti, 1 destra, N-1 sinistra, altri nascosti
+          const pos = d === 0 ? 0 : d === 1 ? 1 : d === N - 1 ? 2 : d <= N / 2 ? 3 : 4;
           return (
             <button
               key={s.id}
               type="button"
+              tabIndex={pos < 3 ? 0 : -1}
               aria-label={`Mostra in primo piano: ${s.alt}`}
               onClick={() => setFront(i)}
               className={cn("pf-phone absolute left-1/2 top-0 -ml-[7.25rem] w-[14.5rem] overflow-hidden rounded-[1.8rem] border-[5px] border-[#1d2a3a] bg-black", `pf-pos-${pos}`)}
             >
-              <Image src={`/social-examples/${s.id}.webp`} alt={s.alt} width={520} height={1126} sizes="14.5rem" priority={i === 0} className="block h-auto w-full" />
+              <Image src={`/social-examples/${s.id}.webp`} alt={s.alt} width={520} height={1126} sizes="14.5rem" priority={i < 3} className="block h-auto w-full" />
             </button>
           );
         })}
+      </div>
+      <div className="absolute inset-x-0 bottom-0 flex justify-center gap-1.5">
+        {shots.map((s, i) => (
+          <button key={s.id} type="button" aria-label={s.alt} onClick={() => setFront(i)} className={cn("h-1.5 rounded-full transition-all duration-500", i === front ? "w-6 bg-gold-300" : "w-1.5 bg-white/25")} />
+        ))}
       </div>
     </div>
   );

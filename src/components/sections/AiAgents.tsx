@@ -1,4 +1,5 @@
 import { site } from "@/content/site";
+import { PerspectiveBg } from "@/components/ui/PerspectiveBg";
 import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { CountUp } from "@/components/motion/CountUp";
@@ -15,6 +16,7 @@ export function AiAgents() {
   const a = site.ai;
   return (
     <Section id="ai" labelledBy="ai-title" className="overflow-hidden">
+        <PerspectiveBg variant="wall" />
       <div aria-hidden="true" className="ai-bg absolute inset-0 -z-10" />
       <div className="grid items-center gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
         <div className="min-w-0">

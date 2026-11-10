@@ -1490,7 +1490,7 @@ html[data-no-loader] .loader { display: none; }
 @keyframes svc2-spin { to { --a: 360deg; } }
 
 /* Pulsante della fascia oro: lampeggia con un anello scuro che si espande */
-@keyframes cta-btn { 0% { box-shadow: 0 0 0 0 rgb(1 15 28 / 0.55), 0 14px 30px -12px rgb(1 15 28 / 0.8); } 70% { box-shadow: 0 0 0 12px rgb(1 15 28 / 0), 0 14px 30px -12px rgb(1 15 28 / 0.8); } 100% { box-shadow: 0 0 0 0 rgb(1 15 28 / 0), 0 14px 30px -12px rgb(1 15 28 / 0.8); } }
+@keyframes cta-btn { 0% { box-shadow: 0 0 0 0 rgb(1 15 28 / 0.5), 0 14px 30px -12px rgb(1 15 28 / 0.8); } 70% { box-shadow: 0 0 0 9px rgb(1 15 28 / 0), 0 14px 30px -12px rgb(1 15 28 / 0.8); } 100% { box-shadow: 0 0 0 0 rgb(1 15 28 / 0), 0 14px 30px -12px rgb(1 15 28 / 0.8); } }
 @keyframes cta-btn-glow { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.45); } }
 .cta-btn { animation: cta-btn 1.4s ease-out infinite; }
 .cta-btn > span { animation: cta-btn-glow 1.4s ease-in-out infinite; }
@@ -1808,3 +1808,48 @@ main > section:nth-of-type(even) { background-image: linear-gradient(180deg, tra
 [data-revealed] > [data-reveal-item]:nth-child(5) .inc-card { animation: inc-lit 7.2s 6.3s infinite; }
 [data-revealed] > [data-reveal-item]:nth-child(6) .inc-card { animation: inc-lit 7.2s 7.5s infinite; }
 @media (prefers-reduced-motion: reduce) { [data-revealed] .inc-card { animation: none !important; } }
+/* Alone dietro i telefoni: azzurro intenso con cuore dorato, pulsa piano */
+.phone-glow { position: absolute; left: 50%; top: 45%; width: 150%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 9999px; pointer-events: none; z-index: 0;
+  background: radial-gradient(circle, rgb(247 200 92 / 0.4) 0%, rgb(58 164 212 / 0.6) 28%, rgb(11 129 177 / 0.28) 50%, transparent 70%); filter: blur(34px); animation: phone-glow 5s ease-in-out infinite; }
+
+@keyframes phone-glow { 0%, 100% { opacity: 0.85; transform: translate(-50%, -50%) scale(1); } 50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); } }
+@media (prefers-reduced-motion: reduce) { .phone-glow { animation: none; } }
+/* Nastro curvo dei siti */
+.rb { perspective: 1100px; mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.rb-stage { transform-style: preserve-3d; transform: rotateX(8deg); }
+.rb-track { animation: rb-run 55s linear infinite; transform-style: preserve-3d; }
+.rb:hover .rb-track { animation-play-state: paused; }
+@keyframes rb-run { from { transform: translate3d(0, -50%, 0); } to { transform: translate3d(-50%, -50%, 0); } }
+.rb-item { transition: transform 0.5s var(--ease-out-expo), border-color 0.4s; }
+.rb-item:hover { transform: translateY(-10px) scale(1.04); border-color: rgb(247 200 92 / 0.7); }
+.rb-item:nth-child(odd) { transform: translateY(14px) rotate(-1.5deg); }
+.rb-item:nth-child(even) { transform: translateY(-10px) rotate(1.5deg); }
+@media (prefers-reduced-motion: reduce) { .rb-track { animation: none; } }
+.rb .rb-item:hover { transform: translateY(-14px) scale(1.05); border-color: rgb(247 200 92 / 0.7); }
+.pf-pos-3 { z-index: 1; transform: translate3d(80%, 3rem, -160px) rotate(14deg) scale(0.6); opacity: 0; pointer-events: none; }
+.pf-pos-4 { z-index: 1; transform: translate3d(-80%, 3rem, -160px) rotate(-14deg) scale(0.6); opacity: 0; pointer-events: none; }
+.pf .phone-glow { top: 45%; width: 110%; }
+
+/* Linee sottili tra le sezioni */
+.sec-divider { background: linear-gradient(90deg, transparent, rgb(58 164 212 / 0.35) 25%, rgb(247 200 92 / 0.45) 50%, rgb(58 164 212 / 0.35) 75%, transparent); }
+
+/* Sfondi in prospettiva */
+.pbg { perspective: 700px; }
+.pbg-plane { position: absolute; background-image: linear-gradient(rgb(58 164 212 / 0.16) 1px, transparent 1px), linear-gradient(90deg, rgb(58 164 212 / 0.16) 1px, transparent 1px); background-size: 64px 64px; }
+.pbg--floor { perspective-origin: 50% 0%; mask-image: linear-gradient(180deg, transparent 30%, #000 70%); }
+.pbg--floor .pbg-plane { left: -30%; right: -30%; top: 45%; height: 130%; transform: rotateX(70deg); transform-origin: 50% 0%; animation: pbg-z 7s linear infinite; }
+.pbg--ceiling { perspective-origin: 50% 100%; mask-image: linear-gradient(0deg, transparent 30%, #000 75%); }
+.pbg--ceiling .pbg-plane { left: -30%; right: -30%; bottom: 50%; height: 130%; transform: rotateX(-70deg); transform-origin: 50% 100%; animation: pbg-z 9s linear infinite reverse; }
+.pbg--wall { perspective-origin: 100% 50%; mask-image: linear-gradient(90deg, transparent 35%, #000 85%); }
+.pbg--wall .pbg-plane { top: -30%; bottom: -30%; right: 0; width: 120%; transform: rotateY(-72deg); transform-origin: 100% 50%; animation: pbg-x 8s linear infinite; }
+.pbg--tunnel { perspective-origin: 50% 50%; mask-image: radial-gradient(60% 60% at 50% 50%, transparent 15%, #000 60%); }
+.pbg--tunnel .pbg-plane { left: -40%; right: -40%; top: 55%; height: 120%; transform: rotateX(75deg); transform-origin: 50% 0%; animation: pbg-z 6s linear infinite; }
+.pbg--tunnel .pbg-plane--b { top: auto; bottom: 55%; transform: rotateX(-75deg); transform-origin: 50% 100%; animation-direction: reverse; }
+.pbg--tiles { perspective-origin: 30% 20%; mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent); }
+.pbg--tiles .pbg-plane { left: -20%; right: -20%; top: 10%; height: 140%; transform: rotateX(55deg) rotateZ(10deg); transform-origin: 50% 0%;
+  background-image: linear-gradient(135deg, rgb(255 255 255 / 0.04), transparent 45%), linear-gradient(rgb(58 164 212 / 0.15) 2px, transparent 2px), linear-gradient(90deg, rgb(58 164 212 / 0.15) 2px, transparent 2px);
+  background-size: 130px 130px; animation: pbg-tiles 16s linear infinite; }
+@keyframes pbg-z { to { background-position: 0 64px, 0 0; } }
+@keyframes pbg-x { to { background-position: 0 0, 64px 0; } }
+@keyframes pbg-tiles { to { background-position: 0 130px, 0 130px, 130px 0; } }
+@media (prefers-reduced-motion: reduce) { .pbg-plane { animation: none !important; } }

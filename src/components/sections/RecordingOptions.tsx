@@ -1,4 +1,5 @@
 import { site } from "@/content/site";
+import { PerspectiveBg } from "@/components/ui/PerspectiveBg";
 import { cn } from "@/lib/cn";
 import { Icon } from "@/components/ui/Icon";
 import { Section, SectionHeading } from "@/components/ui/Section";
@@ -10,6 +11,7 @@ export function RecordingOptions() {
   const r = site.social.recording;
   return (
     <Section id="riprese" labelledBy="riprese-title" className="sq-bg">
+        <PerspectiveBg variant="ceiling" />
       <TechBackdrop tone="azure" rich />
       <SectionHeading id="riprese-title" overline={r.overline} title={r.title} line={r.line} align="center" />
       <div className="relative mx-auto mt-9 grid max-w-4xl gap-4 md:grid-cols-2 md:gap-6">

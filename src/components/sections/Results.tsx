@@ -1,4 +1,5 @@
 import { site } from "@/content/site";
+import { PerspectiveBg } from "@/components/ui/PerspectiveBg";
 import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { TechBackdrop } from "@/components/ui/TechBackdrop";
@@ -11,6 +12,7 @@ export function Results() {
   const { results } = site;
   return (
     <Section id={results.id} labelledBy="results-title">
+        <PerspectiveBg variant="floor" />
       <TechBackdrop tone="azure" cursor rich />
       <div className="flex flex-wrap items-end justify-between gap-5">
         <SectionHeading id="results-title" overline={results.overline} title={results.title} line={results.line} />
@@ -35,7 +37,7 @@ export function Results() {
         </dl>
       </Reveal>
       <Reveal y={24} blur={0} className="mt-4">
-        <CaseGrid />
+        <CaseGrid limit={3} />
       </Reveal>
     </Section>
   );
