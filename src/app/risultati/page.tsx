@@ -18,6 +18,7 @@ export default function PortfolioPage() {
   return (
     <>
       <PageHero overline={portfolio.overline} title={portfolio.title} line={portfolio.line} crumbs={[{ label: "Risultati" }]} />
+      <NumbersWall />
       <Section id="progetti" labelledBy="progetti-title" className="pt-[clamp(1rem,2vw,2rem)]">
         <h2 id="progetti-title" className="sr-only">
           {portfolio.title.replace(/[[\]]/g, "")}
@@ -40,7 +41,6 @@ export default function PortfolioPage() {
           </RevealItem>
         </RevealGroup>
       </Section>
-      <NumbersWall />
       <CtaBand content={site.cta.results} />
     </>
   );

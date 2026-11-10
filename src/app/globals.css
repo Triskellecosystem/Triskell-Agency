@@ -1551,3 +1551,20 @@ html[data-no-loader] .loader { display: none; }
 .inc-li { opacity: 0; transform: translate3d(-10px, 0, 0); transition: opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo); transition-delay: calc(0.3s + var(--j, 0) * 1s); }
 [data-revealed] .inc-li { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .inc-li { opacity: 1; transform: none; transition: none; } }
+
+/* Siti: cosa è incluso */
+.si-band::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(55% 60% at 50% 50%, rgb(58 164 212 / 0.12), transparent 70%); }
+.si-card { border-color: rgb(255 255 255 / 0.12); }
+.si-card:hover { border-color: rgb(247 200 92 / 0.6); box-shadow: 0 20px 50px -24px rgb(0 0 0 / 0.9), 0 0 36px -14px rgb(247 200 92 / 0.5); }
+.si-ico { color: var(--c); background: color-mix(in srgb, var(--c) 16%, transparent); border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); animation: si-float 3.4s ease-in-out infinite; }
+@keyframes si-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+.si-line { background: var(--c); transition: width 0.5s var(--ease-out-expo); }
+.si-card:hover .si-line { width: 4rem; }
+@media (prefers-reduced-motion: reduce) { .si-ico { animation: none; } }
+
+/* Chi siamo: anelli più sottili e piccoli (non coprono più nome e foto), niente linee diagonali */
+.ps-ring--a { width: calc(var(--fw) * 1.15); height: calc(var(--fw) * 1.15); border-width: 1px; opacity: 0.45; box-shadow: 0 0 24px -8px rgb(247 200 92 / 0.35); transform: translateY(calc(var(--fh) * 0.46)) translateZ(-160px) rotateX(78deg) rotateZ(45deg); }
+.ps-ring--b { width: calc(var(--fw) * 1.45); height: calc(var(--fw) * 1.45); border-width: 1px; opacity: 0.3; transform: translateY(calc(var(--fh) * 0.46)) translateZ(-200px) rotateX(78deg) rotateZ(45deg); animation: ps-spin3 70s linear infinite; }
+@keyframes ps-spin3 { to { transform: translateY(calc(var(--fh) * 0.46)) translateZ(-200px) rotateX(78deg) rotateZ(405deg); } }
+.ps-streak { display: none !important; }
+@media (prefers-reduced-motion: reduce) { .ps-ring--b { animation: none; } }

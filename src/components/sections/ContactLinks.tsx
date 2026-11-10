@@ -30,11 +30,11 @@ export function ContactLinks() {
       <SectionHeading id="seguici-title" overline={f.overline} title={f.title} line={f.line} align="center" />
 
       {/* In evidenza: quante persone ci seguono già (sottile, su una riga) */}
-      <Reveal y={18} blur={0} className="mx-auto mt-8 max-w-6xl">
+      <Reveal y={18} blur={0} className="mx-auto mt-6 max-w-4xl">
         <div className="proof-card relative overflow-hidden rounded-2xl border border-gold-300/50 bg-[linear-gradient(135deg,#2b2410,#0a1626_55%,#0b2a46)] px-5 py-4 text-center">
           <p className="relative flex flex-wrap items-baseline justify-center gap-x-3 gap-y-0.5 font-display font-bold leading-none tracking-[-0.03em]">
             <span className="text-[1rem] text-fg-2">{f.proof.lead}</span>
-            <CountUp value={f.proof.value} suffix={f.proof.suffix} className="text-gold gold-breathe text-[clamp(2rem,1.6rem+2vw,3rem)]" />
+            <CountUp value={f.proof.value} suffix={f.proof.suffix} className="text-gold gold-breathe text-[clamp(1.625rem,1.4rem+1.2vw,2.25rem)]" />
             <span className="text-[1rem] text-fg">{f.proof.text}</span>
           </p>
           <ul className="relative mt-3 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-[0.8125rem] text-fg-2">
@@ -47,7 +47,7 @@ export function ContactLinks() {
         </div>
       </Reveal>
 
-      <RevealGroup className="mx-auto mt-4 grid max-w-6xl gap-3 max-md:grid-cols-3 max-md:gap-2 md:grid-cols-3" stagger={0.1} alternate>
+      <RevealGroup className="mx-auto mt-3 grid max-w-4xl gap-3 max-md:grid-cols-3 max-md:gap-2 md:grid-cols-3" stagger={0.1} alternate>
         {/* Instagram */}
         <RevealItem y={22}>
           <a href={ig.href} {...ext} className={`${card} border-white/15 bg-[linear-gradient(150deg,#3b1a5f,#6a1b5e_50%,#8f2b5b)] hover:shadow-[0_0_36px_-12px_rgb(214_62_130/0.7)]`}>
@@ -60,7 +60,7 @@ export function ContactLinks() {
                 <p className="text-[0.75rem] text-white/80 max-md:hidden">{f.instagram.handle}</p>
               </div>
             </div>
-            <div className="relative mt-4 flex h-72 max-md:hidden items-center justify-center overflow-hidden" aria-hidden="true">
+            <div className="relative mt-4 flex h-48 max-md:hidden items-center justify-center overflow-hidden" aria-hidden="true">
               <div className="relative w-[62%] -rotate-3 overflow-hidden rounded-xl border border-white/20 bg-white shadow-[0_12px_28px_-10px_rgb(0_0_0/0.7)]">
                 <Image src="/social/instagram-profile.webp" alt="" width={520} height={500} sizes="14rem" className="h-auto w-full" />
               </div>
@@ -91,7 +91,7 @@ export function ContactLinks() {
                 <p className="text-[0.75rem] text-fg-2 max-md:hidden">{f.tiktok.handle}</p>
               </div>
             </div>
-            <div className="relative mt-4 h-72 max-md:hidden overflow-hidden rounded-xl border border-white/10 bg-white">
+            <div className="relative mt-4 h-48 max-md:hidden overflow-hidden rounded-xl border border-white/10 bg-white">
               <Image src="/social/tiktok-profile.webp" alt="Profilo TikTok di Triskell Ecosystem: 2460 follower e 9916 mi piace" width={520} height={500} sizes="(min-width: 768px) 24rem, 90vw" className="h-auto w-full" />
             </div>
             <p className="mt-3 text-[0.8125rem] text-fg-2 max-md:hidden">
@@ -121,7 +121,7 @@ export function ContactLinks() {
                 <p className="text-[0.75rem] text-fg-2 max-md:hidden">{f.youtube.subs}</p>
               </div>
             </div>
-            <div className="relative mt-4 h-72 max-md:hidden overflow-hidden rounded-xl border border-white/15 bg-white">
+            <div className="relative mt-4 h-48 max-md:hidden overflow-hidden rounded-xl border border-white/15 bg-white">
               <Image src="/social/youtube-channel.webp" alt="Anteprima del canale YouTube Triskell Ecosystem: 1K iscritti e 212 video" fill sizes="(min-width: 768px) 24rem, 90vw" className="object-cover object-left-top transition-transform duration-[900ms] ease-out-expo group-hover/c:scale-[1.04]" />
             </div>
             <p className="mt-3 text-[0.8125rem] text-fg-2 max-md:hidden">{f.youtube.text}</p>
@@ -135,7 +135,7 @@ export function ContactLinks() {
       </RevealGroup>
 
       {/* WhatsApp ed email: due righe sottili */}
-      <RevealGroup className="mx-auto mt-3 grid max-w-6xl gap-3 sm:grid-cols-2" stagger={0.1} alternate>
+      <RevealGroup className="mx-auto mt-3 grid max-w-4xl gap-3 sm:grid-cols-2" stagger={0.1} alternate>
         <RevealItem y={18}>
           <a href={wa.href} {...ext} className="group/wa flex items-center gap-3 rounded-2xl border border-[#25d366]/35 bg-[linear-gradient(150deg,#06301f,#0a1626_70%)] px-4 py-3 transition-[border-color,box-shadow] duration-[var(--dur-base)] ease-out-expo hover:border-[#25d366] hover:shadow-[0_0_30px_-14px_rgb(37_211_102/0.6)]">
             <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[#25d366] text-[#06301f]">
