@@ -16,11 +16,11 @@ export function CtaBand({ content }: { content: CtaContent }) {
     <section aria-label={content.title} className="relative isolate py-[clamp(1.5rem,3vw,2.5rem)]">
       <div className="container-x">
         <Reveal y={26} blur={0} from="scale">
-          <div className="cta-gold relative overflow-hidden rounded-[2rem] px-6 py-8 sm:px-10 sm:py-10 lg:px-14">
+          <div className="cta-gold relative overflow-hidden rounded-[1.5rem] px-6 py-6 sm:px-9 sm:py-7 lg:px-11">
             <span aria-hidden="true" className="cta-gold-shine" />
             <div className="relative grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-14">
               <div>
-                <h2 className="font-display text-[clamp(1.875rem,1.2rem+2.6vw,3.5rem)] font-bold leading-[1.02] tracking-[-0.04em] text-night">
+                <h2 className="font-display text-[clamp(1.5rem,1.1rem+1.6vw,2.375rem)] font-bold leading-[1.04] tracking-[-0.04em] text-night">
                   <Reveal as="span" from="far-left" blur={0} className="block">
                     {content.lines[0]}
                   </Reveal>
@@ -28,10 +28,10 @@ export function CtaBand({ content }: { content: CtaContent }) {
                     {content.lines[1]}
                   </Reveal>
                 </h2>
-                <p className="mt-3 max-w-lg text-[1.0625rem] font-medium leading-snug text-night/80">{content.text}</p>
-                <ul className="mt-5 flex flex-wrap gap-2">
+                <p className="mt-2 max-w-lg text-[0.9375rem] font-medium leading-snug text-night/80">{content.text}</p>
+                <ul className="mt-4 flex flex-wrap gap-2">
                   {cta.perks.map((p) => (
-                    <li key={p.label} className="inline-flex items-center gap-1.5 rounded-full border border-night/20 bg-night/[0.06] px-3 py-1 text-[0.8125rem] font-semibold text-night">
+                    <li key={p.label} className="inline-flex items-center gap-1.5 rounded-full border border-night/20 bg-night/[0.06] px-2.5 py-0.5 text-[0.75rem] font-semibold text-night">
                       <Icon name={p.icon} className="h-3.5 w-3.5" strokeWidth={2.2} />
                       {p.label}
                     </li>
@@ -39,7 +39,7 @@ export function CtaBand({ content }: { content: CtaContent }) {
                 </ul>
               </div>
 
-              <Link href={cta.href} className="cta-round group/cr relative mx-auto grid h-40 w-40 shrink-0 place-items-center rounded-full bg-night text-gold-200 shadow-[0_20px_50px_-15px_rgb(1_15_28/0.8)] sm:h-44 sm:w-44 lg:mx-0">
+              <Link href={cta.href} className="cta-round group/cr relative mx-auto grid h-32 w-32 shrink-0 place-items-center rounded-full bg-night text-gold-200 shadow-[0_20px_50px_-15px_rgb(1_15_28/0.8)] sm:h-36 sm:w-36 lg:mx-0">
                 <svg aria-hidden="true" viewBox="0 0 200 200" className="cta-ring absolute inset-0 h-full w-full">
                   <defs>
                     <path id={pathId} d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" />
@@ -48,8 +48,8 @@ export function CtaBand({ content }: { content: CtaContent }) {
                     <textPath href={`#${pathId}`}>{ring}</textPath>
                   </text>
                 </svg>
-                <span className="relative flex flex-col items-center gap-1 font-display text-[1.0625rem] font-bold text-fg">
-                  <Icon name="arrow-up-right" className="h-7 w-7 text-gold-300 transition-transform duration-[var(--dur-base)] ease-out-expo group-hover/cr:-translate-y-1 group-hover/cr:translate-x-1" strokeWidth={2} />
+                <span className="relative flex flex-col items-center gap-1 font-display text-[0.9375rem] font-bold text-fg">
+                  <Icon name="arrow-up-right" className="h-5 w-5 text-gold-300 transition-transform duration-[var(--dur-base)] ease-out-expo group-hover/cr:-translate-y-1 group-hover/cr:translate-x-1" strokeWidth={2} />
                   {cta.button}
                 </span>
               </Link>

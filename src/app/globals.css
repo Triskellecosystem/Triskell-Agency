@@ -1129,7 +1129,7 @@ html[data-no-loader] .loader { display: none; }
 
 /* Ecosistema: anelli che si espandono attorno al simbolo */
 @keyframes eco-ring { 0% { transform: translate(-50%, -50%) scale(0.7); opacity: 0.8; } 100% { transform: translate(-50%, -50%) scale(1.9); opacity: 0; } }
-.eco-ring { position: absolute; left: 50%; top: 84px; width: 168px; height: 168px; border-radius: 9999px; border: 2px solid rgb(247 200 92 / 0.6); pointer-events: none; animation: eco-ring 3.2s ease-out infinite; }
+.eco-ring { position: absolute; left: 50%; top: 52px; width: 104px; height: 104px; border-radius: 9999px; border: 2px solid rgb(247 200 92 / 0.6); pointer-events: none; animation: eco-ring 3.2s ease-out infinite; }
 .eco-ring--b { border-color: rgb(58 164 212 / 0.55); animation-delay: 1.6s; }
 
 /* Chi siamo (home): luce che attraversa la foto */
@@ -1196,8 +1196,8 @@ html[data-no-loader] .loader { display: none; }
 .cta-round:hover .cta-ring { animation-duration: 6s; }
 
 /* Muro di siti inclinato */
-.sw { perspective: 1400px; mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent), linear-gradient(180deg, transparent, #000 10%, #000 90%, transparent); mask-composite: intersect; }
-.sw-plane { transform: translate(-50%, -50%) rotateX(24deg) rotateZ(-10deg); transform-style: preserve-3d; }
+.sw { perspective: 1600px; mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent), linear-gradient(180deg, transparent, #000 8%, #000 92%, transparent); mask-composite: intersect; }
+.sw-plane { transform: translate(-50%, -50%) rotateX(16deg) rotateZ(-6deg); transform-style: preserve-3d; }
 @keyframes sw-up { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, -50%, 0); } }
 .sw-col { animation: sw-up 32s linear infinite; }
 .sw-col--0 { animation-delay: -6s; }
@@ -1267,3 +1267,60 @@ html[data-no-loader] .loader { display: none; }
   .rd-phase { opacity: 1; transform: none; }
   .bc-day--on { background-color: var(--color-gold-300); transition: none; }
 }
+
+/* Effetto mouse Agency: griglia di puntini che si accende attorno al cursore + alone */
+.dc { --cx: -400px; --cy: -400px; }
+.dc > span { position: absolute; inset: 0; opacity: 0; transition: opacity 0.5s var(--ease-out-expo); }
+.dc[data-on] > span { opacity: 1; }
+.dc-glow { background: radial-gradient(circle 220px at var(--cx) var(--cy), rgb(58 164 212 / 0.14), rgb(247 200 92 / 0.06) 45%, transparent 70%); }
+.dc-grid {
+  background-image: radial-gradient(circle at center, rgb(247 200 92 / 0.85) 1px, transparent 1.6px);
+  background-size: 16px 16px;
+  -webkit-mask-image: radial-gradient(circle 130px at var(--cx) var(--cy), #000 0%, rgb(0 0 0 / 0.35) 45%, transparent 75%);
+  mask-image: radial-gradient(circle 130px at var(--cx) var(--cy), #000 0%, rgb(0 0 0 / 0.35) 45%, transparent 75%);
+}
+
+/* Hero Agency: aurora, puntini, orizzonte curvo; dashboard */
+.ah-bg { background: radial-gradient(120% 80% at 50% -10%, #0b2a46 0%, var(--color-night) 60%); }
+.ah-aurora { position: absolute; border-radius: 9999px; filter: blur(70px); opacity: 0.55; }
+.ah-aurora--a { width: 42rem; height: 22rem; left: 8%; top: 4%; background: radial-gradient(circle, rgb(11 129 177 / 0.55), transparent 70%); animation: ah-drift 18s ease-in-out infinite alternate; }
+.ah-aurora--b { width: 36rem; height: 20rem; right: 6%; top: 18%; background: radial-gradient(circle, rgb(247 200 92 / 0.28), transparent 70%); animation: ah-drift 22s ease-in-out -6s infinite alternate-reverse; }
+@keyframes ah-drift { from { transform: translate3d(-4%, 0, 0) scale(1); } to { transform: translate3d(6%, 6%, 0) scale(1.12); } }
+.ah-dots { position: absolute; inset: 0; background-image: radial-gradient(circle, rgb(255 255 255 / 0.09) 1px, transparent 1.4px); background-size: 22px 22px; mask-image: radial-gradient(70% 60% at 50% 35%, #000, transparent 85%); }
+.ah-horizon { position: absolute; left: 50%; top: 58%; width: 160vw; height: 160vw; max-width: 2600px; max-height: 2600px; transform: translateX(-50%); border-radius: 9999px; border-top: 1px solid rgb(247 200 92 / 0.45); box-shadow: 0 -30px 80px -20px rgb(247 200 92 / 0.22), inset 0 40px 80px -40px rgb(58 164 212 / 0.25); background: linear-gradient(180deg, rgb(1 15 28 / 0.2), var(--color-night) 18%); }
+.hb-line { stroke-dasharray: 1; stroke-dashoffset: 1; animation: hb-draw 2.4s 0.9s var(--ease-out-expo) forwards; }
+@keyframes hb-draw { to { stroke-dashoffset: 0; } }
+.hb-area { opacity: 0; animation: fade-in 1.2s 1.8s ease forwards; }
+.hb-dot { opacity: 0; animation: fade-in 0.4s 2.9s ease forwards; }
+.hb-ping { opacity: 0; transform-origin: center; transform-box: fill-box; animation: hb-ping 1.8s 3s ease-out infinite; }
+@keyframes hb-ping { 0% { transform: scale(1); opacity: 0.9; } 100% { transform: scale(3.4); opacity: 0; } }
+.hb-new { animation: agent-row-in 0.6s var(--ease-out-expo) backwards; }
+@media (prefers-reduced-motion: reduce) {
+  .ah-aurora, .hb-ping { animation: none; }
+  .hb-line { animation: none; stroke-dashoffset: 0; }
+  .hb-area, .hb-dot { animation: none; opacity: 1; }
+}
+
+/* Telefono con profilo dimostrativo */
+@keyframes pp-count { 0% { color: #e1306c; transform: scale(1.18); } 100% { color: #111; transform: scale(1); } }
+.pp-count { display: inline-block; animation: pp-count 0.6s ease-out; }
+@keyframes pp-tile { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: none; } }
+.pp-tile { animation: pp-tile 0.6s var(--ease-out-expo) backwards; }
+@keyframes pp-ad { 0%, 100% { translate: 0 0; } 50% { translate: 0 -8px; } }
+.pp-ad { animation: pp-ad 5s ease-in-out infinite; }
+@keyframes pp-bar { from { transform: scaleY(0.2); } to { transform: scaleY(1); } }
+.pp-bar { transform-origin: bottom; animation: pp-bar 1.4s var(--ease-out-expo) backwards infinite alternate; }
+@keyframes pp-plus { 0% { opacity: 0; transform: translate3d(0, 8px, 0) scale(0.8); } 20% { opacity: 1; transform: none; } 80% { opacity: 1; } 100% { opacity: 0; transform: translate3d(0, -14px, 0); } }
+.pp-plus { animation: pp-plus 0.9s ease-out forwards; }
+@media (prefers-reduced-motion: reduce) { .pp-count, .pp-tile, .pp-ad, .pp-bar, .pp-plus { animation: none; } }
+
+/* Sezione agenti AI: blu profondo con linee orizzontali che scorrono */
+.ai-bg { background: linear-gradient(180deg, transparent, rgb(5 31 54 / 0.65) 20%, rgb(5 31 54 / 0.65) 80%, transparent), repeating-linear-gradient(0deg, rgb(58 164 212 / 0.05) 0 1px, transparent 1px 7px); }
+.ai-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent, rgb(58 164 212 / 0.08), transparent); height: 30%; animation: ai-scan 7s linear infinite; }
+@keyframes ai-scan { from { transform: translate3d(0, -100%, 0); } to { transform: translate3d(0, 340%, 0); } }
+@media (prefers-reduced-motion: reduce) { .ai-bg::after { animation: none; display: none; } }
+
+/* Griglia clienti: le tessere entrano a cascata */
+.cg-item { opacity: 0; transform: translate3d(0, 18px, 0); transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo); transition-delay: calc(0.1s + var(--i, 0) * 0.07s); }
+[data-revealed] .cg-item { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .cg-item { opacity: 1; transform: none; transition: none; } }

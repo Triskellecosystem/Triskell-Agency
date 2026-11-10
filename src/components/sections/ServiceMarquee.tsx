@@ -11,15 +11,15 @@ export function ServiceMarquee() {
     const set = (hidden: boolean) => (
       <ul className="marquee-set flex shrink-0 items-center gap-8 pr-8 sm:gap-12 sm:pr-12" aria-hidden={hidden || undefined}>
         {items.map((item) => (
-          <li key={item} className={cn("flex items-center gap-8 whitespace-nowrap font-display text-[clamp(1.75rem,1.2rem+2.4vw,3.5rem)] font-bold uppercase leading-none tracking-[-0.02em] sm:gap-12", rev ? "mq-outline" : "text-gold")}>
+          <li key={item} className={cn("flex items-center gap-8 whitespace-nowrap font-display text-[clamp(1.125rem,0.9rem+1.1vw,1.875rem)] font-bold uppercase leading-none tracking-[-0.02em] sm:gap-12", rev ? "mq-outline" : "text-gold")}>
             <span>{item}</span>
-            <span aria-hidden="true" className={cn("h-3 w-3 rotate-45", rev ? "bg-azure-300/70" : "bg-gold-300")} />
+            <span aria-hidden="true" className={cn("h-2 w-2 rotate-45", rev ? "bg-azure-300/70" : "bg-gold-300")} />
           </li>
         ))}
       </ul>
     );
     return (
-      <div className={cn("marquee mq-big relative overflow-hidden py-3", rev && "marquee--rev")}>
+      <div className={cn("marquee mq-big relative overflow-hidden py-1.5", rev && "marquee--rev")}>
         <div className="marquee-track flex w-max">
           {set(false)}
           {set(true)}
@@ -28,7 +28,7 @@ export function ServiceMarquee() {
     );
   };
   return (
-    <section aria-label="I nostri servizi" className="mq-band relative isolate overflow-hidden border-y border-line bg-night-deep/60 py-6 sm:py-8">
+    <section aria-label="I nostri servizi" className="mq-band relative isolate overflow-hidden border-y border-line bg-night-deep/60 py-3 sm:py-4">
       <div className="mq-tilt">{row(false)}</div>
       <div className="mq-tilt mq-tilt--b">{row(true)}</div>
     </section>

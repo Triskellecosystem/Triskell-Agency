@@ -6,6 +6,7 @@ import { cn } from "@/lib/cn";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { Icon } from "@/components/ui/Icon";
+import { Button } from "@/components/ui/Button";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 
 /**
@@ -48,6 +49,11 @@ export function Faq() {
             </span>
             <Icon name="arrow-up-right" className="ml-auto h-5 w-5 shrink-0 text-gold-300 transition-transform duration-[var(--dur-base)] group-hover/wa:-translate-y-0.5 group-hover/wa:translate-x-0.5" />
           </a>
+          <div className="mt-3">
+            <Button href="/contatti" size="md" icon="calendar" iconPosition="start" className="w-full">
+              Prenota una call gratuita
+            </Button>
+          </div>
         </Reveal>
       </div>
 
@@ -69,16 +75,16 @@ export function Faq() {
                   aria-controls={panelId}
                   onClick={() => setOpen(isOpen ? null : i)}
                   onKeyDown={(e) => onKey(e, i)}
-                  className="group/q flex w-full items-center gap-5 py-6 text-left sm:py-7"
+                  className="group/q flex w-full items-center gap-4 py-4 text-left sm:py-5"
                 >
-                  <span className="w-8 shrink-0 font-display text-small font-semibold text-gold-400">{String(i + 1).padStart(2, "0")}</span>
-                  <span className={cn("flex-1 font-display text-[clamp(1.0625rem,0.95rem+0.5vw,1.375rem)] font-semibold tracking-tight transition-colors duration-[var(--dur-base)]", isOpen ? "text-gold-200" : "text-fg group-hover/q:text-gold-200")}>
+                  <span className="w-8 shrink-0 font-mono text-[0.75rem] font-semibold text-gold-400">{String(i + 1).padStart(2, "0")}</span>
+                  <span className={cn("flex-1 font-display text-[clamp(0.9375rem,0.9rem+0.25vw,1.0625rem)] font-semibold tracking-tight transition-colors duration-[var(--dur-base)]", isOpen ? "text-gold-200" : "text-fg group-hover/q:text-gold-200")}>
                     {item.q}
                   </span>
                   <span
                     aria-hidden="true"
                     className={cn(
-                      "grid h-10 w-10 shrink-0 place-items-center rounded-full border transition-[transform,background-color,border-color,color] duration-[var(--dur-base)] ease-out-expo",
+                      "grid h-8 w-8 shrink-0 place-items-center rounded-full border transition-[transform,background-color,border-color,color] duration-[var(--dur-base)] ease-out-expo",
                       isOpen ? "rotate-45 border-gold-300 bg-gold-300 text-night" : "border-line-strong text-fg-2 group-hover/q:border-gold-300/70",
                     )}
                   >
@@ -90,7 +96,7 @@ export function Faq() {
               </h3>
               <div id={panelId} role="region" aria-labelledby={btnId} data-open={isOpen} className="acc-panel">
                 <div>
-                  <p className="max-w-2xl pb-7 pl-[3.25rem] pr-4 text-body text-fg-2 sm:pl-[3.25rem]">{item.a}</p>
+                  <p className="max-w-2xl pb-5 pl-12 pr-4 text-[0.9375rem] leading-relaxed text-fg-2">{item.a}</p>
                 </div>
               </div>
             </RevealItem>

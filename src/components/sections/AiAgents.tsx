@@ -2,66 +2,52 @@ import { site } from "@/content/site";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Section, SectionHeading } from "@/components/ui/Section";
-import { TechBackdrop } from "@/components/ui/TechBackdrop";
 import { CountUp } from "@/components/motion/CountUp";
-import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { Reveal } from "@/components/motion/Reveal";
 import { AgentConsole } from "./AgentConsole";
 
 /**
- * "Delega il lavoro agli agenti AI": a sinistra cosa fa l'agente (4 punti che entrano dai lati) e tre numeri,
- * a destra la console dal vivo con le attività che si completano da sole.
+ * Agenti AI, compatto: titolo breve, quattro "chip" di cosa fa, tre numeri, un pulsante; a destra la console dal vivo.
+ * Sfondo diverso dal resto: blu profondo con linee orizzontali che scorrono (scanline).
  */
 export function AiAgents() {
   const a = site.ai;
   return (
-    <Section id="ai" labelledBy="ai-title" className="overflow-hidden">
-      <TechBackdrop tone="azure" cursor rich />
-      <div aria-hidden="true" className="ai-aurora pointer-events-none absolute right-[-10%] top-1/2 -z-10 h-[44rem] w-[44rem] -translate-y-1/2 rounded-full" />
-      <div className="grid items-center gap-x-14 gap-y-12 lg:grid-cols-12">
-        <div className="min-w-0 lg:col-span-6">
+    <Section id="ai" labelledBy="ai-title" className="ai-section overflow-hidden">
+      <div aria-hidden="true" className="ai-bg absolute inset-0 -z-10" />
+      <div className="grid items-center gap-x-14 gap-y-10 lg:grid-cols-2">
+        <div className="min-w-0">
           <SectionHeading id="ai-title" overline={a.overline} title={a.title} line={a.line} />
-          <RevealGroup className="mt-9 grid gap-3 sm:grid-cols-2" stagger={0.1} alternate>
-            {a.points.map((p) => (
-              <RevealItem key={p.title} y={20} className="h-full">
-                <div className="group/ai flex h-full gap-3.5 rounded-2xl border border-azure-300/25 bg-night/50 p-4 transition-[border-color,box-shadow] duration-[var(--dur-base)] hover:border-azure-300/70 hover:shadow-[0_0_36px_-12px_rgb(42_144_195/0.7)]">
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-azure-300/50 bg-azure-300/10 text-azure-300 transition-transform duration-[var(--dur-base)] group-hover/ai:scale-110">
-                    <Icon name={p.icon} className="h-5 w-5" strokeWidth={1.7} />
+          <Reveal y={14} blur={0} delay={0.1}>
+            <ul className="mt-6 flex flex-wrap gap-2">
+              {a.chips.map((c) => (
+                <li key={c.text} className="inline-flex items-center gap-2 rounded-full border border-azure-300/30 bg-azure-300/[0.06] py-1.5 pl-1.5 pr-3 text-[0.8125rem] font-medium text-fg">
+                  <span className="grid h-6 w-6 place-items-center rounded-full bg-azure-300/15 text-azure-300">
+                    <Icon name={c.icon} className="h-3.5 w-3.5" strokeWidth={2} />
                   </span>
-                  <div className="min-w-0">
-                    <h3 className="font-display text-[1rem] font-bold leading-tight text-fg">{p.title}</h3>
-                    <p className="mt-1 text-[0.875rem] leading-snug text-fg-2">{p.text}</p>
-                  </div>
-                </div>
-              </RevealItem>
-            ))}
-          </RevealGroup>
-
-          <Reveal y={16} blur={0} delay={0.2}>
-            <dl className="mt-8 grid grid-cols-3 border-y border-line py-5">
-              {a.console.stats.map((s, i) => (
-                <div key={s.label} className={i > 0 ? "border-l border-line pl-4 sm:pl-6" : "pr-2"}>
-                  <dd className="font-display text-[clamp(1.625rem,1.2rem+1.6vw,2.5rem)] font-bold leading-none tracking-[-0.04em]">
+                  {c.text}
+                </li>
+              ))}
+            </ul>
+            <dl className="mt-7 grid max-w-md grid-cols-3 divide-x divide-white/10 border-y border-white/10 py-4">
+              {a.console.stats.map((s) => (
+                <div key={s.label} className="px-3 first:pl-0">
+                  <dd className="font-display text-[1.75rem] font-bold leading-none tracking-[-0.04em]">
                     <CountUp {...s} className="text-gold" />
                   </dd>
-                  <dt className="mt-1.5 text-[0.8125rem] leading-snug text-fg-2">{s.label}</dt>
+                  <dt className="mt-1 text-[0.6875rem] text-fg-3">{s.label}</dt>
                 </div>
               ))}
             </dl>
-            <p className="mt-4 flex items-center gap-2 text-small text-fg-3">
-              <Icon name="sparkles" className="h-4 w-4 text-gold-300" />
-              {a.example}
-            </p>
-            <div className="mt-7">
-              <Button href={a.cta.href} size="lg" icon="bot" iconPosition="start" pulse>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Button href={a.cta.href} size="md" icon="bot" iconPosition="start">
                 {a.cta.label}
               </Button>
             </div>
           </Reveal>
         </div>
-
-        <Reveal className="min-w-0 lg:col-span-6" from="right" blur={0}>
-          <div className="relative mx-auto max-w-xl">
-            <span aria-hidden="true" className="btn-halo pointer-events-none absolute -inset-6 rounded-[2.5rem] bg-azure-400/20 blur-3xl" />
+        <Reveal className="min-w-0" from="right" blur={0}>
+          <div className="relative mx-auto max-w-md">
             <AgentConsole />
           </div>
         </Reveal>

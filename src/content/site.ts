@@ -220,24 +220,34 @@ export const site = {
   },
 
   hero: {
-    overline: "Triskell Agency · Marketing, ADV e AI",
-    titleLines: ["Vuoi più clienti", "per la tua attività?"],
-    titleAccent: "Delega tutto a noi. Tu pensa a ciò che conta davvero.",
-    subtitleLines: ["Campagne, social, siti, CRM e agenti AI:", "un unico team che lavora per farti crescere."],
+    overline: "Triskell Agency · Social, ADV e AI",
+    title: "Vuoi più clienti",
+    titleAccent: "per la tua attività?",
+    subtitle: "Social, campagne, siti e agenti AI. Un solo team, risultati misurabili.",
     primaryCta: { label: "Prenota una call gratuita", href: "/contatti" },
-    secondaryCta: { label: "Guarda i risultati", href: "/risultati" },
+    secondaryCta: { label: "Il Metodo Triskell", href: "/metodo-triskell" },
+    trust: ["Call gratuita", "30 minuti", "Nessun impegno"],
     keyNumbers: [
-      { value: 70, suffix: "+", label: "Progetti per clienti" },
       { value: 100, prefix: "+", suffix: "K", label: "Lead generati" },
       { value: 5, prefix: "+", suffix: "M€", label: "Budget ADV gestito" },
+      { value: 70, suffix: "+", label: "Progetti" },
+      { value: 10, suffix: "+", label: "Anni di esperienza" },
     ] satisfies Metric[],
+    board: {
+      title: "Crescita clienti",
+      live: "Live",
+      chartLabel: "Contatti al mese",
+      /** Notifiche dimostrative che scorrono nella dashboard. */
+      feed: [
+        { icon: "users", text: "Nuovo lead", meta: "Meta Ads · 2 s fa" },
+        { icon: "calendar", text: "Prova prenotata", meta: "Agente AI · 5 s fa" },
+        { icon: "trending", text: "+38 follower", meta: "Instagram · oggi" },
+        { icon: "click", text: "Campagna ottimizzata", meta: "Google Ads · 1 min fa" },
+        { icon: "messages", text: "Risposta inviata", meta: "WhatsApp · 12 s fa" },
+        { icon: "send", text: "Reel pubblicato", meta: "Instagram · 18:30" },
+      ] satisfies Array<{ icon: IconName; text: string; meta: string }>,
+    },
     symbolAlt: "Simbolo Triskell: tre spirali oro in un medaglione blu notte",
-    /** Badge che fluttuano attorno al telefono nella hero. */
-    floating: [
-      { icon: "users", value: "+18", label: "contatti oggi" },
-      { icon: "bot", value: "24/7", label: "agente AI attivo" },
-      { icon: "trending", value: "x3", label: "richieste" },
-    ] satisfies Array<{ icon: IconName; value: string; label: string }>, // TODO: conferma numeri dimostrativi
   },
 
   /** Nastro che scorre sotto la hero. */
@@ -268,7 +278,7 @@ export const site = {
   /** A chi è adatto. */
   forWho: {
     overline: "Per chi è",
-    title: "È per te se [ti riconosci qui]",
+    title: "È per te se [ti riconosci]",
     line: "Attività locali, professionisti e aziende che vogliono crescere senza perdere tempo.",
     items: [
       { icon: "users", title: "Vuoi più clienti, ogni mese", text: "Un flusso costante di richieste, non il passaparola che va e viene." },
@@ -285,8 +295,8 @@ export const site = {
   /** Servizi completi. */
   services: {
     overline: "Servizi",
-    title: "Tutto quello che ti serve, [in un solo team]",
-    line: "Scegli un servizio e guarda cosa facciamo, e cosa ottieni. Scegliamo insieme cosa serve davvero.",
+    title: "Tutto in [un solo team]",
+    line: "Scegli un servizio: cosa facciamo e cosa ottieni.",
     items: [
       { icon: "click", title: "Meta Ads e Google Ads", text: "Campagne che portano contatti e clienti veri.", kpi: { value: "30–60", label: "lead al mese per cliente" }, details: ["Strategia e obiettivi di campagna", "Creatività e testi, anche con l'AI", "Test A/B: teniamo ciò che funziona", "Ottimizzazione e report costanti"] },
       { icon: "smartphone", title: "Gestione social media", text: "Tu registri, al resto pensiamo noi.", kpi: { value: "12", label: "contenuti al mese: la base consigliata" }, details: ["Script pronti e indicazioni per le riprese", "Editing professionale dei video", "Pubblicazione e gestione del profilo", "Report mensile con i numeri"], href: "/social" },
@@ -302,34 +312,33 @@ export const site = {
   /** Agenti AI e automazioni: la sezione "delega all'AI". */
   ai: {
     overline: "Agenti AI e automazioni",
-    title: "Delega il lavoro [agli agenti AI]",
-    line: "Messaggi, prenotazioni, follow-up e report: li gestisce l'AI. Tu ti dedichi a ciò che conta davvero.",
-    points: [
-      { icon: "messages", title: "Risponde ai clienti in pochi secondi", text: "Su WhatsApp, Instagram e sito. Anche di notte e nei weekend." },
-      { icon: "calendar", title: "Prenota gli appuntamenti", text: "Qualifica il contatto e lo mette direttamente in agenda." },
-      { icon: "bell", title: "Segue ogni contatto", text: "Promemoria e follow-up automatici: nessun cliente si perde." },
-      { icon: "trending", title: "Ti manda i numeri", text: "Report chiari su contatti, vendite e campagne, senza chiederli." },
-    ] satisfies Array<{ icon: IconName; title: string; text: string }>,
+    title: "Il lavoro ripetitivo [lo fa l'AI]",
+    line: "Risponde, prenota e segue i clienti. Tu ti occupi del resto.",
+    chips: [
+      { icon: "messages", text: "Risponde in pochi secondi" },
+      { icon: "calendar", text: "Prenota gli appuntamenti" },
+      { icon: "bell", text: "Fa i follow-up" },
+      { icon: "trending", text: "Ti manda i report" },
+    ] satisfies Array<{ icon: IconName; text: string }>,
     console: {
       title: "Il tuo agente AI",
       status: "Al lavoro",
       tasks: [
         { icon: "messages", text: "Risposto a Giulia su WhatsApp", time: "2 s" },
-        { icon: "calendar", text: "Prova gratuita prenotata · giovedì 18:30", time: "8 s" },
-        { icon: "database", text: "Nuovo contatto salvato nel CRM", time: "1 s" },
-        { icon: "bell", text: "Promemoria inviato a 12 clienti", time: "3 s" },
+        { icon: "calendar", text: "Prova prenotata · giovedì 18:30", time: "8 s" },
+        { icon: "database", text: "Nuovo contatto nel CRM", time: "1 s" },
+        { icon: "bell", text: "Promemoria a 12 clienti", time: "3 s" },
         { icon: "send", text: "Preventivo inviato a Marco", time: "5 s" },
         { icon: "trending", text: "Report settimanale pronto", time: "4 s" },
-        { icon: "users", text: "Lead qualificato: interessato al pacchetto 3 mesi", time: "2 s" },
+        { icon: "users", text: "Lead qualificato", time: "2 s" },
       ] satisfies Array<{ icon: IconName; text: string; time: string }>,
       stats: [
         { value: 24, suffix: "/7", label: "Sempre attivo" },
-        { value: 30, prefix: "<", suffix: " s", label: "Tempo di risposta" },
-        { value: 20, suffix: "h", label: "Risparmiate a settimana", todo: true }, // TODO: dato reale
+        { value: 30, prefix: "<", suffix: " s", label: "Risposta" },
+        { value: 20, suffix: "h", label: "Risparmiate / sett.", todo: true }, // TODO: dato reale
       ] satisfies Metric[],
       hours: "Ore restituite a te",
     },
-    example: "Come Irelia, l'agente AI che segue i contatti di Mela Med & Fitness.",
     cta: { label: "Voglio il mio agente AI", href: "/contatti" },
   },
 
@@ -384,13 +393,20 @@ export const site = {
      METODO TRISKELL: gestione social + campagne (+ sito, se serve)
      ------------------------------------------------------------------------ */
   metodo: {
-    overline: "Il Metodo Triskell",
-    title: "Social + campagne: [la combinazione che fa crescere]",
-    line: "Un profilo curato e attivo, più campagne che portano contatti ogni giorno. Insieme si rinforzano a vicenda: è il cuore del nostro metodo.",
+    overline: "Il nostro metodo",
+    name: "Metodo Triskell",
+    tagline: "Social + Campagne",
+    title: "Metodo [Triskell]",
+    line: "Un profilo attivo dà fiducia. Le campagne portano contatti. Insieme fanno crescere.",
+    facts: [
+      { value: "6", unit: "mesi", label: "collaborazione minima" },
+      { value: "12", unit: "contenuti", label: "al mese, consigliati" },
+      { value: "4–5", unit: "campagne", label: "al mese, consigliate" },
+    ],
     formula: {
       parts: [
-        { icon: "smartphone", name: "Gestione social", text: "Il profilo è curato, aggiornato e vivo." },
-        { icon: "click", name: "Campagne pubblicitarie", text: "Meta Ads e Google Ads portano contatti nuovi." },
+        { icon: "smartphone", name: "Social", text: "Il profilo è curato, aggiornato e vivo." },
+        { icon: "click", name: "Campagne", text: "Meta Ads e Google Ads portano contatti nuovi." },
       ],
       optional: { icon: "monitor", name: "Sito web", text: "Se serve, lo rifacciamo per convertire di più.", tag: "Se serve" },
       result: { icon: "trending", name: "Più clienti", text: "Un sistema che cresce mese dopo mese." },
@@ -572,8 +588,8 @@ export const site = {
   /** Collegamento a Triskell Ecosystem: l'infrastruttura dietro l'agenzia. */
   ecosystem: {
     overline: "Dietro l'agenzia",
-    title: "Non siamo solo un'agenzia: [siamo un ecosistema]",
-    line: "Triskell Agency è uno dei rami di Triskell Ecosystem: marketing, intelligenza artificiale, automazioni e formazione che lavorano insieme.",
+    title: "Parte di [Triskell Ecosystem]",
+    line: "Marketing, AI, automazioni e formazione che lavorano insieme.",
     nodeLabel: "Triskell Ecosystem",
     branches: [
       { icon: "rocket", name: "Agency", text: "Deleghi a noi marketing, ADV, siti, CRM e AI.", here: true, href: "/" },
@@ -708,7 +724,7 @@ export const site = {
     id: "risultati",
     overline: "Casi studio",
     title: "Clienti reali, [numeri reali]",
-    line: "Contatti, clienti e fatturato: ecco cosa succede quando ci deleghi il marketing.",
+    line: "Contatti, prenotazioni e fatturato dei clienti che seguiamo.",
     all: { label: "Tutti i risultati", href: "/risultati" },
     items: [
       { id: "forme-fitness", sector: "Fitness & Wellness", place: "Varese", client: "Forme Fitness", tag: "Meta Ads",
