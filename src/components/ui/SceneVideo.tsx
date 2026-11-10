@@ -9,7 +9,7 @@ import { Icon } from "@/components/ui/Icon";
  * Parte in automatico senza audio quando è visibile (si ferma fuori schermo); il pulsante audio lo attiva/disattiva.
  * Leggera inclinazione 3D che segue il mouse.
  */
-export function SceneVideo({ src, poster, label, className }: { src: string; poster: string; label: string; className?: string }) {
+export function SceneVideo({ src, poster, label, className, tag = "Dietro le quinte · Triskell" }: { src: string; poster: string; label: string; className?: string; tag?: string }) {
   const v = useRef<HTMLVideoElement>(null);
   const box = useRef<HTMLDivElement>(null);
   const [muted, setMuted] = useState(true);
@@ -66,7 +66,7 @@ export function SceneVideo({ src, poster, label, className }: { src: string; pos
             <i className="scv-rec h-2 w-2 rounded-full bg-[#ff3b30]" />
             REC 00:{String(time).padStart(2, "0")}
           </span>
-          <span aria-hidden="true" className="absolute right-4 top-3.5 font-mono text-[0.6875rem] font-bold tracking-wider text-white/80">Dietro le quinte · Triskell</span>
+          <span aria-hidden="true" className="absolute right-4 top-3.5 font-mono text-[0.6875rem] font-bold tracking-wider text-white/80">{tag}</span>
           <button type="button" onClick={toggle} aria-label={muted ? "Attiva l'audio" : "Disattiva l'audio"} className="absolute bottom-3.5 right-3.5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/55 px-3.5 py-2 text-[0.75rem] font-semibold text-white backdrop-blur-md transition-colors hover:border-gold-300 hover:text-gold-200">
             <Icon name={muted ? "volume-off" : "volume"} className="h-4 w-4" strokeWidth={2} />
             {muted ? "Attiva audio" : "Audio attivo"}
