@@ -15,24 +15,24 @@ import { ContactForm } from "./ContactForm";
 export function Contact() {
   const { contact } = site;
   return (
-    <Section id={contact.id} labelledBy="contact-title" className="pb-[clamp(5rem,4rem+6vw,10rem)]">
+    <Section id={contact.id} labelledBy="contact-title" className="pb-[clamp(3.5rem,3rem+3vw,6rem)]">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[image:var(--gradient-bg-cta)]" />
-      <Reveal y={40} blur={6}>
-        <BeamCard className="relative">
-          <div className="relative grid gap-10 overflow-hidden rounded-[inherit] bg-[linear-gradient(135deg,var(--color-surface-2),var(--color-night-raised)_55%,var(--color-surface))] p-6 sm:p-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:p-14">
-            <LogoMark sizes="416px" className="pointer-events-none absolute -bottom-28 -left-24 h-[26rem] w-[26rem] opacity-[0.1]" />
+      <Reveal y={30} blur={4}>
+        <BeamCard className="relative mx-auto max-w-5xl">
+          <div className="relative grid gap-10 overflow-hidden rounded-[inherit] bg-[linear-gradient(135deg,var(--color-surface-2),var(--color-night-raised)_55%,var(--color-surface))] p-5 sm:p-7 lg:grid-cols-[0.85fr_1.15fr] lg:gap-10 lg:p-9">
+            <LogoMark sizes="288px" className="pointer-events-none absolute -bottom-20 -left-16 h-72 w-72 opacity-[0.08]" />
 
             <div className="relative flex flex-col">
               <SplitReveal id="contact-title" text={contact.title} as="h2" className="text-h2 text-fg" />
               <Reveal delay={0.2} blur={4} y={14}>
-                <p className="mt-5 max-w-md text-lead text-fg-2">{contact.line}</p>
+                <p className="mt-3 max-w-md text-[0.9375rem] text-fg-2">{contact.line}</p>
               </Reveal>
 
-              <ul className="mt-10 space-y-4 lg:mt-auto">
+              <ul className="mt-6 space-y-2.5 lg:mt-auto">
                 {contact.perks.map((perk) => (
-                  <li key={perk.label} className="flex items-center gap-4 text-[1.0625rem] font-medium text-fg">
-                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-gold-400/35 bg-gold-300/10 text-gold-300">
-                      <Icon name={perk.icon} className="h-5 w-5" strokeWidth={1.6} />
+                  <li key={perk.label} className="flex items-center gap-3 text-[0.875rem] font-medium text-fg">
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-gold-300/10 text-gold-300">
+                      <Icon name={perk.icon} className="h-4 w-4" strokeWidth={1.8} />
                     </span>
                     {perk.label}
                   </li>
@@ -42,7 +42,7 @@ export function Contact() {
                 href={site.brand.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-flex w-fit items-center gap-3 rounded-full border border-gold-400/50 px-5 py-3 font-display text-[1rem] font-semibold text-gold-200 transition-[background-color,border-color,box-shadow] duration-[var(--dur-base)] hover:border-gold-300 hover:bg-gold-300/10 hover:shadow-[0_0_30px_-6px_rgb(247_200_92/0.5)]"
+                className="mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-gold-400/50 px-4 py-2 font-display text-[0.875rem] font-semibold text-gold-200 transition-[background-color,border-color,box-shadow] duration-[var(--dur-base)] hover:border-gold-300 hover:bg-gold-300/10 hover:shadow-[0_0_30px_-6px_rgb(247_200_92/0.5)]"
               >
                 <SocialIcon id="whatsapp" className="h-5 w-5" />
                 WhatsApp · {site.brand.phone}

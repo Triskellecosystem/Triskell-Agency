@@ -279,14 +279,16 @@ export const site = {
   forWho: {
     overline: "Per chi è",
     title: "È per te se [ti riconosci]",
+    answer: "Sì",
+    closing: "Se hai risposto sì almeno una volta, parliamone.",
     line: "Attività locali, professionisti e aziende che vogliono crescere senza perdere tempo.",
     items: [
-      { icon: "users", title: "Vuoi più clienti, ogni mese", text: "Un flusso costante di richieste, non il passaparola che va e viene." },
-      { icon: "target", title: "Le ADV non ti hanno reso", text: "Hai speso in campagne senza vedere contatti veri. Ripartiamo dai numeri." },
-      { icon: "clock", title: "Non hai tempo per il marketing", text: "Gestisci l'attività: social, campagne e sito li gestiamo noi." },
-      { icon: "messages", title: "Rincorri messaggi tutto il giorno", text: "Un agente AI risponde, qualifica e prenota al posto tuo." },
-      { icon: "monitor", title: "Il sito non ti porta contatti", text: "Lo rifacciamo veloce, chiaro e pensato per farti chiamare." },
-      { icon: "cpu", title: "Vuoi usare l'AI, ma non sai come", text: "La mettiamo al lavoro nella tua azienda, già pronta all'uso." },
+      { icon: "users", title: "Vuoi più clienti ogni mese?", text: "" },
+      { icon: "target", title: "Le pubblicità non ti hanno mai reso?", text: "" },
+      { icon: "monitor", title: "Il sito non ti porta contatti?", text: "" },
+      { icon: "clock", title: "Non hai tempo per i social?", text: "" },
+      { icon: "messages", title: "Rincorri messaggi tutto il giorno?", text: "" },
+      { icon: "cpu", title: "Vuoi usare l'AI ma non sai da dove iniziare?", text: "" },
     ] satisfies Array<{ icon: IconName; title: string; text: string }>,
     sectors: ["Palestre e fitness", "Studi medici e sanitari", "Ristoranti", "Centri estetici", "Hotel e affittacamere", "Scuole e formazione", "E-commerce", "Professionisti"],
     sectorsLabel: "Settori che seguiamo",
@@ -296,10 +298,10 @@ export const site = {
   services: {
     overline: "Servizi",
     title: "Tutto in [un solo team]",
-    line: "Scegli un servizio: cosa facciamo e cosa ottieni.",
+    line: "Dalle campagne all'AI: deleghi a noi, noi ci mettiamo i risultati.",
     items: [
       { icon: "click", title: "Meta Ads e Google Ads", text: "Campagne che portano contatti e clienti veri.", kpi: { value: "30–60", label: "lead al mese per cliente" }, details: ["Strategia e obiettivi di campagna", "Creatività e testi, anche con l'AI", "Test A/B: teniamo ciò che funziona", "Ottimizzazione e report costanti"] },
-      { icon: "smartphone", title: "Gestione social media", text: "Tu registri, al resto pensiamo noi.", kpi: { value: "12", label: "contenuti al mese: la base consigliata" }, details: ["Script pronti e indicazioni per le riprese", "Editing professionale dei video", "Pubblicazione e gestione del profilo", "Report mensile con i numeri"], href: "/social" },
+      { icon: "smartphone", title: "Gestione social media", text: "Più visibilità al profilo, il minimo impegno per te.", kpi: { value: "12", label: "contenuti al mese: la base consigliata" }, details: ["Script pronti e indicazioni per le riprese", "Editing professionale dei video", "Pubblicazione e gestione del profilo", "Report mensile con i numeri"], href: "/social" },
       { icon: "monitor", href: "/siti-web", title: "Siti web e landing", text: "Siti veloci e chiari, pensati per farti contattare.", kpi: { value: "10–30", label: "richieste al mese da una landing" }, details: ["Design su misura, anche in WordPress", "Veloce e perfetto sul telefono", "Costruito per trasformare i visitatori in contatti", "Form, WhatsApp e tracciamento collegati"] },
       { icon: "database", title: "CRM su misura", text: "Contatti e vendite in un posto solo.", kpi: { value: "~1 su 3", label: "contatti che prenotano la prova" }, details: ["Tutti i contatti in un posto solo", "Pipeline delle vendite chiara", "Follow-up e promemoria automatici", "Collegato a campagne e sito"] },
       { icon: "bot", title: "Agenti AI", text: "Assistenti che rispondono, qualificano e prenotano.", kpi: { value: "24/7", label: "risposte ai clienti, senza pause" }, details: ["Risposte immediate, anche di notte", "Qualifica dei contatti in automatico", "Appuntamenti fissati in agenda", "Su WhatsApp, sito e social"] },
@@ -311,15 +313,26 @@ export const site = {
 
   /** Agenti AI e automazioni: la sezione "delega all'AI". */
   ai: {
-    overline: "Agenti AI e automazioni",
-    title: "Il lavoro ripetitivo [lo fa l'AI]",
-    line: "Risponde, prenota e segue i clienti. Tu ti occupi del resto.",
-    chips: [
-      { icon: "messages", text: "Risponde in pochi secondi" },
-      { icon: "calendar", text: "Prenota gli appuntamenti" },
-      { icon: "bell", text: "Fa i follow-up" },
-      { icon: "trending", text: "Ti manda i report" },
-    ] satisfies Array<{ icon: IconName; text: string }>,
+    overline: "Agenti AI",
+    title: "Un assistente AI che [risponde al posto tuo]",
+    line: "Su WhatsApp, Instagram e sito: risponde ai clienti, fissa gli appuntamenti e li ricorda. Anche di notte.",
+    steps: [
+      { icon: "messages", title: "Il cliente scrive", text: "Anche alle 23:40" },
+      { icon: "bot", title: "L'AI risponde", text: "In meno di 30 secondi" },
+      { icon: "calendar", title: "Prenota", text: "Direttamente in agenda" },
+      { icon: "bell", title: "Ricorda", text: "Promemoria automatico" },
+    ] satisfies Array<{ icon: IconName; title: string; text: string }>,
+    chat: {
+      name: "Aura Beauty Lab",
+      status: "Assistente AI · online",
+      messages: [
+        { from: "user", text: "Ciao! Avete posto domani per una pulizia viso?", time: "23:41" },
+        { from: "ai", text: "Ciao Giulia! 😊 Sì, domani alle 18:30 o alle 19:30. Quale preferisci?", time: "23:41" },
+        { from: "user", text: "18:30 perfetto", time: "23:42" },
+        { from: "ai", text: "Fatto! Ti aspettiamo domani alle 18:30. Ti mando un promemoria 2 ore prima.", time: "23:42" },
+      ],
+      booked: "Appuntamento aggiunto in agenda · domani 18:30",
+    },
     console: {
       title: "Il tuo agente AI",
       status: "Al lavoro",
@@ -398,6 +411,12 @@ export const site = {
     tagline: "Social + Campagne",
     title: "Metodo [Triskell]",
     line: "Un profilo attivo dà fiducia. Le campagne portano contatti. Insieme fanno crescere.",
+    venn: {
+      social: { title: "Social", points: ["Profilo curato e attivo", "Contenuti ogni settimana", "Fiducia e credibilità"] },
+      ads: { title: "Campagne", points: ["Meta Ads e Google Ads", "Contatti nuovi ogni giorno", "Più follower al profilo"] },
+      center: "Più clienti",
+      site: "Sito web, se serve",
+    },
     facts: [
       { value: "6", unit: "mesi", label: "collaborazione minima" },
       { value: "12", unit: "contenuti", label: "al mese, consigliati" },
@@ -465,6 +484,33 @@ export const site = {
       text: "Puoi chiamarci quando serve: siamo sempre disponibili. Nei giorni di riposo rispondiamo solo per questioni urgenti.",
       points: ["Un referente diretto", "WhatsApp e telefono", "Call incluse, in base alla collaborazione"],
     },
+    included: {
+      overline: "Cosa è incluso",
+      title: "Cosa [ti proponiamo]",
+      line: "Un unico pacchetto su misura, con tutto quello che serve per crescere.",
+      blocks: [
+        { icon: "smartphone", title: "Gestione social", value: "12", unit: "contenuti al mese", points: ["Script pronti", "Riprese o guida alle riprese", "Editing e pubblicazione"] },
+        { icon: "click", title: "Campagne", value: "4–5", unit: "campagne al mese", points: ["Meta Ads e Google Ads", "Creatività dai contenuti", "Ottimizzazione continua"] },
+        { icon: "chart", title: "Strategia e report", value: "1", unit: "report al mese", points: ["Call iniziali", "Piano su misura", "Contatti e clienti misurati"] },
+        { icon: "headphones", title: "Assistenza", value: "24/7", unit: "per le emergenze", points: ["Referente diretto", "WhatsApp e telefono", "Extra urgenti rapidi"] },
+      ] satisfies Array<{ icon: IconName; title: string; value: string; unit: string; points: string[] }>,
+      site: "E se serve, rifacciamo anche il sito.",
+    },
+    compare: {
+      overline: "La differenza",
+      title: "Perché [sceglierci]",
+      line: "Cosa cambia rispetto a un'agenzia qualsiasi.",
+      them: "Altre agenzie",
+      us: "Metodo Triskell",
+      rows: [
+        { them: "Social e campagne separati", us: "Un solo team per social e campagne" },
+        { them: "Pacchetti uguali per tutti", us: "Tutto su misura dopo la call" },
+        { them: "Contenuti generici", us: "Contenuti pensati per le campagne" },
+        { them: "Risultati promessi in un mese", us: "6 mesi di rodaggio, numeri misurabili" },
+        { them: "Report di sole visualizzazioni", us: "Report su contatti e clienti" },
+        { them: "Ti rispondono quando possono", us: "Assistenza sempre disponibile" },
+      ],
+    },
     homeCta: { label: "Scopri il Metodo Triskell", href: "/metodo-triskell" },
     socialCta: { label: "Come gestiamo i social", href: "/social" },
   },
@@ -523,6 +569,26 @@ export const site = {
         { icon: "users", title: "Crescita", items: ["Gestione commenti e messaggi", "Contenuti collegati alle campagne", "Trend e novità del momento", "Consigli per far crescere il profilo"] },
         { icon: "chart", title: "Controllo", items: ["Report mensile con i numeri", "Cosa ha funzionato e cosa no", "Miglioramenti continui", "Assistenza sempre disponibile"] },
       ] satisfies Array<{ icon: IconName; title: string; items: string[] }>,
+    },
+    pillars: [
+      { icon: "pen", title: "Pensiamo", text: "Strategia, idee e script pronti" },
+      { icon: "camera", title: "Registriamo", text: "Da noi, o ti guidiamo noi" },
+      { icon: "scissors", title: "Montiamo", text: "Editing professionale" },
+      { icon: "send", title: "Pubblichiamo", text: "Al momento giusto, ogni settimana" },
+    ] satisfies Array<{ icon: IconName; title: string; text: string }>,
+    compare: {
+      overline: "Il vantaggio",
+      title: "Noi vs [il fai da te]",
+      line: "Perché delegare i social a noi conviene.",
+      them: "Da solo o con altri",
+      us: "Con Triskell",
+      rows: [
+        { them: "Pubblichi quando hai tempo", us: "3 contenuti a settimana, sempre" },
+        { them: "Non sai cosa dire", us: "Script pronti da leggere" },
+        { them: "Video fatti col telefono e basta", us: "Editing professionale" },
+        { them: "Profilo scollegato dalle campagne", us: "Contenuti che spingono le campagne" },
+        { them: "Nessun dato", us: "Report mensile con i numeri" },
+      ],
     },
     finale: {
       title: "Il minimo impegno per te. [Il massimo per il tuo profilo.]",
@@ -726,6 +792,12 @@ export const site = {
     title: "Clienti reali, [numeri reali]",
     line: "Contatti, prenotazioni e fatturato dei clienti che seguiamo.",
     all: { label: "Tutti i risultati", href: "/risultati" },
+    counters: [
+      { value: 60, prefix: "30–", label: "lead al mese per cliente" },
+      { value: 500, suffix: "+", label: "contatti in un anno" },
+      { value: 25, prefix: "5–", suffix: "K€", label: "fatturato al mese" },
+      { value: 3, prefix: "~1 su ", label: "prenota la prova" },
+    ] satisfies Metric[],
     items: [
       { id: "forme-fitness", sector: "Fitness & Wellness", place: "Varese", client: "Forme Fitness", tag: "Meta Ads",
         stats: [{ value: "30–60", label: "Lead al mese" }, { value: "5–25K€", label: "Fatturato mensile" }],

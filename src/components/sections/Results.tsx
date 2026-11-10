@@ -2,6 +2,7 @@ import { site } from "@/content/site";
 import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { TechBackdrop } from "@/components/ui/TechBackdrop";
+import { CountUp } from "@/components/motion/CountUp";
 import { Reveal } from "@/components/motion/Reveal";
 import { CaseGrid } from "./CaseGrid";
 
@@ -19,7 +20,20 @@ export function Results() {
           </Button>
         </Reveal>
       </div>
-      <Reveal y={24} blur={0} className="mt-9">
+      <Reveal y={16} blur={0} className="mt-8">
+        <dl className="res-counters grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.06] md:grid-cols-4">
+          {results.counters.map((c) => (
+            <div key={c.label} className="relative bg-[rgb(6_20_34/0.95)] px-4 py-4">
+              <dd className="font-display text-[clamp(1.5rem,1.2rem+1.2vw,2.25rem)] font-bold leading-none tracking-[-0.04em]">
+                <CountUp {...c} className="text-gold" duration={2.4} />
+              </dd>
+              <dt className="mt-1.5 text-[0.6875rem] font-medium text-fg-3">{c.label}</dt>
+              <span aria-hidden="true" className="res-bar absolute inset-x-4 bottom-0 h-[2px] origin-left bg-gradient-to-r from-gold-400 to-azure-300" />
+            </div>
+          ))}
+        </dl>
+      </Reveal>
+      <Reveal y={24} blur={0} className="mt-4">
         <CaseGrid />
       </Reveal>
     </Section>

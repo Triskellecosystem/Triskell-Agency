@@ -13,7 +13,7 @@ const { form } = site.contact;
 const initial: ContactValues = { name: "", email: "", service: "", message: "", consent: false, website: "" };
 
 const fieldBase =
-  "w-full rounded-xl border bg-night/60 px-4 text-[0.9375rem] text-fg placeholder:text-fg-3 " +
+  "w-full rounded-lg border bg-night/60 px-3.5 text-[0.875rem] text-fg placeholder:text-fg-3 " +
   "transition-[border-color,box-shadow,background-color] duration-[var(--dur-base)] ease-out-expo " +
   "hover:border-line-strong focus:border-gold-300 focus:bg-night focus:shadow-[0_0_0_3px_rgb(247_200_92/0.18)] focus:outline-none";
 
@@ -30,7 +30,7 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="mb-2 block text-small font-medium text-fg-2">
+      <label htmlFor={id} className="mb-1.5 block text-[0.75rem] font-medium text-fg-2">
         {label}
       </label>
       {children}
@@ -109,8 +109,8 @@ export function ContactForm() {
   }
 
   return (
-    <form ref={formRef} onSubmit={onSubmit} noValidate className="space-y-5" aria-describedby="form-status">
-      <div className="grid gap-5 sm:grid-cols-2">
+    <form ref={formRef} onSubmit={onSubmit} noValidate className="space-y-3.5" aria-describedby="form-status">
+      <div className="grid gap-3.5 sm:grid-cols-2">
         <Field id="cf-name" label={form.name.label} error={msg("name")}>
           <input
             id="cf-name"
@@ -124,7 +124,7 @@ export function ContactForm() {
             aria-invalid={!!errors.name}
             aria-describedby="cf-name-error"
             aria-required="true"
-            className={cn(fieldBase, "h-12", errors.name ? "border-gold-200/70" : "border-line")}
+            className={cn(fieldBase, "h-10", errors.name ? "border-gold-200/70" : "border-line")}
           />
         </Field>
         <Field id="cf-email" label={form.email.label} error={msg("email")}>
@@ -142,7 +142,7 @@ export function ContactForm() {
             aria-invalid={!!errors.email}
             aria-describedby="cf-email-error"
             aria-required="true"
-            className={cn(fieldBase, "h-12", errors.email ? "border-gold-200/70" : "border-line")}
+            className={cn(fieldBase, "h-10", errors.email ? "border-gold-200/70" : "border-line")}
           />
         </Field>
       </div>
@@ -158,7 +158,7 @@ export function ContactForm() {
             aria-invalid={!!errors.service}
             aria-describedby="cf-service-error"
             aria-required="true"
-            className={cn(fieldBase, "h-12 appearance-none pr-11", values.service ? "text-fg" : "text-fg-3", errors.service ? "border-gold-200/70" : "border-line")}
+            className={cn(fieldBase, "h-10 appearance-none pr-11", values.service ? "text-fg" : "text-fg-3", errors.service ? "border-gold-200/70" : "border-line")}
           >
             <option value="" disabled>
               {form.service.placeholder}
@@ -177,7 +177,7 @@ export function ContactForm() {
         <textarea
           id="cf-message"
           name="message"
-          rows={4}
+          rows={3}
           maxLength={LIMITS.message}
           placeholder={form.message.placeholder}
           value={values.message}
@@ -199,7 +199,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label className="group/consent flex cursor-pointer items-start gap-3 text-small text-fg-2">
+        <label className="group/consent flex cursor-pointer items-start gap-2.5 text-[0.75rem] text-fg-2">
           <input
             type="checkbox"
             name="consent"
@@ -246,7 +246,7 @@ export function ContactForm() {
         )}
       </div>
 
-      <Button type="submit" size="lg" className="w-full sm:w-auto" icon={status === "sending" ? "loader" : "send"} disabled={status === "sending"}>
+      <Button type="submit" size="md" className="w-full sm:w-auto" icon={status === "sending" ? "loader" : "send"} disabled={status === "sending"}>
         {status === "sending" ? form.sending : form.submit}
       </Button>
     </form>

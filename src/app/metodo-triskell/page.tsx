@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BaseConsigliata } from "@/components/sections/BaseConsigliata";
+import { Compare } from "@/components/sections/Compare";
+import { IncludedBlocks } from "@/components/sections/IncludedBlocks";
 import { Contact } from "@/components/sections/Contact";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { MetodoFormula } from "@/components/sections/MetodoFormula";
@@ -12,7 +14,7 @@ import { Icon } from "@/components/ui/Icon";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { TechBackdrop } from "@/components/ui/TechBackdrop";
 import { DigitalCursor } from "@/components/motion/DigitalCursor";
-import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { Reveal } from "@/components/motion/Reveal";
 import { demoProfiles } from "@/content/demo-profiles";
 import { site } from "@/content/site";
 
@@ -65,23 +67,24 @@ export default function MetodoPage() {
         </div>
       </section>
 
-      <Section id="numeri-metodo" labelledBy="numeri-metodo-title" className="py-[clamp(2rem,1.4rem+2vw,3.25rem)]">
-        <h2 id="numeri-metodo-title" className="sr-only">
-          Il metodo in tre numeri
-        </h2>
-        <RevealGroup className="grid gap-3 sm:grid-cols-3" stagger={0.1}>
-          {m.facts.map((f) => (
-            <RevealItem key={f.label} y={14}>
-              <div className="rounded-[1.125rem] border border-white/[0.08] bg-white/[0.02] p-5 text-center">
-                <p className="font-display text-[2.5rem] font-bold leading-none tracking-[-0.05em] text-gold">
-                  {f.value}
-                  <span className="ml-1.5 text-[0.9375rem] font-semibold tracking-normal text-fg">{f.unit}</span>
-                </p>
-                <p className="mt-1.5 text-[0.75rem] text-fg-3">{f.label}</p>
-              </div>
-            </RevealItem>
-          ))}
-        </RevealGroup>
+      <Section id="incluso" labelledBy="incluso-title">
+        <TechBackdrop tone="gold" rich />
+        <SectionHeading id="incluso-title" overline={m.included.overline} title={m.included.title} line={m.included.line} align="center" />
+        <div className="mt-9">
+          <IncludedBlocks />
+        </div>
+      </Section>
+
+      <Section id="differenza" labelledBy="differenza-title">
+        <SectionHeading id="differenza-title" overline={m.compare.overline} title={m.compare.title} line={m.compare.line} align="center" />
+        <div className="mt-9">
+          <Compare them={m.compare.them} us={m.compare.us} rows={m.compare.rows} />
+        </div>
+        <Reveal y={12} blur={0} className="mt-8 flex justify-center">
+          <Button href="/contatti" size="md" icon="calendar" iconPosition="start" pulse>
+            Prenota la call gratuita
+          </Button>
+        </Reveal>
       </Section>
 
       <Section id="rodaggio" labelledBy="rodaggio-title" className="py-[clamp(2.5rem,1.6rem+2.6vw,4rem)]">

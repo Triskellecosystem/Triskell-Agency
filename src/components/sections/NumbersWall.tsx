@@ -17,20 +17,20 @@ export function NumbersWall() {
       <TechBackdrop tone="gold" cursor rich />
       <SectionHeading id="numeri-title" overline={n.overline} title={n.title} line={n.line} align="center" />
 
-      <RevealGroup className="mt-12 grid gap-4 max-md:grid-cols-2 max-md:gap-3 sm:mt-14 md:grid-cols-3 md:gap-5" stagger={0.1} alternate>
+      <RevealGroup className="mt-8 grid gap-2.5 max-md:grid-cols-2 md:grid-cols-3 lg:grid-cols-6" stagger={0.08}>
         {n.items.map((m, i) => (
           <RevealItem key={m.label} y={30} className="h-full">
-            <Spotlight className="num-tile group/num relative h-full overflow-hidden rounded-card border border-line bg-[linear-gradient(160deg,var(--color-surface-2),var(--color-night-raised))] p-6 transition-[border-color,box-shadow] duration-[var(--dur-base)] ease-out-expo hover:border-gold-300/70 hover:shadow-[0_0_44px_-12px_rgb(247_200_92/0.55)] max-md:p-4 sm:p-8" size={360}>
+            <Spotlight className="num-tile group/num relative h-full overflow-hidden rounded-xl border border-white/[0.08] bg-[linear-gradient(160deg,var(--color-surface-2),var(--color-night-raised))] p-4 transition-[border-color,box-shadow] duration-[var(--dur-base)] ease-out-expo hover:border-gold-300/70 hover:shadow-[0_0_30px_-12px_rgb(247_200_92/0.55)]" size={220}>
               <span aria-hidden="true" className="num-shine" style={{ animationDelay: `${i * 0.9}s` }} />
               <div className="relative z-[2]">
-                <span className="grid h-12 w-12 place-items-center rounded-2xl border border-gold-400/45 bg-gold-300/10 text-gold-300 max-md:h-9 max-md:w-9">
-                  <Icon name={m.icon} className="h-6 w-6 max-md:h-[1.1rem] max-md:w-[1.1rem]" strokeWidth={1.6} />
+                <span className="grid h-7 w-7 place-items-center rounded-lg bg-gold-300/10 text-gold-300">
+                  <Icon name={m.icon} className="h-3.5 w-3.5" strokeWidth={1.9} />
                 </span>
-                <p className="mt-5 font-display text-[clamp(2.5rem,1.6rem+4vw,5rem)] font-bold leading-none tracking-[-0.05em] max-md:mt-3">
+                <p className="mt-3 font-display text-[clamp(1.5rem,1.2rem+1vw,2rem)] font-bold leading-none tracking-[-0.04em]">
                   <CountUp value={m.value} prefix={m.prefix} suffix={m.suffix} className="text-gold" duration={2.2} />
                 </p>
-                <p className="mt-3 text-[1.0625rem] font-medium leading-snug text-fg-2 max-md:mt-2 max-md:text-[0.8125rem]">{m.label}</p>
-                <span aria-hidden="true" className="mt-5 block h-[3px] overflow-hidden rounded-full bg-line max-md:mt-3">
+                <p className="mt-1.5 text-[0.75rem] leading-snug text-fg-3">{m.label}</p>
+                <span aria-hidden="true" className="mt-3 block h-[2px] overflow-hidden rounded-full bg-line">
                   <span className="num-bar block h-full w-full origin-left rounded-full bg-gradient-to-r from-gold-500 via-gold-300 to-azure-300" style={{ transitionDelay: `${0.3 + i * 0.12}s` }} />
                 </span>
               </div>
@@ -39,12 +39,12 @@ export function NumbersWall() {
         ))}
       </RevealGroup>
 
-      <Reveal y={18} blur={0} className="mt-6 sm:mt-8">
-        <ul className="grid gap-3 rounded-card border border-gold-400/30 bg-[linear-gradient(135deg,#2b2410,#0a1626_55%,#0b2a46)] p-4 max-md:grid-cols-2 sm:p-5 md:grid-cols-4">
+      <Reveal y={18} blur={0} className="mt-3">
+        <ul className="grid gap-3 rounded-xl border border-gold-400/25 bg-[linear-gradient(135deg,#2b2410,#0a1626_55%,#0b2a46)] p-3 max-md:grid-cols-2 md:grid-cols-4">
           {n.proof.map((p) => (
             <li key={p.who + p.label} className="flex flex-col items-center text-center md:border-r md:border-line md:last:border-r-0">
-              <span className="font-display text-[clamp(1.5rem,1.2rem+1vw,2.125rem)] font-bold leading-none tracking-[-0.03em] text-azure-300">{p.value}</span>
-              <span className="mt-1 text-small font-semibold text-fg">{p.label}</span>
+              <span className="font-display text-[1.25rem] font-bold leading-none tracking-[-0.03em] text-azure-300">{p.value}</span>
+              <span className="mt-1 text-[0.75rem] font-semibold text-fg">{p.label}</span>
               <span className="mt-0.5 text-[0.75rem] text-fg-3">{p.who}</span>
             </li>
           ))}

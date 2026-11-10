@@ -3,11 +3,10 @@ import { AiAgents } from "@/components/sections/AiAgents";
 import { Contact } from "@/components/sections/Contact";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { EcosystemLink } from "@/components/sections/EcosystemLink";
-import { Faq } from "@/components/sections/Faq";
 import { ForWho } from "@/components/sections/ForWho";
 import { MetodoTeaser } from "@/components/sections/MetodoTeaser";
 import { Results } from "@/components/sections/Results";
-import { ServiceExplorer } from "@/components/sections/ServiceExplorer";
+import { ServicesBento } from "@/components/sections/ServicesBento";
 import { ServiceMarquee } from "@/components/sections/ServiceMarquee";
 import { WebsitesTeaser } from "@/components/sections/WebsitesTeaser";
 import { Section, SectionHeading } from "@/components/ui/Section";
@@ -16,8 +15,8 @@ import { site } from "@/content/site";
 
 /**
  * Home di Triskell Agency, corta e ordinata:
- * apertura con dashboard → servizi in nastro → Metodo Triskell → per chi è → servizi → prenota → agenti AI →
- * clienti reali → prenota → siti → ecosistema → domande → form.
+ * apertura → servizi in nastro → Metodo Triskell → per chi è → servizi → prenota → agenti AI →
+ * clienti reali → prenota → siti → ecosistema → form.
  */
 export default function HomePage() {
   const { services } = site;
@@ -32,7 +31,7 @@ export default function HomePage() {
         <TechBackdrop tone="gold" rich />
         <SectionHeading id="servizi-title" overline={services.overline} title={services.title} line={services.line} />
         <div className="mt-8">
-          <ServiceExplorer items={services.items} />
+          <ServicesBento items={services.items} />
         </div>
       </Section>
 
@@ -42,7 +41,6 @@ export default function HomePage() {
       <CtaBand content={site.cta.results} />
       <WebsitesTeaser />
       <EcosystemLink />
-      <Faq />
       <Contact />
     </>
   );
