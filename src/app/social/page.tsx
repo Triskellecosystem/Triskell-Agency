@@ -4,6 +4,7 @@ import { Compare } from "@/components/sections/Compare";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { IncludesGroups } from "@/components/sections/IncludesGroups";
 import { PageHero } from "@/components/sections/PageHero";
+import { ProfileExamples } from "@/components/sections/ProfileExamples";
 import { PhoneFan } from "@/components/sections/PhoneFan";
 import { RecordingOptions } from "@/components/sections/RecordingOptions";
 import { Rodaggio } from "@/components/sections/Rodaggio";
@@ -61,6 +62,8 @@ export default function SocialPage() {
           ))}
         </RevealGroup>
       </Section>
+
+      <ProfileExamples />
 
       <Section id="come-lavoriamo" labelledBy="come-title">
         <TechBackdrop tone="gold" rich />

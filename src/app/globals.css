@@ -1447,3 +1447,10 @@ html[data-no-loader] .loader { display: none; }
 @keyframes sw-badge { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(0, -10px, 0); } }
 .sw-badge { animation: sw-badge 5s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .sw-badge { animation: none; } }
+
+/* Esempi di profili: nastro di telefoni */
+.pe .pe-track { animation-duration: 60s; padding-right: 1rem; }
+.pe:hover .pe-track { animation-play-state: paused; }
+.pe-phone { transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s; }
+.pe-item:hover .pe-phone { transform: translateY(-6px) scale(1.06); box-shadow: 0 30px 60px -24px rgb(0 0 0 / 0.9), 0 0 0 1px rgb(247 200 92 / 0.5), 0 0 40px -10px rgb(247 200 92 / 0.45); }
+@media (prefers-reduced-motion: reduce) { .pe .pe-track { width: max-content; } .pe .pe-item[aria-hidden="true"] { display: none; } .pe { overflow-x: auto; } }
