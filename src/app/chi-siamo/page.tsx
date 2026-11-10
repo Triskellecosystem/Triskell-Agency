@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PerspectiveBg } from "@/components/ui/PerspectiveBg";
+import { Stage3D } from "@/components/ui/Stage3D";
 import { ContactLinks } from "@/components/sections/ContactLinks";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { PersonScroll } from "@/components/sections/PersonScroll";
@@ -26,7 +26,7 @@ export default function AboutPage() {
         <PersonScroll key={p.id} person={p} index={i} />
       ))}
       <Section id="come-lavoriamo" labelledBy="metodo-title">
-        <PerspectiveBg variant="ceiling" />
+        <Stage3D view="low" tone="azure" />
         <TechBackdrop tone="gold" rich />
         <SectionHeading id="metodo-title" overline={m.overline} title={m.title} line={m.line} align="center" />
         <Reveal y={16} blur={0} className="mt-12">

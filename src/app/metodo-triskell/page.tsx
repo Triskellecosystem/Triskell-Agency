@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PerspectiveBg } from "@/components/ui/PerspectiveBg";
+
 import { BestPackage } from "@/components/sections/BestPackage";
 import { Compare } from "@/components/sections/Compare";
 import { Contact } from "@/components/sections/Contact";
@@ -59,7 +59,7 @@ export default function MetodoPage() {
       </section>
 
       <Section id="formula" labelledBy="formula-title" className="mt-band">
-        <PerspectiveBg variant="tunnel" />
+        <Stage3D />
         <TechBackdrop tone="gold" cursor rich />
         <SectionHeading id="formula-title" overline="Metodo Triskell" title="Ogni parte [a supporto delle altre]" align="center" />
         <Reveal y={10} blur={0} className="mt-10">
@@ -68,7 +68,7 @@ export default function MetodoPage() {
       </Section>
 
       <Section id="registrazione" labelledBy="registrazione-title" className="overflow-hidden">
-        <PerspectiveBg variant="ceiling" />
+        <Stage3D view="low" tone="azure" />
         <div className="grid items-center gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)]">
           <div>
             <SectionHeading id="registrazione-title" overline="Le riprese" title="Se vuoi, [ti aiutiamo anche a registrare]" line="Veniamo noi sul posto, oppure ti guidiamo passo passo: script pronti, inquadrature e call per imparare." />
@@ -85,7 +85,7 @@ export default function MetodoPage() {
       </Section>
 
       <Section id="differenza" labelledBy="differenza-title" className="cmp-band">
-        <PerspectiveBg variant="wall" />
+        <Stage3D view="right" />
         <SectionHeading id="differenza-title" overline={m.compare.overline} title={m.compare.title} line={m.compare.line} align="center" />
         <div className="mt-9">
           <Compare them={m.compare.them} us={m.compare.us} rows={m.compare.rows} />
@@ -98,7 +98,7 @@ export default function MetodoPage() {
       </Section>
 
       <Section id="base" labelledBy="base-title">
-        <PerspectiveBg variant="tiles" />
+        <Stage3D view="left" />
         <TechBackdrop tone="azure" rich />
         <SectionHeading id="base-title" overline={m.best.overline} title={m.best.title} line={m.best.line} align="center" />
         <Reveal y={20} blur={0} className="mt-9">
@@ -107,7 +107,7 @@ export default function MetodoPage() {
       </Section>
 
       <Section id="rodaggio" labelledBy="rodaggio-title">
-        <PerspectiveBg variant="floor" />
+        <Stage3D view="low" />
         <TechBackdrop tone="gold" rich />
         <SectionHeading id="rodaggio-title" overline={m.rodaggio.overline} title={m.rodaggio.title} line="Il tempo per creare la struttura, metterla in moto e vedere i risultati. Con meno tempo i risultati restano troppo relativi." />
         <div className="mt-9">

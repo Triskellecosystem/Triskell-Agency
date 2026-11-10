@@ -16,7 +16,7 @@ export function SocialPillars() {
       <SectionHeading id="cosa-title" overline="Cosa facciamo" title="Ci occupiamo [di tutto]" line="Tu ci dai poco tempo. Noi facciamo crescere il profilo." align="center" />
       <div className="mt-9 grid items-center gap-x-10 gap-y-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)]">
         <Reveal y={0} blur={0} className="scv-reveal">
-          <SceneVideo src="/video/riprese-1.mp4" poster="/video/riprese-1.jpg" label="Una ripresa sul posto per i contenuti social di un cliente" />
+          <SceneVideo src="/video/riprese-2.mp4" poster="/video/riprese-2.jpg" label="Dietro le quinte delle riprese per i contenuti social" />
         </Reveal>
         <Reveal y={10} blur={0} className="relative">
           <span aria-hidden="true" className="spl-vrail absolute bottom-6 left-[0.6rem] top-6 w-[2px]">

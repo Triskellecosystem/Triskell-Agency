@@ -16,7 +16,9 @@ const DUST = Array.from({ length: 26 }, (_, i) => {
   return { x: Math.round(r(1) * 100), y: Math.round(r(2) * 100), d: (r(3) * 8).toFixed(2), s: 2 + Math.floor(r(4) * 3), z: Math.round(r(5) * 3) };
 });
 
-export function Stage3D({ className, tone = "mixed" }: { className?: string; tone?: "mixed" | "gold" | "azure" }) {
+type View = "center" | "left" | "right" | "low";
+
+export function Stage3D({ className, tone = "mixed", view = "center" }: { className?: string; tone?: "mixed" | "gold" | "azure"; view?: View }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current;
@@ -52,11 +54,17 @@ export function Stage3D({ className, tone = "mixed" }: { className?: string; ton
     };
   }, []);
   return (
-    <div ref={ref} aria-hidden="true" className={cn("st3 pointer-events-none absolute inset-0 -z-10 overflow-hidden", `st3--${tone}`, className)}>
+    <div ref={ref} aria-hidden="true" className={cn("st3 pointer-events-none absolute inset-0 -z-10 overflow-hidden", `st3--${tone}`, `st3--v-${view}`, className)}>
       <div className="st3-room">
         <span className="st3-wall" />
         <span className="st3-floor"><i /></span>
         <span className="st3-ceil"><i /></span>
+        <span className="st3-side st3-side--l"><i /></span>
+        <span className="st3-side st3-side--r"><i /></span>
+        <span className="st3-pane st3-pane--a" />
+        <span className="st3-pane st3-pane--b" />
+        <span className="st3-pane st3-pane--c" />
+        <span className="st3-ring" />
         <span className="st3-beam st3-beam--a" />
         <span className="st3-beam st3-beam--b" />
         <span className="st3-beam st3-beam--c" />

@@ -364,7 +364,7 @@ export const site = {
       stats: [
         { value: 24, suffix: "/7", label: "Sempre attivo" },
         { value: 30, prefix: "<", suffix: " s", label: "Risposta" },
-        { value: 20, suffix: "h", label: "Risparmiate / sett.", todo: true }, // TODO: dato reale
+        { value: 100, suffix: "%", label: "Contatti seguiti" },
       ] satisfies Metric[],
       hours: "Ore restituite a te",
     },

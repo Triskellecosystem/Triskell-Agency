@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PerspectiveBg } from "@/components/ui/PerspectiveBg";
+import { Stage3D } from "@/components/ui/Stage3D";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { PageHero } from "@/components/sections/PageHero";
 import { SiteCard } from "@/components/sections/SiteCard";
@@ -39,7 +39,7 @@ export default function SitesPage() {
       </div>
 
       <Section id="percorso" labelledBy="percorso-title">
-        <PerspectiveBg variant="floor" />
+        <Stage3D view="low" />
         <TechBackdrop tone="gold" rich />
         <SectionHeading id="percorso-title" overline="Come lo creiamo" title={p.processTitle} line={p.processLine} align="center" />
         <Reveal y={16} blur={0} className="mt-12">

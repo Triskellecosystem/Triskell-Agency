@@ -1,5 +1,5 @@
 import { site } from "@/content/site";
-import { PerspectiveBg } from "@/components/ui/PerspectiveBg";
+import { Stage3D } from "@/components/ui/Stage3D";
 import { Icon } from "@/components/ui/Icon";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Spotlight } from "@/components/ui/Spotlight";
@@ -15,7 +15,7 @@ export function NumbersWall() {
   const n = site.numbers;
   return (
     <Section id="numeri" labelledBy="numeri-title">
-        <PerspectiveBg variant="floor" />
+        <Stage3D view="low" />
       <TechBackdrop tone="gold" cursor rich />
       <SectionHeading id="numeri-title" overline={n.overline} title={n.title} line={n.line} align="center" />
 

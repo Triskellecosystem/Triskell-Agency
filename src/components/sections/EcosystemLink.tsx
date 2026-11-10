@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PerspectiveBg } from "@/components/ui/PerspectiveBg";
+import { Stage3D } from "@/components/ui/Stage3D";
 import { site } from "@/content/site";
 import { cn } from "@/lib/cn";
 import { LogoMark } from "@/components/brand/LogoMark";
@@ -19,7 +19,7 @@ export function EcosystemLink() {
   const ext = (href: string) => (href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {});
   return (
     <Section id="ecosistema" labelledBy="eco-title" className="overflow-hidden">
-        <PerspectiveBg variant="tunnel" />
+        <Stage3D />
       <TechBackdrop tone="mixed" cursor rich />
       <SectionHeading id="eco-title" overline={e.overline} title={e.title} line={e.line} align="center" />
 

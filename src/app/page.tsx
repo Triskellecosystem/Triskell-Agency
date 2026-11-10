@@ -1,5 +1,5 @@
 import { AgencyHero } from "@/components/sections/AgencyHero";
-import { PerspectiveBg } from "@/components/ui/PerspectiveBg";
+import { Stage3D } from "@/components/ui/Stage3D";
 import { AiAgents } from "@/components/sections/AiAgents";
 import { Contact } from "@/components/sections/Contact";
 import { CtaBand } from "@/components/sections/CtaBand";
@@ -29,7 +29,7 @@ export default function HomePage() {
       <ForWho />
 
       <Section id="servizi" labelledBy="servizi-title">
-        <PerspectiveBg variant="tiles" />
+        <Stage3D view="left" />
         <span aria-hidden="true" className="sec-line absolute inset-x-0 top-0 h-px" />
         <TechBackdrop tone="gold" rich />
         <SectionHeading id="servizi-title" overline={services.overline} title={services.title} line={services.line} />

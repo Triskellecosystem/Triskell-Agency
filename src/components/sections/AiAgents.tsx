@@ -1,5 +1,5 @@
 import { site } from "@/content/site";
-import { PerspectiveBg } from "@/components/ui/PerspectiveBg";
+import { Stage3D } from "@/components/ui/Stage3D";
 import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { CountUp } from "@/components/motion/CountUp";
@@ -7,6 +7,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { AiAdvantages } from "./AiAdvantages";
 import { AiChat } from "./AiChat";
 import { AiStepper } from "./AiStepper";
+import { TimeSaver } from "./TimeSaver";
 
 /**
  * Irelia, l'assistente AI: a sinistra titolo, tre garanzie, il flusso in sei passi collegati e tre numeri;
@@ -16,7 +17,7 @@ export function AiAgents() {
   const a = site.ai;
   return (
     <Section id="ai" labelledBy="ai-title" className="overflow-hidden">
-        <PerspectiveBg variant="wall" />
+        <Stage3D view="right" />
       <div aria-hidden="true" className="ai-bg absolute inset-0 -z-10" />
       <div className="grid items-center gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
         <div className="min-w-0">
@@ -57,6 +58,9 @@ export function AiAgents() {
         </Reveal>
       </div>
       <Reveal y={14} blur={0} className="mt-10">
+        <TimeSaver />
+      </Reveal>
+      <Reveal y={14} blur={0} className="mt-4">
         <AiAdvantages />
       </Reveal>
     </Section>

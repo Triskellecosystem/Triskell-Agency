@@ -1,5 +1,5 @@
 import { site } from "@/content/site";
-import { PerspectiveBg } from "@/components/ui/PerspectiveBg";
+import { Stage3D } from "@/components/ui/Stage3D";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Section, SectionHeading } from "@/components/ui/Section";
@@ -53,7 +53,7 @@ export function WebsitesTeaser() {
   const s = site.sitiWeb;
   return (
     <Section id="siti" labelledBy="siti-teaser-title" className="overflow-hidden">
-        <PerspectiveBg variant="ceiling" />
+        <Stage3D view="low" tone="azure" />
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeading id="siti-teaser-title" overline="Siti web" title={s.title} line="Veloci, curati, pensati per farti contattare." />
         <Reveal y={12} blur={0}>
