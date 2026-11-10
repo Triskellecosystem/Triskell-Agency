@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import { Stage3D } from "@/components/ui/Stage3D";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { PageHero } from "@/components/sections/PageHero";
-import { SiteCard } from "@/components/sections/SiteCard";
+import { SitesRing } from "@/components/sections/SitesRing";
 import { SiteIncludes } from "@/components/sections/SiteIncludes";
 import { StepRail } from "@/components/sections/StepRail";
 import { SitesWall } from "@/components/sections/WebsitesTeaser";
 import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { TechBackdrop } from "@/components/ui/TechBackdrop";
-import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { Reveal } from "@/components/motion/Reveal";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -20,15 +20,14 @@ export const metadata: Metadata = {
 
 export default function SitesPage() {
   const p = site.sitiProcess;
-  const featured = site.sitiWeb.featured.flatMap((id) => site.sitiWeb.items.filter((i) => i.id === id));
   return (
     <>
       <PageHero overline={p.overline} title={p.title} line={p.line} crumbs={[{ label: "Siti web" }]}>
         <Button href="/contatti" size="md" icon="calendar" iconPosition="start" pulse>
           Voglio il mio sito
         </Button>
-        <Button href={p.portfolioCta.href} variant="secondary" size="md" icon="arrow-right">
-          Portfolio siti
+        <Button href="#portfolio" variant="secondary" size="md" icon="arrow-down">
+          Tutti i siti
         </Button>
       </PageHero>
 
@@ -39,7 +38,7 @@ export default function SitesPage() {
       </div>
 
       <Section id="percorso" labelledBy="percorso-title">
-        <Stage3D view="low" />
+        <Stage3D kind="horizon" />
         <TechBackdrop tone="gold" rich />
         <SectionHeading id="percorso-title" overline="Come lo creiamo" title={p.processTitle} line={p.processLine} align="center" />
         <Reveal y={16} blur={0} className="mt-12">
@@ -49,22 +48,12 @@ export default function SitesPage() {
 
       <SiteIncludes />
 
-      <Section id="alcuni-siti" labelledBy="alcuni-siti-title">
-        <div className="flex flex-wrap items-end justify-between gap-5">
-          <SectionHeading id="alcuni-siti-title" overline="Portfolio" title="Alcuni siti [realizzati]" />
-          <Reveal y={12} blur={0}>
-            <Button href={p.portfolioCta.href} size="md" variant="secondary" icon="arrow-right">
-              {p.portfolioCta.label}
-            </Button>
-          </Reveal>
-        </div>
-        <RevealGroup className="mt-8 grid gap-4 md:grid-cols-3" stagger={0.1} alternate>
-          {featured.map((item) => (
-            <RevealItem key={item.id} y={20} className="h-full">
-              <SiteCard item={item} />
-            </RevealItem>
-          ))}
-        </RevealGroup>
+      <Section id="portfolio" labelledBy="portfolio-title" className="overflow-hidden">
+        <Stage3D kind="rings" tone="azure" />
+        <SectionHeading id="portfolio-title" overline="Portfolio" title="Tutti i siti che [abbiamo creato]" line="Ristoranti, ospitalità, brand, software: ognuno su misura." align="center" />
+        <Reveal y={20} blur={0} className="mt-8">
+          <SitesRing />
+        </Reveal>
       </Section>
 
       <CtaBand content={site.cta.sites} />

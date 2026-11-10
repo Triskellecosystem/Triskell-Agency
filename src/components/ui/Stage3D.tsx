@@ -17,8 +17,11 @@ const DUST = Array.from({ length: 26 }, (_, i) => {
 });
 
 type View = "center" | "left" | "right" | "low";
+/** room = stanza a griglia · rings = tunnel di anelli · horizon = pavimento con orizzonte luminoso ·
+ *  lines = fasci di linee in prospettiva · soft = solo profondità leggera (punti e aloni) */
+type Kind = "room" | "rings" | "horizon" | "lines" | "soft";
 
-export function Stage3D({ className, tone = "mixed", view = "center" }: { className?: string; tone?: "mixed" | "gold" | "azure"; view?: View }) {
+export function Stage3D({ className, tone = "mixed", view = "center", kind = "room" }: { className?: string; tone?: "mixed" | "gold" | "azure"; view?: View; kind?: Kind }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current;
@@ -54,17 +57,21 @@ export function Stage3D({ className, tone = "mixed", view = "center" }: { classN
     };
   }, []);
   return (
-    <div ref={ref} aria-hidden="true" className={cn("st3 pointer-events-none absolute inset-0 -z-10 overflow-hidden", `st3--${tone}`, `st3--v-${view}`, className)}>
+    <div ref={ref} aria-hidden="true" className={cn("st3 pointer-events-none absolute inset-0 -z-10 overflow-hidden", `st3--${tone}`, `st3--v-${view}`, `st3--k-${kind}`, className)}>
       <div className="st3-room">
         <span className="st3-wall" />
         <span className="st3-floor"><i /></span>
         <span className="st3-ceil"><i /></span>
         <span className="st3-side st3-side--l"><i /></span>
         <span className="st3-side st3-side--r"><i /></span>
-        <span className="st3-pane st3-pane--a" />
-        <span className="st3-pane st3-pane--b" />
-        <span className="st3-pane st3-pane--c" />
         <span className="st3-ring" />
+        <span className="st3-rings">
+          {[0, 1, 2, 3, 4, 5].map((k) => (
+            <i key={k} style={{ "--k": k } as React.CSSProperties} />
+          ))}
+        </span>
+        <span className="st3-horizon" />
+        <span className="st3-lines" />
         <span className="st3-beam st3-beam--a" />
         <span className="st3-beam st3-beam--b" />
         <span className="st3-beam st3-beam--c" />

@@ -2,6 +2,8 @@ import { site } from "@/content/site";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { DigitalCursor } from "@/components/motion/DigitalCursor";
+import { Stage3D } from "@/components/ui/Stage3D";
+import { Scarcity } from "@/components/ui/Scarcity";
 import { HeroNumbers } from "./HeroNumbers";
 import { LivePhone } from "./LivePhone";
 
@@ -20,6 +22,8 @@ export function AgencyHero() {
         <span className="ah-floor"><span className="ah-floor-grid" /></span>
       </div>
       <DigitalCursor className="-z-10" />
+      <Stage3D kind="soft" className="opacity-80" />
+      <div aria-hidden="true" className="hero-room pointer-events-none absolute inset-0 -z-10"><span /></div>
 
       <div className="container-x grid items-center gap-x-10 gap-y-12 lg:grid-cols-12">
         <div className="lg:col-span-6">
@@ -41,7 +45,8 @@ export function AgencyHero() {
               {hero.secondaryCta.label}
             </Button>
           </div>
-          <ul className="mt-4 flex animate-[fade-in_0.8s_0.6s_var(--ease-soft)_both] flex-wrap gap-x-5 gap-y-1 text-[0.75rem] text-fg-3">
+          <Scarcity className="mt-4 animate-[fade-in_0.8s_0.6s_var(--ease-soft)_both]" />
+          <ul className="mt-3 flex animate-[fade-in_0.8s_0.6s_var(--ease-soft)_both] flex-wrap gap-x-5 gap-y-1 text-[0.75rem] text-fg-3">
             {hero.trust.map((t) => (
               <li key={t} className="inline-flex items-center gap-1.5">
                 <Icon name="check" className="h-3.5 w-3.5 text-gold-300" strokeWidth={2.4} />

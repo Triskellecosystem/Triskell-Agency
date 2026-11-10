@@ -207,7 +207,7 @@ export const site = {
         href: "/siti-web",
         children: [
           { label: "Come lo creiamo", href: "/siti-web", hint: "Dalla prima call al sito finito" },
-          { label: "Portfolio siti", href: "/siti-web/portfolio", hint: "I siti che abbiamo realizzato" },
+          { label: "Portfolio siti", href: "/siti-web#portfolio", hint: "I siti che abbiamo realizzato" },
         ],
       },
       { label: "Risultati", href: "/risultati" },
@@ -290,7 +290,7 @@ export const site = {
       { icon: "messages", title: "Rincorri messaggi tutto il giorno?", text: "" },
       { icon: "cpu", title: "Vuoi usare l'AI ma non sai da dove iniziare?", text: "" },
     ] satisfies Array<{ icon: IconName; title: string; text: string }>,
-    sectors: ["Palestre e fitness", "Studi medici e sanitari", "Ristoranti", "Centri estetici", "Hotel e affittacamere", "Scuole e formazione", "E-commerce", "Professionisti"],
+    sectors: ["Palestre e fitness", "Studi medici e sanitari", "Ristoranti", "Centri estetici", "Hotel e affittacamere", "E-commerce", "Professionisti"],
     sectorsLabel: "Settori che seguiamo",
   },
 
@@ -348,6 +348,7 @@ export const site = {
       { icon: "database", title: "Collegato al tuo CRM", text: "Contatti, note e stato del cliente in un posto solo." },
       { icon: "timer", title: "Ti fa risparmiare ore", text: "Il lavoro ripetitivo lo fa Irelia, tu chiudi le vendite." },
       { icon: "shield", title: "Seguito da noi", text: "Lo configuriamo, lo alleniamo e lo miglioriamo nel tempo." },
+      { icon: "hourglass", title: "Ore restituite a te", text: "Con 20 messaggi al giorno sono circa 6 ore a settimana libere." },
     ] satisfies Array<{ icon: IconName; title: string; text: string }>,
     console: {
       title: "Il tuo agente AI",
@@ -667,7 +668,7 @@ export const site = {
         { icon: "refresh", title: "Revisioni incluse", text: "Lo sistemiamo finché non ti convince." },
       ] satisfies Array<{ icon: IconName; title: string; text: string }>,
     },
-    portfolioCta: { label: "Guarda i siti che abbiamo creato", href: "/siti-web/portfolio" },
+    portfolioCta: { label: "Guarda i siti che abbiamo creato", href: "/siti-web#portfolio" },
   },
 
   /** Teaser "Chi siamo" sulla home. */
@@ -1031,7 +1032,7 @@ export const site = {
           { label: "Metodo Triskell", href: "/metodo-triskell" },
           { label: "Gestione social", href: "/social" },
           { label: "Siti web", href: "/siti-web" },
-          { label: "Portfolio siti", href: "/siti-web/portfolio" },
+          { label: "Portfolio siti", href: "/siti-web#portfolio" },
           { label: "Risultati", href: "/risultati" },
           { label: "Agenti AI", href: "/#ai" },
         ],

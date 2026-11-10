@@ -10,7 +10,7 @@ export function IncludesGroups() {
   const inc = site.social.includes;
   const total = inc.groups.reduce((n, g) => n + g.items.length, 0);
   return (
-    <Section id="incluso" labelledBy="incluso-title" className="sq-bg">
+    <Section id="incluso" labelledBy="incluso-title">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeading id="incluso-title" overline={inc.overline} title={inc.title} line={inc.line} />
         <p className="font-display leading-none">

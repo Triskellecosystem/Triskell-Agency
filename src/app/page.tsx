@@ -29,7 +29,7 @@ export default function HomePage() {
       <ForWho />
 
       <Section id="servizi" labelledBy="servizi-title">
-        <Stage3D view="left" />
+        <Stage3D kind="rings" />
         <span aria-hidden="true" className="sec-line absolute inset-x-0 top-0 h-px" />
         <TechBackdrop tone="gold" rich />
         <SectionHeading id="servizi-title" overline={services.overline} title={services.title} line={services.line} />

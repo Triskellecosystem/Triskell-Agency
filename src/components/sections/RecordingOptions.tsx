@@ -9,6 +9,7 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { SceneVideo } from "@/components/ui/SceneVideo";
 import { Stage3D } from "@/components/ui/Stage3D";
 import { Reveal } from "@/components/motion/Reveal";
+import { Teleprompter } from "./Teleprompter";
 
 /**
  * "Come vuoi registrare?": un interruttore grande (Veniamo noi / Registri tu) che cambia la scheda con i punti
@@ -24,7 +25,7 @@ export function RecordingOptions() {
   ];
   return (
     <Section id="riprese" labelledBy="riprese-title" className="overflow-hidden">
-      <Stage3D tone="azure" />
+      <Stage3D kind="rings" tone="azure" />
       <SectionHeading id="riprese-title" overline={r.overline} title="Come vuoi [registrare?]" line="Scegli: la qualità resta la stessa, cambia solo quanto tempo ci metti tu." align="center" />
 
       <Reveal y={14} blur={0} className="mx-auto mt-8 flex w-fit">
@@ -67,7 +68,7 @@ export function RecordingOptions() {
         </div>
         <Reveal y={0} blur={0} className="scv-reveal">
           <div key={sel} className="rec-video">
-            <SceneVideo src={videos[sel]!.src} poster={videos[sel]!.poster} label={o.title} />
+            {sel === 0 ? <SceneVideo src={videos[0]!.src} poster={videos[0]!.poster} label={o.title} /> : <Teleprompter />}
           </div>
         </Reveal>
       </div>

@@ -26,7 +26,7 @@ export default function AboutPage() {
         <PersonScroll key={p.id} person={p} index={i} />
       ))}
       <Section id="come-lavoriamo" labelledBy="metodo-title">
-        <Stage3D view="low" tone="azure" />
+        <Stage3D kind="rings" tone="azure" />
         <TechBackdrop tone="gold" rich />
         <SectionHeading id="metodo-title" overline={m.overline} title={m.title} line={m.line} align="center" />
         <Reveal y={16} blur={0} className="mt-12">

@@ -14,6 +14,13 @@ const BEAUTY = [
   { who: "Marta C.", text: "Ho visto la promo, è ancora valida?" },
   { who: "Anna D.", text: "Vorrei info sulla consulenza gratuita" },
 ];
+const DENTAL = [
+  { who: "Roberto F.", text: "Fate anche l'allineatore invisibile?" },
+  { who: "Laura P.", text: "Posso prenotare una prima visita?" },
+  { who: "Marco S.", text: "Quanto costa lo sbiancamento?" },
+  { who: "Giada T.", text: "Avete posto venerdì pomeriggio?" },
+  { who: "Simone V.", text: "Ho visto la promo, è ancora valida?" },
+];
 const MESSAGES = [
   { who: "Martina R.", text: "Ciao! Quando posso iniziare?" },
   { who: "Luca B.", text: "Quanto costa la prova?" },
@@ -32,12 +39,13 @@ const MESSAGES = [
 const PROFILES = {
   vertis: { img: "/social-examples/hd/vertis.webp", base: 78500, name: "Prova gratuita · Vertis Fitness", top: "10.25%" },
   essentia: { img: "/social-examples/hd/essentia.webp", base: 52800, name: "Trattamento omaggio · Essentia", top: "10%" },
+  lumina: { img: "/social-examples/hd/lumina.webp", base: 36400, name: "Prima visita gratuita · Lumina Dental", top: "10%" },
   lavie: { img: "/social-examples/hd/lavie.webp", base: 36900, name: "Consulenza gratuita · La Vie Beauty", top: "10%" },
 } as const;
 
 export function LivePhone({ className, compact, tabs, salesLabel = "Vendite chiuse", profile = "vertis" }: { className?: string; compact?: boolean; tabs?: boolean; salesLabel?: string; profile?: keyof typeof PROFILES }) {
   const P = PROFILES[profile];
-  const LIST = profile === "vertis" ? MESSAGES : BEAUTY;
+  const LIST = profile === "vertis" ? MESSAGES : profile === "lumina" ? DENTAL : BEAUTY;
   const [tab, setTab] = useState<0 | 1>(0);
   const drag = useRef<number | null>(null);
   const ref = useRef<HTMLDivElement>(null);
@@ -67,9 +75,9 @@ export function LivePhone({ className, compact, tabs, salesLabel = "Vendite chiu
 
   const followers = P.base + f;
   const today = 200 + f; // +200, +201, +202…
-  const requests = 18 + Math.floor(f / 4);
+  const requests = 18 + Math.floor(f / 2.5);
   const campLeads = 18 + Math.floor(f / 2);
-  const sales = 6 + Math.floor(f / 10);
+  const sales = 6 + Math.floor(f / 6);
   const msgs = Array.from({ length: compact ? 3 : 4 }, (_, k) => {
     const n = m - k;
     const i = ((n % LIST.length) + LIST.length) % LIST.length;
@@ -131,7 +139,7 @@ export function LivePhone({ className, compact, tabs, salesLabel = "Vendite chiu
           </span>
         </div>
         {/* +N follower: escono dallo schermo, grandi, e salgono piano */}
-        <span aria-hidden="true" className="pointer-events-none absolute -right-6 top-[9%] z-30 h-0 w-0 sm:-right-10">
+        <span aria-hidden="true" className={cn("pointer-events-none absolute -right-6 z-30 h-0 w-0 sm:-right-10", tabs ? "top-[17%]" : "top-[9%]")}>
           {[f, f - 1].filter((x) => x > 0).map((x) => (
             <span key={x} className="lp2-bubble absolute right-0 top-0 inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-[linear-gradient(135deg,#ff4f8b,#e1306c)] px-3.5 py-1.5 font-display text-[1.125rem] font-bold text-white shadow-[0_10px_30px_-8px_rgb(225_48_108/0.9)]">
               <span className="text-[0.9rem]">♥</span>+{x} follower

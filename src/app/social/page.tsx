@@ -11,11 +11,9 @@ import { Stage3D } from "@/components/ui/Stage3D";
 import { RecordingOptions } from "@/components/sections/RecordingOptions";
 import { SocialFinale } from "@/components/sections/SocialFinale";
 import { SocialPillars } from "@/components/sections/SocialPillars";
-import { StepRail } from "@/components/sections/StepRail";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Section, SectionHeading } from "@/components/ui/Section";
-import { TechBackdrop } from "@/components/ui/TechBackdrop";
 import { Reveal } from "@/components/motion/Reveal";
 import { site } from "@/content/site";
 
@@ -33,7 +31,7 @@ export default function SocialPage() {
         <Button href="/contatti" size="md" icon="calendar" iconPosition="start" pulse>
           Prenota la call gratuita
         </Button>
-        <Button href="#come-lavoriamo" variant="secondary" size="md" icon="arrow-down">
+        <Button href="#cosa-facciamo" variant="secondary" size="md" icon="arrow-down">
           Come lavoriamo
         </Button>
         <ul className="flex w-full flex-wrap gap-x-5 gap-y-1.5 pt-1">
@@ -47,10 +45,9 @@ export default function SocialPage() {
       </PageHero>
 
       <SocialPillars />
-      <RecordingOptions />
-
+      <ProfileExamples />
       <Section id="crescita" labelledBy="crescita-title" className="overflow-hidden">
-        <Stage3D view="low" />
+        <Stage3D kind="horizon" />
         <div className="grid items-center gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
           <div>
             <SectionHeading id="crescita-title" overline="Il risultato" title="Un profilo che [cresce ogni giorno]" line="Contenuti costanti e campagne attive: follower, messaggi e richieste arrivano tutti i giorni." />
@@ -64,22 +61,11 @@ export default function SocialPage() {
         </div>
       </Section>
 
-      <ProfileExamples />
-
-      <Section id="come-lavoriamo" labelledBy="come-title">
-        <TechBackdrop tone="gold" rich />
-        <SectionHeading id="come-title" overline="Il processo" title={s.processTitle} line={s.processLine} align="center" />
-        <Reveal y={16} blur={0} className="mt-12">
-          <StepRail steps={s.steps} />
-        </Reveal>
-      </Section>
-
-
-
+      <RecordingOptions />
       <IncludesGroups />
 
-      <Section id="vantaggio" labelledBy="vantaggio-title" className="sq-bg">
-        <Stage3D view="right" />
+      <Section id="vantaggio" labelledBy="vantaggio-title">
+        <Stage3D kind="lines" />
         <SectionHeading id="vantaggio-title" overline={s.compare.overline} title={s.compare.title} line={s.compare.line} align="center" />
         <div className="mt-9">
           <Compare them={s.compare.them} us={s.compare.us} rows={s.compare.rows} />

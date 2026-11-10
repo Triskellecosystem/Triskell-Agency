@@ -25,13 +25,6 @@ export function SocialFinale() {
           )}
         </h2>
       </Reveal>
-      <ul aria-label="Cosa facciamo noi" className="mx-auto mt-6 flex max-w-3xl flex-wrap justify-center gap-2">
-        {f.words.map((w, i) => (
-          <li key={w} className="sf-word rounded-full border border-line-strong px-3.5 py-1.5 font-display text-[0.875rem] font-semibold text-fg-2" style={{ "--i": i } as React.CSSProperties}>
-            {w}
-          </li>
-        ))}
-      </ul>
       <Reveal delay={0.2} y={14} blur={0}>
         <p className="mx-auto mt-5 max-w-xl text-lead text-fg-2">{f.text}</p>
         <div className="mt-7 flex justify-center">

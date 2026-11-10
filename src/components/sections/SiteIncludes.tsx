@@ -1,5 +1,4 @@
 import { site } from "@/content/site";
-import { Stage3D } from "@/components/ui/Stage3D";
 import { Icon } from "@/components/ui/Icon";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Spotlight } from "@/components/ui/Spotlight";
@@ -15,7 +14,6 @@ export function SiteIncludes() {
   const inc = site.sitiProcess.includes;
   return (
     <Section id="incluso-sito" labelledBy="incluso-sito-title" className="si-band">
-        <Stage3D view="left" />
       <SectionHeading id="incluso-sito-title" overline={inc.overline} title={inc.title} line={inc.line} align="center" />
       <RevealGroup className="mt-10 grid gap-3 max-md:grid-cols-2 md:grid-cols-4" stagger={0.08} alternate>
         {inc.items.map((it, i) => (

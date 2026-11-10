@@ -23,10 +23,6 @@ export function Contact() {
             <LogoMark sizes="288px" className="pointer-events-none absolute -bottom-20 -left-16 h-72 w-72 opacity-[0.08]" />
 
             <div className="relative flex flex-col">
-              <p className="mb-3 inline-flex w-fit items-center gap-2 rounded-full bg-lime-300/15 px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-wider text-lime-300">
-                <span className="agent-live h-1.5 w-1.5 rounded-full bg-lime-300" />
-                Call gratuita · posti limitati ogni settimana
-              </p>
               <SplitReveal id="contact-title" text={contact.title} as="h2" className="text-h2 text-fg" />
               <Reveal delay={0.2} blur={4} y={14}>
                 <p className="mt-3 max-w-md text-[0.9375rem] text-fg-2">{contact.line}</p>

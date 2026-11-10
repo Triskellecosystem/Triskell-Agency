@@ -1,5 +1,4 @@
 import { site } from "@/content/site";
-import { Stage3D } from "@/components/ui/Stage3D";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Section, SectionHeading } from "@/components/ui/Section";
@@ -53,7 +52,6 @@ export function WebsitesTeaser() {
   const s = site.sitiWeb;
   return (
     <Section id="siti" labelledBy="siti-teaser-title" className="overflow-hidden">
-        <Stage3D view="low" tone="azure" />
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeading id="siti-teaser-title" overline="Siti web" title={s.title} line="Veloci, curati, pensati per farti contattare." />
         <Reveal y={12} blur={0}>
@@ -61,7 +59,7 @@ export function WebsitesTeaser() {
             <Button href="/siti-web" size="md" icon="arrow-right">
               Come lo creiamo
             </Button>
-            <Button href="/siti-web/portfolio" size="md" variant="secondary" icon="monitor" iconPosition="start">
+            <Button href="/siti-web#portfolio" size="md" variant="secondary" icon="monitor" iconPosition="start">
               Portfolio siti
             </Button>
           </div>

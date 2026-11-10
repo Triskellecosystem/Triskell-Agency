@@ -1,13 +1,10 @@
 import { site } from "@/content/site";
-import { Stage3D } from "@/components/ui/Stage3D";
 import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { CountUp } from "@/components/motion/CountUp";
 import { Reveal } from "@/components/motion/Reveal";
 import { AiAdvantages } from "./AiAdvantages";
 import { AiChat } from "./AiChat";
-import { AiStepper } from "./AiStepper";
-import { TimeSaver } from "./TimeSaver";
 
 /**
  * Irelia, l'assistente AI: a sinistra titolo, tre garanzie, il flusso in sei passi collegati e tre numeri;
@@ -17,29 +14,17 @@ export function AiAgents() {
   const a = site.ai;
   return (
     <Section id="ai" labelledBy="ai-title" className="overflow-hidden">
-        <Stage3D view="right" />
       <div aria-hidden="true" className="ai-bg absolute inset-0 -z-10" />
       <div className="grid items-center gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
         <div className="min-w-0">
           <SectionHeading id="ai-title" overline={a.overline} title={a.title} line={a.line} />
-          <Reveal y={10} blur={0} delay={0.1}>
-            <ul className="mt-5 flex flex-wrap gap-2">
-              {a.badges.map((b) => (
-                <li key={b} className="inline-flex items-center gap-1.5 rounded-full border border-lime-300/35 bg-lime-300/[0.07] px-3 py-1 text-[0.75rem] font-semibold text-lime-300">
-                  <span className="agent-live h-1.5 w-1.5 rounded-full bg-lime-300" />
-                  {b}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
 
-          <AiStepper />
 
           <Reveal y={12} blur={0} delay={0.2}>
-            <dl className="mt-6 grid max-w-md grid-cols-3 divide-x divide-white/10 border-y border-white/10 py-4">
+            <dl className="mt-7 grid max-w-lg grid-cols-3 divide-x divide-white/10 border-y border-white/10 py-5">
               {a.console.stats.map((s) => (
                 <div key={s.label} className="px-3 first:pl-0">
-                  <dd className="font-display text-[1.5rem] font-bold leading-none tracking-[-0.04em]">
+                  <dd className="font-display text-[clamp(1.875rem,1.4rem+1.6vw,2.75rem)] font-bold leading-none tracking-[-0.045em]">
                     <CountUp {...s} className="text-gold" />
                   </dd>
                   <dt className="mt-1 text-[0.6875rem] text-fg-3">{s.label}</dt>
@@ -58,9 +43,6 @@ export function AiAgents() {
         </Reveal>
       </div>
       <Reveal y={14} blur={0} className="mt-10">
-        <TimeSaver />
-      </Reveal>
-      <Reveal y={14} blur={0} className="mt-4">
         <AiAdvantages />
       </Reveal>
     </Section>

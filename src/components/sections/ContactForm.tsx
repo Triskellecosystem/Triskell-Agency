@@ -6,6 +6,7 @@ import { cn } from "@/lib/cn";
 import { LIMITS, validateContact, type ContactErrors, type ContactField, type ContactValues } from "@/lib/validation";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
+import { Scarcity } from "@/components/ui/Scarcity";
 
 type Status = "idle" | "sending" | "success" | "error";
 const { form } = site.contact;
@@ -246,9 +247,12 @@ export function ContactForm() {
         )}
       </div>
 
+<div className="flex flex-wrap items-center gap-3">
       <Button type="submit" size="lg" pulse className="w-full sm:w-auto" icon={status === "sending" ? "loader" : "send"} disabled={status === "sending"}>
         {status === "sending" ? form.sending : form.submit}
       </Button>
+        <Scarcity />
+      </div>
     </form>
   );
 }

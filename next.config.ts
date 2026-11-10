@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
       { source: "/agency/portfolio", destination: "/risultati", permanent: true },
       { source: "/agency/siti-web", destination: "/siti-web", permanent: true },
       { source: "/portfolio", destination: "/risultati", permanent: true },
+      { source: "/siti-web/portfolio", destination: "/siti-web", permanent: true },
     ];
   },
   experimental: { optimizePackageImports: ["lucide-react", "motion"] },

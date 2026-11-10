@@ -19,7 +19,7 @@ export function EcosystemLink() {
   const ext = (href: string) => (href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {});
   return (
     <Section id="ecosistema" labelledBy="eco-title" className="overflow-hidden">
-        <Stage3D />
+        <Stage3D kind="lines" />
       <TechBackdrop tone="mixed" cursor rich />
       <SectionHeading id="eco-title" overline={e.overline} title={e.title} line={e.line} align="center" />
 
