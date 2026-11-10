@@ -202,17 +202,10 @@ export const site = {
       { label: "Home", href: "/" },
       { label: "Metodo Triskell", href: "/metodo-triskell" },
       { label: "Social media", href: "/social" },
-      {
-        label: "Siti web",
-        href: "/siti-web",
-        children: [
-          { label: "Come lo creiamo", href: "/siti-web", hint: "Dalla prima call al sito finito" },
-          { label: "Portfolio siti", href: "/siti-web#portfolio", hint: "I siti che abbiamo realizzato" },
-        ],
-      },
+      { label: "Siti web", href: "/siti-web" },
       { label: "Risultati", href: "/risultati" },
       { label: "Chi siamo", href: "/chi-siamo" },
-    ] satisfies NavLink[],
+    ] as NavLink[],
     cta: { label: "Prenota ora", href: "/contatti" },
     menuOpen: "Apri il menu",
     menuClose: "Chiudi il menu",
@@ -470,7 +463,7 @@ export const site = {
         { from: 4, to: 6, title: "Vediamo i risultati", text: "Ottimizziamo ciò che funziona e spingiamo dove rende di più." },
       ],
       badge: "Minimo 6 mesi",
-      burst: ["+60 lead al mese", "+1.200 follower", "Prove prenotate", "+25K€ fatturato", "Clienti fidelizzati", "Campagne ottimizzate"],
+      burst: ["Struttura pronta", "Contenuti costanti", "Campagne ottimizzate", "Profilo riconoscibile", "Richieste più regolari", "Dati chiari ogni mese"],
     },
     /** Niente pacchetti fissi: base consigliata. */
     base: {
@@ -1032,7 +1025,6 @@ export const site = {
           { label: "Metodo Triskell", href: "/metodo-triskell" },
           { label: "Gestione social", href: "/social" },
           { label: "Siti web", href: "/siti-web" },
-          { label: "Portfolio siti", href: "/siti-web#portfolio" },
           { label: "Risultati", href: "/risultati" },
           { label: "Agenti AI", href: "/#ai" },
         ],

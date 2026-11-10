@@ -118,7 +118,7 @@ export function ProfileExamples() {
     <Section id="esempi" labelledBy="esempi-title" className="pe-band overflow-hidden">
       <SectionHeading id="esempi-title" overline="Esempi" title="Questo potrebbe essere il profilo della tua attività [tra qualche mese]" align="center" className="max-w-3xl" />
       <Reveal y={20} blur={0} className="relative mt-9">
-        <span aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[24rem] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(58_164_212/0.35),transparent)] blur-2xl" />
+        <span aria-hidden="true" className="pe-gold pointer-events-none absolute inset-x-0 -bottom-10 -top-10 -z-10"><span /></span>
         <div ref={wrap} className="pe relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_5%,#000_95%,transparent)]">
           <div ref={track} className="flex w-max touch-pan-y select-none will-change-transform">
             <ul className="flex gap-5 px-[6vw] py-5">{profiles.map((p) => phone(p, false))}</ul>

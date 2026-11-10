@@ -31,19 +31,16 @@ export function MetodoTeaser() {
           <MetodoEquation />
         </Reveal>
 
-        <Reveal y={14} blur={0} className="mx-auto mt-12 max-w-4xl">
-          <p className="text-center text-[0.75rem] font-bold uppercase tracking-[0.22em] text-fg-2">La base che consigliamo</p>
-          <RevealGroup className="mt-5 grid grid-cols-3 gap-2.5 sm:gap-4" stagger={0.2}>
-            {nums.map((n, i) => (
-              <RevealItem key={n.unit} y={0} className="bx h-full" >
-                <div className="bx-card relative h-full overflow-hidden rounded-[1.25rem] border border-gold-300/40 bg-[linear-gradient(150deg,rgb(247_200_92/0.14),rgb(5_31_54/0.75))] px-2 py-6 text-center shadow-[0_24px_50px_-26px_rgb(0_0_0/0.9)] sm:py-8" style={{ "--i": i } as React.CSSProperties}>
-                  <span aria-hidden="true" className="bx-shine" />
-                  <p className="font-display text-[clamp(2.5rem,1.7rem+3.4vw,4.5rem)] font-bold leading-none tracking-[-0.06em]">
-                    <CountUp value={n.value} prefix={n.prefix} className="text-gold" duration={1.4} />
-                  </p>
-                  <p className="mt-2 font-display text-[clamp(0.9375rem,0.8rem+0.5vw,1.25rem)] font-bold text-fg">{n.unit}</p>
-                  <p className="mt-0.5 text-[0.75rem] text-fg-3">{n.label}</p>
-                </div>
+        <Reveal y={14} blur={0} className="mx-auto mt-10 max-w-2xl">
+          <p className="text-center text-[0.625rem] font-semibold uppercase tracking-[0.24em] text-fg-3">La base che consigliamo</p>
+          <RevealGroup className="mt-3 grid grid-cols-3 divide-x divide-gold-300/15 rounded-2xl border border-gold-300/25 bg-[rgb(5_31_54/0.55)] backdrop-blur-sm" stagger={0.15}>
+            {nums.map((n) => (
+              <RevealItem key={n.unit} y={8} className="px-2 py-4 text-center sm:py-5">
+                <p className="font-display text-[clamp(1.625rem,1.3rem+1.2vw,2.25rem)] font-semibold leading-none tracking-[-0.04em]">
+                  <CountUp value={n.value} prefix={n.prefix} className="text-gold" duration={1.2} />
+                  <span className="ml-1.5 text-[0.8125rem] font-semibold tracking-normal text-fg sm:text-[0.9375rem]">{n.unit}</span>
+                </p>
+                <p className="mt-1.5 text-[0.6875rem] text-fg-3">{n.label}</p>
               </RevealItem>
             ))}
           </RevealGroup>

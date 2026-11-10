@@ -1,4 +1,5 @@
 import { site } from "@/content/site";
+import { Stage3D } from "@/components/ui/Stage3D";
 import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { CountUp } from "@/components/motion/CountUp";
@@ -7,15 +8,16 @@ import { AiAdvantages } from "./AiAdvantages";
 import { AiChat } from "./AiChat";
 
 /**
- * Irelia, l'assistente AI: a sinistra titolo, tre garanzie, il flusso in sei passi collegati e tre numeri;
- * a destra la chat dimostrativa. Sotto, la tendina con tutti i vantaggi.
+ * Irelia, l'assistente AI: a sinistra titolo, tre numeri, le due tendine (come funziona, vantaggi) e il pulsante;
+ * a destra la chat dimostrativa.
  */
 export function AiAgents() {
   const a = site.ai;
   return (
     <Section id="ai" labelledBy="ai-title" className="overflow-hidden">
       <div aria-hidden="true" className="ai-bg absolute inset-0 -z-10" />
-      <div className="grid items-center gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+      <Stage3D kind="room" tone="azure" view="right" />
+      <div className="grid items-center gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
         <div className="min-w-0">
           <SectionHeading id="ai-title" overline={a.overline} title={a.title} line={a.line} />
 
@@ -31,20 +33,20 @@ export function AiAgents() {
                 </div>
               ))}
             </dl>
-            <div className="mt-6">
-              <Button href={a.cta.href} size="md" icon="bot" iconPosition="start" pulse>
-                {a.cta.label}
-              </Button>
-            </div>
+          </Reveal>
+          <Reveal y={12} blur={0} delay={0.25} className="mt-6 max-w-xl">
+            <AiAdvantages />
+          </Reveal>
+          <Reveal y={12} blur={0} delay={0.3} className="mt-6">
+            <Button href={a.cta.href} size="md" icon="bot" iconPosition="start" pulse>
+              {a.cta.label}
+            </Button>
           </Reveal>
         </div>
         <Reveal className="min-w-0" from="right" blur={0}>
           <AiChat />
         </Reveal>
       </div>
-      <Reveal y={14} blur={0} className="mt-10">
-        <AiAdvantages />
-      </Reveal>
     </Section>
   );
 }

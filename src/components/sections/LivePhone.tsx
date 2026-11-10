@@ -77,7 +77,7 @@ export function LivePhone({ className, compact, tabs, salesLabel = "Vendite chiu
   const today = 200 + f; // +200, +201, +202…
   const requests = 18 + Math.floor(f / 2.5);
   const campLeads = 18 + Math.floor(f / 2);
-  const sales = 6 + Math.floor(f / 6);
+  const sales = 6 + Math.floor(f / 3);
   const msgs = Array.from({ length: compact ? 3 : 4 }, (_, k) => {
     const n = m - k;
     const i = ((n % LIST.length) + LIST.length) % LIST.length;

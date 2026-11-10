@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { BestPackage } from "@/components/sections/BestPackage";
 import { Compare } from "@/components/sections/Compare";
 import { Contact } from "@/components/sections/Contact";
-import { CtaBand } from "@/components/sections/CtaBand";
 import { MetodoEquation } from "@/components/sections/MetodoEquation";
 import { LivePhone } from "@/components/sections/LivePhone";
 import { Rodaggio } from "@/components/sections/Rodaggio";
@@ -112,7 +111,6 @@ export default function MetodoPage() {
         </div>
       </Section>
 
-      <CtaBand content={site.cta.agency} />
       <Contact />
     </>
   );

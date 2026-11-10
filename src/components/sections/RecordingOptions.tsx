@@ -72,7 +72,6 @@ export function RecordingOptions() {
           </div>
         </Reveal>
       </div>
-      <p className="mt-8 text-center text-[0.75rem] text-fg-3">Collaborazioni da minimo 6 mesi · il tempo per far crescere davvero il profilo</p>
     </Section>
   );
 }

@@ -1,20 +1,17 @@
 import type { Metadata } from "next";
-import { Stage3D } from "@/components/ui/Stage3D";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { PageHero } from "@/components/sections/PageHero";
-import { SitesRing } from "@/components/sections/SitesRing";
-import { SiteIncludes } from "@/components/sections/SiteIncludes";
-import { StepRail } from "@/components/sections/StepRail";
+import { SiteProcess } from "@/components/sections/SiteProcess";
+import { SitesHelix } from "@/components/sections/SitesHelix";
 import { SitesWall } from "@/components/sections/WebsitesTeaser";
 import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
-import { TechBackdrop } from "@/components/ui/TechBackdrop";
 import { Reveal } from "@/components/motion/Reveal";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Siti web",
-  description: "Come creiamo il tuo sito: call iniziale, stile scelto insieme, struttura e testi, prima versione, revisioni, pubblicazione e assistenza.",
+  description: "Come creiamo il tuo sito e tutti i siti che abbiamo realizzato: call iniziale, stile scelto insieme, struttura e testi, prima versione, revisioni, pubblicazione e assistenza.",
   alternates: { canonical: "/siti-web" },
 };
 
@@ -38,23 +35,18 @@ export default function SitesPage() {
       </div>
 
       <Section id="percorso" labelledBy="percorso-title">
-        <Stage3D kind="horizon" />
-        <TechBackdrop tone="gold" rich />
         <SectionHeading id="percorso-title" overline="Come lo creiamo" title={p.processTitle} line={p.processLine} align="center" />
-        <Reveal y={16} blur={0} className="mt-12">
-          <StepRail steps={p.steps} />
+        <Reveal y={16} blur={0} className="mt-10">
+          <SiteProcess />
         </Reveal>
       </Section>
 
-      <SiteIncludes />
-
-      <Section id="portfolio" labelledBy="portfolio-title" className="overflow-hidden">
-        <Stage3D kind="rings" tone="azure" />
-        <SectionHeading id="portfolio-title" overline="Portfolio" title="Tutti i siti che [abbiamo creato]" line="Ristoranti, ospitalità, brand, software: ognuno su misura." align="center" />
-        <Reveal y={20} blur={0} className="mt-8">
-          <SitesRing />
-        </Reveal>
-      </Section>
+      <section id="portfolio" aria-labelledby="portfolio-title" className="relative isolate pt-[clamp(3rem,6vw,5rem)]">
+        <div className="container-x">
+          <SectionHeading id="portfolio-title" overline="Portfolio" title="Tutti i siti che [abbiamo creato]" line="Ristoranti, ospitalità, brand, software: ognuno su misura." align="center" />
+        </div>
+        <SitesHelix />
+      </section>
 
       <CtaBand content={site.cta.sites} />
     </>

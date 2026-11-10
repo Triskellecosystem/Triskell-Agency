@@ -5,7 +5,7 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
-import { SitesRibbon } from "./SitesRibbon";
+import { SitesShowcase } from "./SitesShowcase";
 
 const points = [
   { icon: "zap", text: "Veloci e perfetti sul telefono" },
@@ -59,9 +59,6 @@ export function WebsitesTeaser() {
             <Button href="/siti-web" size="md" icon="arrow-right">
               Come lo creiamo
             </Button>
-            <Button href="/siti-web#portfolio" size="md" variant="secondary" icon="monitor" iconPosition="start">
-              Portfolio siti
-            </Button>
           </div>
         </Reveal>
       </div>
@@ -75,8 +72,8 @@ export function WebsitesTeaser() {
           </RevealItem>
         ))}
       </RevealGroup>
-      <Reveal y={20} blur={0} className="mt-6">
-        <SitesRibbon />
+      <Reveal y={20} blur={0} className="mt-8">
+        <SitesShowcase />
       </Reveal>
     </Section>
   );

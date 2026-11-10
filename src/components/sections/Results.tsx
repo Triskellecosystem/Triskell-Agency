@@ -1,5 +1,4 @@
 import { site } from "@/content/site";
-import { Stage3D } from "@/components/ui/Stage3D";
 import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { TechBackdrop } from "@/components/ui/TechBackdrop";
@@ -12,7 +11,6 @@ export function Results() {
   const { results } = site;
   return (
     <Section id={results.id} labelledBy="results-title">
-        <Stage3D kind="horizon" />
       <TechBackdrop tone="azure" cursor rich />
       <div className="flex flex-wrap items-end justify-between gap-5">
         <SectionHeading id="results-title" overline={results.overline} title={results.title} line={results.line} />
