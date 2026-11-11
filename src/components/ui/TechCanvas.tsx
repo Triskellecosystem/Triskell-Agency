@@ -12,7 +12,7 @@ import { cn } from "@/lib/cn";
  * circuit = piste di circuito con impulsi di luce che le percorrono
  * Si ferma fuori schermo; con reduced motion disegna un solo fotogramma.
  */
-export type TechKind = "globe" | "terrain" | "net" | "waves" | "circuit" | "blocks" | "pixels" | "tunnel" | "matrix" | "bars" | "scan" | "isogrid" | "hud";
+export type TechKind = "globe" | "terrain" | "net" | "waves" | "circuit" | "blocks" | "pixels" | "tunnel" | "matrix" | "bars" | "scan" | "isogrid" | "hud" | "soft";
 
 const AZ = [110, 200, 240];
 const GD = [253, 214, 120];
@@ -257,6 +257,34 @@ export function TechCanvas({ kind, className, focusX = 0.5, focusY = 0.5 }: { ki
             }
           }
         }
+      }
+
+      if (kind === "soft") {
+        // griglia finissima e ferma, poche celle che si accendono piano e una linea di luce lentissima
+        const g = 56, ox = (W % g) / 2;
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = rgba(AZ, 0.06);
+        ctx.beginPath();
+        for (let x = ox; x <= W; x += g) { ctx.moveTo(Math.round(x) + 0.5, 0); ctx.lineTo(Math.round(x) + 0.5, H); }
+        for (let y = 0; y <= H; y += g) { ctx.moveTo(0, Math.round(y) + 0.5); ctx.lineTo(W, Math.round(y) + 0.5); }
+        ctx.stroke();
+        const cols = Math.ceil(W / g), rows = Math.ceil(H / g);
+        for (let k = 0; k < 14; k++) {
+          const sd = Math.sin(k * 127.1) * 43758.5, fr = sd - Math.floor(sd);
+          const ph = (t * 0.12 + fr) % 1, a = Math.sin(ph * Math.PI) ** 2;
+          const cyc = Math.floor(t * 0.12 + fr);
+          const r2 = Math.sin((k + 1) * 311.7 + cyc * 74.7) * 43758.5, f2 = r2 - Math.floor(r2);
+          const r3 = Math.sin((k + 1) * 183.3 + cyc * 41.1) * 43758.5, f3 = r3 - Math.floor(r3);
+          const cx = Math.floor(f2 * cols), cy = Math.floor(f3 * rows);
+          ctx.fillStyle = rgba(k % 5 === 0 ? GD : AZ, 0.07 * a);
+          ctx.fillRect(ox + cx * g + 1, cy * g + 1, g - 1, g - 1);
+          ctx.strokeStyle = rgba(k % 5 === 0 ? GD : AZ, 0.22 * a);
+          ctx.strokeRect(ox + cx * g + 0.5, cy * g + 0.5, g, g);
+        }
+        const ly = ((t * 22) % (H + 300)) - 150;
+        const lg = ctx.createLinearGradient(0, 0, W, 0);
+        lg.addColorStop(0, rgba(AZ, 0)); lg.addColorStop(0.5, rgba(AZ, 0.16)); lg.addColorStop(1, rgba(AZ, 0));
+        ctx.fillStyle = lg; ctx.fillRect(0, Math.round(ly), W, 1);
       }
 
       if (kind === "pixels") {

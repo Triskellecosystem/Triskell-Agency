@@ -18,7 +18,7 @@ export function AgencyHero() {
         <span className="ah-dots" />
       </div>
       <DigitalCursor className="-z-10" />
-      <TechCanvas kind="blocks" focusX={0.7} focusY={0.6} className="hero-globe" />
+      <TechCanvas kind="soft" className="hero-soft" />
       <span aria-hidden="true" className="hero-veil pointer-events-none absolute inset-0 -z-10" />
 
       <div className="container-x grid items-center gap-x-10 gap-y-12 lg:grid-cols-12">
