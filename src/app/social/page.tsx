@@ -15,6 +15,7 @@ import { Icon } from "@/components/ui/Icon";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
 import { site } from "@/content/site";
+import { PerspectiveRoom } from "@/components/ui/PerspectiveRoom";
 import { SectionBg } from "@/components/ui/SectionBg";
 
 export const metadata: Metadata = {
@@ -27,7 +28,7 @@ export default function SocialPage() {
   const s = site.social;
   return (
     <>
-      <PageHero overline={s.overline} title={s.title} line={s.line} crumbs={[{ label: "Social media" }]} aside={<PhoneFan />} alignTop backdrop={<SectionBg kind="h-hud" strong className="" />}>
+      <PageHero overline={s.overline} title={s.title} line={s.line} crumbs={[{ label: "Social media" }]} aside={<PhoneFan />} alignTop backdrop={<><PerspectiveRoom x={76} y={70} q={170} mode="floor" gold className="prm--soft" /><span aria-hidden="true" className="sh-halo pointer-events-none absolute inset-0 -z-10"><i /><b /></span></>}>
         <Button href="/contatti" size="md" icon="calendar" iconPosition="start" pulse>
           Prenota la call gratuita
         </Button>

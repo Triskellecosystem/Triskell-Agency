@@ -2303,3 +2303,10 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .cgrid i:nth-child(6) { left: calc(50% + 128px); top: calc(50% - 256px); }
 .cgrid i:nth-child(7) { left: calc(50% + 512px); top: calc(50% - 64px); }
 .prm--horizon .prm-back { display: none; }
+
+/* Apertura Social: pavimento leggero, alone e raggi dietro i telefoni, linea d'orizzonte dorata */
+.prm--soft { --line: rgb(130 200 240 / 0.22); }
+.sh-halo::before { content: ""; position: absolute; left: 76%; top: 42%; width: 54rem; height: 54rem; transform: translate(-50%, -50%); background: radial-gradient(closest-side, rgb(58 164 212 / 0.28), rgb(247 200 92 / 0.08) 45%, transparent 72%); }
+.sh-halo i { position: absolute; left: 76%; top: 42%; width: 120vmax; height: 120vmax; transform: translate(-50%, -50%); background: repeating-conic-gradient(from 0deg, rgb(253 224 138 / 0.06) 0deg 1.2deg, transparent 1.2deg 9deg); mask-image: radial-gradient(circle, transparent 12%, #000 18%, transparent 42%); }
+.sh-halo b { position: absolute; left: 45%; right: -5%; top: 70%; height: 1px; background: linear-gradient(90deg, transparent, rgb(253 224 138 / 0.7) 60%, transparent); box-shadow: 0 0 40px 6px rgb(247 200 92 / 0.25); }
+@media (max-width: 1023px) { .sh-halo::before, .sh-halo i { left: 50%; top: 70%; } .sh-halo b { left: 0; right: 0; top: 72%; } }
