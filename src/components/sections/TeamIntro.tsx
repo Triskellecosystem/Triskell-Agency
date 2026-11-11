@@ -6,7 +6,7 @@ import { site } from "@/content/site";
 import { cn } from "@/lib/cn";
 import { Icon } from "@/components/ui/Icon";
 import { Section } from "@/components/ui/Section";
-import { PerspectiveRoom } from "@/components/ui/PerspectiveRoom";
+import { SectionBg } from "@/components/ui/SectionBg";
 
 const smooth = (a: number, b: number, x: number) => {
   const t = Math.min(1, Math.max(0, (x - a) / (b - a)));
@@ -87,7 +87,7 @@ export function TeamIntro() {
 
   return (
     <Section id="team" labelledBy="team-title" className="py-0 pt-[calc(var(--header-h)+0.5rem)]">
-      <PerspectiveRoom x={50} y={40} />
+      <SectionBg kind="c-tunnel" />
       <div ref={track} className="ti-track">
         <div className="ti-sticky">
           <header className="mx-auto max-w-2xl pb-4 text-center sm:pb-8">

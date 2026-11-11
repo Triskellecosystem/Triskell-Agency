@@ -13,7 +13,7 @@ import { ContactForm } from "./ContactForm";
  * CTA finale + form: un unico pannello largo con bordo beam; a sinistra messaggio e vantaggi
  * (consulenza gratuita · 30 minuti · piano su misura, come nella grafica), a destra il form.
  */
-export function Contact({ bg = "dots" }: { bg?: BgKind } = {}) {
+export function Contact({ bg = "c-rings" }: { bg?: BgKind } = {}) {
   const { contact } = site;
   return (
     <Section id={contact.id} labelledBy="contact-title" className="pb-[clamp(3.5rem,3rem+3vw,6rem)]">

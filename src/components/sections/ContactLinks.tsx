@@ -26,7 +26,7 @@ export function ContactLinks() {
 
   return (
     <Section id="seguici" labelledBy="seguici-title" className="pt-[clamp(2rem,4vw,3.5rem)]">
-      <SectionBg kind="beams" />
+      <SectionBg kind="c-rings" />
       <SectionHeading id="seguici-title" overline={f.overline} title={f.title} line={f.line} align="center" />
 
       {/* In evidenza: quante persone ci seguono già (sottile, su una riga) */}

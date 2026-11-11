@@ -8,7 +8,7 @@ export function SocialFinale() {
   const f = site.social.finale;
   return (
     <Section id="pensiamo-noi" labelledBy="finale-title" className="overflow-hidden text-center">
-      <SectionBg kind="hex" />
+      <SectionBg kind="c-tunnel" />
       <Reveal y={20} blur={6}>
         <h2 id="finale-title" className="mx-auto max-w-4xl font-display text-[clamp(1.625rem,1.1rem+2.2vw,3rem)] font-bold leading-[1.06] tracking-[-0.045em] text-fg">
           {f.title.split(/(\[[^\]]+\])/).filter(Boolean).map((part) =>

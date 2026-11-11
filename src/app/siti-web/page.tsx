@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
 import { site } from "@/content/site";
-import { PerspectiveRoom } from "@/components/ui/PerspectiveRoom";
+import { SectionBg } from "@/components/ui/SectionBg";
 
 export const metadata: Metadata = {
   title: "Siti web",
@@ -20,7 +20,7 @@ export default function SitesPage() {
   const p = site.sitiProcess;
   return (
     <>
-      <PageHero overline={p.overline} title={p.title} line={p.line} crumbs={[{ label: "Siti web" }]} backdrop={<PerspectiveRoom x={55} y={34} />}>
+      <PageHero overline={p.overline} title={p.title} line={p.line} crumbs={[{ label: "Siti web" }]} backdrop={<SectionBg kind="h-browser" />}>
         <Button href="/contatti" size="md" icon="calendar" iconPosition="start" pulse>
           Voglio il mio sito
         </Button>
@@ -36,6 +36,7 @@ export default function SitesPage() {
       </div>
 
       <Section id="percorso" labelledBy="percorso-title">
+        <SectionBg kind="c-hud" />
 
         <SectionHeading id="percorso-title" overline="Come lo creiamo" title={p.processTitle} line={p.processLine} align="center" />
         <Reveal y={16} blur={0} className="mt-10">

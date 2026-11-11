@@ -2293,3 +2293,21 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .stx--isoblocks { background-image: url("/bg/isoblocks.svg"); background-position: right center; mask-image: radial-gradient(60% 70% at 72% 50%, #000 35%, transparent 85%); }
 .stx--grain { opacity: 0.5; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.6  0 0 0 0 0.8  0 0 0 0 0.92  0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E"); }
 @media (max-width: 767px) { .stx--glass, .stx--circuitpro, .stx--isoblocks { background-position: 70% center; opacity: 0.7; } .stx--dial { opacity: 0.6; } }
+
+/* ===== Sfondi tech v3: centrati (c-*), aperture (h-*), laterali ===== */
+.stx--art { background-repeat: no-repeat; background-size: cover; background-position: center; }
+.stx--c-hud, .stx--c-tunnel, .stx--c-rays, .stx--c-hex, .stx--c-chip, .stx--c-rings, .stx--c-iso, .stx--c-halftone { mask-image: radial-gradient(75% 80% at 50% 50%, #000 45%, transparent 92%); }
+.stx--c-hud { background-image: url("/bg/c-hud.svg"); }
+.stx--c-tunnel { background-image: url("/bg/c-tunnel.svg"); }
+.stx--c-rays { background-image: url("/bg/c-rays.svg"); }
+.stx--c-hex { background-image: url("/bg/c-hex.svg"); }
+.stx--c-chip { background-image: url("/bg/c-chip.svg"); }
+.stx--c-rings { background-image: url("/bg/c-rings.svg"); }
+.stx--c-iso { background-image: url("/bg/c-iso.svg"); }
+.stx--c-halftone { background-image: url("/bg/c-halftone.svg"); }
+.stx--h-iso, .stx--h-hud, .stx--h-browser, .stx--h-chart { background-position: right center; mask-image: linear-gradient(90deg, transparent 35%, #000 70%); }
+.stx--h-iso { background-image: url("/bg/h-iso.svg"); }
+.stx--h-hud { background-image: url("/bg/h-hud.svg"); }
+.stx--h-browser { background-image: url("/bg/h-browser.svg"); }
+.stx--h-chart { background-image: url("/bg/h-chart.svg"); }
+@media (max-width: 1023px) { .stx--h-iso, .stx--h-hud, .stx--h-browser, .stx--h-chart { background-position: 75% center; mask-image: linear-gradient(180deg, #000 40%, transparent); opacity: 0.6; } }
