@@ -44,7 +44,9 @@ export default function SitesPage() {
         </Reveal>
       </Section>
 
-      <section id="portfolio" aria-labelledby="portfolio-title" className="hx-section relative isolate pt-[clamp(4rem,8vw,7rem)]">
+      <section id="portfolio" aria-labelledby="portfolio-title" className="hx-section relative isolate pt-[clamp(3rem,6vw,5rem)]">
+        <span aria-hidden="true" className="pf-sep pointer-events-none absolute inset-x-0 top-0"><i /></span>
+        <span aria-hidden="true" className="pf-head pointer-events-none absolute inset-x-0 top-0 -z-10 h-[32rem]" />
         <div className="container-x">
           <SectionHeading id="portfolio-title" overline="Portfolio" title="Tutti i siti che [abbiamo creato]" line="Ristoranti, ospitalità, brand, software: ognuno su misura." align="center" />
         </div>

@@ -2317,3 +2317,8 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .lrays i { position: absolute; left: var(--lx); top: var(--ly); width: calc(var(--ls) * 2.4); height: calc(var(--ls) * 2.4); transform: translate(-50%, -50%); background: repeating-conic-gradient(from 0deg, rgb(253 224 138 / 0.06) 0deg 1.2deg, transparent 1.2deg 9deg); mask-image: radial-gradient(circle, transparent 10%, #000 17%, transparent 46%); }
 .lrays b { position: absolute; left: calc(var(--lx) - 30%); right: calc(100% - var(--lx) - 30%); height: 1px; background: linear-gradient(90deg, transparent, rgb(253 224 138 / 0.65), transparent); box-shadow: 0 0 40px 6px rgb(247 200 92 / 0.22); }
 @media (max-width: 1023px) { .lrays { --ls: 34rem !important; } }
+
+/* Siti web: separatore prima della spirale e griglia leggera dietro il titolo del portfolio */
+.pf-sep { height: 1px; background: linear-gradient(90deg, transparent, rgb(130 200 240 / 0.25) 20%, rgb(253 224 138 / 0.8) 50%, rgb(130 200 240 / 0.25) 80%, transparent); box-shadow: 0 0 30px 3px rgb(247 200 92 / 0.18); }
+.pf-sep i { position: absolute; left: 50%; top: 50%; width: 11px; height: 11px; transform: translate(-50%, -50%) rotate(45deg); border: 1px solid rgb(253 224 138 / 0.9); background: var(--color-night); box-shadow: 0 0 16px rgb(247 200 92 / 0.6); }
+.pf-head { background-image: linear-gradient(rgb(130 200 240 / 0.13) 1px, transparent 1px), linear-gradient(90deg, rgb(130 200 240 / 0.13) 1px, transparent 1px), radial-gradient(45% 60% at 50% 0%, rgb(247 200 92 / 0.12), transparent 70%); background-size: 56px 56px, 56px 56px, 100% 100%; background-position: center top; mask-image: radial-gradient(55% 80% at 50% 0%, #000 30%, transparent 85%); }
