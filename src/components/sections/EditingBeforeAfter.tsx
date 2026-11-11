@@ -25,7 +25,7 @@ export function EditingBeforeAfter() {
             <figcaption className="mb-3 text-center">
               <span className="rounded-full border border-white/15 px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-[0.18em] text-fg-3">Prima</span>
             </figcaption>
-            <PhoneVideo kind="raw" src="/video/estetica-prima.mp4" poster="/video/estetica-prima.jpg" label="Il video grezzo, prima del montaggio" />
+            <PhoneVideo kind="raw" src="/video/prima-estetista.mp4" poster="/video/prima-estetista.jpg" label="Il video grezzo, prima del montaggio" />
           </figure>
           <div aria-hidden="true" className="flex flex-col items-center gap-2 pt-8">
             <span className="ba-arrow grid h-11 w-11 place-items-center rounded-full bg-[image:var(--gradient-gold-btn)] text-night shadow-[0_0_30px_-6px_rgb(247_200_92/0.7)] sm:h-14 sm:w-14">
@@ -37,7 +37,7 @@ export function EditingBeforeAfter() {
             <figcaption className="mb-3 text-center">
               <span className="rounded-full bg-[image:var(--gradient-gold-btn)] px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-[0.18em] text-night">Dopo</span>
             </figcaption>
-            <PhoneVideo kind="edited" src="/video/estetica-dopo.mp4" poster="/video/estetica-dopo.jpg" label="Lo stesso video montato da Triskell, con titoli, icone e musica" />
+            <PhoneVideo kind="edited" src="/video/dopo-estetista.mp4" poster="/video/dopo-estetista.jpg" label="Lo stesso video montato da Triskell, con titoli, icone e musica" />
           </figure>
         </div>
       </Reveal>

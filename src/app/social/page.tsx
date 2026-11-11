@@ -45,8 +45,8 @@ export default function SocialPage() {
         </ul>
       </PageHero>
 
-      <SocialPillars />
       <EditingBeforeAfter />
+      <SocialPillars />
       <ProfileExamples />
       <Section id="crescita" labelledBy="crescita-title" className="overflow-hidden">
         <Stage3D tone="gold" view="right" className="st3-noring" />
