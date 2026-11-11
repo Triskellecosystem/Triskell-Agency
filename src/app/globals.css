@@ -2171,3 +2171,8 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 @keyframes hxb-rise { 0% { transform: translate3d(0, 0, 0); opacity: 0; } 10% { opacity: 1; } 80% { opacity: 0.8; } 100% { transform: translate3d(20px, -100vh, 0); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .hxb-spark { animation: none; display: none; } }
 .st3-noring .st3-ring { display: none; }
+
+/* Freccia "te lo editiamo noi" */
+@keyframes ba-arrow { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
+.ba-arrow { animation: ba-arrow 1.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .ba-arrow { animation: none; } }

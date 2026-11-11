@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/cn";
 import { Icon } from "@/components/ui/Icon";
 
 /**
- * "Registri tu": un telefono in modalità ripresa con il video di un imprenditore che parla alla camera, come
- * farebbe il cliente seguendo il nostro script. REC con il tempo che scorre, griglia dei terzi, pulsante audio.
- * Parte senza audio quando è visibile e si ferma fuori schermo.
+ * Video verticale dentro un telefono. "raw": ripresa grezza (REC, griglia dei terzi). "edited": il video finito,
+ * con l'etichetta "Editato da Triskell". Parte senza audio quando è visibile e si ferma fuori schermo.
  */
-export function Teleprompter() {
+function PhoneVideo({ src, poster, label, kind }: { src: string; poster: string; label: string; kind: "raw" | "edited" }) {
   const v = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
   const [time, setTime] = useState(0);
@@ -35,25 +35,52 @@ export function Teleprompter() {
     setMuted(el.muted);
     if (el.paused) el.play().catch(() => {});
   };
+  const edited = kind === "edited";
   return (
-    <div className="relative mx-auto w-full max-w-[18rem]">
-      <span aria-hidden="true" className="phone-glow" />
-      <div className="relative aspect-[9/16] overflow-hidden rounded-[2.2rem] border-[6px] border-[#1d2a3a] bg-black shadow-[0_50px_100px_-40px_rgb(0_0_0/0.95)]">
-        <video ref={v} src="/video/registri-tu.mp4" poster="/video/registri-tu.jpg" muted loop playsInline preload="metadata" aria-label="Un imprenditore registra da solo un video per i social" className="absolute inset-0 h-full w-full object-cover" />
-        <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(0_0_0/0.4),transparent_22%,transparent_75%,rgb(0_0_0/0.5))]" />
-        {/* griglia dei terzi */}
-        <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(90deg,transparent_33%,rgb(255_255_255/0.18)_33%,rgb(255_255_255/0.18)_33.4%,transparent_33.4%,transparent_66.6%,rgb(255_255_255/0.18)_66.6%,rgb(255_255_255/0.18)_67%,transparent_67%),linear-gradient(transparent_33%,rgb(255_255_255/0.18)_33%,rgb(255_255_255/0.18)_33.3%,transparent_33.3%,transparent_66.6%,rgb(255_255_255/0.18)_66.6%,rgb(255_255_255/0.18)_66.9%,transparent_66.9%)]" />
-        <span aria-hidden="true" className="absolute left-3 top-4 inline-flex items-center gap-1.5 rounded-full bg-black/55 px-2 py-0.5 font-mono text-[0.625rem] font-bold text-white">
-          <i className="scv-rec h-2 w-2 rounded-full bg-[#ff3b30]" />
-          REC 00:{String(time).padStart(2, "0")}
-        </span>
-        <span aria-hidden="true" className="absolute right-3 top-4 rounded-full bg-black/55 px-2 py-0.5 text-[0.625rem] font-bold text-gold-200">Script Triskell</span>
-        <button type="button" onClick={toggle} aria-label={muted ? "Attiva l'audio" : "Disattiva l'audio"} className="absolute bottom-4 left-1/2 inline-flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/25 bg-black/55 px-3.5 py-2 text-[0.75rem] font-semibold text-white backdrop-blur-md transition-colors hover:border-gold-300 hover:text-gold-200">
-          <Icon name={muted ? "volume-off" : "volume"} className="h-4 w-4" strokeWidth={2} />
-          {muted ? "Attiva audio" : "Audio attivo"}
-        </button>
+    <div className={cn("relative aspect-[9/16] overflow-hidden rounded-[1.75rem] border-[5px] bg-black shadow-[0_40px_80px_-36px_rgb(0_0_0/0.95)]", edited ? "border-gold-300/80 shadow-[0_0_50px_-14px_rgb(247_200_92/0.55)]" : "border-[#1d2a3a]")}>
+      <video ref={v} src={src} poster={poster} muted loop playsInline preload="metadata" aria-label={label} className="absolute inset-0 h-full w-full object-cover" />
+      {!edited && (
+        <>
+          <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(90deg,transparent_33%,rgb(255_255_255/0.18)_33%,rgb(255_255_255/0.18)_33.4%,transparent_33.4%,transparent_66.6%,rgb(255_255_255/0.18)_66.6%,rgb(255_255_255/0.18)_67%,transparent_67%),linear-gradient(transparent_33%,rgb(255_255_255/0.18)_33%,rgb(255_255_255/0.18)_33.3%,transparent_33.3%,transparent_66.6%,rgb(255_255_255/0.18)_66.6%,rgb(255_255_255/0.18)_66.9%,transparent_66.9%)]" />
+          <span aria-hidden="true" className="absolute left-2.5 top-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 px-2 py-0.5 font-mono text-[0.5625rem] font-bold text-white">
+            <i className="scv-rec h-1.5 w-1.5 rounded-full bg-[#ff3b30]" />
+            REC 00:{String(time).padStart(2, "0")}
+          </span>
+        </>
+      )}
+      <button type="button" onClick={toggle} aria-label={muted ? "Attiva l'audio" : "Disattiva l'audio"} className="absolute right-2.5 top-2.5 grid h-8 w-8 place-items-center rounded-full border border-white/25 bg-black/55 text-white backdrop-blur-md transition-colors hover:border-gold-300 hover:text-gold-200">
+        <Icon name={muted ? "volume-off" : "volume"} className="h-4 w-4" strokeWidth={2} />
+      </button>
+    </div>
+  );
+}
+
+/**
+ * "Registri tu": a sinistra la ripresa grezza fatta col telefono, una freccia, a destra lo stesso video editato da
+ * noi (grafiche, icone, musica). Fa capire subito il passaggio: tu registri, noi lo rendiamo professionale.
+ */
+export function Teleprompter() {
+  return (
+    <div>
+      <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2.5 sm:gap-4">
+        <figure className="min-w-0">
+          <figcaption className="mb-2.5 text-center text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-fg-3">1 · Registri tu</figcaption>
+          <PhoneVideo kind="raw" src="/video/registri-tu.mp4" poster="/video/registri-tu.jpg" label="La ripresa grezza fatta col telefono, senza montaggio" />
+        </figure>
+        <div aria-hidden="true" className="flex flex-col items-center gap-2 pt-6">
+          <span className="ba-arrow grid h-11 w-11 place-items-center rounded-full bg-[image:var(--gradient-gold-btn)] text-night shadow-[0_0_30px_-6px_rgb(247_200_92/0.7)] sm:h-12 sm:w-12">
+            <Icon name="arrow-right" className="h-5 w-5" strokeWidth={2.4} />
+          </span>
+          <span className="hidden max-w-[5.5rem] text-center text-[0.625rem] font-semibold leading-tight text-gold-200 sm:block">Te lo editiamo noi</span>
+        </div>
+        <figure className="min-w-0">
+          <figcaption className="mb-2.5 text-center text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-gold-200">2 · Lo editiamo noi</figcaption>
+          <PhoneVideo kind="edited" src="/video/editato.mp4" poster="/video/editato.jpg" label="Lo stesso video editato da Triskell, con grafiche, icone e musica" />
+        </figure>
       </div>
-      <p className="mt-3 text-center text-[0.75rem] text-fg-3">Registri tu col telefono: lo script e le inquadrature li prepariamo noi</p>
+      <p className="mt-4 text-center text-[0.8125rem] text-fg-2">
+        Tu registri col telefono seguendo il nostro script. <strong className="font-semibold text-gold-200">Poi te lo editiamo noi</strong>: grafiche, icone, musica e sottotitoli.
+      </p>
     </div>
   );
 }
