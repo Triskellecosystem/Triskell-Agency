@@ -43,7 +43,7 @@ const PROFILES = {
   lavie: { img: "/social-examples/hd/lavie.webp", base: 36900, name: "Consulenza gratuita · La Vie Beauty", top: "10%" },
 } as const;
 
-export function LivePhone({ className, compact, tabs, salesLabel = "Vendite chiuse", profile = "vertis" }: { className?: string; compact?: boolean; tabs?: boolean; salesLabel?: string; profile?: keyof typeof PROFILES }) {
+export function LivePhone({ className, compact, tabs, salesLabel = "Vendite chiuse", profile = "vertis", stats }: { className?: string; compact?: boolean; tabs?: boolean; salesLabel?: string; profile?: keyof typeof PROFILES; stats?: boolean }) {
   const P = PROFILES[profile];
   const LIST = profile === "vertis" ? MESSAGES : profile === "lumina" ? DENTAL : BEAUTY;
   const [tab, setTab] = useState<0 | 1>(0);
@@ -147,9 +147,41 @@ export function LivePhone({ className, compact, tabs, salesLabel = "Vendite chiu
           ))}
         </span>
         {tabs && <p className="mt-1 text-center text-[0.625rem] text-fg-3">Trascina il telefono per vedere la campagna</p>}
+        {stats && <span aria-hidden="true" className="lp-ped"><i /><b /></span>}
       </div>
 
-      {/* messaggi + numeri, a lato */}
+      {stats ? (
+        <div className="flex flex-col gap-4">
+          <div className="lpm-card lpm-card--gold relative overflow-hidden rounded-[1.5rem] px-5 py-4">
+            <p className="flex items-center gap-2 font-display text-[1.0625rem] font-semibold text-fg">
+              <svg viewBox="0 0 24 24" className="h-6 w-6 text-gold-300" fill="currentColor"><rect x="3" y="14" width="4" height="7" rx="1" /><rect x="10" y="9" width="4" height="12" rx="1" /><rect x="17" y="4" width="4" height="17" rx="1" /></svg>
+              Risultato
+            </p>
+            <p key={today} className="lp2-tick mt-1 font-display text-[clamp(2.75rem,2rem+2.4vw,3.75rem)] font-bold leading-none tracking-[-0.05em] text-gold">+{nf(today)}</p>
+            <p className="mt-1 font-display text-[1.25rem] font-semibold text-fg">nuovi follower</p>
+            <svg viewBox="0 0 160 90" className="absolute bottom-3 right-3 h-[5.5rem] w-[9.5rem]" fill="none" aria-hidden="true">
+              <defs><linearGradient id="lpm-a" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#f7c85c" stopOpacity="0" /><stop offset="1" stopColor="#fde08a" /></linearGradient></defs>
+              <path d="M4 82 C 60 78, 100 60, 150 12" stroke="url(#lpm-a)" strokeWidth="4" strokeLinecap="round" />
+              <path d="M136 10 L152 10 L150 26" stroke="#fde08a" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
+          <div className="lpm-card flex items-center gap-4 rounded-[1.5rem] px-5 py-4">
+            <svg viewBox="0 0 24 24" className="h-9 w-9 shrink-0 text-azure-300" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"><path d="M4 5h16v11H9l-5 4z" /><path d="M8 10.5h.01M12 10.5h.01M16 10.5h.01" strokeLinecap="round" strokeWidth="2.6" /></svg>
+            <span className="min-w-0 flex-1">
+              <span className="block font-display text-[1.0625rem] font-semibold text-fg">Nuove richieste</span>
+              <span className="mt-1.5 flex -space-x-2">
+                {[0, 1, 2].map((k) => <span key={k} className="rounded-full ring-2 ring-[#0b2a4a]"><Avatar i={(m + k) % LIST.length} size={30} /></span>)}
+              </span>
+            </span>
+            <span key={requests} className="lp2-count font-display text-[2.75rem] font-bold leading-none tracking-[-0.04em] text-azure-300">{requests}</span>
+          </div>
+          <div className="lpm-card lpm-card--goldline flex items-center gap-4 rounded-[1.5rem] px-5 py-4">
+            <svg viewBox="0 0 24 24" className="h-9 w-9 shrink-0 text-gold-300" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2" /><path d="M3.5 9.5h17M8 3v4M16 3v4M9 14.5l2 2 4-4" /></svg>
+            <span className="flex-1 font-display text-[1.0625rem] font-semibold text-fg">{salesLabel}</span>
+            <span key={sales} className="lp2-count font-display text-[2.75rem] font-bold leading-none tracking-[-0.04em] text-azure-300">{sales}</span>
+          </div>
+        </div>
+      ) : (
       <div className="flex flex-col gap-2.5">
         <div className="lp2-today relative overflow-hidden rounded-2xl border border-gold-300/50 bg-[linear-gradient(135deg,rgb(247_200_92/0.16),rgb(13_39_61/0.85))] px-4 py-3">
           <p className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-gold-200">Solo oggi</p>
@@ -181,6 +213,7 @@ export function LivePhone({ className, compact, tabs, salesLabel = "Vendite chiu
           </div>
         </div>
       </div>
+      )}
     </div>
   );
 }

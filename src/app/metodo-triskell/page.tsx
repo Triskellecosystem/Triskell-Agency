@@ -27,11 +27,11 @@ export default function MetodoPage() {
   const m = site.metodo;
   return (
     <>
-      <section aria-labelledby="metodo-title" className="relative isolate overflow-hidden pb-[clamp(2.5rem,5vw,4rem)] pt-[calc(var(--header-h)+clamp(2rem,5vh,3.5rem))]">
-        <HeroFx horizon={74} vx={60} pedestal={{ x: 60, y: 88, w: 24 }} />
-        <LightRays x={60} y={44} size={56} />
+      <section aria-labelledby="metodo-title" className="relative isolate overflow-hidden pb-[clamp(4.5rem,8vw,6.5rem)] pt-[calc(var(--header-h)+clamp(2rem,5vh,3.5rem))]">
+        <HeroFx horizon={78} vx={58} />
+        <LightRays x={57} y={46} size={56} />
         <DigitalCursor className="-z-10" />
-        <div className="container-x grid items-center gap-x-10 gap-y-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+        <div className="container-x grid items-center gap-x-10 gap-y-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
           <div>
             <p className="animate-[fade-in_0.8s_var(--ease-soft)_both] text-[0.6875rem] font-semibold uppercase tracking-[0.22em] text-gold-300">{m.overline}</p>
             <h1 id="metodo-title" className="hero-accent mt-2 animate-[line-up_1s_var(--ease-out-expo)_backwards] font-display text-[clamp(3rem,2rem+4vw,5.5rem)] font-bold leading-[0.92] tracking-[-0.05em] text-fg">
@@ -50,7 +50,7 @@ export default function MetodoPage() {
               </Button>
             </div>
           </div>
-          <LivePhone tabs salesLabel="Visite fissate" profile="lumina" className="lp-hero" />
+          <LivePhone stats salesLabel="Visite fissate" profile="lumina" className="lp-metodo" />
         </div>
       </section>
 
