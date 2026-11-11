@@ -13,7 +13,7 @@ const MAP: Record<BgKind, number> = {
 
 /** Dettaglio grafico leggero e fermo sopra la sfumatura, solo per alcune sezioni (alternate a quelle semplici). */
 const TEX: Partial<Record<BgKind, string>> = {
-  terrain: "floor", circuit: "circuit", bars: "dots", globe: "squares", pixels: "cross", flow: "waves", beams: "grid", grid: "grid",
+  terrain: "mesh", circuit: "circuitpro", bars: "glass", globe: "dial", pixels: "blueprint", flow: "topo", beams: "isoblocks", grid: "isoblocks",
 };
 
 export function SectionBg({ kind, className }: { kind: BgKind; tone?: "mixed" | "gold" | "azure"; view?: "center" | "left" | "right" | "low"; className?: string }) {
@@ -22,7 +22,7 @@ export function SectionBg({ kind, className }: { kind: BgKind; tone?: "mixed" | 
   const tx = TEX[kind];
   return (
     <div aria-hidden="true" className={cn("sfx", `sfx--${v}`, className)}>
-      {tx && <span className={`stx stx--${tx}`}>{tx === "floor" && <i />}</span>}
+      {tx ? <span className={`stx stx--${tx}`} /> : <span className="stx stx--grain" />}
     </div>
   );
 }
