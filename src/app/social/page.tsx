@@ -45,7 +45,6 @@ export default function SocialPage() {
         </ul>
       </PageHero>
 
-      <EditingBeforeAfter />
       <SocialPillars />
       <ProfileExamples />
       <Section id="crescita" labelledBy="crescita-title" className="overflow-hidden">
@@ -65,6 +64,7 @@ export default function SocialPage() {
 
       <RecordingOptions />
       <IncludesGroups />
+      <EditingBeforeAfter />
 
       <Section id="vantaggio" labelledBy="vantaggio-title">
         <Stage3D kind="lines" />

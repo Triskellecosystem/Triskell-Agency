@@ -19,8 +19,8 @@ export function EditingBeforeAfter() {
     <Section id="editing" labelledBy="editing-title" className="overflow-hidden">
       <span aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[40rem] w-[60rem] max-w-full -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(247_200_92/0.14),transparent)] blur-2xl" />
       <SectionHeading id="editing-title" overline="L'editing" title="Prima e dopo il nostro [montaggio]" line="Stesso video, stessa persona. Cambia tutto quando ci mettiamo le mani noi." align="center" />
-      <Reveal y={20} blur={0} className="mx-auto mt-10 max-w-2xl">
-        <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 sm:gap-8">
+      <Reveal y={20} blur={0} className="mx-auto mt-7 max-w-[26rem] sm:max-w-md">
+        <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 sm:gap-5">
           <figure className="min-w-0">
             <figcaption className="mb-3 text-center">
               <span className="rounded-full border border-white/15 px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-[0.18em] text-fg-3">Prima</span>
@@ -41,7 +41,7 @@ export function EditingBeforeAfter() {
           </figure>
         </div>
       </Reveal>
-      <Reveal y={12} blur={0} delay={0.15} className="mt-8">
+      <Reveal y={12} blur={0} delay={0.15} className="mt-6">
         <ul className="flex flex-wrap justify-center gap-2">
           {ADDS.map((a) => (
             <li key={a.label} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-[0.8125rem] text-fg-2">
