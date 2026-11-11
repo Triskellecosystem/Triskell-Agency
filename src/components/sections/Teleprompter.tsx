@@ -8,7 +8,7 @@ import { Icon } from "@/components/ui/Icon";
  * Video verticale dentro un telefono. "raw": ripresa grezza (REC, griglia dei terzi). "edited": il video finito,
  * con l'etichetta "Editato da Triskell". Parte senza audio quando è visibile e si ferma fuori schermo.
  */
-function PhoneVideo({ src, poster, label, kind }: { src: string; poster: string; label: string; kind: "raw" | "edited" }) {
+export function PhoneVideo({ src, poster, label, kind }: { src: string; poster: string; label: string; kind: "raw" | "edited" }) {
   const v = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
   const [time, setTime] = useState(0);

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Compare } from "@/components/sections/Compare";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { IncludesGroups } from "@/components/sections/IncludesGroups";
+import { EditingBeforeAfter } from "@/components/sections/EditingBeforeAfter";
 import { PageHero } from "@/components/sections/PageHero";
 import { ProfileExamples } from "@/components/sections/ProfileExamples";
 import { PhoneFan } from "@/components/sections/PhoneFan";
@@ -63,6 +64,7 @@ export default function SocialPage() {
 
       <RecordingOptions />
       <IncludesGroups />
+      <EditingBeforeAfter />
 
       <Section id="vantaggio" labelledBy="vantaggio-title">
         <Stage3D kind="lines" />
