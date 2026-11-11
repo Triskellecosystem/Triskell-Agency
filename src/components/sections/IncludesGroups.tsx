@@ -3,7 +3,6 @@ import { Icon } from "@/components/ui/Icon";
 import { CountUp } from "@/components/motion/CountUp";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Spotlight } from "@/components/ui/Spotlight";
-import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { SectionBg } from "@/components/ui/SectionBg";
 
 /** Cosa è incluso nella gestione social: sei gruppi, ventiquattro voci, con un contatore delle voci in alto. */
@@ -11,7 +10,7 @@ export function IncludesGroups() {
   const inc = site.social.includes;
   const total = inc.groups.reduce((n, g) => n + g.items.length, 0);
   return (
-    <Section id="incluso" labelledBy="incluso-title">
+    <Section id="incluso" labelledBy="incluso-title" className="overflow-hidden">
       <SectionBg kind="dots" />
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeading id="incluso-title" overline={inc.overline} title={inc.title} line={inc.line} />
@@ -20,9 +19,9 @@ export function IncludesGroups() {
           <span className="ml-2 text-[0.8125rem] font-semibold text-fg-2">attività incluse</span>
         </p>
       </div>
-      <RevealGroup className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" stagger={0.07}>
+      <div data-inview-watch className="inc-fly-grid mt-8 grid gap-3 [perspective:1400px] sm:grid-cols-2 lg:grid-cols-3">
         {inc.groups.map((g, gi) => (
-          <RevealItem key={g.title} y={24} className="h-full" >
+          <div key={g.title} className="inc-fly h-full" style={{ "--gi": gi } as React.CSSProperties}>
             <Spotlight className="inc-card h-full rounded-[1.125rem] border border-white/[0.08] bg-[linear-gradient(165deg,var(--color-surface-2),var(--color-night-raised))] p-4 transition-[border-color] duration-[var(--dur-base)] hover:border-gold-300/60" size={340}>
               <div className="relative z-[2]" style={{ "--gi": gi } as React.CSSProperties}>
                 <div className="flex items-center justify-between">
@@ -44,9 +43,9 @@ export function IncludesGroups() {
                 </ul>
               </div>
             </Spotlight>
-          </RevealItem>
+          </div>
         ))}
-      </RevealGroup>
+      </div>
     </Section>
   );
 }

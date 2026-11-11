@@ -13,7 +13,7 @@ import { Reveal } from "@/components/motion/Reveal";
 export function CtaBand({ content }: { content?: CtaContent }) {
   const { cta } = site;
   const perks = (
-    <ul className="flex flex-wrap items-center gap-x-4 gap-y-1">
+    <ul className="flex flex-wrap items-center gap-x-4 gap-y-1 lg:flex-nowrap lg:whitespace-nowrap">
       {cta.perks.map((p) => (
         <li key={p.label} className="inline-flex items-center gap-1.5 text-[0.75rem] font-medium text-fg-2">
           <Icon name={p.icon} className="h-3.5 w-3.5 text-gold-300" strokeWidth={2.4} />
@@ -38,7 +38,7 @@ export function CtaBand({ content }: { content?: CtaContent }) {
             <span aria-hidden="true" className="cta-soft-line" />
             {content ? (
               <div className="relative">
-                <div className="flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
+                <div className="flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-center md:gap-10">
                   <div className="min-w-0">
                     <h2 className="font-display text-[clamp(1.5rem,1.2rem+1.1vw,2.125rem)] font-semibold leading-[1.1] tracking-[-0.025em] text-fg">
                       {content.lines[0]} <span className="text-gold">{content.lines[1]}</span>
@@ -47,7 +47,7 @@ export function CtaBand({ content }: { content?: CtaContent }) {
                   </div>
                   {button(cta.button)}
                 </div>
-                <div className="mt-4 flex flex-col gap-2.5 border-t border-white/[0.07] pt-3.5 lg:flex-row lg:items-center lg:justify-between">
+                <div className="mt-4 flex flex-col gap-2.5 border-t border-white/[0.07] pt-3.5 lg:flex-row lg:items-center lg:justify-center lg:gap-8">
                   {perks}
                   <Scarcity />
                 </div>

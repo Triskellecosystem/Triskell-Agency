@@ -7,7 +7,6 @@ import { ProfileExamples } from "@/components/sections/ProfileExamples";
 import { PhoneFan } from "@/components/sections/PhoneFan";
 import { LivePhone } from "@/components/sections/LivePhone";
 
-import { Stage3D } from "@/components/ui/Stage3D";
 import { RecordingOptions } from "@/components/sections/RecordingOptions";
 import { SocialFinale } from "@/components/sections/SocialFinale";
 import { SocialPillars } from "@/components/sections/SocialPillars";
@@ -28,7 +27,7 @@ export default function SocialPage() {
   const s = site.social;
   return (
     <>
-      <PageHero overline={s.overline} title={s.title} line={s.line} crumbs={[{ label: "Social media" }]} aside={<PhoneFan />} alignTop backdrop={<Stage3D tone="azure" />}>
+      <PageHero overline={s.overline} title={s.title} line={s.line} crumbs={[{ label: "Social media" }]} aside={<PhoneFan />} alignTop backdrop={<SectionBg kind="net" />}>
         <Button href="/contatti" size="md" icon="calendar" iconPosition="start" pulse>
           Prenota la call gratuita
         </Button>
@@ -48,7 +47,7 @@ export default function SocialPage() {
       <SocialPillars />
       <ProfileExamples />
       <Section id="crescita" labelledBy="crescita-title" className="overflow-hidden">
-        <SectionBg kind="beams" />
+        <SectionBg kind="terrain" />
         <div className="grid items-center gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
           <div>
             <SectionHeading id="crescita-title" overline="Il risultato" title="Un profilo che [cresce ogni giorno]" line="Contenuti costanti e campagne attive: follower, messaggi e richieste arrivano tutti i giorni." />
@@ -67,7 +66,7 @@ export default function SocialPage() {
 
       <Section id="vantaggio" labelledBy="vantaggio-title">
 
-        <SectionBg kind="rays" />
+        <SectionBg kind="flow" />
         <SectionHeading id="vantaggio-title" overline={s.compare.overline} title={s.compare.title} line={s.compare.line} align="center" />
         <div className="mt-9">
           <Compare them={s.compare.them} us={s.compare.us} rows={s.compare.rows} />

@@ -11,7 +11,7 @@ import { Icon } from "@/components/ui/Icon";
  * spirale gira su se stessa e sale, portando davanti un sito alla volta (gli altri si vedono dietro, più piccoli e
  * scuri). In basso il nome del sito davanti, con il pulsante per aprirlo. Con movimento ridotto: griglia semplice.
  */
-export function SitesHelix() {
+export function SitesHelix({ heading }: { heading?: React.ReactNode }) {
   const items = site.sitiWeb.items;
   const n = items.length;
   const box = useRef<HTMLDivElement>(null);
@@ -67,6 +67,7 @@ export function SitesHelix() {
   return (
     <div ref={box} className="relative" style={{ height: `${n * 55 + 60}vh` }}>
       <div className="sticky top-0 flex h-[100svh] flex-col items-center justify-center overflow-hidden pt-[var(--header-h)]">
+        {heading && <div className="container-x relative z-10 shrink-0 pt-4">{heading}</div>}
         <div aria-hidden="true" className="hxb pointer-events-none absolute inset-0 -z-10" style={{ "--rot": `${p * 24}deg` } as React.CSSProperties}>
           <span className="hxb-glow" />
           <span className="hxb-beam" />
@@ -84,7 +85,7 @@ export function SitesHelix() {
             <b key={k} className="hxb-spark" style={{ left: `${(k * 37) % 100}%`, animationDelay: `${-(k * 0.83) % 9}s`, animationDuration: `${7 + (k % 5)}s` }} />
           ))}
         </div>
-        <div className="hx relative h-[62vh] w-full">
+        <div className={cn("hx relative w-full", heading ? "hx--compact mt-6 h-[44vh]" : "h-[62vh]")}>
           <span aria-hidden="true" className="hx-axis" />
           <div className="hx-stage absolute left-1/2 top-1/2">
             {items.map((it, i) => {
@@ -102,7 +103,7 @@ export function SitesHelix() {
                   aria-hidden={i !== front}
                   className={cn("hx-card absolute overflow-hidden rounded-xl border bg-night", i === front ? "border-gold-300/70" : "border-white/10")}
                   style={{
-                    transform: `translate(-50%, -50%) translateY(${d * 24}vh) rotateY(${ang}deg) translateZ(var(--hx-r)) `,
+                    transform: `translate(-50%, -50%) translateY(${d * (heading ? 19 : 24)}vh) rotateY(${ang}deg) translateZ(var(--hx-r)) `,
                     opacity: vis ? 1 - dim * 0.6 : 0,
                     filter: `brightness(${1 - dim * 0.6})`,
                     zIndex: 100 - Math.round(Math.abs(d) * 10),

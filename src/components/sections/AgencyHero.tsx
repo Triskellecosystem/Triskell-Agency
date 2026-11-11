@@ -2,7 +2,7 @@ import { site } from "@/content/site";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { DigitalCursor } from "@/components/motion/DigitalCursor";
-import { HeroRoom } from "@/components/ui/HeroRoom";
+import { TechCanvas } from "@/components/ui/TechCanvas";
 import { HeroNumbers } from "./HeroNumbers";
 import { LivePhone } from "./LivePhone";
 
@@ -15,12 +15,11 @@ export function AgencyHero() {
   return (
     <section id="top" aria-labelledby="hero-title" className="relative isolate overflow-hidden pb-[clamp(3rem,6vw,5rem)] pt-[calc(var(--header-h)+clamp(2.5rem,8vh,6rem))]">
       <div aria-hidden="true" className="ah-bg absolute inset-0 -z-10">
-        <span className="ah-aurora ah-aurora--a" />
-        <span className="ah-aurora ah-aurora--b" />
         <span className="ah-dots" />
       </div>
       <DigitalCursor className="-z-10" />
-      <HeroRoom />
+      <TechCanvas kind="globe" focusX={0.66} focusY={0.5} className="hero-globe" />
+      <span aria-hidden="true" className="hero-veil pointer-events-none absolute inset-0 -z-10" />
 
       <div className="container-x grid items-center gap-x-10 gap-y-12 lg:grid-cols-12">
         <div className="lg:col-span-6">

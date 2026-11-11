@@ -3,7 +3,6 @@ import { CtaBand } from "@/components/sections/CtaBand";
 import { NumbersWall } from "@/components/sections/NumbersWall";
 import { PageHero } from "@/components/sections/PageHero";
 import { ClientVideo } from "@/components/sections/ClientVideo";
-import { Stage3D } from "@/components/ui/Stage3D";
 import { CaseCard, NextCaseCard } from "@/components/sections/CaseCard";
 import { Section } from "@/components/ui/Section";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
@@ -20,7 +19,7 @@ export default function PortfolioPage() {
   const { portfolio, results } = site;
   return (
     <>
-      <PageHero overline={portfolio.overline} title={portfolio.title} line={portfolio.line} crumbs={[{ label: "Risultati" }]} aside={<ClientVideo />} backdrop={<Stage3D kind="lines" tone="gold" />} />
+      <PageHero overline={portfolio.overline} title={portfolio.title} line={portfolio.line} crumbs={[{ label: "Risultati" }]} aside={<ClientVideo />} backdrop={<SectionBg kind="circuit" />} />
       <div className="container-x"><span aria-hidden="true" className="sec-line block h-px" /></div>
       <NumbersWall />
       <Section id="progetti" labelledBy="progetti-title" className="pt-[clamp(1rem,2vw,2rem)]">

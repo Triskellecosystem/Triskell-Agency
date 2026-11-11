@@ -43,13 +43,21 @@ export function HeroNumbers({ items }: { items: Metric[] }) {
     };
   }, [run]);
   return (
-    <dl ref={ref} onMouseEnter={() => k >= 1 && setRun((r) => r + 1)} className="mt-10 grid max-w-xl cursor-default grid-cols-4 divide-x divide-white/10 border-t border-white/10 pt-5">
+    <dl ref={ref} onMouseEnter={() => k >= 1 && setRun((r) => r + 1)} className="mt-10 inline-flex max-w-full cursor-default divide-x divide-white/10 border-t border-white/10 pt-5">
       {items.map((n) => (
-        <div key={n.label} className="flex flex-col px-3 first:pl-0">
-          <dd key={`${n.label}-${k >= 1}`} className="hero-num hero-num-done font-display text-[clamp(1.25rem,1rem+1vw,1.75rem)] font-bold leading-none tracking-[-0.03em] text-gold tabular-nums">
-            {n.prefix}
-            {k < 1 && n.value < 20 ? (n.value * k).toLocaleString("it-IT", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) : fmt(Math.round(n.value * k))}
-            {n.suffix}
+        <div key={n.label} className="flex flex-col px-4 first:pl-0 last:pr-0 sm:px-6">
+          <dd key={`${n.label}-${k >= 1}`} className="hero-num hero-num-done relative font-display text-[clamp(1.25rem,1rem+1vw,1.75rem)] font-bold leading-none tracking-[-0.03em] tabular-nums">
+            {/* il valore finale invisibile tiene ferma la larghezza mentre il numero sale */}
+            <span className="invisible">
+              {n.prefix}
+              {n.value < 20 ? n.value.toLocaleString("it-IT", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) : fmt(n.value)}
+              {n.suffix}
+            </span>
+            <span className="text-gold absolute left-0 top-0">
+              {n.prefix}
+              {k < 1 && n.value < 20 ? (n.value * k).toLocaleString("it-IT", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) : fmt(Math.round(n.value * k))}
+              {n.suffix}
+            </span>
           </dd>
           <dt className="mt-1.5 text-[0.6875rem] leading-snug text-fg-3">{n.label}</dt>
         </div>

@@ -25,7 +25,7 @@ export function RecordingOptions() {
   ];
   return (
     <Section id="riprese" labelledBy="riprese-title" className="overflow-hidden">
-      <SectionBg kind="rings" tone="azure" />
+      <SectionBg kind="circuit" />
       <SectionHeading id="riprese-title" overline={r.overline} title="Come vuoi [registrare?]" line="Scegli: la qualità resta la stessa, cambia solo quanto tempo ci metti tu." align="center" />
 
       <Reveal y={14} blur={0} className="mx-auto mt-8 flex w-fit">

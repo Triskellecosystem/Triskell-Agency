@@ -25,7 +25,7 @@ export default function AboutPage() {
         <PersonScroll key={p.id} person={p} index={i} />
       ))}
       <Section id="come-lavoriamo" labelledBy="metodo-title">
-        <SectionBg kind="rings" tone="azure" />
+        <SectionBg kind="net" />
         <SectionHeading id="metodo-title" overline={m.overline} title={m.title} line={m.line} align="center" />
         <Reveal y={16} blur={0} className="mt-12">
           <StepRail steps={m.steps.map((s) => ({ icon: s.icon, title: s.title, get: s.text }))} />

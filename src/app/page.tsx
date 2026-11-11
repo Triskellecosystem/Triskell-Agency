@@ -29,7 +29,7 @@ export default function HomePage() {
 
       <Section id="servizi" labelledBy="servizi-title">
 
-        <SectionBg kind="rings" />
+        <SectionBg kind="circuit" />
         <span aria-hidden="true" className="sec-line absolute inset-x-0 top-0 h-px" />
         <SectionHeading id="servizi-title" overline={services.overline} title={services.title} line={services.line} />
         <div className="mt-8">

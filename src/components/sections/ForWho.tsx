@@ -13,7 +13,7 @@ import { SectionBg } from "@/components/ui/SectionBg";
 export function ForWho() {
   const f = site.forWho;
   return (
-    <Section id="per-chi" labelledBy="per-chi-title" className="overflow-hidden">
+    <Section id="per-chi" labelledBy="per-chi-title" className="z-[2] pb-[clamp(4rem,3rem+3vw,6rem)]">
       <SectionBg kind="room" tone="gold" view="left" />
       <div className="grid items-center gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
         <div>
@@ -29,7 +29,8 @@ export function ForWho() {
           <QuestionStack />
         </Reveal>
       </div>
-      <div className="mt-10">
+      {/* i settori stanno a cavallo della linea che separa questa sezione dalla successiva */}
+      <div className="absolute inset-x-0 bottom-0 z-10 translate-y-1/2 border-y border-gold-300/20 bg-[rgb(3_20_36/0.92)] py-3 backdrop-blur-md">
         <Marquee items={f.sectors} label={f.sectorsLabel} />
       </div>
     </Section>

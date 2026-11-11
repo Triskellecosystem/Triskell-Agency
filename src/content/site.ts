@@ -873,7 +873,7 @@ export const site = {
     intro: {
       overline: "Chi siamo",
       title: "Il nostro team",
-      hint: "Scorri: prima Tomaso, poi William",
+      hint: "Scorri",
       labels: [
         { name: "Tomaso Forno", role: "Founder · Marketing e AI", tone: "azure", side: "left" },
         { name: "William Argintieri", role: "Web Designer & Creative Developer", tone: "red", side: "right" },

@@ -53,7 +53,7 @@ export function WebsitesTeaser() {
   const s = site.sitiWeb;
   return (
     <Section id="siti" labelledBy="siti-teaser-title" className="overflow-hidden">
-      <SectionBg kind="beams" />
+      <SectionBg kind="hex" />
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeading id="siti-teaser-title" overline="Siti web" title={s.title} line="Veloci, curati, pensati per farti contattare." />
         <Reveal y={12} blur={0}>
