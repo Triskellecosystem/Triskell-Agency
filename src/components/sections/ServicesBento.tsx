@@ -30,7 +30,7 @@ export function ServicesBento({ items }: { items: Service[] }) {
           return (
             <li key={s.title} className="sv-item h-full" style={{ "--fx": x, "--fy": y, "--fr": r, "--i": i, "--c": TONES[i % TONES.length] } as React.CSSProperties}>
               <Link href={s.href ?? "/contatti"} className="sv-float group/sv block h-full">
-                <Spotlight className="si-card flex h-full flex-col rounded-[1.125rem] border bg-[linear-gradient(165deg,var(--color-surface-2),var(--color-night-raised))] p-5 transition-[transform,border-color,box-shadow] duration-[var(--dur-base)] ease-out-expo hover:-translate-y-1.5" size={280}>
+                <Spotlight className={`si-card gl-card ${i === 0 ? "gl-card--gold" : ""} flex h-full flex-col rounded-[1.25rem] p-5`} size={280}>
                   <div className="relative z-[2] flex h-full flex-col">
                     <div className="flex items-start justify-between">
                       <span className="si-ico grid h-12 w-12 place-items-center rounded-2xl" style={{ animationDelay: `${i * 0.35}s` }}>
@@ -38,7 +38,7 @@ export function ServicesBento({ items }: { items: Service[] }) {
                       </span>
                       <Icon name="arrow-up-right" className="h-4 w-4 text-fg-3 transition-[transform,color] duration-300 group-hover/sv:-translate-y-0.5 group-hover/sv:translate-x-0.5 group-hover/sv:text-gold-300" />
                     </div>
-                    <h3 className="mt-4 font-display text-[1.0625rem] font-bold leading-tight text-fg">{s.title}</h3>
+                    <h3 className="mt-4 font-display text-[1.1875rem] font-bold leading-tight text-fg">{s.title}</h3>
                     <p className="mt-1 text-[0.8125rem] leading-snug text-fg-2">{s.text}</p>
                     <ul className="mt-3 space-y-1">
                       {s.details.slice(0, 3).map((d) => (
@@ -50,7 +50,7 @@ export function ServicesBento({ items }: { items: Service[] }) {
                     </ul>
                     {s.kpi && (
                       <p className="mt-auto flex flex-col gap-1 border-t border-white/[0.08] pt-3">
-                        <span className="sv-kpi whitespace-nowrap font-display text-[2rem] font-bold leading-none tracking-[-0.04em]" style={{ color: "var(--c)", textShadow: "0 0 24px color-mix(in srgb, var(--c) 45%, transparent)" }}>{s.kpi.value}</span>
+                        <span className="sv-kpi whitespace-nowrap font-display text-[2.25rem] font-bold leading-none tracking-[-0.04em]" style={{ color: "var(--c)", textShadow: "0 0 24px color-mix(in srgb, var(--c) 45%, transparent)" }}>{s.kpi.value}</span>
                         <span className="text-[0.75rem] font-medium leading-tight text-fg-2">{s.kpi.label}</span>
                       </p>
                     )}

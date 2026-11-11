@@ -3,20 +3,21 @@ import { Button } from "@/components/ui/Button";
 import { CountUp } from "@/components/motion/CountUp";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { MetodoEquation } from "./MetodoEquation";
-import { SectionBg } from "@/components/ui/SectionBg";
+import { SectionGlow } from "@/components/ui/SectionGlow";
+import { Icon, type IconName } from "@/components/ui/Icon";
 import { LightRays } from "@/components/ui/LightRays";
 
 /** Il Metodo Triskell in home: titolo grande, l'equazione Social + Campagne (+ Sito) = Più clienti, i tre numeri in grande e i pulsanti. */
 export function MetodoTeaser() {
   const m = site.metodo;
   const nums = [
-    { value: 6, prefix: "", unit: "mesi", label: "Collaborazione minima" },
-    { value: 12, prefix: "", unit: "contenuti", label: "Al mese, 3 a settimana" },
-    { value: 5, prefix: "4–", unit: "campagne", label: "Al mese, Meta e Google" },
+    { value: 6, prefix: "", unit: "mesi", label: "Collaborazione minima", icon: "calendar" as IconName },
+    { value: 12, prefix: "", unit: "contenuti", label: "Al mese, 3 a settimana", icon: "layers" as IconName },
+    { value: 5, prefix: "4–", unit: "campagne", label: "Al mese, Meta e Google", icon: "target" as IconName },
   ];
   return (
     <section id="metodo-triskell" aria-labelledby="metodo-triskell-title" className="mt-band relative isolate overflow-hidden py-[clamp(3.5rem,2rem+4vw,6rem)]">
-      <SectionBg kind="c-hex" />
+      <SectionGlow />
       <LightRays x={78} y={42} size={40} />
       <div className="container-x">
         <Reveal blur={6} y={18} className="text-center">
@@ -31,16 +32,23 @@ export function MetodoTeaser() {
           <MetodoEquation />
         </Reveal>
 
-        <Reveal y={14} blur={0} className="mx-auto mt-10 max-w-2xl">
-          <p className="text-center text-[0.625rem] font-semibold uppercase tracking-[0.24em] text-fg-3">La base che consigliamo</p>
-          <RevealGroup className="mt-3 grid grid-cols-3 divide-x divide-gold-300/15 rounded-2xl border border-gold-300/25 bg-[rgb(5_31_54/0.55)] backdrop-blur-sm" stagger={0.15}>
+        <Reveal y={14} blur={0} className="mx-auto mt-12 max-w-4xl">
+          <p className="flex items-center gap-4 text-[0.75rem] font-bold uppercase tracking-[0.26em] text-fg">
+            <span className="h-px flex-1 bg-gradient-to-r from-transparent to-azure-300/60" />
+            La base che consigliamo
+            <span className="h-px flex-1 bg-gradient-to-l from-transparent to-azure-300/60" />
+          </p>
+          <RevealGroup className="gl-card mt-4 grid divide-azure-300/20 rounded-[1.5rem] sm:grid-cols-3 sm:divide-x" stagger={0.15}>
             {nums.map((n) => (
-              <RevealItem key={n.unit} y={8} className="px-2 py-4 text-center sm:py-5">
-                <p className="font-display text-[clamp(1.625rem,1.3rem+1.2vw,2.25rem)] font-semibold leading-none tracking-[-0.04em]">
-                  <CountUp value={n.value} prefix={n.prefix} className="text-gold" duration={1.2} />
-                  <span className="ml-1.5 text-[0.8125rem] font-semibold tracking-normal text-fg sm:text-[0.9375rem]">{n.unit}</span>
-                </p>
-                <p className="mt-1.5 text-[0.6875rem] text-fg-3">{n.label}</p>
+              <RevealItem key={n.unit} y={8} className="flex items-center justify-center gap-4 px-4 py-5">
+                <Icon name={n.icon} className="h-9 w-9 shrink-0 text-gold-300" strokeWidth={1.6} />
+                <span>
+                  <span className="block font-display text-[clamp(1.75rem,1.4rem+1.2vw,2.5rem)] font-bold leading-none tracking-[-0.04em]">
+                    <CountUp value={n.value} prefix={n.prefix} className="text-gold" duration={1.2} />
+                    <span className="ml-1.5 text-[1.0625rem] font-semibold tracking-normal text-fg">{n.unit}</span>
+                  </span>
+                  <span className="mt-1 block text-[0.8125rem] text-fg-2">{n.label}</span>
+                </span>
               </RevealItem>
             ))}
           </RevealGroup>

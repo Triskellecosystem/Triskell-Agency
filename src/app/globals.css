@@ -2387,3 +2387,20 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .lpm-card { position: relative; border: 1.5px solid rgb(120 200 255 / 0.55); background: linear-gradient(160deg, rgb(30 90 160 / 0.35), rgb(5 24 48 / 0.75)); backdrop-filter: blur(8px); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.14), 0 0 40px -6px rgb(58 150 255 / 0.55); }
 .lpm-card--gold { border-color: rgb(253 214 120 / 0.8); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.14), 0 0 50px -4px rgb(247 200 92 / 0.5), 0 0 30px -10px rgb(58 150 255 / 0.6); }
 .lpm-card--goldline { border-color: rgb(253 214 120 / 0.6); }
+
+/* ===== Home: sfondo delle sezioni (SectionGlow) e schede luminose ===== */
+.sglow-bg { background: radial-gradient(60% 55% at 50% 40%, rgb(30 100 200 / 0.4), transparent 75%), linear-gradient(180deg, #052850 0%, #04224a 50%, #031b38 100%); mask-image: linear-gradient(180deg, transparent, #000 8%, #000 92%, transparent); }
+.sglow-wave { position: absolute; left: 0; bottom: 0; width: 100%; height: clamp(9rem, 18vw, 15rem); filter: drop-shadow(0 0 6px rgb(60 150 255 / 0.7)); }
+.sglow-floor { perspective: 650px; perspective-origin: 50% 30%; overflow: hidden; mask-image: linear-gradient(180deg, transparent 30%, #000 60%, transparent 92%); }
+.sglow-floor i { position: absolute; left: -60%; right: -60%; top: 55%; height: 140%; transform-origin: 50% 0; transform: rotateX(72deg); background-image: linear-gradient(rgb(90 180 255 / 0.5) 1.5px, transparent 1.5px), linear-gradient(90deg, rgb(90 180 255 / 0.5) 1.5px, transparent 1.5px); background-size: 110px 110px; mask-image: linear-gradient(180deg, #000, transparent 70%); }
+.gl-card { border: 1.5px solid rgb(110 190 255 / 0.65) !important; background: linear-gradient(165deg, rgb(22 78 150 / 0.92), rgb(5 24 50 / 0.96)) !important; box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12), 0 0 34px -6px rgb(58 150 255 / 0.6) !important; }
+.gl-card--gold { border-color: rgb(253 214 120 / 0.85) !important; background: linear-gradient(165deg, rgb(92 70 18 / 0.92), rgb(10 24 46 / 0.96)) !important; box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12), 0 0 40px -4px rgb(247 200 92 / 0.6) !important; }
+.gl-card--teal { border-color: rgb(80 220 210 / 0.7) !important; background: linear-gradient(165deg, rgb(16 96 110 / 0.92), rgb(5 28 48 / 0.96)) !important; box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12), 0 0 34px -6px rgb(40 200 200 / 0.55) !important; }
+.gl-accent { position: relative; padding-left: 1rem; }
+.gl-accent::before { content: ""; position: absolute; left: 0; top: 12%; bottom: 12%; width: 3px; border-radius: 3px; background: linear-gradient(180deg, transparent, #fde08a 30%, #f7c85c 70%, transparent); box-shadow: 0 0 14px rgb(247 200 92 / 0.8); }
+.cta-soft { border: 2px solid transparent !important; background: linear-gradient(160deg, rgb(10 40 80 / 0.92), rgb(3 20 42 / 0.94)) padding-box, linear-gradient(90deg, #3aa4ff, #9ad8ff 45%, #fde08a 85%, #f7c85c) border-box !important; box-shadow: 0 0 40px -4px rgb(58 150 255 / 0.55), 20px 0 50px -20px rgb(247 200 92 / 0.45) !important; }
+.cta-soft-line { display: none; }
+.ai-chat-glow { border-radius: 1.75rem; box-shadow: 0 0 0 2px transparent, 0 0 50px 2px rgb(58 150 255 / 0.55), 18px 18px 50px -14px rgb(247 200 92 / 0.55); }
+.ai-chat-glow::after { content: ""; position: absolute; inset: -2px; border-radius: inherit; padding: 2px; background: linear-gradient(135deg, #3aa4ff, #9ad8ff 40%, #fde08a 80%); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+.ct-feat { border-bottom: 1px solid; border-image: linear-gradient(90deg, rgb(247 200 92 / 0.6), transparent 80%) 1; }
+.ct-form { border: 1.5px solid transparent; background: linear-gradient(160deg, rgb(14 46 88 / 0.75), rgb(4 22 46 / 0.85)) padding-box, linear-gradient(135deg, #3aa4ff, rgb(120 200 255 / 0.4) 45%, #fde08a) border-box; backdrop-filter: blur(10px); box-shadow: 0 0 50px -6px rgb(58 150 255 / 0.5), 20px 20px 60px -24px rgb(247 200 92 / 0.45); }

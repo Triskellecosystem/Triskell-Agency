@@ -37,7 +37,7 @@ function GemMark() {
 
 function Drawer({ id, mark, title, open, onToggle, children }: { id: string; mark: React.ReactNode; title: string; open: boolean; onToggle: () => void; children: React.ReactNode }) {
   return (
-    <div className={cn("rounded-[1.25rem] border transition-[border-color,background-color] duration-300", open ? "border-gold-300/60 bg-[linear-gradient(140deg,rgb(247_200_92/0.08),rgb(13_39_61/0.7))]" : "border-white/10 bg-white/[0.02] hover:border-gold-300/40")}>
+    <div className={cn("gl-card rounded-[1.25rem] transition-[border-color,background-color] duration-300", open && "gl-card--gold")}>
       <button type="button" aria-expanded={open} aria-controls={id} onClick={onToggle} className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left">
         <span className="flex items-center gap-3">
           <span className="dm-tile relative grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-[image:var(--gradient-gold-btn)] text-night shadow-[0_8px_24px_-8px_rgb(247_200_92/0.7)]">

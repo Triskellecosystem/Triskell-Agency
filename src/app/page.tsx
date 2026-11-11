@@ -11,7 +11,7 @@ import { ServiceMarquee } from "@/components/sections/ServiceMarquee";
 import { WebsitesTeaser } from "@/components/sections/WebsitesTeaser";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { site } from "@/content/site";
-import { SectionBg } from "@/components/ui/SectionBg";
+import { SectionGlow } from "@/components/ui/SectionGlow";
 
 /**
  * Home di Triskell Agency, corta e ordinata:
@@ -29,18 +29,18 @@ export default function HomePage() {
 
       <Section id="servizi" labelledBy="servizi-title">
 
-        <SectionBg kind="circuitpro" />
+        <SectionGlow />
         <span aria-hidden="true" className="sec-line absolute inset-x-0 top-0 h-px" />
-        <SectionHeading id="servizi-title" overline={services.overline} title={services.title} line={services.line} />
+        <SectionHeading id="servizi-title" overline={services.overline} title={services.title} line={services.line} className="gl-accent" />
         <div className="mt-8">
           <ServicesBento items={services.items} />
         </div>
       </Section>
 
-      <CtaBand content={site.cta.home} />
+      <CtaBand content={site.cta.home} glow />
       <AiAgents />
       <Results />
-      <CtaBand content={site.cta.results} />
+      <CtaBand content={site.cta.results} glow />
       <WebsitesTeaser />
       <EcosystemLink />
       <Contact />

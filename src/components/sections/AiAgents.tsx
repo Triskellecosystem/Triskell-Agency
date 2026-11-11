@@ -5,7 +5,8 @@ import { CountUp } from "@/components/motion/CountUp";
 import { Reveal } from "@/components/motion/Reveal";
 import { AiAdvantages } from "./AiAdvantages";
 import { AiChat } from "./AiChat";
-import { SectionBg } from "@/components/ui/SectionBg";
+import { SectionGlow } from "@/components/ui/SectionGlow";
+import { Icon, type IconName } from "@/components/ui/Icon";
 import { LightRays } from "@/components/ui/LightRays";
 
 /**
@@ -16,7 +17,7 @@ export function AiAgents() {
   const a = site.ai;
   return (
     <Section id="ai" labelledBy="ai-title" className="overflow-hidden">
-      <SectionBg kind="c-iso" />
+      <SectionGlow />
       <LightRays x={78} y={48} size={46} />
       <div className="grid items-center gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
         <div className="min-w-0">
@@ -24,13 +25,14 @@ export function AiAgents() {
 
 
           <Reveal y={12} blur={0} delay={0.2}>
-            <dl className="mt-7 grid max-w-lg grid-cols-3 divide-x divide-white/10 border-y border-white/10 py-5">
-              {a.console.stats.map((s) => (
-                <div key={s.label} className="px-3 first:pl-0">
-                  <dd className="font-display text-[clamp(1.875rem,1.4rem+1.6vw,2.75rem)] font-bold leading-none tracking-[-0.045em]">
+            <dl className="mt-7 grid max-w-xl grid-cols-3 gap-3">
+              {a.console.stats.map((s, k) => (
+                <div key={s.label} className="gl-card flex flex-col rounded-2xl px-3.5 py-3.5">
+                  <dd className="flex items-center gap-2 font-display text-[clamp(1.5rem,1.1rem+1.4vw,2.25rem)] font-bold leading-none tracking-[-0.045em]">
+                    <Icon name={(["zap", "clock", "users"] as IconName[])[k]!} className="h-6 w-6 shrink-0 text-gold-300" strokeWidth={1.8} />
                     <CountUp {...s} className="text-gold" />
                   </dd>
-                  <dt className="mt-1 text-[0.6875rem] text-fg-3">{s.label}</dt>
+                  <dt className="mt-1.5 text-[0.8125rem] text-fg-2">{s.label}</dt>
                 </div>
               ))}
             </dl>

@@ -25,32 +25,31 @@ export function MetodoEquation({ className, fly }: { className?: string; fly?: b
           <div
             className={cn(
               "meq-tile relative flex flex-col rounded-[1.25rem] border p-5",
-              t.kind === "a" && "border-azure-300/50 bg-[linear-gradient(160deg,rgb(58_164_212/0.18),rgb(5_31_54/0.6))]",
-              t.kind === "b" && "border-gold-300/50 bg-[linear-gradient(160deg,rgb(247_200_92/0.16),rgb(43_36_16/0.5))]",
-              t.kind === "opt" && "border-dashed border-white/25 bg-white/[0.02]",
-              t.kind === "res" && "meq-res border-gold-300 bg-[linear-gradient(160deg,#4a3808,#1a1405_70%)]",
+              t.kind === "a" && "gl-card",
+              t.kind === "b" && "gl-card gl-card--teal",
+              t.kind === "opt" && "gl-card",
+              t.kind === "res" && "meq-res gl-card gl-card--gold",
             )}
             style={{ "--i": i } as React.CSSProperties}
           >
             {t.tag && <span className="absolute -top-2.5 right-4 rounded-full border border-white/20 bg-night px-2 py-0.5 text-[0.5625rem] font-bold uppercase tracking-wider text-fg-2">{t.tag}</span>}
-            <span className={cn("grid h-11 w-11 place-items-center rounded-xl", t.kind === "a" && "bg-azure-300/20 text-azure-300", t.kind === "b" && "bg-gold-300/15 text-gold-300", t.kind === "opt" && "bg-white/5 text-fg-2", t.kind === "res" && "bg-[image:var(--gradient-gold-btn)] text-night")}>
+            <span className={cn("grid h-11 w-11 place-items-center rounded-xl", t.kind === "a" && "bg-[#1a6cff] text-white shadow-[0_0_20px_rgb(26_108_255/0.6)]", t.kind === "b" && "bg-[linear-gradient(135deg,#2f7d6e,#5b6b2a)] text-gold-200", t.kind === "opt" && "bg-[#1a6cff] text-white shadow-[0_0_20px_rgb(26_108_255/0.6)]", t.kind === "res" && "bg-[image:var(--gradient-gold-btn)] text-night")}>
               <Icon name={t.icon} className="h-5 w-5" strokeWidth={2} />
             </span>
             <p className={cn("mt-4 font-display text-[clamp(1.375rem,1.1rem+1vw,1.875rem)] font-bold leading-none tracking-[-0.03em]", t.kind === "res" ? "text-gold" : "text-fg")}>{t.name}</p>
             {t.kind === "res" && (
               <>
-                <span aria-hidden="true" className="meq-sparks">
-                  {Array.from({ length: 10 }, (_, k) => (
-                    <i key={k} style={{ "--k": k } as React.CSSProperties} />
-                  ))}
-                </span>
+                <svg aria-hidden="true" viewBox="0 0 120 70" className="pointer-events-none absolute right-3 top-3 h-14 w-24" fill="none">
+                  <path d="M4 64 C 50 60, 80 40, 110 8" stroke="#fde08a" strokeWidth="3.5" strokeLinecap="round" />
+                  <path d="M98 6 L112 6 L110 20" stroke="#fde08a" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
                 <ResultCounter />
               </>
             )}
             <ul className="mt-3 space-y-1">
               {t.points.map((p) => (
                 <li key={p} className="flex items-start gap-1.5 text-[0.8125rem] leading-snug text-fg-2">
-                  <Icon name="check" className={cn("mt-0.5 h-3.5 w-3.5 shrink-0", t.kind === "a" ? "text-azure-300" : "text-gold-300")} strokeWidth={2.6} />
+                  <Icon name="check" className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold-300" strokeWidth={2.6} />
                   {p}
                 </li>
               ))}

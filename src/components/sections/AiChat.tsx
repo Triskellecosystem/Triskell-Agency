@@ -47,7 +47,7 @@ export function AiChat() {
   return (
     <div ref={ref} aria-hidden="true" className="relative mx-auto w-full max-w-sm">
       <span className="phone-glow" />
-      <BeamCard className="relative">
+      <BeamCard className="ai-chat-glow relative">
       <div className="relative rounded-[inherit] bg-[linear-gradient(160deg,#0d2a44,#061a2d)] p-2.5">
       {/* notifica del nuovo contatto: dentro la cornice, sopra la chat, non copre nulla */}
       <div className="mb-2.5 flex items-center">

@@ -985,8 +985,8 @@ export const site = {
 
   contact: {
     id: "contatti",
-    title: "Vuoi più clienti per [la tua attività]?",
-    line: "Prenota la tua call gratuita: ti richiamiamo entro 24 ore con un piano su misura.",
+    title: "Parlaci del [tuo progetto]",
+    line: "Ti rispondiamo in breve tempo e troviamo insieme la soluzione più adatta alla tua attività.",
     perks: [
       { icon: "calendar", label: "Consulenza gratuita" },
       { icon: "clock", label: "30 minuti" },
