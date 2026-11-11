@@ -13,8 +13,8 @@ export function BestPackage() {
   const b = site.metodo.best;
   const [open, setOpen] = useState(false);
   return (
-    <BeamCard className="best-pulse mx-auto max-w-3xl">
-      <div className="relative overflow-hidden rounded-[inherit] bg-[linear-gradient(150deg,#2b2410,var(--color-night-raised)_45%,#0b2a46)]">
+    <BeamCard className="best-pulse glow-border mx-auto max-w-4xl rounded-[1.75rem]">
+      <div className="relative overflow-hidden rounded-[inherit]">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-5 py-3 sm:px-6">
           <p className="flex items-center gap-2 font-display text-[0.9375rem] font-bold text-fg">
             <Icon name="award" className="h-5 w-5 text-gold-300" strokeWidth={1.9} />
@@ -28,7 +28,7 @@ export function BestPackage() {
             return (
             <div key={n.unit} className="bp-cell relative px-4 py-4 text-center sm:py-5" style={{ "--i": i } as React.CSSProperties}>
               <span aria-hidden="true" className="bp-ring" />
-              <dd className="font-display text-[clamp(2rem,1.6rem+1.4vw,2.75rem)] font-semibold leading-none tracking-[-0.05em]">
+              <dd className="font-display text-[clamp(2.5rem,1.9rem+2vw,3.75rem)] font-bold leading-none tracking-[-0.05em]">
                 {m ? <CountUp value={Number(m[2])} prefix={m[1]} className="text-gold" duration={1.4} /> : <span className="text-gold">{n.value}</span>}
               </dd>
               <dt className="mt-1.5 font-display text-[0.9375rem] font-semibold text-fg">{n.unit}</dt>

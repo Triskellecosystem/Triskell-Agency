@@ -20,8 +20,39 @@ const FEATS: Array<{ icon: IconName; title: string; text: string }> = [
  * a destra il modulo in un pannello di vetro con il bordo luminoso.
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function Contact({ bg }: { bg?: BgKind } = {}) {
+export function Contact({ bg, variant }: { bg?: BgKind; variant?: "panel" } = {}) {
   const { contact } = site;
+  if (variant === "panel")
+    return (
+      <Section id={contact.id} labelledBy="contact-title" className="overflow-hidden pb-[clamp(3.5rem,3rem+3vw,6rem)]">
+        <SectionGlow />
+        <Reveal y={30} blur={4}>
+          <div className="glow-border relative mx-auto grid max-w-6xl gap-10 rounded-[2rem] p-6 sm:p-9 lg:grid-cols-[0.85fr_1.15fr] lg:gap-0">
+            <div className="flex flex-col lg:border-r lg:border-white/12 lg:pr-10">
+              <SplitReveal id="contact-title" text="Vuoi più clienti per [la tua attività]?" as="h2" className="text-[clamp(2rem,1.5rem+2vw,3rem)] font-bold leading-[1.05] tracking-[-0.03em] text-fg" />
+              <p className="mt-4 max-w-md text-[1.0625rem] leading-relaxed text-fg-2">Prenota la tua call gratuita: ti richiamiamo entro 24 ore con un piano su misura.</p>
+              <ul className="mt-8 space-y-4">
+                {contact.perks.map((perk) => (
+                  <li key={perk.label} className="flex items-center gap-4 font-display text-[1.125rem] font-semibold text-fg">
+                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-gold-300/10 text-gold-300"><Icon name={perk.icon} className="h-5 w-5" strokeWidth={1.8} /></span>
+                    {perk.label}
+                  </li>
+                ))}
+              </ul>
+              <a href={site.brand.whatsapp} target="_blank" rel="noopener noreferrer" className="btn-glow-outline group mt-8 inline-flex w-fit items-center gap-4 rounded-full border-2 px-6 py-3.5 font-display text-[1.0625rem] font-semibold leading-tight text-fg transition-colors hover:bg-gold-300/10">
+                <SocialIcon id="whatsapp" className="h-8 w-8 text-[#25d366]" />
+                Contattaci direttamente
+                <br className="hidden sm:block" /> su WhatsApp
+                <Icon name="arrow-right" className="h-5 w-5 text-gold-300 transition-transform group-hover:translate-x-1" strokeWidth={2.2} />
+              </a>
+            </div>
+            <div className="lg:pl-10">
+              <ContactForm />
+            </div>
+          </div>
+        </Reveal>
+      </Section>
+    );
   return (
     <Section id={contact.id} labelledBy="contact-title" className="overflow-hidden pb-[clamp(3.5rem,3rem+3vw,6rem)]">
       <SectionGlow floor />

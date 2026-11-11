@@ -8,62 +8,46 @@ import { Reveal } from "@/components/motion/Reveal";
 type Row = { them: string; us: string };
 
 /**
- * Confronto interattivo: ogni riga è una carta che mostra come lavorano "gli altri"; passandoci sopra (o toccandola)
- * si gira e mostra come lavoriamo noi. In alto un interruttore gira tutte le carte insieme, una dopo l'altra.
- * Le righe entrano una alla volta quando arrivi alla sezione. Niente si muove da solo.
+ * Confronto a due colonne, sempre visibili: a sinistra "gli altri", a destra noi. Passando sopra (o toccando) una riga
+ * la nostra risposta si accende d'oro e il contatore conta le differenze viste. L'interruttore in alto accende tutte
+ * le nostre risposte insieme. Le righe entrano una alla volta.
  */
 export function Compare({ them, us, rows }: { them: string; us: string; rows: Row[] }) {
   const [all, setAll] = useState(false);
-  const [one, setOne] = useState<Record<number, boolean>>({});
-  const isOn = (i: number) => one[i] ?? all;
-  const setMode = (v: boolean) => {
-    setAll(v);
-    setOne({});
+  const [hover, setHover] = useState<number | null>(null);
+  const [seen, setSeen] = useState<number[]>([]);
+  const see = (i: number) => {
+    setHover(i);
+    setSeen((s) => (s.includes(i) ? s : [...s, i]));
   };
-  const done = rows.filter((_, i) => isOn(i)).length;
   return (
     <Reveal y={0} blur={0}>
-      <div className="cmp4 mx-auto max-w-xl">
-        <div className="flex flex-col items-center gap-2">
-          <div role="group" aria-label="Scegli il confronto" className="relative inline-grid grid-cols-2 rounded-full border border-white/10 bg-night/60 p-1">
-            <span aria-hidden="true" className={cn("absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-full transition-[transform,background-color] duration-500 ease-out-expo", all ? "translate-x-full bg-[image:var(--gradient-gold-btn)]" : "bg-white/10")} />
-            <button type="button" aria-pressed={!all} onClick={() => setMode(false)} className={cn("relative z-[1] rounded-full px-4 py-2 text-[0.8125rem] font-semibold transition-colors sm:px-6", !all ? "text-fg" : "text-fg-3")}>{them}</button>
-            <button type="button" aria-pressed={all} onClick={() => setMode(true)} className={cn("relative z-[1] inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2 text-[0.8125rem] font-bold transition-colors sm:px-6", all ? "text-night" : "text-gold-200")}>
-              <Icon name="award" className="h-3.5 w-3.5" strokeWidth={2.2} />
+      <div className="cmp5 mx-auto max-w-5xl">
+        <div className="flex flex-col items-center gap-2.5">
+          <div role="group" aria-label="Evidenzia il confronto" className="inline-flex items-center gap-2">
+            <button type="button" aria-pressed={!all} onClick={() => setAll(false)} className={cn("gl-card rounded-full px-6 py-2.5 font-display text-[0.9375rem] font-semibold transition-colors", !all ? "text-fg" : "text-fg-3")}>{them}</button>
+            <Icon name="arrow-right" className="h-5 w-5 text-gold-300" strokeWidth={2.4} />
+            <button type="button" aria-pressed={all} onClick={() => setAll((a) => !a)} className={cn("gl-card inline-flex items-center gap-2 rounded-full px-6 py-2.5 font-display text-[0.9375rem] font-bold text-gold-200", all && "gl-card--gold")}>
+              <Icon name="award" className="h-4 w-4" strokeWidth={2.2} />
               {us}
             </button>
           </div>
-          <p className="text-[0.6875rem] text-fg-3">Passa sopra o tocca una riga per vedere la differenza · {done}/{rows.length}</p>
+          <p className="text-[0.8125rem] text-fg-2">Passa sopra o tocca una riga per vedere la differenza · {seen.length}/{rows.length}</p>
         </div>
-
-        <ul className="mt-4 space-y-2">
+        <ul className="mt-6 space-y-2.5" onMouseLeave={() => setHover(null)}>
           {rows.map((r, i) => {
-            const on = isOn(i);
+            const on = all || hover === i;
             return (
-              <li key={r.us} className="cmp4-row" style={{ "--i": i } as React.CSSProperties}>
-                <button
-                  type="button"
-                  aria-pressed={on}
-                  aria-label={on ? r.us : r.them}
-                  onMouseEnter={() => setOne((o) => ({ ...o, [i]: true }))}
-                  onClick={() => setOne((o) => ({ ...o, [i]: !on }))}
-                  className="cmp4-card block w-full text-left"
-                >
-                  <span className={cn("cmp4-inner grid", on && "is-on")} style={{ transitionDelay: one[i] === undefined ? `${i * 0.08}s` : "0s" }}>
-                    <span className="cmp4-face flex items-center gap-3 rounded-xl border border-white/10 bg-[rgb(10_30_48/0.9)] px-4 py-2.5">
-                      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-ember-400/15 text-ember-300">
-                        <Icon name="close" className="h-3 w-3" strokeWidth={3} />
-                      </span>
-                      <span className="flex-1 text-[0.875rem] text-fg-2">{r.them}</span>
-                      <span className="text-[0.625rem] font-bold uppercase tracking-wider text-fg-3">{them}</span>
-                    </span>
-                    <span className="cmp4-face cmp4-back flex items-center gap-3 rounded-xl border border-gold-300/60 bg-[linear-gradient(120deg,rgb(247_200_92/0.2),rgb(11_42_70/0.95))] px-4 py-2.5 shadow-[0_0_34px_-12px_rgb(247_200_92/0.7)]">
-                      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gold-300 text-night">
-                        <Icon name="check" className="h-3.5 w-3.5" strokeWidth={3} />
-                      </span>
-                      <span className="flex-1 text-[0.875rem] font-semibold text-fg">{r.us}</span>
-                      <span className="text-[0.625rem] font-bold uppercase tracking-wider text-gold-200">{us}</span>
-                    </span>
+              <li key={r.us} className="cmp5-row" style={{ "--i": i } as React.CSSProperties}>
+                <button type="button" onMouseEnter={() => see(i)} onFocus={() => see(i)} onClick={() => see(i)} className="grid w-full gap-2.5 text-left md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
+                  <span className={cn("gl-card flex items-center gap-3 rounded-xl px-4 py-3 transition-opacity duration-300", on ? "opacity-100" : "opacity-85")}>
+                    <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-ember-400/20 text-ember-300"><Icon name="close" className="h-3 w-3" strokeWidth={3} /></span>
+                    <span className="text-[0.9375rem] text-fg-2">{r.them}</span>
+                  </span>
+                  <span className={cn("gl-card flex items-center gap-3 rounded-xl px-4 py-3 transition-[transform,box-shadow,border-color] duration-300", on && "gl-card--gold md:scale-[1.02]")}>
+                    <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[image:var(--gradient-gold-btn)] text-night"><Icon name="check" className="h-3.5 w-3.5" strokeWidth={3} /></span>
+                    <span className="flex-1 text-[0.9375rem] font-semibold text-fg">{r.us}</span>
+                    <span className="hidden text-[0.625rem] font-bold uppercase tracking-wider text-gold-200 sm:inline">{us}</span>
                   </span>
                 </button>
               </li>

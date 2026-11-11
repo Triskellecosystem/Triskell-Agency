@@ -12,7 +12,7 @@ import { DigitalCursor } from "@/components/motion/DigitalCursor";
 import { Reveal } from "@/components/motion/Reveal";
 import { site } from "@/content/site";
 import { SceneVideo } from "@/components/ui/SceneVideo";
-import { SectionBg } from "@/components/ui/SectionBg";
+import { SectionGlow } from "@/components/ui/SectionGlow";
 import { LightRays } from "@/components/ui/LightRays";
 import { HeroFx } from "@/components/ui/HeroFx";
 
@@ -56,8 +56,8 @@ export default function MetodoPage() {
 
       <Section id="formula" labelledBy="formula-title" className="mt-band">
 
-        <SectionBg kind="c-hud" />
-        <SectionHeading id="formula-title" overline="Metodo Triskell" title="Ogni parte [a supporto delle altre]" align="center" />
+        <SectionGlow />
+        <SectionHeading id="formula-title" overline="Metodo Triskell" title="Ogni parte [a supporto delle altre]" line="Un metodo integrato che unisce strategia, contenuti e tecnologia per far crescere la tua attività." className="max-w-4xl" />
         <Reveal y={10} blur={0} className="mt-10">
           <MetodoEquation fly />
         </Reveal>
@@ -65,17 +65,17 @@ export default function MetodoPage() {
 
       <Section id="registrazione" labelledBy="registrazione-title" className="overflow-hidden">
 
-        <SectionBg kind="dial" />
+        <SectionGlow alt />
         <div className="grid items-center gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)]">
           <div>
             <SectionHeading id="registrazione-title" overline="Le riprese" title="Se vuoi, [ti aiutiamo anche a registrare]" line="Veniamo noi sul posto, oppure ti guidiamo passo passo: script pronti, inquadrature e call per imparare." />
             <Reveal y={12} blur={0} delay={0.2} className="mt-7 flex flex-wrap gap-3">
-              <Button href="/social#riprese" size="md" variant="secondary" icon="arrow-right">
+              <Button href="/social#riprese" size="md" variant="secondary" icon="arrow-right" className="btn-glow-outline">
                 Come funzionano le riprese
               </Button>
             </Reveal>
           </div>
-          <Reveal y={0} blur={0} className="scv-reveal">
+          <Reveal y={0} blur={0} className="scv-reveal cv-glow">
             <SceneVideo src="/video/riprese-1.mp4" poster="/video/riprese-1.jpg" label="Una ripresa guidata per i contenuti social" />
           </Reveal>
         </div>
@@ -83,7 +83,7 @@ export default function MetodoPage() {
 
       <Section id="differenza" labelledBy="differenza-title">
 
-        <SectionBg kind="c-rings" />
+        <SectionGlow />
         <SectionHeading id="differenza-title" overline={m.compare.overline} title={m.compare.title} line={m.compare.line} align="center" />
         <div className="mt-9">
           <Compare them={m.compare.them} us={m.compare.us} rows={m.compare.rows} />
@@ -97,7 +97,7 @@ export default function MetodoPage() {
 
       <Section id="base" labelledBy="base-title">
 
-        <SectionBg kind="c-iso" />
+        <SectionGlow floor alt />
         <SectionHeading id="base-title" overline={m.best.overline} title={m.best.title} line={m.best.line} align="center" />
         <Reveal y={20} blur={0} className="mt-9">
           <BestPackage />
@@ -106,14 +106,14 @@ export default function MetodoPage() {
 
       <Section id="rodaggio" labelledBy="rodaggio-title">
 
-        <SectionBg kind="blueprint" />
+        <SectionGlow floor />
         <SectionHeading id="rodaggio-title" overline={m.rodaggio.overline} title={m.rodaggio.title} line="Il tempo per creare la struttura, metterla in moto e vedere i risultati. Con meno tempo i risultati restano troppo relativi." />
         <div className="mt-9">
           <Rodaggio />
         </div>
       </Section>
 
-      <Contact bg="c-halftone" />
+      <Contact variant="panel" />
     </>
   );
 }
