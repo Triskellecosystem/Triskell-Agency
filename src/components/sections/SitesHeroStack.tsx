@@ -8,12 +8,12 @@ import { cn } from "@/lib/cn";
 const ROLES = ["shs-pos--front", "shs-pos--left", "shs-pos--right", "shs-pos--hide"] as const;
 
 /**
- * Apertura Siti web: i siti in finestre del browser luminose che girano in 3D sopra un anello d'oro (come i telefoni
- * del social). Avanzano da sole, si fermano col mouse sopra; clic su una finestra la porta davanti, trascinando o con
- * i pallini si scorre.
+ * Apertura Siti web: Sfizi Partenopei, Stay in Sicily e Chiodo in finestre del browser luminose che girano in 3D sopra
+ * un anello d'oro. Avanzano da sole; basta passare il mouse su una finestra laterale per portarla davanti (anche clic,
+ * trascinamento o pallini).
  */
 export function SitesHeroStack() {
-  const items = site.sitiWeb.items.filter((s) => !s.demo).slice(0, 6);
+  const items = ["sfizi", "mani", "chiodo"].map((id) => site.sitiWeb.items.find((s) => s.id === id)!);
   const n = items.length;
   const [cur, setCur] = useState(0);
   const [hold, setHold] = useState(false);
@@ -48,6 +48,13 @@ export function SitesHeroStack() {
             tabIndex={r === "shs-pos--hide" ? -1 : 0}
             aria-label={`Mostra il sito ${it.name}`}
             onClick={() => setCur(i)}
+            onMouseEnter={(e) => {
+              if (r === "shs-pos--front") return;
+              const t = e.currentTarget;
+              // basta passare sopra con il mouse (con un attimo di sosta) per portarla davanti
+              const id = window.setTimeout(() => setCur(i), 180);
+              t.addEventListener("mouseleave", () => window.clearTimeout(id), { once: true });
+            }}
             className={cn("shs-card text-left", r)}
           >
             <span className="flex items-center gap-1.5 border-b border-white/10 bg-[#0a1b2e] px-3 py-1.5">
