@@ -81,9 +81,6 @@ export function SitesHelix({ heading }: { heading?: React.ReactNode }) {
             <i />
             <i />
           </span>
-          {Array.from({ length: 18 }, (_, k) => (
-            <b key={k} className="hxb-spark" style={{ left: `${(k * 37) % 100}%`, animationDelay: `${-(k * 0.83) % 9}s`, animationDuration: `${7 + (k % 5)}s` }} />
-          ))}
         </div>
         <div className={cn("hx relative w-full", heading ? "hx--compact mt-6 h-[44vh]" : "h-[62vh]")}>
           <span aria-hidden="true" className="hx-axis" />

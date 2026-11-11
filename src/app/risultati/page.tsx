@@ -8,6 +8,7 @@ import { Section } from "@/components/ui/Section";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { site } from "@/content/site";
 import { SectionBg } from "@/components/ui/SectionBg";
+import { PerspectiveRoom } from "@/components/ui/PerspectiveRoom";
 
 export const metadata: Metadata = {
   title: "Risultati",
@@ -19,7 +20,7 @@ export default function PortfolioPage() {
   const { portfolio, results } = site;
   return (
     <>
-      <PageHero overline={portfolio.overline} title={portfolio.title} line={portfolio.line} crumbs={[{ label: "Risultati" }]} aside={<ClientVideo />} backdrop={<SectionBg kind="scan" />} />
+      <PageHero overline={portfolio.overline} title={portfolio.title} line={portfolio.line} crumbs={[{ label: "Risultati" }]} aside={<ClientVideo />} backdrop={<PerspectiveRoom x={66} y={40} />} />
       <div className="container-x"><span aria-hidden="true" className="sec-line block h-px" /></div>
       <NumbersWall />
       <Section id="progetti" labelledBy="progetti-title" className="pt-[clamp(1rem,2vw,2rem)]">

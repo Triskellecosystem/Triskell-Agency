@@ -2,9 +2,9 @@ import { site } from "@/content/site";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { DigitalCursor } from "@/components/motion/DigitalCursor";
-import { TechCanvas } from "@/components/ui/TechCanvas";
 import { HeroNumbers } from "./HeroNumbers";
 import { LivePhone } from "./LivePhone";
+import { PerspectiveRoom } from "@/components/ui/PerspectiveRoom";
 
 /**
  * Hero di Triskell Agency: testo a sinistra (etichetta, domanda, una riga, pulsanti, garanzie, numeri che crescono),
@@ -18,7 +18,7 @@ export function AgencyHero() {
         <span className="ah-dots" />
       </div>
       <DigitalCursor className="-z-10" />
-      <TechCanvas kind="soft" className="hero-soft" />
+      <PerspectiveRoom x={66} y={44} />
       <span aria-hidden="true" className="hero-veil pointer-events-none absolute inset-0 -z-10" />
 
       <div className="container-x grid items-center gap-x-10 gap-y-12 lg:grid-cols-12">

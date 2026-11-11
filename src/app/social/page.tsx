@@ -16,6 +16,7 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
 import { site } from "@/content/site";
 import { SectionBg } from "@/components/ui/SectionBg";
+import { PerspectiveRoom } from "@/components/ui/PerspectiveRoom";
 
 export const metadata: Metadata = {
   title: "Gestione social media",
@@ -27,7 +28,7 @@ export default function SocialPage() {
   const s = site.social;
   return (
     <>
-      <PageHero overline={s.overline} title={s.title} line={s.line} crumbs={[{ label: "Social media" }]} aside={<PhoneFan />} alignTop backdrop={<SectionBg kind="hud" />}>
+      <PageHero overline={s.overline} title={s.title} line={s.line} crumbs={[{ label: "Social media" }]} aside={<PhoneFan />} alignTop backdrop={<PerspectiveRoom x={68} y={40} />}>
         <Button href="/contatti" size="md" icon="calendar" iconPosition="start" pulse>
           Prenota la call gratuita
         </Button>
