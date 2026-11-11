@@ -15,7 +15,7 @@ export function AiAgents() {
   const a = site.ai;
   return (
     <Section id="ai" labelledBy="ai-title" className="overflow-hidden">
-      <SectionBg kind="net" />
+      <SectionBg kind="matrix" />
       <div className="grid items-center gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
         <div className="min-w-0">
           <SectionHeading id="ai-title" overline={a.overline} title={a.title} line={a.line} />

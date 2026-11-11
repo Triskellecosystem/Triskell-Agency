@@ -11,7 +11,7 @@ export function Results() {
   const { results } = site;
   return (
     <Section id={results.id} labelledBy="results-title">
-      <SectionBg kind="grid" />
+      <SectionBg kind="bars" />
       <div className="flex flex-wrap items-end justify-between gap-5">
         <SectionHeading id="results-title" overline={results.overline} title={results.title} line={results.line} />
         <Reveal y={12} blur={0}>

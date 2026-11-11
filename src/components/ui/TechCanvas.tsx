@@ -12,7 +12,7 @@ import { cn } from "@/lib/cn";
  * circuit = piste di circuito con impulsi di luce che le percorrono
  * Si ferma fuori schermo; con reduced motion disegna un solo fotogramma.
  */
-export type TechKind = "globe" | "terrain" | "net" | "waves" | "circuit";
+export type TechKind = "globe" | "terrain" | "net" | "waves" | "circuit" | "blocks" | "pixels" | "tunnel" | "matrix" | "bars" | "scan" | "isogrid" | "hud";
 
 const AZ = [110, 200, 240];
 const GD = [253, 214, 120];
@@ -133,7 +133,6 @@ export function TechCanvas({ kind, className, focusX = 0.5, focusY = 0.5 }: { ki
           ctx.fillRect(q[0] - s / 2, q[1] - s / 2, s, s);
         }
         // archi di dati
-        if (arcs.length < 7 && R() < 0.03) arcs.push({ a: Math.floor(R() * pts.length), b: Math.floor(R() * pts.length), t: 0, d: 2.2 + R() * 1.5 });
         for (let i = arcs.length - 1; i >= 0; i--) {
           const A = arcs[i]!; A.t += 1 / 60 / A.d;
           if (A.t >= 1.6) { arcs.splice(i, 1); continue; }
@@ -222,6 +221,136 @@ export function TechCanvas({ kind, className, focusX = 0.5, focusY = 0.5 }: { ki
           const grad = ctx.createLinearGradient(...(at(Math.max(0, head - len)) as [number, number]), ...(at(head) as [number, number]));
           grad.addColorStop(0, rgba(GD, 0)); grad.addColorStop(1, rgba(GD, 0.85));
           ctx.strokeStyle = grad; ctx.lineWidth = 1.6; ctx.stroke(); ctx.lineWidth = 1;
+        }
+      }
+
+      if (kind === "blocks") {
+        // città di cubi isometrici: alcune colonne salgono e scendono piano
+        const small = W < 1024, s = small ? 22 : 34, N = 20;
+        const cx = W * (small ? 0.5 : focusX), cy = H * (small ? 0.48 : focusY) - N * s * 0.25;
+        const c30 = Math.cos(Math.PI / 6), s30 = 0.5;
+        const P2 = (x: number, z: number, y: number) => [cx + (x - z) * c30 * s, cy + (x + z) * s30 * s - y * s] as const;
+        for (let d = 0; d <= 2 * (N - 1); d++) {
+          for (let i = 0; i < N; i++) {
+            const j = d - i; if (j < 0 || j >= N) continue;
+            const x = i - N / 2, z = j - N / 2;
+            const seed = Math.sin(i * 12.9898 + j * 78.233) * 43758.5453, r = seed - Math.floor(seed);
+            const edge = Math.max(Math.abs(x + 0.5), Math.abs(z + 0.5)) / (N / 2);
+            const fade = Math.max(0, 1 - edge * edge) * 0.72;
+            let h = 0;
+            if (r > 0.62) h = (0.4 + 2.6 * r) * (0.55 + 0.45 * Math.sin(t * 0.45 + r * 20));
+            const a = P2(x, z, 0), b = P2(x + 1, z, 0), c = P2(x + 1, z + 1, 0), e = P2(x, z + 1, 0);
+            ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.lineTo(c[0], c[1]); ctx.lineTo(e[0], e[1]); ctx.closePath();
+            ctx.strokeStyle = rgba(AZ, 0.12 * fade); ctx.lineWidth = 1; ctx.stroke();
+            if (h > 0.05) {
+              const gold = r > 0.93;
+              const A = P2(x, z, h), B = P2(x + 1, z, h), C = P2(x + 1, z + 1, h), E = P2(x, z + 1, h);
+              // facce laterali
+              ctx.beginPath(); ctx.moveTo(e[0], e[1]); ctx.lineTo(c[0], c[1]); ctx.lineTo(C[0], C[1]); ctx.lineTo(E[0], E[1]); ctx.closePath();
+              ctx.fillStyle = `rgba(6,30,52,${(0.85 * fade).toFixed(3)})`; ctx.fill(); ctx.strokeStyle = rgba(gold ? GD : AZ, 0.35 * fade); ctx.stroke();
+              ctx.beginPath(); ctx.moveTo(b[0], b[1]); ctx.lineTo(c[0], c[1]); ctx.lineTo(C[0], C[1]); ctx.lineTo(B[0], B[1]); ctx.closePath();
+              ctx.fillStyle = `rgba(10,44,72,${(0.85 * fade).toFixed(3)})`; ctx.fill(); ctx.stroke();
+              // faccia sopra
+              ctx.beginPath(); ctx.moveTo(A[0], A[1]); ctx.lineTo(B[0], B[1]); ctx.lineTo(C[0], C[1]); ctx.lineTo(E[0], E[1]); ctx.closePath();
+              ctx.fillStyle = rgba(gold ? GD : AZ, (gold ? 0.32 : 0.14) * fade); ctx.fill();
+              ctx.strokeStyle = rgba(gold ? GD : AZ, 0.75 * fade); ctx.stroke();
+            }
+          }
+        }
+      }
+
+      if (kind === "pixels") {
+        const g = 22, sz = 6;
+        for (let y = g / 2; y < H; y += g) for (let x = g / 2; x < W; x += g) {
+          const n = Math.sin(x * 0.013 + t * 0.5) * Math.cos(y * 0.017 - t * 0.35) + Math.sin((x + y) * 0.004 + t * 0.2);
+          const a = Math.max(0, n - 0.9) * 0.55;
+          ctx.fillStyle = rgba(n > 1.55 ? GD : AZ, 0.04 + a);
+          ctx.fillRect(x - sz / 2, y - sz / 2, sz, sz);
+        }
+      }
+
+      if (kind === "tunnel") {
+        const cx = W / 2, cy = H / 2, n = 16, sp = 0.18;
+        const k = (t * sp) % 1;
+        for (let i = n; i >= 0; i--) {
+          const z = i - k + 1, f = 1 / z, w = W * 0.55 * f, h = H * 0.55 * f;
+          const a = Math.min(1, f * 1.5) * 0.3 * Math.min(1, (n - i + k) / 3);
+          ctx.strokeStyle = rgba(i % 4 === 0 ? GD : AZ, a); ctx.lineWidth = 1; ctx.strokeRect(cx - w, cy - h, w * 2, h * 2);
+        }
+        ctx.strokeStyle = rgba(AZ, 0.12);
+        for (const [sx, sy] of [[-1, -1], [1, -1], [1, 1], [-1, 1]] as const) { ctx.beginPath(); ctx.moveTo(cx + sx * W * 0.02, cy + sy * H * 0.02); ctx.lineTo(cx + sx * W * 0.6, cy + sy * H * 0.6); ctx.stroke(); }
+      }
+
+      if (kind === "matrix") {
+        const g = 24, sz = 4;
+        for (let ci = 0, x = g / 2; x < W; x += g, ci++) {
+          const r = Math.sin(ci * 91.3) * 43758.5; const fr = r - Math.floor(r);
+          const speed = 18 + fr * 26, len = 6 + Math.floor(fr * 10), head = ((t * speed + fr * H * 2) % (H + len * g)) - len * g * 0.2;
+          for (let k = 0; k < len; k++) {
+            const y = head - k * 12; if (y < 0 || y > H) continue;
+            ctx.fillStyle = rgba(k === 0 ? GD : AZ, k === 0 ? 0.7 : 0.32 * (1 - k / len));
+            ctx.fillRect(x - sz / 2, y, sz, sz);
+          }
+        }
+      }
+
+      if (kind === "bars") {
+        const n = 64, bw = W / n;
+        for (let i = 0; i < n; i++) {
+          const v = 0.5 + 0.5 * Math.sin(i * 0.35 + t * 0.7) * Math.cos(i * 0.11 - t * 0.4);
+          const h = H * (0.08 + v * 0.42), x = i * bw + bw * 0.3;
+          const g = ctx.createLinearGradient(0, H, 0, H - h);
+          g.addColorStop(0, rgba(i % 9 === 0 ? GD : AZ, 0.32)); g.addColorStop(1, rgba(AZ, 0));
+          ctx.fillStyle = g; ctx.fillRect(x, H - h, bw * 0.4, h);
+          ctx.fillStyle = rgba(i % 9 === 0 ? GD : AZ, 0.6); ctx.fillRect(x, H - h - 4, bw * 0.4, 2);
+        }
+      }
+
+      if (kind === "scan") {
+        const g = 34;
+        ctx.lineWidth = 1;
+        for (let y = g; y < H; y += g) { ctx.strokeStyle = rgba(AZ, 0.07); ctx.beginPath(); ctx.moveTo(0, y + 0.5); ctx.lineTo(W, y + 0.5); ctx.stroke(); }
+        const by = ((t * 40) % (H + 200)) - 100, band = ctx.createLinearGradient(0, by - 90, 0, by + 10);
+        band.addColorStop(0, rgba(AZ, 0)); band.addColorStop(1, rgba(AZ, 0.1)); ctx.fillStyle = band; ctx.fillRect(0, by - 90, W, 100);
+        ctx.fillStyle = rgba(GD, 0.8); ctx.fillRect(0, by + 10, W, 1);
+        for (let y = g, row = 0; y < H; y += g, row++) {
+          const x = ((t * (30 + (row % 5) * 12) + row * 173) % (W + 120)) - 60;
+          ctx.fillStyle = rgba(row % 4 ? AZ : GD, 0.55); ctx.fillRect(x, y - 2, 28, 3);
+        }
+      }
+
+      if (kind === "isogrid") {
+        const s = 44, c30 = Math.cos(Math.PI / 6);
+        ctx.lineWidth = 1; ctx.strokeStyle = rgba(AZ, 0.08);
+        for (let k = -H; k < W + H; k += s * 2 * c30) {
+          ctx.beginPath(); ctx.moveTo(k, 0); ctx.lineTo(k + H / Math.tan(Math.PI / 6) , H); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(k, 0); ctx.lineTo(k - H / Math.tan(Math.PI / 6), H); ctx.stroke();
+        }
+        for (let i = 0; i < 9; i++) {
+          const ph = (t * 0.25 + i * 0.37) % 1, a = Math.sin(ph * Math.PI);
+          const cx = ((Math.sin(i * 7.1) * 0.5 + 0.5) * W), cy = ((Math.cos(i * 3.3) * 0.5 + 0.5) * H), r = s * 0.9;
+          ctx.beginPath(); ctx.moveTo(cx, cy - r * 0.58); ctx.lineTo(cx + r, cy); ctx.lineTo(cx, cy + r * 0.58); ctx.lineTo(cx - r, cy); ctx.closePath();
+          ctx.fillStyle = rgba(i % 3 ? AZ : GD, a * 0.14); ctx.fill(); ctx.strokeStyle = rgba(i % 3 ? AZ : GD, a * 0.5); ctx.stroke();
+        }
+      }
+
+      if (kind === "hud") {
+        ctx.lineWidth = 1;
+        const m = 40;
+        // cornici squadrate concentriche con tacche di misura
+        for (let k = 0; k < 3; k++) {
+          const ix = m + k * 70, iy = m + k * 50; ctx.strokeStyle = rgba(AZ, 0.1 - k * 0.025); ctx.strokeRect(ix, iy, W - ix * 2, H - iy * 2);
+        }
+        ctx.strokeStyle = rgba(AZ, 0.25);
+        for (let x = m; x < W - m; x += 24) { const L = (x - m) % 120 === 0 ? 10 : 5; ctx.beginPath(); ctx.moveTo(x, m); ctx.lineTo(x, m + L); ctx.stroke(); ctx.beginPath(); ctx.moveTo(x, H - m); ctx.lineTo(x, H - m - L); ctx.stroke(); }
+        // mirini che si spostano piano
+        for (let i = 0; i < 3; i++) {
+          const x = W * (0.2 + 0.6 * (0.5 + 0.5 * Math.sin(t * 0.12 + i * 2.1))), y = H * (0.25 + 0.5 * (0.5 + 0.5 * Math.cos(t * 0.09 + i * 1.7)));
+          const c = i === 0 ? GD : AZ, r = 26;
+          ctx.strokeStyle = rgba(c, 0.5);
+          for (const [dx, dy] of [[-1, -1], [1, -1], [1, 1], [-1, 1]] as const) { ctx.beginPath(); ctx.moveTo(x + dx * r, y + dy * (r - 9)); ctx.lineTo(x + dx * r, y + dy * r); ctx.lineTo(x + dx * (r - 9), y + dy * r); ctx.stroke(); }
+          ctx.strokeStyle = rgba(c, 0.14); ctx.beginPath(); ctx.moveTo(x, m); ctx.lineTo(x, H - m); ctx.moveTo(m, y); ctx.lineTo(W - m, y); ctx.stroke();
+          ctx.fillStyle = rgba(c, 0.8); ctx.fillRect(x - 2, y - 2, 4, 4);
         }
       }
     };

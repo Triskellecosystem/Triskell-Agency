@@ -19,11 +19,11 @@ export default function PortfolioPage() {
   const { portfolio, results } = site;
   return (
     <>
-      <PageHero overline={portfolio.overline} title={portfolio.title} line={portfolio.line} crumbs={[{ label: "Risultati" }]} aside={<ClientVideo />} backdrop={<SectionBg kind="circuit" />} />
+      <PageHero overline={portfolio.overline} title={portfolio.title} line={portfolio.line} crumbs={[{ label: "Risultati" }]} aside={<ClientVideo />} backdrop={<SectionBg kind="scan" />} />
       <div className="container-x"><span aria-hidden="true" className="sec-line block h-px" /></div>
       <NumbersWall />
       <Section id="progetti" labelledBy="progetti-title" className="pt-[clamp(1rem,2vw,2rem)]">
-        <SectionBg kind="dots" />
+        <SectionBg kind="isogrid" />
         <h2 id="progetti-title" className="sr-only">
           {portfolio.title.replace(/[[\]]/g, "")}
         </h2>

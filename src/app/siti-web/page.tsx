@@ -20,7 +20,7 @@ export default function SitesPage() {
   const p = site.sitiProcess;
   return (
     <>
-      <PageHero overline={p.overline} title={p.title} line={p.line} crumbs={[{ label: "Siti web" }]} backdrop={<SectionBg kind="terrain" />}>
+      <PageHero overline={p.overline} title={p.title} line={p.line} crumbs={[{ label: "Siti web" }]} backdrop={<SectionBg kind="matrix" />}>
         <Button href="/contatti" size="md" icon="calendar" iconPosition="start" pulse>
           Voglio il mio sito
         </Button>
@@ -37,15 +37,17 @@ export default function SitesPage() {
 
       <Section id="percorso" labelledBy="percorso-title">
 
-        <SectionBg kind="circuit" />
         <SectionHeading id="percorso-title" overline="Come lo creiamo" title={p.processTitle} line={p.processLine} align="center" />
         <Reveal y={16} blur={0} className="mt-10">
           <SitePath />
         </Reveal>
       </Section>
 
-      <section id="portfolio" aria-labelledby="portfolio-title" className="hx-section relative isolate">
-        <SitesHelix heading={<SectionHeading id="portfolio-title" overline="Portfolio" title="Tutti i siti che [abbiamo creato]" line="Ristoranti, ospitalità, brand, software: ognuno su misura." align="center" />} />
+      <section id="portfolio" aria-labelledby="portfolio-title" className="hx-section relative isolate pt-[clamp(3rem,6vw,5rem)]">
+        <div className="container-x">
+          <SectionHeading id="portfolio-title" overline="Portfolio" title="Tutti i siti che [abbiamo creato]" line="Ristoranti, ospitalità, brand, software: ognuno su misura." align="center" />
+        </div>
+        <SitesHelix />
       </section>
 
       <CtaBand content={site.cta.sites} />

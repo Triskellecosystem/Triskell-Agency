@@ -14,7 +14,7 @@ export function NumbersWall() {
   const n = site.numbers;
   return (
     <Section id="numeri" labelledBy="numeri-title">
-      <SectionBg kind="net" />
+      <SectionBg kind="pixels" />
       <SectionHeading id="numeri-title" overline={n.overline} title={n.title} line={n.line} align="center" />
 
       <RevealGroup className="mt-8 grid gap-2.5 max-md:grid-cols-2 md:grid-cols-3 lg:grid-cols-6" stagger={0.08}>

@@ -29,7 +29,7 @@ export default function MetodoPage() {
         <div aria-hidden="true" className="ah-bg absolute inset-0 -z-10">
           <span className="ah-dots" />
         </div>
-        <SectionBg kind="circuit" />
+        <SectionBg kind="tunnel" />
         <DigitalCursor className="-z-10" />
         <div className="container-x grid items-center gap-x-10 gap-y-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
           <div>
@@ -56,7 +56,7 @@ export default function MetodoPage() {
 
       <Section id="formula" labelledBy="formula-title" className="mt-band">
 
-        <SectionBg kind="dots" tone="gold" />
+        <SectionBg kind="pixels" />
         <SectionHeading id="formula-title" overline="Metodo Triskell" title="Ogni parte [a supporto delle altre]" align="center" />
         <Reveal y={10} blur={0} className="mt-10">
           <MetodoEquation fly />
@@ -65,7 +65,7 @@ export default function MetodoPage() {
 
       <Section id="registrazione" labelledBy="registrazione-title" className="overflow-hidden">
 
-        <SectionBg kind="terrain" />
+        <SectionBg kind="scan" />
         <div className="grid items-center gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)]">
           <div>
             <SectionHeading id="registrazione-title" overline="Le riprese" title="Se vuoi, [ti aiutiamo anche a registrare]" line="Veniamo noi sul posto, oppure ti guidiamo passo passo: script pronti, inquadrature e call per imparare." />
@@ -97,7 +97,7 @@ export default function MetodoPage() {
 
       <Section id="base" labelledBy="base-title">
 
-        <SectionBg kind="grid" />
+        <SectionBg kind="isogrid" />
         <SectionHeading id="base-title" overline={m.best.overline} title={m.best.title} line={m.best.line} align="center" />
         <Reveal y={20} blur={0} className="mt-9">
           <BestPackage />
@@ -106,14 +106,14 @@ export default function MetodoPage() {
 
       <Section id="rodaggio" labelledBy="rodaggio-title">
 
-        <SectionBg kind="hex" />
+        <SectionBg kind="beams" />
         <SectionHeading id="rodaggio-title" overline={m.rodaggio.overline} title={m.rodaggio.title} line="Il tempo per creare la struttura, metterla in moto e vedere i risultati. Con meno tempo i risultati restano troppo relativi." />
         <div className="mt-9">
           <Rodaggio />
         </div>
       </Section>
 
-      <Contact />
+      <Contact bg="diagonal" />
     </>
   );
 }

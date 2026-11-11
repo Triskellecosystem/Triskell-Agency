@@ -1,16 +1,17 @@
 import { cn } from "@/lib/cn";
 import { Stage3D } from "./Stage3D";
-import { TechCanvas } from "./TechCanvas";
+import { TechCanvas, type TechKind } from "./TechCanvas";
 
 /**
  * Sfondi delle sezioni, uno diverso per ogni sezione della stessa pagina (stessa palette blu notte e oro):
  * stanze 3D (room, rings, horizon, rays) e sfondi leggeri solo CSS (aurora, dots, grid, waves, beams, orbit,
  * glow, diagonal). Animazioni solo transform/opacity, ferme con reduced motion.
  */
-export type BgKind = "globe" | "terrain" | "net" | "flow" | "circuit" | "hex" | "room" | "rings" | "horizon" | "rays" | "aurora" | "dots" | "grid" | "waves" | "beams" | "orbit" | "glow" | "diagonal";
+export type BgKind = "globe" | "terrain" | "net" | "flow" | "circuit" | "blocks" | "pixels" | "tunnel" | "matrix" | "bars" | "scan" | "isogrid" | "hud" | "none" | "hex" | "room" | "rings" | "horizon" | "rays" | "aurora" | "dots" | "grid" | "waves" | "beams" | "orbit" | "glow" | "diagonal";
 
 export function SectionBg({ kind, tone = "mixed", view, className }: { kind: BgKind; tone?: "mixed" | "gold" | "azure"; view?: "center" | "left" | "right" | "low"; className?: string }) {
-  if (kind === "globe" || kind === "terrain" || kind === "net" || kind === "circuit") return <TechCanvas kind={kind} className={className} />;
+  if (kind === "none") return null;
+  if (["globe", "terrain", "net", "circuit", "blocks", "pixels", "tunnel", "matrix", "bars", "scan", "isogrid", "hud"].includes(kind)) return <TechCanvas kind={kind as TechKind} className={className} />;
   if (kind === "flow") return <TechCanvas kind="waves" className={className} />;
   if (kind === "room") return <Stage3D tone={tone} view={view} className={cn("st3-noring", className)} />;
   if (kind === "rings") return <Stage3D kind="rings" tone={tone} view={view} className={className} />;

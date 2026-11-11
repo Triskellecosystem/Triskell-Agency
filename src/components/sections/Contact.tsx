@@ -1,4 +1,4 @@
-import { SectionBg } from "@/components/ui/SectionBg";
+import { SectionBg, type BgKind } from "@/components/ui/SectionBg";
 import { site } from "@/content/site";
 import { LogoMark } from "@/components/brand/LogoMark";
 import { BeamCard } from "@/components/ui/BeamCard";
@@ -13,11 +13,11 @@ import { ContactForm } from "./ContactForm";
  * CTA finale + form: un unico pannello largo con bordo beam; a sinistra messaggio e vantaggi
  * (consulenza gratuita · 30 minuti · piano su misura, come nella grafica), a destra il form.
  */
-export function Contact() {
+export function Contact({ bg = "dots" }: { bg?: BgKind } = {}) {
   const { contact } = site;
   return (
     <Section id={contact.id} labelledBy="contact-title" className="pb-[clamp(3.5rem,3rem+3vw,6rem)]">
-      <SectionBg kind="dots" />
+      <SectionBg kind={bg} />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[image:var(--gradient-bg-cta)]" />
       <Reveal y={30} blur={4}>
         <BeamCard className="relative mx-auto max-w-5xl">
