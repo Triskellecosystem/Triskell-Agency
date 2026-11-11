@@ -2290,3 +2290,16 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .stx--floor i { position: absolute; left: -30%; right: -30%; bottom: -10%; height: 70%; transform-origin: 50% 100%; transform: rotateX(70deg); background-image: linear-gradient(rgb(140 200 235 / 0.26) 1px, transparent 1px), linear-gradient(90deg, rgb(140 200 235 / 0.26) 1px, transparent 1px); background-size: 110px 110px; mask-image: linear-gradient(0deg, #000, transparent 85%); }
 
 
+
+/* Sezioni centrate: griglia piatta di quadrati che si espande dal centro, con qualche quadrato acceso */
+.cgrid { position: absolute; inset: 0; background-image: linear-gradient(rgb(130 200 240 / 0.09) 1px, transparent 1px), linear-gradient(90deg, rgb(130 200 240 / 0.09) 1px, transparent 1px); background-size: 64px 64px; background-position: center center; mask-image: radial-gradient(60% 65% at 50% 50%, #000 15%, transparent 85%); }
+.cgrid i { position: absolute; width: 64px; height: 64px; border: 1px solid rgb(130 200 240 / 0.3); background: rgb(130 200 240 / 0.04); }
+.cgrid--gold i:nth-child(odd) { border-color: rgb(247 200 92 / 0.35); background: rgb(247 200 92 / 0.04); }
+.cgrid i:nth-child(1) { left: calc(50% - 320px); top: calc(50% - 192px); }
+.cgrid i:nth-child(2) { left: calc(50% + 256px); top: calc(50% - 128px); }
+.cgrid i:nth-child(3) { left: calc(50% - 448px); top: calc(50% + 64px); }
+.cgrid i:nth-child(4) { left: calc(50% + 384px); top: calc(50% + 128px); }
+.cgrid i:nth-child(5) { left: calc(50% - 128px); top: calc(50% + 192px); }
+.cgrid i:nth-child(6) { left: calc(50% + 128px); top: calc(50% - 256px); }
+.cgrid i:nth-child(7) { left: calc(50% + 512px); top: calc(50% - 64px); }
+.prm--horizon .prm-back { display: none; }

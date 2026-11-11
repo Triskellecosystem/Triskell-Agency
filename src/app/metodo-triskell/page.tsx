@@ -83,7 +83,7 @@ export default function MetodoPage() {
 
       <Section id="differenza" labelledBy="differenza-title">
 
-        <SectionBg kind="c-rays" />
+        <SectionBg kind="c-rings" />
         <SectionHeading id="differenza-title" overline={m.compare.overline} title={m.compare.title} line={m.compare.line} align="center" />
         <div className="mt-9">
           <Compare them={m.compare.them} us={m.compare.us} rows={m.compare.rows} />
@@ -97,7 +97,7 @@ export default function MetodoPage() {
 
       <Section id="base" labelledBy="base-title">
 
-        <SectionBg kind="c-tunnel" />
+        <SectionBg kind="c-iso" />
         <SectionHeading id="base-title" overline={m.best.overline} title={m.best.title} line={m.best.line} align="center" />
         <Reveal y={20} blur={0} className="mt-9">
           <BestPackage />

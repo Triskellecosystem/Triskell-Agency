@@ -7,7 +7,7 @@ import { PerspectiveRoom, type RoomMode } from "./PerspectiveRoom";
 export type BgKind =
   | "c-hud" | "c-tunnel" | "c-rays" | "c-hex" | "c-chip" | "c-rings" | "c-iso" | "c-halftone"
   | "h-iso" | "h-hud" | "h-browser" | "h-chart"
-  | "blueprint" | "glass" | "dial" | "mesh" | "circuitpro" | "isoblocks";
+  | "blueprint" | "glass" | "dial" | "mesh" | "circuitpro" | "isoblocks" | "h-center";
 
 const V: Record<BgKind, { x: number; y: number; q: number; mode: RoomMode; gold?: boolean }> = {
   "c-hud": { x: 50, y: 45, q: 140, mode: "full" },
@@ -28,9 +28,29 @@ const V: Record<BgKind, { x: number; y: number; q: number; mode: RoomMode; gold?
   mesh: { x: 64, y: 30, q: 140, mode: "floor", gold: true },
   circuitpro: { x: 74, y: 42, q: 110, mode: "full" },
   isoblocks: { x: 70, y: 48, q: 180, mode: "corridor", gold: true },
+  "h-center": { x: 50, y: 42, q: 140, mode: "box" },
 };
 
+/** Sezioni con il testo centrato: niente stanza, ma sfumatura sola, griglia piatta che si espande dal centro o pavimento all'orizzonte. */
+const CENTER: Partial<Record<BgKind, "fade" | "grid" | "horizon">> = {
+  "c-hud": "grid", "c-rays": "grid", "c-chip": "grid",
+  "c-tunnel": "fade", "c-rings": "fade", "c-halftone": "fade",
+  "c-hex": "horizon", "c-iso": "horizon",
+};
+const FADE: Partial<Record<BgKind, number>> = { "c-tunnel": 3, "c-rings": 7, "c-halftone": 8 };
+
 export function SectionBg({ kind, className, strong }: { kind: BgKind; className?: string; strong?: boolean }) {
+  const c = CENTER[kind];
+  if (c === "fade") return <div aria-hidden="true" className={`sfx sfx--${FADE[kind]}`}><span className="stx stx--grain" /></div>;
+  if (c === "grid")
+    return (
+      <div aria-hidden="true" className="sfx sfx--3">
+        <span className={`cgrid ${kind === "c-rays" ? "cgrid--gold" : ""}`}>
+          {[0, 1, 2, 3, 4, 5, 6].map((i) => <i key={i} />)}
+        </span>
+      </div>
+    );
+  if (c === "horizon") return <PerspectiveRoom x={50} y={kind === "c-iso" ? 30 : 36} q={kind === "c-iso" ? 110 : 140} mode="floor" gold={kind === "c-hex"} className="prm--section prm--horizon" />;
   const v = V[kind];
   return <PerspectiveRoom x={v.x} y={v.y} q={v.q} mode={v.mode} gold={v.gold} strong={strong} className={className ?? "prm--section"} />;
 }
