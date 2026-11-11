@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { PageHero } from "@/components/sections/PageHero";
 import { SitePath } from "@/components/sections/SitePath";
+import { SitesHeroStack } from "@/components/sections/SitesHeroStack";
+import { HeroFx } from "@/components/ui/HeroFx";
+import { LightRays } from "@/components/ui/LightRays";
+import { Icon } from "@/components/ui/Icon";
 import { SitesHelix } from "@/components/sections/SitesHelix";
-import { SitesWall } from "@/components/sections/WebsitesTeaser";
 import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
@@ -20,7 +23,7 @@ export default function SitesPage() {
   const p = site.sitiProcess;
   return (
     <>
-      <PageHero overline={p.overline} title={p.title} line={p.line} crumbs={[{ label: "Siti web" }]} backdrop={<SectionBg kind="h-browser" strong className="" />}>
+      <PageHero overline={p.overline} title={p.title} line={p.line} crumbs={[{ label: "Siti web" }]} aside={<SitesHeroStack />} backdrop={<><HeroFx horizon={78} vx={70} /><LightRays x={72} y={46} size={50} /></>}>
         <Button href="/contatti" size="md" icon="calendar" iconPosition="start" pulse>
           Voglio il mio sito
         </Button>
@@ -29,11 +32,17 @@ export default function SitesPage() {
         </Button>
       </PageHero>
 
-      <div className="container-x -mt-4">
-        <Reveal y={20} blur={0}>
-          <SitesWall className="h-[24rem] sm:h-[32rem] lg:h-[38rem]" />
-        </Reveal>
+      <div className="container-x">
+        <ul className="hero-feats grid gap-4 py-6 sm:grid-cols-3">
+          {([["monitor", "Design su misura"], ["layers", "Revisioni incluse"], ["rocket", "Online e pronto a convertire"]] as const).map(([ic, l]) => (
+            <li key={l} className="flex items-center justify-center gap-3 font-display text-[1.0625rem] font-semibold text-fg">
+              <Icon name={ic} className="h-6 w-6 text-gold-300" strokeWidth={1.7} />
+              {l}
+            </li>
+          ))}
+        </ul>
       </div>
+
 
       <Section id="percorso" labelledBy="percorso-title">
         <SectionBg kind="c-hud" />

@@ -14,6 +14,7 @@ import { site } from "@/content/site";
 import { SceneVideo } from "@/components/ui/SceneVideo";
 import { SectionBg } from "@/components/ui/SectionBg";
 import { LightRays } from "@/components/ui/LightRays";
+import { HeroFx } from "@/components/ui/HeroFx";
 
 export const metadata: Metadata = {
   title: "Il Metodo Triskell",
@@ -27,16 +28,13 @@ export default function MetodoPage() {
   return (
     <>
       <section aria-labelledby="metodo-title" className="relative isolate overflow-hidden pb-[clamp(2.5rem,5vw,4rem)] pt-[calc(var(--header-h)+clamp(2rem,5vh,3.5rem))]">
-        <div aria-hidden="true" className="ah-bg absolute inset-0 -z-10">
-          <span className="ah-dots" />
-        </div>
-        <SectionBg kind="h-iso" strong className="" />
-        <LightRays x={70} y={48} size={52} horizon={76} />
+        <HeroFx horizon={74} vx={60} pedestal={{ x: 60, y: 88, w: 24 }} />
+        <LightRays x={60} y={44} size={56} />
         <DigitalCursor className="-z-10" />
         <div className="container-x grid items-center gap-x-10 gap-y-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
           <div>
             <p className="animate-[fade-in_0.8s_var(--ease-soft)_both] text-[0.6875rem] font-semibold uppercase tracking-[0.22em] text-gold-300">{m.overline}</p>
-            <h1 id="metodo-title" className="mt-2 animate-[line-up_1s_var(--ease-out-expo)_backwards] font-display text-[clamp(3rem,2rem+4vw,5.5rem)] font-bold leading-[0.92] tracking-[-0.05em] text-fg">
+            <h1 id="metodo-title" className="hero-accent mt-2 animate-[line-up_1s_var(--ease-out-expo)_backwards] font-display text-[clamp(3rem,2rem+4vw,5.5rem)] font-bold leading-[0.92] tracking-[-0.05em] text-fg">
               Metodo <span className="text-gold">Triskell</span>
             </h1>
             <p className="mt-4 font-display text-[clamp(1.25rem,1rem+1vw,1.75rem)] font-bold tracking-[-0.02em] text-fg-2">
@@ -52,7 +50,7 @@ export default function MetodoPage() {
               </Button>
             </div>
           </div>
-          <LivePhone tabs salesLabel="Visite fissate" profile="lumina" />
+          <LivePhone tabs salesLabel="Visite fissate" profile="lumina" className="lp-hero" />
         </div>
       </section>
 

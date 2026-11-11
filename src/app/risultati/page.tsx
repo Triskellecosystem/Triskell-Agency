@@ -9,6 +9,7 @@ import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { site } from "@/content/site";
 import { LightRays } from "@/components/ui/LightRays";
 import { SectionBg } from "@/components/ui/SectionBg";
+import { HeroFx } from "@/components/ui/HeroFx";
 
 export const metadata: Metadata = {
   title: "Risultati",
@@ -20,7 +21,7 @@ export default function PortfolioPage() {
   const { portfolio, results } = site;
   return (
     <>
-      <PageHero overline={portfolio.overline} title={portfolio.title} line={portfolio.line} crumbs={[{ label: "Risultati" }]} aside={<ClientVideo />} backdrop={<><SectionBg kind="h-chart" className="prm--section" /><LightRays x={76} y={44} size={34} /></>} />
+      <PageHero overline={portfolio.overline} title={portfolio.title} line={portfolio.line} crumbs={[{ label: "Risultati" }]} aside={<ClientVideo />} backdrop={<><HeroFx horizon={86} vx={72} /><LightRays x={74} y={40} size={40} /></>} />
       <div className="container-x"><span aria-hidden="true" className="sec-line block h-px" /></div>
       <NumbersWall />
       <Section id="progetti" labelledBy="progetti-title" className="pt-[clamp(1rem,2vw,2rem)]">

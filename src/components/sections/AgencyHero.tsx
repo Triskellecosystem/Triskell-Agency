@@ -5,6 +5,7 @@ import { DigitalCursor } from "@/components/motion/DigitalCursor";
 import { HeroNumbers } from "./HeroNumbers";
 import { LivePhone } from "./LivePhone";
 import { LightRays } from "@/components/ui/LightRays";
+import { HeroFx } from "@/components/ui/HeroFx";
 
 /**
  * Hero di Triskell Agency: testo a sinistra (etichetta, domanda, una riga, pulsanti, garanzie, numeri che crescono),
@@ -18,8 +19,7 @@ export function AgencyHero() {
         <span className="ah-dots" />
       </div>
       <DigitalCursor className="-z-10" />
-      <span aria-hidden="true" className="hw-bg pointer-events-none absolute inset-0 -z-20" />
-      <span aria-hidden="true" className="hw-floor pointer-events-none absolute inset-0 -z-10"><i /><b /></span>
+      <HeroFx horizon={70} vx={64} />
       <LightRays x={66} y={44} size={60} />
       <span aria-hidden="true" className="hero-veil pointer-events-none absolute inset-0 -z-10" />
 

@@ -2325,16 +2325,16 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 
 /* ===== Apertura Home "wow": blu acceso, pavimento luminoso, telefono in 3D, pannello in vetro ===== */
 .hw-bg { background: radial-gradient(55% 60% at 70% 38%, rgb(32 110 210 / 0.5), transparent 70%), radial-gradient(45% 50% at 15% 15%, rgb(20 80 170 / 0.35), transparent 70%), linear-gradient(180deg, #06305e 0%, #042449 55%, #031a35 100%); }
-.hw-floor { perspective: 600px; perspective-origin: 64% 60%; overflow: hidden; mask-image: linear-gradient(90deg, rgb(0 0 0 / 0.35), #000 45%); }
-.hw-floor i { position: absolute; left: -60%; right: -60%; top: 70%; height: 160%; transform-origin: 50% 0; transform: rotateX(72deg);
+.hw-floor { perspective: 600px; perspective-origin: var(--hvx, 64%) calc(var(--hz, 70%) - 10%); overflow: hidden; mask-image: linear-gradient(90deg, rgb(0 0 0 / 0.35), #000 45%); }
+.hw-floor i { position: absolute; left: -60%; right: -60%; top: var(--hz, 70%); height: 160%; transform-origin: 50% 0; transform: rotateX(72deg);
   background-image:
     radial-gradient(circle, rgb(200 235 255 / 1) 2px, rgb(120 200 255 / 0.5) 3.5px, transparent 6px),
     linear-gradient(rgb(100 190 255 / 0.75) 2px, transparent 2px),
     linear-gradient(90deg, rgb(100 190 255 / 0.75) 2px, transparent 2px);
   background-size: 120px 120px; background-position: -1px -1px, 0 0, 0 0;
   mask-image: linear-gradient(180deg, #000 0%, #000 25%, transparent 70%); }
-.hw-floor b { position: absolute; left: 0; right: 0; top: 70%; height: 2px; background: linear-gradient(90deg, transparent, rgb(120 200 255 / 0.9) 30%, #fff 62%, rgb(120 200 255 / 0.9) 85%, transparent); box-shadow: 0 0 40px 10px rgb(58 140 255 / 0.45), 0 0 120px 30px rgb(30 110 220 / 0.25); }
-.hw-floor::after { content: ""; position: absolute; left: 64%; top: 70%; width: 60rem; height: 14rem; transform: translate(-50%, -50%); background: radial-gradient(closest-side, rgb(120 190 255 / 0.35), rgb(247 200 92 / 0.08) 55%, transparent); filter: blur(6px); }
+.hw-floor b { position: absolute; left: 0; right: 0; top: var(--hz, 70%); height: 2px; background: linear-gradient(90deg, transparent, rgb(120 200 255 / 0.9) 30%, #fff 62%, rgb(120 200 255 / 0.9) 85%, transparent); box-shadow: 0 0 40px 10px rgb(58 140 255 / 0.45), 0 0 120px 30px rgb(30 110 220 / 0.25); }
+.hw-floor::after { content: ""; position: absolute; left: var(--hvx, 64%); top: var(--hz, 70%); width: 60rem; height: 14rem; transform: translate(-50%, -50%); background: radial-gradient(closest-side, rgb(120 190 255 / 0.35), rgb(247 200 92 / 0.08) 55%, transparent); filter: blur(6px); }
 /* telefono inclinato in 3D con bordo luminoso */
 .lp-hero { perspective: 1300px; }
 .lp-hero > div:first-child { transform: rotateY(-16deg) rotateX(5deg) rotateZ(2deg); transform-style: preserve-3d; }
@@ -2344,3 +2344,32 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .lp-hero > div:last-child::before { content: ""; position: absolute; right: -6px; bottom: -6px; width: 9rem; height: 9rem; border-radius: 1.75rem; background: radial-gradient(closest-side at 100% 100%, rgb(253 214 120 / 0.55), transparent); filter: blur(14px); z-index: -1; }
 .lp-hero .lp2-today { border-color: rgb(120 200 255 / 0.4); background: linear-gradient(135deg, rgb(70 140 220 / 0.25), rgb(8 34 64 / 0.7)); }
 @media (prefers-reduced-motion: reduce) { .lp-hero > div { transform: none; } }
+
+/* Effetti aperture: onde di particelle e piedistallo luminoso */
+.hfx-wave { position: absolute; bottom: -4%; width: 42%; height: 40%; filter: drop-shadow(0 0 5px rgb(80 170 255 / 0.8)); }
+.hfx-wave--l { left: -4%; mask-image: linear-gradient(90deg, #000 40%, transparent); }
+.hfx-wave--r { right: -4%; mask-image: linear-gradient(270deg, #000 40%, transparent); }
+.hfx-ped { position: absolute; aspect-ratio: 4 / 1; transform: translate(-50%, -50%); }
+.hfx-ped i { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(closest-side, rgb(20 60 110 / 0.95), rgb(8 30 60 / 0.95) 80%, transparent 100%); border: 2px solid rgb(120 200 255 / 0.85); box-shadow: 0 0 30px 6px rgb(58 150 255 / 0.55), inset 0 0 30px rgb(58 150 255 / 0.45); }
+.hfx-ped b { position: absolute; inset: -8% -4%; border-radius: 50%; border: 2px solid rgb(253 214 120 / 0.85); box-shadow: 0 0 40px 8px rgb(247 200 92 / 0.45); clip-path: inset(45% 0 0 0); }
+.hfx-ped::after { content: ""; position: absolute; left: 10%; right: 10%; top: 50%; height: 140%; background: linear-gradient(180deg, rgb(58 150 255 / 0.25), transparent); filter: blur(10px); }
+@media (max-width: 1023px) { .hfx-wave { width: 80%; height: 30%; opacity: 0.6; } .hfx-ped { display: none; } }
+
+/* Apertura Siti web: finestre luminose in 3D sopra un anello d'oro */
+.shs { perspective: 1400px; }
+.shs-card { position: absolute; overflow: hidden; border-radius: 1rem; border: 1.5px solid rgb(120 200 255 / 0.6); background: #06192b; box-shadow: 0 0 0 1px rgb(255 255 255 / 0.06), 0 0 40px 2px rgb(58 150 255 / 0.5), 0 40px 80px -30px rgb(0 0 0 / 0.95); }
+.shs-card--a { left: 0; top: 6%; width: 58%; transform: rotateY(18deg) rotateZ(-6deg); z-index: 1; }
+.shs-card--b { right: 0; top: 0; width: 56%; transform: rotateY(-14deg) rotateZ(3deg); z-index: 1; }
+.shs-card--c { left: 22%; top: 34%; width: 66%; transform: rotateY(-8deg) rotateX(6deg) rotateZ(-3deg); z-index: 2; border-color: rgb(253 214 120 / 0.75); box-shadow: 0 0 0 1px rgb(255 255 255 / 0.08), 0 0 50px 4px rgb(247 200 92 / 0.45), 0 50px 90px -30px rgb(0 0 0 / 0.95); }
+.shs-ring { position: absolute; left: 8%; right: -2%; bottom: 0; height: 26%; border-radius: 50%; border: 2px solid rgb(253 214 120 / 0.9); box-shadow: 0 0 40px 6px rgb(247 200 92 / 0.45), inset 0 0 40px rgb(58 150 255 / 0.3); }
+.shs-ring::after { content: ""; position: absolute; inset: 18% 10%; border-radius: 50%; background: radial-gradient(closest-side, rgb(58 150 255 / 0.35), transparent); }
+@media (max-width: 1023px) { .shs { max-width: 26rem; } }
+/* fila di vantaggi sotto l'apertura */
+.hero-feats { border-top: 1px solid rgb(120 200 255 / 0.18); }
+/* accento verticale dorato accanto al titolo del Metodo */
+.hero-accent { position: relative; }
+.hero-accent::before { content: ""; position: absolute; left: -1.25rem; top: 8%; bottom: 8%; width: 3px; border-radius: 3px; background: linear-gradient(180deg, transparent, #fde08a 30%, #f7c85c 70%, transparent); box-shadow: 0 0 18px rgb(247 200 92 / 0.8); }
+@media (max-width: 767px) { .hero-accent::before { left: -0.75rem; } }
+/* video Risultati con cornice luminosa blu e oro */
+.cv-glow .scv-frame { box-shadow: 0 0 0 1.5px rgb(120 200 255 / 0.7), 0 0 50px 4px rgb(58 150 255 / 0.45), 30px 30px 60px -20px rgb(247 200 92 / 0.35); border-radius: 1.5rem; }
+.cv-glow .sw-badge { border-color: rgb(120 200 255 / 0.55); box-shadow: 0 0 24px -4px rgb(58 150 255 / 0.6); }

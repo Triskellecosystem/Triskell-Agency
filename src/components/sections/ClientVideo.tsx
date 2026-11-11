@@ -4,7 +4,7 @@ import { Icon } from "@/components/ui/Icon";
 /** Apertura di Risultati: il video della stretta di mano (un cliente chiuso) e, sotto, due etichette che non coprono il video. */
 export function ClientVideo() {
   return (
-    <div>
+    <div className="cv-glow">
       <SceneVideo src="/video/clienti.mp4" poster="/video/clienti.jpg" label="Una stretta di mano: un nuovo cliente acquisito" tag="Nuovo cliente · Triskell" />
       <div className="mt-4 flex flex-wrap justify-center gap-2.5">
         <span className="sw-badge inline-flex items-center gap-2 rounded-full border border-lime-300/40 bg-night/80 py-1.5 pl-1.5 pr-3.5 text-[0.75rem] font-semibold text-fg backdrop-blur">
