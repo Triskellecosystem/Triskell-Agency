@@ -15,7 +15,7 @@ export default function ContactPage() {
   const { contatti } = site;
   return (
     <>
-      <PageHero overline={contatti.overline} title={contatti.title} line={contatti.line} crumbs={[{ label: "Contatti" }]} backdrop={<SectionBg kind="h-iso" />} />
+      <PageHero overline={contatti.overline} title={contatti.title} line={contatti.line} crumbs={[{ label: "Contatti" }]} backdrop={<SectionBg kind="c-hud" strong className="" />} />
       <Contact bg="c-halftone" />
       <Faq />
     </>

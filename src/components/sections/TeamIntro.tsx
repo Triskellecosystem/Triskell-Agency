@@ -87,7 +87,7 @@ export function TeamIntro() {
 
   return (
     <Section id="team" labelledBy="team-title" className="py-0 pt-[calc(var(--header-h)+0.5rem)]">
-      <SectionBg kind="c-tunnel" />
+      <SectionBg kind="c-tunnel" strong className="" />
       <div ref={track} className="ti-track">
         <div className="ti-sticky">
           <header className="mx-auto max-w-2xl pb-4 text-center sm:pb-8">

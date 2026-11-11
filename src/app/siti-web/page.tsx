@@ -20,7 +20,7 @@ export default function SitesPage() {
   const p = site.sitiProcess;
   return (
     <>
-      <PageHero overline={p.overline} title={p.title} line={p.line} crumbs={[{ label: "Siti web" }]} backdrop={<SectionBg kind="h-browser" />}>
+      <PageHero overline={p.overline} title={p.title} line={p.line} crumbs={[{ label: "Siti web" }]} backdrop={<SectionBg kind="h-browser" strong className="" />}>
         <Button href="/contatti" size="md" icon="calendar" iconPosition="start" pulse>
           Voglio il mio sito
         </Button>

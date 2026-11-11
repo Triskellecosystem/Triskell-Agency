@@ -27,7 +27,7 @@ export default function SocialPage() {
   const s = site.social;
   return (
     <>
-      <PageHero overline={s.overline} title={s.title} line={s.line} crumbs={[{ label: "Social media" }]} aside={<PhoneFan />} alignTop backdrop={<SectionBg kind="h-hud" />}>
+      <PageHero overline={s.overline} title={s.title} line={s.line} crumbs={[{ label: "Social media" }]} aside={<PhoneFan />} alignTop backdrop={<SectionBg kind="h-hud" strong className="" />}>
         <Button href="/contatti" size="md" icon="calendar" iconPosition="start" pulse>
           Prenota la call gratuita
         </Button>

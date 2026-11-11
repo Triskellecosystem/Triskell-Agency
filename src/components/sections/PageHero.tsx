@@ -31,8 +31,7 @@ interface PageHeroProps {
  */
 export function PageHero({ overline, title, line, crumbs = [], children, aside, asideClassName, alignTop, pulseGold, backdrop }: PageHeroProps) {
   return (
-    <section className="relative isolate overflow-hidden pb-[clamp(2.5rem,5vw,4.5rem)] pt-[calc(var(--header-h)+clamp(2rem,5vh,4rem))]">
-      <div aria-hidden="true" className="bg-grid absolute inset-0 -z-20 [mask-image:linear-gradient(to_bottom,#000,transparent_90%)]" />
+    <section className="relative isolate flex min-h-[clamp(26rem,62vh,40rem)] flex-col justify-center overflow-hidden pb-[clamp(2.5rem,5vw,4.5rem)] pt-[calc(var(--header-h)+clamp(2rem,5vh,4rem))]">
       <div aria-hidden="true" className="absolute inset-0 -z-20 bg-[image:var(--gradient-bg-hero)]" />
       {backdrop}
       <div className={aside ? `container-x grid gap-x-10 gap-y-14 lg:grid-cols-12 ${alignTop ? "lg:items-start" : "items-center"}` : "container-x"}>

@@ -29,7 +29,7 @@ export default function MetodoPage() {
         <div aria-hidden="true" className="ah-bg absolute inset-0 -z-10">
           <span className="ah-dots" />
         </div>
-        <SectionBg kind="h-iso" />
+        <SectionBg kind="h-iso" strong className="" />
         <DigitalCursor className="-z-10" />
         <div className="container-x grid items-center gap-x-10 gap-y-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
           <div>
