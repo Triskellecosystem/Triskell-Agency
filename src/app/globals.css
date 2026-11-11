@@ -2322,3 +2322,25 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .pf-sep { height: 1px; background: linear-gradient(90deg, transparent, rgb(130 200 240 / 0.25) 20%, rgb(253 224 138 / 0.8) 50%, rgb(130 200 240 / 0.25) 80%, transparent); box-shadow: 0 0 30px 3px rgb(247 200 92 / 0.18); }
 .pf-sep i { position: absolute; left: 50%; top: 50%; width: 11px; height: 11px; transform: translate(-50%, -50%) rotate(45deg); border: 1px solid rgb(253 224 138 / 0.9); background: var(--color-night); box-shadow: 0 0 16px rgb(247 200 92 / 0.6); }
 .pf-head { background-image: linear-gradient(rgb(130 200 240 / 0.13) 1px, transparent 1px), linear-gradient(90deg, rgb(130 200 240 / 0.13) 1px, transparent 1px), radial-gradient(45% 60% at 50% 0%, rgb(247 200 92 / 0.12), transparent 70%); background-size: 56px 56px, 56px 56px, 100% 100%; background-position: center top; mask-image: radial-gradient(55% 80% at 50% 0%, #000 30%, transparent 85%); }
+
+/* ===== Apertura Home "wow": blu acceso, pavimento luminoso, telefono in 3D, pannello in vetro ===== */
+.hw-bg { background: radial-gradient(55% 60% at 70% 38%, rgb(32 110 210 / 0.5), transparent 70%), radial-gradient(45% 50% at 15% 15%, rgb(20 80 170 / 0.35), transparent 70%), linear-gradient(180deg, #06305e 0%, #042449 55%, #031a35 100%); }
+.hw-floor { perspective: 600px; perspective-origin: 64% 60%; overflow: hidden; mask-image: linear-gradient(90deg, rgb(0 0 0 / 0.35), #000 45%); }
+.hw-floor i { position: absolute; left: -60%; right: -60%; top: 70%; height: 160%; transform-origin: 50% 0; transform: rotateX(72deg);
+  background-image:
+    radial-gradient(circle, rgb(200 235 255 / 1) 2px, rgb(120 200 255 / 0.5) 3.5px, transparent 6px),
+    linear-gradient(rgb(100 190 255 / 0.75) 2px, transparent 2px),
+    linear-gradient(90deg, rgb(100 190 255 / 0.75) 2px, transparent 2px);
+  background-size: 120px 120px; background-position: -1px -1px, 0 0, 0 0;
+  mask-image: linear-gradient(180deg, #000 0%, #000 25%, transparent 70%); }
+.hw-floor b { position: absolute; left: 0; right: 0; top: 70%; height: 2px; background: linear-gradient(90deg, transparent, rgb(120 200 255 / 0.9) 30%, #fff 62%, rgb(120 200 255 / 0.9) 85%, transparent); box-shadow: 0 0 40px 10px rgb(58 140 255 / 0.45), 0 0 120px 30px rgb(30 110 220 / 0.25); }
+.hw-floor::after { content: ""; position: absolute; left: 64%; top: 70%; width: 60rem; height: 14rem; transform: translate(-50%, -50%); background: radial-gradient(closest-side, rgb(120 190 255 / 0.35), rgb(247 200 92 / 0.08) 55%, transparent); filter: blur(6px); }
+/* telefono inclinato in 3D con bordo luminoso */
+.lp-hero { perspective: 1300px; }
+.lp-hero > div:first-child { transform: rotateY(-16deg) rotateX(5deg) rotateZ(2deg); transform-style: preserve-3d; }
+.lp-hero .lp2-phone { border-color: #0d1b2c; box-shadow: 0 0 0 2px rgb(140 210 255 / 0.55), 0 0 40px 4px rgb(58 150 255 / 0.55), 0 0 120px 10px rgb(40 120 230 / 0.35), 0 70px 110px -40px rgb(0 0 0 / 0.95); }
+/* pannello in vetro con i messaggi e i numeri */
+.lp-hero > div:last-child { position: relative; padding: 1rem; border-radius: 1.75rem; border: 1.5px solid rgb(120 200 255 / 0.45); background: linear-gradient(160deg, rgb(40 110 190 / 0.35), rgb(6 30 60 / 0.65)); backdrop-filter: blur(10px); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.18), 0 0 60px -8px rgb(58 150 255 / 0.55), 0 40px 80px -40px rgb(0 0 0 / 0.9); transform: rotateY(-10deg) rotateX(3deg); }
+.lp-hero > div:last-child::before { content: ""; position: absolute; right: -6px; bottom: -6px; width: 9rem; height: 9rem; border-radius: 1.75rem; background: radial-gradient(closest-side at 100% 100%, rgb(253 214 120 / 0.55), transparent); filter: blur(14px); z-index: -1; }
+.lp-hero .lp2-today { border-color: rgb(120 200 255 / 0.4); background: linear-gradient(135deg, rgb(70 140 220 / 0.25), rgb(8 34 64 / 0.7)); }
+@media (prefers-reduced-motion: reduce) { .lp-hero > div { transform: none; } }

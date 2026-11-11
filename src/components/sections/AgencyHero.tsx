@@ -4,7 +4,6 @@ import { Icon } from "@/components/ui/Icon";
 import { DigitalCursor } from "@/components/motion/DigitalCursor";
 import { HeroNumbers } from "./HeroNumbers";
 import { LivePhone } from "./LivePhone";
-import { PerspectiveRoom } from "@/components/ui/PerspectiveRoom";
 import { LightRays } from "@/components/ui/LightRays";
 
 /**
@@ -14,13 +13,14 @@ import { LightRays } from "@/components/ui/LightRays";
 export function AgencyHero() {
   const { hero } = site;
   return (
-    <section id="top" aria-labelledby="hero-title" className="relative isolate overflow-hidden pb-[clamp(3rem,6vw,5rem)] pt-[calc(var(--header-h)+clamp(2.5rem,8vh,6rem))]">
+    <section id="top" data-hero-wow aria-labelledby="hero-title" className="relative isolate overflow-hidden pb-[clamp(3rem,6vw,5rem)] pt-[calc(var(--header-h)+clamp(2.5rem,8vh,6rem))]">
       <div aria-hidden="true" className="ah-bg absolute inset-0 -z-10">
         <span className="ah-dots" />
       </div>
       <DigitalCursor className="-z-10" />
-      <PerspectiveRoom x={66} y={44} q={150} strong />
-      <LightRays x={63} y={46} size={56} horizon={74} />
+      <span aria-hidden="true" className="hw-bg pointer-events-none absolute inset-0 -z-20" />
+      <span aria-hidden="true" className="hw-floor pointer-events-none absolute inset-0 -z-10"><i /><b /></span>
+      <LightRays x={66} y={44} size={60} />
       <span aria-hidden="true" className="hero-veil pointer-events-none absolute inset-0 -z-10" />
 
       <div className="container-x grid items-center gap-x-10 gap-y-12 lg:grid-cols-12">
@@ -59,7 +59,7 @@ export function AgencyHero() {
         </div>
 
         <div className="hidden lg:col-span-6 lg:block">
-          <LivePhone />
+          <LivePhone className="lp-hero" />
         </div>
       </div>
     </section>
