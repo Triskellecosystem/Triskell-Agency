@@ -31,7 +31,7 @@ export function CtaBand({ content }: { content?: CtaContent }) {
     </Link>
   );
   return (
-    <section aria-label={content?.title ?? "Prenota la call gratuita"} className="relative isolate py-[clamp(1rem,2vw,1.75rem)]">
+    <section aria-label={content?.title ?? "Prenota la call gratuita"} className="relative isolate py-[clamp(2.5rem,5vw,4rem)]">
       <div className="container-x">
         <Reveal y={16} blur={0}>
           <div className={cn("cta-soft relative mx-auto overflow-hidden rounded-[1.25rem] border border-gold-300/25 bg-[linear-gradient(160deg,rgb(13_39_61/0.75),rgb(2_18_33/0.85))] px-5 py-5 sm:px-8", content ? "max-w-5xl" : "max-w-3xl text-center")}>

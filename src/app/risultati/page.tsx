@@ -20,7 +20,7 @@ export default function PortfolioPage() {
   const { portfolio, results } = site;
   return (
     <>
-      <PageHero overline={portfolio.overline} title={portfolio.title} line={portfolio.line} crumbs={[{ label: "Risultati" }]} aside={<ClientVideo />} backdrop={<><SectionBg kind="h-chart" strong className="" /><LightRays x={74} y={46} size={50} horizon={78} /></>} />
+      <PageHero overline={portfolio.overline} title={portfolio.title} line={portfolio.line} crumbs={[{ label: "Risultati" }]} aside={<ClientVideo />} backdrop={<><SectionBg kind="h-chart" className="prm--section" /><LightRays x={76} y={44} size={34} /></>} />
       <div className="container-x"><span aria-hidden="true" className="sec-line block h-px" /></div>
       <NumbersWall />
       <Section id="progetti" labelledBy="progetti-title" className="pt-[clamp(1rem,2vw,2rem)]">

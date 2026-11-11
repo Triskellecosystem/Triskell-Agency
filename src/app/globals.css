@@ -2152,7 +2152,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 @media (prefers-reduced-motion: reduce) { .cmp4-row { opacity: 1; transform: none; transition: none; } .cmp4-inner { transition: none; } }
 
 /* Sfondo della spirale dei siti: pavimento con anelli d'oro che ruotano, colonna di luce, scintille che salgono */
-.hxb { perspective: 900px; overflow: hidden; }
+.hxb { perspective: 900px; overflow: hidden; mask-image: linear-gradient(180deg, transparent, #000 22%, #000 80%, transparent); }
 .hxb-glow { position: absolute; left: 50%; top: 50%; width: 120vmax; aspect-ratio: 1; transform: translate(-50%, -50%); background: radial-gradient(closest-side, rgb(11 129 177 / 0.28), rgb(247 200 92 / 0.08) 45%, transparent 70%); }
 .hxb-beam { position: absolute; left: 50%; top: 0; bottom: 0; width: 18rem; transform: translateX(-50%); background: linear-gradient(90deg, transparent, rgb(247 200 92 / 0.12) 40%, rgb(255 236 180 / 0.22) 50%, rgb(247 200 92 / 0.12) 60%, transparent); filter: blur(8px); }
 .hxb-floor, .hxb-top { position: absolute; left: 50%; width: 110vmin; aspect-ratio: 1; transform-style: preserve-3d; }
@@ -2262,12 +2262,13 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .prm--corridor .prm-ceil { display: none; }
 .prm--box .prm-back { opacity: 0.9; box-shadow: inset 0 0 0 2px rgb(130 200 240 / 0.35); }
 .prm--gold .prm-floor { background-image: linear-gradient(rgb(247 200 92 / 0.22) 1.5px, transparent 1.5px), linear-gradient(90deg, var(--line) 1.5px, transparent 1.5px); }
-.prm-shade { position: absolute; inset: 0; background: radial-gradient(55% 50% at var(--vx) var(--vy), rgb(11 129 177 / 0.12), transparent 70%), linear-gradient(180deg, var(--color-night) 0%, transparent 10%, transparent 90%, var(--color-night) 100%); }
+.prm-shade { position: absolute; inset: 0; background: radial-gradient(55% 50% at var(--vx) var(--vy), rgb(11 129 177 / 0.12), transparent 70%); }
+.prm { mask-image: linear-gradient(180deg, transparent, #000 10%, #000 88%, transparent); }
 @media (max-width: 1023px) { .prm { --q: 110px !important; perspective-origin: 50% 34%; } .prm--section { opacity: 0.6; } }
 
 /* ===== Sfumature morbide delle sezioni (nessuna animazione) ===== */
 .sfx { position: absolute; inset: 0; z-index: -10; pointer-events: none; }
-.sfx::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, var(--color-night) 0%, transparent 14%, transparent 86%, var(--color-night) 100%); }
+.sfx { mask-image: linear-gradient(180deg, transparent, #000 14%, #000 86%, transparent); }
 .sfx--1 { background: radial-gradient(55% 60% at 8% 15%, rgb(11 129 177 / 0.2), transparent 70%), radial-gradient(45% 50% at 95% 90%, rgb(247 200 92 / 0.08), transparent 70%); }
 .sfx--2 { background: radial-gradient(50% 55% at 92% 12%, rgb(247 200 92 / 0.1), transparent 70%), radial-gradient(55% 60% at 5% 85%, rgb(11 129 177 / 0.18), transparent 70%); }
 .sfx--3 { background: radial-gradient(70% 45% at 50% 50%, rgb(11 129 177 / 0.16), transparent 75%); }

@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
 import { site } from "@/content/site";
-import { LightRays } from "@/components/ui/LightRays";
 import { SectionBg } from "@/components/ui/SectionBg";
 
 export const metadata: Metadata = {
@@ -21,7 +20,7 @@ export default function SitesPage() {
   const p = site.sitiProcess;
   return (
     <>
-      <PageHero overline={p.overline} title={p.title} line={p.line} crumbs={[{ label: "Siti web" }]} backdrop={<><SectionBg kind="h-browser" strong className="" /><LightRays x={70} y={60} size={50} horizon={88} /></>}>
+      <PageHero overline={p.overline} title={p.title} line={p.line} crumbs={[{ label: "Siti web" }]} backdrop={<SectionBg kind="h-browser" strong className="" />}>
         <Button href="/contatti" size="md" icon="calendar" iconPosition="start" pulse>
           Voglio il mio sito
         </Button>
@@ -45,11 +44,13 @@ export default function SitesPage() {
         </Reveal>
       </Section>
 
-      <section id="portfolio" aria-labelledby="portfolio-title" className="hx-section relative isolate pt-[clamp(3rem,6vw,5rem)]">
+      <section id="portfolio" aria-labelledby="portfolio-title" className="hx-section relative isolate pt-[clamp(4rem,8vw,7rem)]">
         <div className="container-x">
           <SectionHeading id="portfolio-title" overline="Portfolio" title="Tutti i siti che [abbiamo creato]" line="Ristoranti, ospitalità, brand, software: ognuno su misura." align="center" />
         </div>
-        <SitesHelix />
+        <div className="mt-8 pb-[clamp(2rem,4vw,3.5rem)]">
+          <SitesHelix />
+        </div>
       </section>
 
       <CtaBand content={site.cta.sites} />
