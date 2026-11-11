@@ -6,6 +6,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { AiAdvantages } from "./AiAdvantages";
 import { AiChat } from "./AiChat";
 import { SectionBg } from "@/components/ui/SectionBg";
+import { LightRays } from "@/components/ui/LightRays";
 
 /**
  * Irelia, l'assistente AI: a sinistra titolo, tre numeri, le due tendine (come funziona, vantaggi) e il pulsante;
@@ -16,6 +17,7 @@ export function AiAgents() {
   return (
     <Section id="ai" labelledBy="ai-title" className="overflow-hidden">
       <SectionBg kind="c-iso" />
+      <LightRays x={78} y={48} size={46} />
       <div className="grid items-center gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
         <div className="min-w-0">
           <SectionHeading id="ai-title" overline={a.overline} title={a.title} line={a.line} />

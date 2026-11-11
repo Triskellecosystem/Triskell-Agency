@@ -10,6 +10,7 @@ import { SceneVideo } from "@/components/ui/SceneVideo";
 import { Reveal } from "@/components/motion/Reveal";
 import { Teleprompter } from "./Teleprompter";
 import { SectionBg } from "@/components/ui/SectionBg";
+import { LightRays } from "@/components/ui/LightRays";
 
 /**
  * "Come vuoi registrare?": un interruttore grande (Veniamo noi / Registri tu) che cambia la scheda con i punti
@@ -26,6 +27,7 @@ export function RecordingOptions() {
   return (
     <Section id="riprese" labelledBy="riprese-title" className="overflow-hidden">
       <SectionBg kind="c-rings" />
+      <LightRays x={66} y={64} size={50} />
       <SectionHeading id="riprese-title" overline={r.overline} title="Come vuoi [registrare?]" line="Scegli: la qualità resta la stessa, cambia solo quanto tempo ci metti tu." align="center" />
 
       <Reveal y={14} blur={0} className="mx-auto mt-8 flex w-fit">

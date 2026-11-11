@@ -13,6 +13,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { site } from "@/content/site";
 import { SceneVideo } from "@/components/ui/SceneVideo";
 import { SectionBg } from "@/components/ui/SectionBg";
+import { LightRays } from "@/components/ui/LightRays";
 
 export const metadata: Metadata = {
   title: "Il Metodo Triskell",
@@ -30,6 +31,7 @@ export default function MetodoPage() {
           <span className="ah-dots" />
         </div>
         <SectionBg kind="h-iso" strong className="" />
+        <LightRays x={70} y={48} size={52} horizon={76} />
         <DigitalCursor className="-z-10" />
         <div className="container-x grid items-center gap-x-10 gap-y-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
           <div>

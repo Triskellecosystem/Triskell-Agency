@@ -4,6 +4,7 @@ import { CountUp } from "@/components/motion/CountUp";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { MetodoEquation } from "./MetodoEquation";
 import { SectionBg } from "@/components/ui/SectionBg";
+import { LightRays } from "@/components/ui/LightRays";
 
 /** Il Metodo Triskell in home: titolo grande, l'equazione Social + Campagne (+ Sito) = Più clienti, i tre numeri in grande e i pulsanti. */
 export function MetodoTeaser() {
@@ -16,6 +17,7 @@ export function MetodoTeaser() {
   return (
     <section id="metodo-triskell" aria-labelledby="metodo-triskell-title" className="mt-band relative isolate overflow-hidden py-[clamp(3.5rem,2rem+4vw,6rem)]">
       <SectionBg kind="c-hex" />
+      <LightRays x={78} y={42} size={40} />
       <div className="container-x">
         <Reveal blur={6} y={18} className="text-center">
           <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.22em] text-gold-300">{m.overline}</p>

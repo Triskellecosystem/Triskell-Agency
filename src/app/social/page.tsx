@@ -17,6 +17,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { site } from "@/content/site";
 import { PerspectiveRoom } from "@/components/ui/PerspectiveRoom";
 import { SectionBg } from "@/components/ui/SectionBg";
+import { LightRays } from "@/components/ui/LightRays";
 
 export const metadata: Metadata = {
   title: "Gestione social media",
@@ -28,7 +29,7 @@ export default function SocialPage() {
   const s = site.social;
   return (
     <>
-      <PageHero overline={s.overline} title={s.title} line={s.line} crumbs={[{ label: "Social media" }]} aside={<PhoneFan />} alignTop backdrop={<><PerspectiveRoom x={76} y={70} q={170} mode="floor" gold className="prm--soft" /><span aria-hidden="true" className="sh-halo pointer-events-none absolute inset-0 -z-10"><i /><b /></span></>}>
+      <PageHero overline={s.overline} title={s.title} line={s.line} crumbs={[{ label: "Social media" }]} aside={<PhoneFan />} alignTop backdrop={<><PerspectiveRoom x={76} y={70} q={170} mode="floor" gold className="prm--soft" /><LightRays x={76} y={42} size={54} horizon={70} /></>}>
         <Button href="/contatti" size="md" icon="calendar" iconPosition="start" pulse>
           Prenota la call gratuita
         </Button>
@@ -49,6 +50,7 @@ export default function SocialPage() {
       <ProfileExamples />
       <Section id="crescita" labelledBy="crescita-title" className="overflow-hidden">
         <SectionBg kind="circuitpro" />
+        <LightRays x={62} y={50} size={50} horizon={80} />
         <div className="grid items-center gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
           <div>
             <SectionHeading id="crescita-title" overline="Il risultato" title="Un profilo che [cresce ogni giorno]" line="Contenuti costanti e campagne attive: follower, messaggi e richieste arrivano tutti i giorni." />

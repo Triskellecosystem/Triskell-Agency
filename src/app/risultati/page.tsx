@@ -7,6 +7,7 @@ import { CaseCard, NextCaseCard } from "@/components/sections/CaseCard";
 import { Section } from "@/components/ui/Section";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { site } from "@/content/site";
+import { LightRays } from "@/components/ui/LightRays";
 import { SectionBg } from "@/components/ui/SectionBg";
 
 export const metadata: Metadata = {
@@ -19,7 +20,7 @@ export default function PortfolioPage() {
   const { portfolio, results } = site;
   return (
     <>
-      <PageHero overline={portfolio.overline} title={portfolio.title} line={portfolio.line} crumbs={[{ label: "Risultati" }]} aside={<ClientVideo />} backdrop={<SectionBg kind="h-chart" strong className="" />} />
+      <PageHero overline={portfolio.overline} title={portfolio.title} line={portfolio.line} crumbs={[{ label: "Risultati" }]} aside={<ClientVideo />} backdrop={<><SectionBg kind="h-chart" strong className="" /><LightRays x={74} y={46} size={50} horizon={78} /></>} />
       <div className="container-x"><span aria-hidden="true" className="sec-line block h-px" /></div>
       <NumbersWall />
       <Section id="progetti" labelledBy="progetti-title" className="pt-[clamp(1rem,2vw,2rem)]">

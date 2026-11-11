@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
 import { site } from "@/content/site";
+import { LightRays } from "@/components/ui/LightRays";
 import { SectionBg } from "@/components/ui/SectionBg";
 
 export const metadata: Metadata = {
@@ -20,7 +21,7 @@ export default function SitesPage() {
   const p = site.sitiProcess;
   return (
     <>
-      <PageHero overline={p.overline} title={p.title} line={p.line} crumbs={[{ label: "Siti web" }]} backdrop={<SectionBg kind="h-browser" strong className="" />}>
+      <PageHero overline={p.overline} title={p.title} line={p.line} crumbs={[{ label: "Siti web" }]} backdrop={<><SectionBg kind="h-browser" strong className="" /><LightRays x={70} y={60} size={50} horizon={88} /></>}>
         <Button href="/contatti" size="md" icon="calendar" iconPosition="start" pulse>
           Voglio il mio sito
         </Button>

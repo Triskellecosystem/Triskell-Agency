@@ -8,6 +8,7 @@ import { Icon } from "@/components/ui/Icon";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { SectionBg } from "@/components/ui/SectionBg";
+import { LightRays } from "@/components/ui/LightRays";
 
 /**
  * L'infrastruttura dietro l'agenzia: il simbolo Triskell al centro con anelli che pulsano e tre rami collegati
@@ -19,6 +20,7 @@ export function EcosystemLink() {
   return (
     <Section id="ecosistema" labelledBy="eco-title" className="overflow-hidden">
         <SectionBg kind="c-chip" />
+        <LightRays x={50} y={36} size={42} />
       <SectionHeading id="eco-title" overline={e.overline} title={e.title} line={e.line} align="center" />
 
       <div className="relative mx-auto mt-10 max-w-4xl">
