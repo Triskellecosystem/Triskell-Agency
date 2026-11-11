@@ -16,7 +16,7 @@ function dotWave(flip: boolean) {
   }
   return out;
 }
-const WL = dotWave(false), WR = dotWave(true);
+const WR = dotWave(true);
 
 /**
  * Effetti delle aperture (come nei riferimenti): fondo blu acceso, pavimento a griglia luminoso con punti di luce e
@@ -29,9 +29,6 @@ export function HeroFx({ horizon = 70, vx = 64, pedestal, waves = true, classNam
       <span className="hw-floor absolute inset-0"><i /><b /></span>
       {waves && (
         <>
-          <svg className="hfx-wave hfx-wave--l" viewBox="0 0 900 420" preserveAspectRatio="xMinYMax slice">
-            {WL.map(([x, y, r, a], k) => <circle key={k} cx={x.toFixed(1)} cy={y.toFixed(1)} r={r.toFixed(2)} fill={k % 37 === 0 ? `rgba(253,214,120,${(a * 0.9).toFixed(2)})` : `rgba(120,200,255,${Math.min(1, a * 1.1).toFixed(2)})`} />)}
-          </svg>
           <svg className="hfx-wave hfx-wave--r" viewBox="0 0 900 420" preserveAspectRatio="xMaxYMax slice">
             {WR.map(([x, y, r, a], k) => <circle key={k} cx={x.toFixed(1)} cy={y.toFixed(1)} r={r.toFixed(2)} fill={k % 41 === 0 ? `rgba(253,214,120,${(a * 0.9).toFixed(2)})` : `rgba(120,200,255,${Math.min(1, a * 1.1).toFixed(2)})`} />)}
           </svg>
