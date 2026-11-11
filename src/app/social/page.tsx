@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Compare } from "@/components/sections/Compare";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { IncludesGroups } from "@/components/sections/IncludesGroups";
-import { EditingBeforeAfter } from "@/components/sections/EditingBeforeAfter";
 import { PageHero } from "@/components/sections/PageHero";
 import { ProfileExamples } from "@/components/sections/ProfileExamples";
 import { PhoneFan } from "@/components/sections/PhoneFan";
@@ -17,6 +16,7 @@ import { Icon } from "@/components/ui/Icon";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
 import { site } from "@/content/site";
+import { SectionBg } from "@/components/ui/SectionBg";
 
 export const metadata: Metadata = {
   title: "Gestione social media",
@@ -48,7 +48,7 @@ export default function SocialPage() {
       <SocialPillars />
       <ProfileExamples />
       <Section id="crescita" labelledBy="crescita-title" className="overflow-hidden">
-        <Stage3D tone="gold" view="right" className="st3-noring" />
+        <SectionBg kind="beams" />
         <div className="grid items-center gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
           <div>
             <SectionHeading id="crescita-title" overline="Il risultato" title="Un profilo che [cresce ogni giorno]" line="Contenuti costanti e campagne attive: follower, messaggi e richieste arrivano tutti i giorni." />
@@ -64,10 +64,10 @@ export default function SocialPage() {
 
       <RecordingOptions />
       <IncludesGroups />
-      <EditingBeforeAfter />
 
       <Section id="vantaggio" labelledBy="vantaggio-title">
-        <Stage3D kind="lines" />
+
+        <SectionBg kind="rays" />
         <SectionHeading id="vantaggio-title" overline={s.compare.overline} title={s.compare.title} line={s.compare.line} align="center" />
         <div className="mt-9">
           <Compare them={s.compare.them} us={s.compare.us} rows={s.compare.rows} />

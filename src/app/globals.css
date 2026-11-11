@@ -2176,3 +2176,40 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 @keyframes ba-arrow { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
 .ba-arrow { animation: ba-arrow 1.6s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .ba-arrow { animation: none; } }
+
+/* ===== Sfondi di sezione (SectionBg) ===== */
+.sbg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, var(--color-night) 0%, transparent 12%, transparent 88%, var(--color-night) 100%); }
+/* aurora: aloni morbidi che si spostano piano */
+.sbg-blob { position: absolute; border-radius: 9999px; filter: blur(70px); opacity: 0.5; will-change: transform; }
+.sbg-blob--a { width: 46rem; height: 26rem; left: -8%; top: 10%; background: radial-gradient(circle, rgb(11 129 177 / 0.55), transparent 70%); animation: sbg-drift 22s ease-in-out infinite alternate; }
+.sbg-blob--b { width: 40rem; height: 24rem; right: -6%; top: 35%; background: radial-gradient(circle, rgb(247 200 92 / 0.3), transparent 70%); animation: sbg-drift 26s ease-in-out -8s infinite alternate-reverse; }
+.sbg-blob--c { width: 30rem; height: 18rem; left: 35%; bottom: -10%; background: radial-gradient(circle, rgb(58 164 212 / 0.35), transparent 70%); animation: sbg-drift 30s ease-in-out -14s infinite alternate; }
+@keyframes sbg-drift { from { transform: translate3d(0, 0, 0) scale(1); } to { transform: translate3d(6%, -8%, 0) scale(1.12); } }
+/* dots: matrice di punti con faro al centro */
+.sbg--dots { background-image: radial-gradient(circle, rgb(255 255 255 / 0.13) 1px, transparent 1.6px); background-size: 26px 26px; mask-image: radial-gradient(60% 55% at 50% 45%, #000, transparent 85%); }
+.sbg--dots::before { content: ""; position: absolute; left: 50%; top: 40%; width: 60rem; height: 30rem; transform: translate(-50%, -50%); background: radial-gradient(closest-side, rgb(58 164 212 / 0.16), transparent); }
+.sbg--t-gold.sbg--dots::before { background: radial-gradient(closest-side, rgb(247 200 92 / 0.12), transparent); }
+/* grid: griglia piatta e fine, con filo d'oro in alto */
+.sbg--grid { background-image: linear-gradient(rgb(255 255 255 / 0.045) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 0.045) 1px, transparent 1px); background-size: 48px 48px; mask-image: radial-gradient(75% 70% at 50% 40%, #000, transparent 90%); }
+.sbg--grid::before { content: ""; position: absolute; left: 15%; right: 15%; top: 0; height: 1px; background: linear-gradient(90deg, transparent, rgb(247 200 92 / 0.6), transparent); box-shadow: 0 0 30px 4px rgb(247 200 92 / 0.18); }
+/* waves: linee curve sottili */
+.sbg-waves { position: absolute; inset: -5% -5%; width: 110%; height: 110%; fill: none; stroke: rgb(58 164 212 / 0.16); stroke-width: 1.2; mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent); animation: sbg-wave 18s ease-in-out infinite alternate; }
+.sbg--t-gold .sbg-waves { stroke: rgb(247 200 92 / 0.14); }
+@keyframes sbg-wave { from { transform: translate3d(-2%, 0, 0); } to { transform: translate3d(2%, -3%, 0); } }
+/* beams: colonne di luce verticali che scivolano */
+.sbg-beam { position: absolute; top: -10%; bottom: -10%; width: 9rem; background: linear-gradient(90deg, transparent, rgb(58 164 212 / 0.12), transparent); transform: skewX(-12deg); animation: sbg-beam 14s ease-in-out infinite alternate; }
+.sbg-beam--g { background: linear-gradient(90deg, transparent, rgb(247 200 92 / 0.1), transparent); }
+@keyframes sbg-beam { from { transform: skewX(-12deg) translate3d(-40px, 0, 0); opacity: 0.6; } to { transform: skewX(-12deg) translate3d(60px, 0, 0); opacity: 1; } }
+/* orbit: grandi anelli che ruotano sul lato */
+.sbg-orbit { position: absolute; right: -18rem; top: 50%; width: 46rem; aspect-ratio: 1; transform: translateY(-50%); }
+.sbg-orbit i, .sbg-orbit b { position: absolute; inset: 0; border-radius: 9999px; border: 1px solid rgb(58 164 212 / 0.18); }
+.sbg-orbit i:nth-child(2) { inset: 12%; border-color: rgb(247 200 92 / 0.2); border-style: dashed; animation: sbg-spin 60s linear infinite; }
+.sbg-orbit i:nth-child(3) { inset: 26%; border-color: rgb(58 164 212 / 0.14); }
+.sbg-orbit b { inset: 40%; border: 0; background: radial-gradient(circle, rgb(247 200 92 / 0.14), transparent 70%); }
+.sbg-orbit i:first-child { border-top-color: rgb(247 200 92 / 0.5); animation: sbg-spin 28s linear infinite; }
+@keyframes sbg-spin { to { transform: rotate(360deg); } }
+/* glow: luce calda dal basso */
+.sbg-glow { position: absolute; left: 50%; bottom: -30%; width: 80rem; height: 40rem; transform: translateX(-50%); background: radial-gradient(closest-side, rgb(247 200 92 / 0.16), rgb(11 129 177 / 0.08) 55%, transparent); }
+/* diagonal: righe diagonali finissime e luce d'angolo */
+.sbg--diagonal { background: repeating-linear-gradient(135deg, rgb(255 255 255 / 0.03) 0 1px, transparent 1px 22px), radial-gradient(50% 60% at 0% 0%, rgb(58 164 212 / 0.14), transparent 70%), radial-gradient(40% 50% at 100% 100%, rgb(247 200 92 / 0.1), transparent 70%); }
+@media (prefers-reduced-motion: reduce) { .sbg-blob, .sbg-waves, .sbg-beam, .sbg-orbit i { animation: none; } }

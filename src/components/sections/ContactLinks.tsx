@@ -4,9 +4,9 @@ import { Icon } from "@/components/ui/Icon";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { LoopVideo } from "@/components/ui/LoopVideo";
 import { SocialIcon } from "@/components/ui/SocialIcon";
-import { TechBackdrop } from "@/components/ui/TechBackdrop";
 import { CountUp } from "@/components/motion/CountUp";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { SectionBg } from "@/components/ui/SectionBg";
 
 /**
  * "Seguici", in versione compatta e sottile: una fascia con quante persone ci seguono già, tre schede piccole con
@@ -26,7 +26,7 @@ export function ContactLinks() {
 
   return (
     <Section id="seguici" labelledBy="seguici-title" className="pt-[clamp(2rem,4vw,3.5rem)]">
-      <TechBackdrop tone="mixed" rich />
+      <SectionBg kind="glow" />
       <SectionHeading id="seguici-title" overline={f.overline} title={f.title} line={f.line} align="center" />
 
       {/* In evidenza: quante persone ci seguono già (sottile, su una riga) */}

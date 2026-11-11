@@ -2,9 +2,9 @@ import { site } from "@/content/site";
 import { Icon } from "@/components/ui/Icon";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Spotlight } from "@/components/ui/Spotlight";
-import { TechBackdrop } from "@/components/ui/TechBackdrop";
 import { CountUp } from "@/components/motion/CountUp";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { SectionBg } from "@/components/ui/SectionBg";
 
 /**
  * Muro dei numeri: sei tessere enormi che entrano alternate dai lati, il numero cresce, una barra si riempie e un
@@ -14,7 +14,7 @@ export function NumbersWall() {
   const n = site.numbers;
   return (
     <Section id="numeri" labelledBy="numeri-title">
-      <TechBackdrop tone="gold" cursor rich />
+      <SectionBg kind="aurora" />
       <SectionHeading id="numeri-title" overline={n.overline} title={n.title} line={n.line} align="center" />
 
       <RevealGroup className="mt-8 grid gap-2.5 max-md:grid-cols-2 md:grid-cols-3 lg:grid-cols-6" stagger={0.08}>

@@ -8,12 +8,12 @@ import { LivePhone } from "@/components/sections/LivePhone";
 import { Rodaggio } from "@/components/sections/Rodaggio";
 import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
-import { TechBackdrop } from "@/components/ui/TechBackdrop";
 import { DigitalCursor } from "@/components/motion/DigitalCursor";
 import { Reveal } from "@/components/motion/Reveal";
 import { site } from "@/content/site";
 import { SceneVideo } from "@/components/ui/SceneVideo";
 import { Stage3D } from "@/components/ui/Stage3D";
+import { SectionBg } from "@/components/ui/SectionBg";
 
 export const metadata: Metadata = {
   title: "Il Metodo Triskell",
@@ -58,7 +58,8 @@ export default function MetodoPage() {
       </section>
 
       <Section id="formula" labelledBy="formula-title" className="mt-band">
-        <TechBackdrop tone="gold" cursor rich />
+
+        <SectionBg kind="dots" tone="gold" />
         <SectionHeading id="formula-title" overline="Metodo Triskell" title="Ogni parte [a supporto delle altre]" align="center" />
         <Reveal y={10} blur={0} className="mt-10">
           <MetodoEquation fly />
@@ -66,7 +67,8 @@ export default function MetodoPage() {
       </Section>
 
       <Section id="registrazione" labelledBy="registrazione-title" className="overflow-hidden">
-        <Stage3D kind="rings" tone="azure" />
+
+        <SectionBg kind="rings" tone="azure" />
         <div className="grid items-center gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)]">
           <div>
             <SectionHeading id="registrazione-title" overline="Le riprese" title="Se vuoi, [ti aiutiamo anche a registrare]" line="Veniamo noi sul posto, oppure ti guidiamo passo passo: script pronti, inquadrature e call per imparare." />
@@ -82,7 +84,9 @@ export default function MetodoPage() {
         </div>
       </Section>
 
-      <Section id="differenza" labelledBy="differenza-title" className="cmp-band">
+      <Section id="differenza" labelledBy="differenza-title">
+
+        <SectionBg kind="waves" />
         <SectionHeading id="differenza-title" overline={m.compare.overline} title={m.compare.title} line={m.compare.line} align="center" />
         <div className="mt-9">
           <Compare them={m.compare.them} us={m.compare.us} rows={m.compare.rows} />
@@ -95,8 +99,8 @@ export default function MetodoPage() {
       </Section>
 
       <Section id="base" labelledBy="base-title">
-        <Stage3D kind="lines" />
-        <TechBackdrop tone="azure" rich />
+
+        <SectionBg kind="rays" />
         <SectionHeading id="base-title" overline={m.best.overline} title={m.best.title} line={m.best.line} align="center" />
         <Reveal y={20} blur={0} className="mt-9">
           <BestPackage />
@@ -104,7 +108,8 @@ export default function MetodoPage() {
       </Section>
 
       <Section id="rodaggio" labelledBy="rodaggio-title">
-        <TechBackdrop tone="gold" rich />
+
+        <SectionBg kind="orbit" />
         <SectionHeading id="rodaggio-title" overline={m.rodaggio.overline} title={m.rodaggio.title} line="Il tempo per creare la struttura, metterla in moto e vedere i risultati. Con meno tempo i risultati restano troppo relativi." />
         <div className="mt-9">
           <Rodaggio />

@@ -1,5 +1,4 @@
 import { AgencyHero } from "@/components/sections/AgencyHero";
-import { Stage3D } from "@/components/ui/Stage3D";
 import { AiAgents } from "@/components/sections/AiAgents";
 import { Contact } from "@/components/sections/Contact";
 import { CtaBand } from "@/components/sections/CtaBand";
@@ -11,8 +10,8 @@ import { ServicesBento } from "@/components/sections/ServicesBento";
 import { ServiceMarquee } from "@/components/sections/ServiceMarquee";
 import { WebsitesTeaser } from "@/components/sections/WebsitesTeaser";
 import { Section, SectionHeading } from "@/components/ui/Section";
-import { TechBackdrop } from "@/components/ui/TechBackdrop";
 import { site } from "@/content/site";
+import { SectionBg } from "@/components/ui/SectionBg";
 
 /**
  * Home di Triskell Agency, corta e ordinata:
@@ -29,9 +28,9 @@ export default function HomePage() {
       <ForWho />
 
       <Section id="servizi" labelledBy="servizi-title">
-        <Stage3D kind="rings" />
+
+        <SectionBg kind="rings" />
         <span aria-hidden="true" className="sec-line absolute inset-x-0 top-0 h-px" />
-        <TechBackdrop tone="gold" rich />
         <SectionHeading id="servizi-title" overline={services.overline} title={services.title} line={services.line} />
         <div className="mt-8">
           <ServicesBento items={services.items} />

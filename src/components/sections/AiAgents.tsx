@@ -1,11 +1,11 @@
 import { site } from "@/content/site";
-import { Stage3D } from "@/components/ui/Stage3D";
 import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { CountUp } from "@/components/motion/CountUp";
 import { Reveal } from "@/components/motion/Reveal";
 import { AiAdvantages } from "./AiAdvantages";
 import { AiChat } from "./AiChat";
+import { SectionBg } from "@/components/ui/SectionBg";
 
 /**
  * Irelia, l'assistente AI: a sinistra titolo, tre numeri, le due tendine (come funziona, vantaggi) e il pulsante;
@@ -15,8 +15,7 @@ export function AiAgents() {
   const a = site.ai;
   return (
     <Section id="ai" labelledBy="ai-title" className="overflow-hidden">
-      <div aria-hidden="true" className="ai-bg absolute inset-0 -z-10" />
-      <Stage3D kind="room" tone="azure" view="right" />
+      <SectionBg kind="aurora" />
       <div className="grid items-center gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
         <div className="min-w-0">
           <SectionHeading id="ai-title" overline={a.overline} title={a.title} line={a.line} />

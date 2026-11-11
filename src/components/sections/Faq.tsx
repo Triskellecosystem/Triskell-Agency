@@ -8,6 +8,7 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { Icon } from "@/components/ui/Icon";
 import { Button } from "@/components/ui/Button";
 import { SocialIcon } from "@/components/ui/SocialIcon";
+import { SectionBg } from "@/components/ui/SectionBg";
 
 /**
  * FAQ: colonna centrata (non la solita coppia titolo-sx / contenuto-dx), accordion accessibile:
@@ -33,6 +34,7 @@ export function Faq() {
 
   return (
     <Section id={faq.id} labelledBy="faq-title">
+      <SectionBg kind="grid" />
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px hairline" />
       <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
       {/* colonna sinistra ferma: titolo e un aiuto diretto */}

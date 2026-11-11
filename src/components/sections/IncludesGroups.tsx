@@ -4,6 +4,7 @@ import { CountUp } from "@/components/motion/CountUp";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Spotlight } from "@/components/ui/Spotlight";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { SectionBg } from "@/components/ui/SectionBg";
 
 /** Cosa è incluso nella gestione social: sei gruppi, ventiquattro voci, con un contatore delle voci in alto. */
 export function IncludesGroups() {
@@ -11,6 +12,7 @@ export function IncludesGroups() {
   const total = inc.groups.reduce((n, g) => n + g.items.length, 0);
   return (
     <Section id="incluso" labelledBy="incluso-title">
+      <SectionBg kind="dots" />
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeading id="incluso-title" overline={inc.overline} title={inc.title} line={inc.line} />
         <p className="font-display leading-none">

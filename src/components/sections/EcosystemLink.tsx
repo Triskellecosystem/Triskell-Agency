@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Stage3D } from "@/components/ui/Stage3D";
 import { site } from "@/content/site";
 import { cn } from "@/lib/cn";
 import { LogoMark } from "@/components/brand/LogoMark";
@@ -7,8 +6,8 @@ import { LogoTilt } from "@/components/brand/LogoTilt";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Section, SectionHeading } from "@/components/ui/Section";
-import { TechBackdrop } from "@/components/ui/TechBackdrop";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { SectionBg } from "@/components/ui/SectionBg";
 
 /**
  * L'infrastruttura dietro l'agenzia: il simbolo Triskell al centro con anelli che pulsano e tre rami collegati
@@ -19,8 +18,7 @@ export function EcosystemLink() {
   const ext = (href: string) => (href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {});
   return (
     <Section id="ecosistema" labelledBy="eco-title" className="overflow-hidden">
-        <Stage3D kind="lines" />
-      <TechBackdrop tone="mixed" cursor rich />
+        <SectionBg kind="rays" />
       <SectionHeading id="eco-title" overline={e.overline} title={e.title} line={e.line} align="center" />
 
       <div className="relative mx-auto mt-10 max-w-4xl">

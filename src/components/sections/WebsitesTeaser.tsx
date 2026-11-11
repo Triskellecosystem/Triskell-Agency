@@ -6,6 +6,7 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
 import { SitesMarquee } from "./SitesMarquee";
+import { SectionBg } from "@/components/ui/SectionBg";
 
 const points = [
   { icon: "zap", text: "Veloci e perfetti sul telefono" },
@@ -52,6 +53,7 @@ export function WebsitesTeaser() {
   const s = site.sitiWeb;
   return (
     <Section id="siti" labelledBy="siti-teaser-title" className="overflow-hidden">
+      <SectionBg kind="beams" />
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeading id="siti-teaser-title" overline="Siti web" title={s.title} line="Veloci, curati, pensati per farti contattare." />
         <Reveal y={12} blur={0}>

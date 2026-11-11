@@ -1,14 +1,14 @@
 import { site } from "@/content/site";
 import { Section } from "@/components/ui/Section";
-import { TechBackdrop } from "@/components/ui/TechBackdrop";
 import { Reveal } from "@/components/motion/Reveal";
+import { SectionBg } from "@/components/ui/SectionBg";
 
 /** Chiusura della pagina social: la frase forte, i verbi di quello che facciamo noi che si accendono a turno, il pulsante. */
 export function SocialFinale() {
   const f = site.social.finale;
   return (
     <Section id="pensiamo-noi" labelledBy="finale-title" className="overflow-hidden text-center">
-      <TechBackdrop tone="gold" cursor rich />
+      <SectionBg kind="glow" />
       <Reveal y={20} blur={6}>
         <h2 id="finale-title" className="mx-auto max-w-4xl font-display text-[clamp(1.625rem,1.1rem+2.2vw,3rem)] font-bold leading-[1.06] tracking-[-0.045em] text-fg">
           {f.title.split(/(\[[^\]]+\])/).filter(Boolean).map((part) =>

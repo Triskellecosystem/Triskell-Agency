@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Contact } from "@/components/sections/Contact";
 import { Faq } from "@/components/sections/Faq";
 import { PageHero } from "@/components/sections/PageHero";
+import { SectionBg } from "@/components/ui/SectionBg";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -14,7 +15,7 @@ export default function ContactPage() {
   const { contatti } = site;
   return (
     <>
-      <PageHero overline={contatti.overline} title={contatti.title} line={contatti.line} crumbs={[{ label: "Contatti" }]} />
+      <PageHero overline={contatti.overline} title={contatti.title} line={contatti.line} crumbs={[{ label: "Contatti" }]} backdrop={<SectionBg kind="horizon" tone="azure" />} />
       <Contact />
       <Faq />
     </>

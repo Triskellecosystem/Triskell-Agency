@@ -1,10 +1,10 @@
 import { site } from "@/content/site";
-import { Stage3D } from "@/components/ui/Stage3D";
 import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Marquee } from "@/components/motion/Marquee";
 import { Reveal } from "@/components/motion/Reveal";
 import { QuestionStack } from "./QuestionStack";
+import { SectionBg } from "@/components/ui/SectionBg";
 
 /**
  * "È per te se ti riconosci": a sinistra il titolo e l'invito, a destra le domande che compaiono una dopo l'altra
@@ -14,7 +14,7 @@ export function ForWho() {
   const f = site.forWho;
   return (
     <Section id="per-chi" labelledBy="per-chi-title" className="overflow-hidden">
-      <Stage3D tone="gold" view="left" />
+      <SectionBg kind="room" tone="gold" view="left" />
       <div className="grid items-center gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
         <div>
           <SectionHeading id="per-chi-title" overline={f.overline} title={f.title} line={f.closing} />

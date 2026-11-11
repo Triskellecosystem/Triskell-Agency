@@ -2,6 +2,7 @@ import { PillarList } from "./PillarList";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { SceneVideo } from "@/components/ui/SceneVideo";
 import { Reveal } from "@/components/motion/Reveal";
+import { SectionBg } from "@/components/ui/SectionBg";
 
 /**
  * "Ci occupiamo di tutto": a sinistra il video delle riprese, a destra le quattro fasi allineate (si aprono col
@@ -10,6 +11,7 @@ import { Reveal } from "@/components/motion/Reveal";
 export function SocialPillars() {
   return (
     <Section id="cosa-facciamo" labelledBy="cosa-title" className="overflow-hidden">
+      <SectionBg kind="grid" />
       <SectionHeading id="cosa-title" overline="Cosa facciamo" title="Ci occupiamo [di tutto]" line="Tu ci dai poco tempo. Noi facciamo crescere il profilo." align="center" />
       <div className="mt-9 grid items-center gap-x-10 gap-y-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)]">
         <Reveal y={0} blur={0} className="scv-reveal">

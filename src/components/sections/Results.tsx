@@ -1,17 +1,17 @@
 import { site } from "@/content/site";
 import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
-import { TechBackdrop } from "@/components/ui/TechBackdrop";
 import { CountUp } from "@/components/motion/CountUp";
 import { Reveal } from "@/components/motion/Reveal";
 import { CaseGrid } from "./CaseGrid";
+import { SectionBg } from "@/components/ui/SectionBg";
 
 /** Clienti reali, numeri reali: tutti i casi in una griglia compatta, con il link a tutti i risultati. */
 export function Results() {
   const { results } = site;
   return (
     <Section id={results.id} labelledBy="results-title">
-      <TechBackdrop tone="azure" cursor rich />
+      <SectionBg kind="grid" />
       <div className="flex flex-wrap items-end justify-between gap-5">
         <SectionHeading id="results-title" overline={results.overline} title={results.title} line={results.line} />
         <Reveal y={12} blur={0}>
