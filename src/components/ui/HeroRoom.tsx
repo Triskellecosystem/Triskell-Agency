@@ -19,8 +19,8 @@ export function HeroRoom() {
     let x = 0;
     let y = 0;
     const tick = () => {
-      x += (tx - x) * 0.06;
-      y += (ty - y) * 0.06;
+      x += (tx - x) * 0.04;
+      y += (ty - y) * 0.04;
       el.style.setProperty("--px", x.toFixed(4));
       el.style.setProperty("--py", y.toFixed(4));
       raf = Math.abs(tx - x) + Math.abs(ty - y) > 0.001 ? requestAnimationFrame(tick) : 0;
@@ -41,24 +41,17 @@ export function HeroRoom() {
     <div ref={ref} aria-hidden="true" className="hr3 pointer-events-none absolute inset-0 -z-10 overflow-hidden">
       <div className="hr3-box">
         <div className="hr3-face hr3-floor">
-          <i className="hr3-beam" style={{ left: "18%", animationDelay: "-1s" }} />
-          <i className="hr3-beam" style={{ left: "42%", animationDelay: "-3.4s" }} />
-          <i className="hr3-beam hr3-beam--gold" style={{ left: "63%", animationDelay: "-2.2s" }} />
-          <i className="hr3-beam" style={{ left: "84%", animationDelay: "-4.6s" }} />
+          <i className="hr3-sweep" />
         </div>
         <div className="hr3-face hr3-ceil" />
-        <div className="hr3-face hr3-left">
-          <i className="hr3-strip" style={{ top: "30%" }} />
-          <i className="hr3-strip hr3-strip--gold" style={{ top: "62%", animationDelay: "-2.5s" }} />
-        </div>
-        <div className="hr3-face hr3-right">
-          <i className="hr3-strip hr3-strip--gold" style={{ top: "36%", animationDelay: "-1.2s" }} />
-          <i className="hr3-strip" style={{ top: "70%", animationDelay: "-3.6s" }} />
-        </div>
+        <div className="hr3-face hr3-left" />
+        <div className="hr3-face hr3-right" />
         <div className="hr3-face hr3-back">
-          <span className="hr3-portal"><span /><span /><span /></span>
+          <span className="hr3-portal"><span /><span /><span /><span /></span>
         </div>
       </div>
+      <span className="hr3-rays" />
+      <span className="hr3-pool" />
       <span className="hr3-veil" />
     </div>
   );

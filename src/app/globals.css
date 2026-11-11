@@ -2005,46 +2005,43 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .cs3-card { transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s, border-color 0.4s; }
 
 /* ===== Stanza tech dell'apertura (HeroRoom) ===== */
-.hr3 { --px: 0; --py: 0; --d: 1500px; perspective: 900px; perspective-origin: calc(62% + var(--px) * 14%) calc(46% + var(--py) * 12%); }
-.hr3-box { position: absolute; inset: 0; transform-style: preserve-3d; }
+.hr3 { --px: 0; --py: 0; --d: 1600px; perspective: 1000px; perspective-origin: calc(66% + var(--px) * 8%) calc(44% + var(--py) * 6%); }
+.hr3-box { position: absolute; inset: 0; transform-style: preserve-3d; opacity: 0.85; }
 .hr3-face { position: absolute; overflow: hidden; backface-visibility: hidden; }
-.hr3-floor, .hr3-ceil { left: 0; width: 100%; height: var(--d); }
+.hr3-floor, .hr3-ceil { left: -10%; width: 120%; height: var(--d); }
+/* griglia ferma (niente scorrimento: evita lo sfarfallio), linee sottili e larghe */
 .hr3-floor { bottom: 0; transform-origin: 50% 100%; transform: rotateX(90deg);
-  background: linear-gradient(0deg, transparent 50%, rgb(4 22 40 / 0.6)),
-    linear-gradient(90deg, rgb(110 200 240 / 0.6) 2px, transparent 2px) 0 0 / 90px 100%,
-    linear-gradient(0deg, rgb(110 200 240 / 0.45) 2px, transparent 2px) 0 0 / 100% 90px;
-  animation: hr3-run 4s linear infinite; }
+  mask-image: linear-gradient(0deg, #000 30%, transparent 92%);
+  background: linear-gradient(90deg, rgb(110 200 240 / 0.45) 1px, transparent 1px) 0 0 / 120px 100%,
+    linear-gradient(0deg, rgb(110 200 240 / 0.32) 1px, transparent 1px) 0 0 / 100% 120px; }
 .hr3-ceil { top: 0; transform-origin: 50% 0; transform: rotateX(-90deg);
-  background: linear-gradient(180deg, transparent, rgb(4 22 40 / 0.85)),
-    linear-gradient(90deg, rgb(90 190 235 / 0.2) 1px, transparent 1px) 0 0 / 160px 100%,
-    linear-gradient(180deg, rgb(90 190 235 / 0.16) 1px, transparent 1px) 0 0 / 100% 160px;
-  animation: hr3-run-c 8s linear infinite; }
-.hr3-left, .hr3-right { top: 0; width: var(--d); height: 100%;
-  background: linear-gradient(90deg, rgb(90 190 235 / 0.28) 1px, transparent 1px) 0 0 / 120px 100%,
-    linear-gradient(0deg, rgb(90 190 235 / 0.14) 1px, transparent 1px) 0 0 / 100% 120px; }
-.hr3-left { left: 0; transform-origin: 0 50%; transform: rotateY(90deg); background-color: rgb(3 19 35 / 0.35); }
-.hr3-right { right: 0; transform-origin: 100% 50%; transform: rotateY(-90deg); background-color: rgb(3 19 35 / 0.35); }
-.hr3-back::after { content: ""; position: absolute; left: -10%; right: -10%; bottom: -2px; height: 4px; background: linear-gradient(90deg, transparent, #fde08a, transparent); box-shadow: 0 0 40px 8px rgb(247 200 92 / 0.5); }
-.hr3-back { inset: 0; overflow: visible; transform: translateZ(calc(var(--d) * -1)); background: radial-gradient(55% 55% at 50% 50%, rgb(11 129 177 / 0.55), rgb(4 22 40 / 0.6) 75%); border: 2px solid rgb(120 210 255 / 0.45); box-shadow: 0 0 80px rgb(58 164 212 / 0.35); }
-.hr3-beam { position: absolute; top: 0; width: 2px; height: 22%; border-radius: 2px; background: linear-gradient(180deg, transparent, rgb(120 210 255 / 0.9)); box-shadow: 0 0 14px rgb(58 164 212 / 0.8); animation: hr3-beam 6s linear infinite; }
-.hr3-beam--gold { background: linear-gradient(180deg, transparent, rgb(253 224 138 / 0.95)); box-shadow: 0 0 16px rgb(247 200 92 / 0.8); }
-.hr3-strip { position: absolute; left: 0; height: 1px; width: 30%; background: linear-gradient(90deg, rgb(120 210 255 / 0.9), transparent); box-shadow: 0 0 10px rgb(58 164 212 / 0.7); animation: hr3-strip 7s linear infinite; }
-.hr3-strip--gold { background: linear-gradient(90deg, rgb(253 224 138 / 0.9), transparent); box-shadow: 0 0 10px rgb(247 200 92 / 0.7); }
-.hr3-left .hr3-strip { left: auto; right: 0; background: linear-gradient(270deg, rgb(120 210 255 / 0.9), transparent); animation-name: hr3-strip-l; }
-.hr3-left .hr3-strip--gold { background: linear-gradient(270deg, rgb(253 224 138 / 0.9), transparent); }
-.hr3-portal { position: absolute; left: 50%; top: 50%; width: 46%; aspect-ratio: 1; transform: translate(-50%, -50%); }
-.hr3-portal span { position: absolute; inset: 0; border-radius: 9999px; border: 3px solid rgb(247 200 92 / 0.8); box-shadow: 0 0 40px rgb(247 200 92 / 0.35), inset 0 0 40px rgb(247 200 92 / 0.2); animation: hr3-portal 6s ease-in-out infinite; }
-.hr3-portal span:nth-child(2) { inset: 14%; border-color: rgb(58 164 212 / 0.6); box-shadow: 0 0 30px rgb(58 164 212 / 0.4); animation-delay: -2s; }
-.hr3-portal span:nth-child(3) { inset: 30%; border-width: 1px; border-color: rgb(253 224 138 / 0.7); background: radial-gradient(circle, rgb(247 200 92 / 0.25), transparent 70%); animation-delay: -4s; }
-.hr3-veil { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(2 18 33 / 0.7) 0%, rgb(2 18 33 / 0.3) 38%, transparent 60%), linear-gradient(180deg, transparent 75%, var(--color-night) 100%); }
-@media (max-width: 1023px) { .hr3 { perspective-origin: 50% 40%; opacity: 0.7; } .hr3-veil { background: linear-gradient(180deg, rgb(2 18 33 / 0.55), rgb(2 18 33 / 0.7) 60%, var(--color-night)); } }
-@keyframes hr3-run { to { background-position: 0 0, 0 0, 0 90px; } }
-@keyframes hr3-run-c { to { background-position: 0 0, 0 0, 0 -160px; } }
-@keyframes hr3-beam { from { top: -22%; opacity: 0; } 10% { opacity: 1; } to { top: 100%; opacity: 1; } }
-@keyframes hr3-strip { from { left: -30%; } to { left: 100%; } }
-@keyframes hr3-strip-l { from { right: -30%; } to { right: 100%; } }
-@keyframes hr3-portal { 0%, 100% { transform: scale(0.94); opacity: 0.7; } 50% { transform: scale(1.04); opacity: 1; } }
-@media (prefers-reduced-motion: reduce) { .hr3-floor, .hr3-ceil, .hr3-beam, .hr3-strip, .hr3-portal span { animation: none; } .hr3-beam, .hr3-strip { display: none; } }
+  background: linear-gradient(90deg, rgb(110 200 240 / 0.08) 1px, transparent 1px) 0 0 / 200px 100%; mask-image: linear-gradient(180deg, #000, transparent 80%); }
+.hr3-left, .hr3-right { top: 0; width: var(--d); height: 100%; background: linear-gradient(90deg, rgb(110 200 240 / 0.12) 1px, transparent 1px) 0 0 / 200px 100%; mask-image: linear-gradient(90deg, #000, transparent 85%); }
+.hr3-right { mask-image: linear-gradient(270deg, #000, transparent 85%); }
+.hr3-left { left: -10%; transform-origin: 0 50%; transform: rotateY(90deg); }
+.hr3-right { right: -10%; transform-origin: 100% 50%; transform: rotateY(-90deg); }
+/* onda di luce morbida che attraversa il pavimento (una fascia sfumata, non linee) */
+.hr3-sweep { position: absolute; left: 0; right: 0; top: 0; height: 30%; background: linear-gradient(180deg, transparent, rgb(120 210 255 / 0.12) 45%, rgb(253 224 138 / 0.14) 55%, transparent); animation: hr3-sweep 9s cubic-bezier(.45,0,.55,1) infinite; will-change: transform; }
+/* parete di fondo con il portale */
+.hr3-back { inset: 0; overflow: visible; transform: translateZ(calc(var(--d) * -1)); background: none; }
+.hr3-back::after { content: ""; position: absolute; left: -20%; right: -20%; bottom: -2px; height: 3px; background: linear-gradient(90deg, transparent, #fde08a 50%, transparent); box-shadow: 0 0 60px 12px rgb(247 200 92 / 0.45); }
+.hr3-portal { position: absolute; left: 50%; top: 50%; width: 125%; aspect-ratio: 1; transform: translate(-50%, -50%); }
+.hr3-portal span { position: absolute; inset: 0; border-radius: 9999px; }
+.hr3-portal span:nth-child(1) { border: 3px solid rgb(253 224 138 / 0.85); box-shadow: 0 0 60px rgb(247 200 92 / 0.45), inset 0 0 60px rgb(247 200 92 / 0.25); animation: hr3-breathe 8s ease-in-out infinite; }
+.hr3-portal span:nth-child(2) { inset: 9%; border: 2px dashed rgb(253 224 138 / 0.55); animation: hr3-spin 60s linear infinite; }
+.hr3-portal span:nth-child(3) { inset: 20%; border: 2px solid rgb(120 210 255 / 0.55); border-top-color: rgb(253 224 138 / 0.95); box-shadow: 0 0 40px rgb(58 164 212 / 0.4); animation: hr3-spin 24s linear infinite reverse; }
+.hr3-portal span:nth-child(4) { inset: 34%; background: radial-gradient(circle, rgb(255 236 190 / 0.55), rgb(247 200 92 / 0.18) 45%, transparent 70%); animation: hr3-breathe 8s ease-in-out -4s infinite; }
+/* raggi di luce che escono dal portale (ventaglio fisso, respira piano) */
+.hr3-rays { position: absolute; left: 66%; top: 44%; width: 170vmax; height: 170vmax; transform: translate(-50%, -50%); background: repeating-conic-gradient(from 0deg, rgb(253 224 138 / 0.07) 0deg 3deg, transparent 3deg 14deg); mask-image: radial-gradient(circle, transparent 6%, #000 12%, transparent 46%); animation: hr3-rays 10s ease-in-out infinite; }
+/* riflesso d'oro sul pavimento sotto il portale */
+.hr3-pool { position: absolute; left: 66%; top: 68%; width: 60rem; height: 16rem; transform: translate(-50%, -50%); background: radial-gradient(closest-side, rgb(247 200 92 / 0.22), rgb(11 129 177 / 0.1) 55%, transparent); filter: blur(10px); }
+.hr3-veil { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(2 18 33 / 0.78) 0%, rgb(2 18 33 / 0.35) 38%, transparent 60%), linear-gradient(180deg, transparent 72%, var(--color-night) 100%); }
+@media (max-width: 1023px) { .hr3 { perspective-origin: 50% 36%; opacity: 0.75; } .hr3-rays, .hr3-pool { left: 50%; top: 36%; } .hr3-pool { top: 58%; } .hr3-veil { background: linear-gradient(180deg, rgb(2 18 33 / 0.5), rgb(2 18 33 / 0.72) 55%, var(--color-night)); } }
+@keyframes hr3-sweep { from { transform: translate3d(0, 330%, 0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } to { transform: translate3d(0, -40%, 0); opacity: 0; } }
+@keyframes hr3-spin { to { transform: rotate(360deg); } }
+@keyframes hr3-breathe { 0%, 100% { transform: scale(0.97); opacity: 0.75; } 50% { transform: scale(1.02); opacity: 1; } }
+@keyframes hr3-rays { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .hr3-sweep, .hr3-portal span, .hr3-rays { animation: none; } }
 
 /* Fascia Prenota leggera */
 .cta-soft { box-shadow: 0 24px 60px -34px rgb(247 200 92 / 0.35), inset 0 1px 0 rgb(255 255 255 / 0.05); }
