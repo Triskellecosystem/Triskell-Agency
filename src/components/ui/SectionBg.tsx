@@ -11,8 +11,18 @@ const MAP: Record<BgKind, number> = {
   hex: 6, room: 2, rings: 3, horizon: 7, rays: 8, aurora: 1, dots: 7, grid: 4, waves: 5, beams: 6, orbit: 2, glow: 7, diagonal: 8,
 };
 
+/** Dettaglio grafico leggero e fermo sopra la sfumatura, solo per alcune sezioni (alternate a quelle semplici). */
+const TEX: Partial<Record<BgKind, string>> = {
+  terrain: "floor", circuit: "circuit", bars: "dots", globe: "squares", pixels: "cross", flow: "waves", beams: "grid", grid: "grid",
+};
+
 export function SectionBg({ kind, className }: { kind: BgKind; tone?: "mixed" | "gold" | "azure"; view?: "center" | "left" | "right" | "low"; className?: string }) {
   const v = MAP[kind];
   if (!v) return null;
-  return <div aria-hidden="true" className={cn("sfx", `sfx--${v}`, className)} />;
+  const tx = TEX[kind];
+  return (
+    <div aria-hidden="true" className={cn("sfx", `sfx--${v}`, className)}>
+      {tx && <span className={`stx stx--${tx}`}>{tx === "floor" && <i />}</span>}
+    </div>
+  );
 }

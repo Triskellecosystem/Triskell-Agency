@@ -67,7 +67,7 @@ export default function SocialPage() {
 
       <Section id="vantaggio" labelledBy="vantaggio-title">
 
-        <SectionBg kind="scan" />
+        <SectionBg kind="flow" />
         <SectionHeading id="vantaggio-title" overline={s.compare.overline} title={s.compare.title} line={s.compare.line} align="center" />
         <div className="mt-9">
           <Compare them={s.compare.them} us={s.compare.us} rows={s.compare.rows} />
