@@ -1,51 +1,31 @@
 import Image from "next/image";
 import { LoaderControl } from "@/components/brand/LoaderControl";
+import { LOADER_WAVE } from "./loaderWave";
 
 /**
- * Schermata di caricamento: nero, simbolo dorato e scritta TRISKELL AGENCY, con linee tecniche attorno.
- * È HTML/CSS puro (nessun JS per mostrarla): compare al primo paint e <LoaderControl /> la fa sparire a pagina caricata.
- * Senza JS sparisce da sola dopo pochi secondi; con "riduci movimento" resta statica. Una volta per sessione.
+ * Schermata di caricamento: blu notte, simbolo dorato e TRISKELL AGENCY dentro un arco di luce azzurra che gira,
+ * barra azzurra, "Caricamento in corso…", fasci di luce e puntini che si muovono, onda di particelle in basso.
+ * HTML/CSS puro: compare al primo paint e <LoaderControl /> la fa sparire a pagina caricata. Una volta per sessione.
  */
 export function Loader() {
   return (
-    <div id="tk-loader" className="loader" role="status" aria-live="polite" aria-label="Caricamento in corso">
-      <div aria-hidden="true" className="loader-grid" />
-      {/* linee tecniche */}
-      <span aria-hidden="true" className="loader-hline loader-hline--a" />
-      <span aria-hidden="true" className="loader-hline loader-hline--b" />
-      <span aria-hidden="true" className="loader-vline loader-vline--a" />
-      <span aria-hidden="true" className="loader-vline loader-vline--b" />
-      <span aria-hidden="true" className="loader-corner loader-corner--tl" />
-      <span aria-hidden="true" className="loader-corner loader-corner--tr" />
-      <span aria-hidden="true" className="loader-corner loader-corner--bl" />
-      <span aria-hidden="true" className="loader-corner loader-corner--br" />
-      <p aria-hidden="true" className="loader-tag loader-tag--l">TRISKELL // SYS.BOOT</p>
-      <p aria-hidden="true" className="loader-tag loader-tag--r">
-        <span className="loader-pct" />
-      </p>
-
-      <div className="loader-center">
-        <div className="loader-emblem" aria-hidden="true">
-          <svg viewBox="0 0 200 200" className="loader-ring">
-            <circle cx="100" cy="100" r="96" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.5" />
-            <circle cx="100" cy="100" r="88" fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray="2 7" />
-            {Array.from({ length: 36 }, (_, i) => (
-              <line key={i} x1="100" y1="2" x2="100" y2={i % 3 === 0 ? 11 : 7} stroke="currentColor" strokeWidth={i % 3 === 0 ? 1.4 : 0.8} transform={`rotate(${i * 10} 100 100)`} />
-            ))}
-          </svg>
-          <svg viewBox="0 0 200 200" className="loader-ring loader-ring--rev">
-            <circle cx="100" cy="100" r="78" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="30 14 4 14" opacity="0.7" />
-            <circle cx="100" cy="22" r="2.6" fill="currentColor" />
-          </svg>
-          <Image src="/brand/triskell-layer-coils.png" alt="" width={360} height={360} sizes="11rem" priority className="loader-mark" />
-        </div>
-        <p className="loader-name">
-          <span className="loader-name-a">TRISKELL</span>
-          <span className="loader-name-b">AGENCY</span>
+    <div id="tk-loader" className="loader ld2" role="status" aria-live="polite" aria-label="Caricamento in corso">
+      <span aria-hidden="true" className="ld2-arc ld2-arc--corner" />
+      {[0, 1, 2, 3].map((i) => <span key={i} aria-hidden="true" className="ld2-beam" style={{ top: `${18 + i * 17}%`, animationDelay: `${-i * 1.1}s`, animationDuration: `${4 + i * 0.7}s` }} />)}
+      {Array.from({ length: 22 }, (_, i) => <span key={i} aria-hidden="true" className="ld2-dot" style={{ left: `${(i * 47) % 100}%`, top: `${(i * 61) % 80}%`, animationDelay: `${-(i * 0.37) % 5}s`, animationDuration: `${4 + (i % 5)}s` }} />)}
+      <svg aria-hidden="true" className="ld2-wave" viewBox="0 0 1600 140" preserveAspectRatio="none" fill="#6ec0ff" dangerouslySetInnerHTML={{ __html: LOADER_WAVE }} />
+      <span aria-hidden="true" className="ld2-wave-line" />
+      <div className="ld2-center">
+        <span aria-hidden="true" className="ld2-arc" />
+        <Image src="/brand/triskell-layer-coils.png" alt="" width={360} height={360} sizes="7rem" priority className="ld2-mark" />
+        <p className="ld2-name">
+          <span>TRISKELL</span>
+          <span>AGENCY</span>
         </p>
-        <span aria-hidden="true" className="loader-bar">
-          <i />
-        </span>
+      </div>
+      <div className="ld2-foot">
+        <span aria-hidden="true" className="ld2-bar"><i /></span>
+        <p className="ld2-text">Caricamento in corso…</p>
       </div>
       <LoaderControl />
     </div>
