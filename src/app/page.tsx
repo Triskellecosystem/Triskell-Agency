@@ -43,8 +43,8 @@ export default function HomePage() {
       <Results />
       <CtaBand content={site.cta.results} glow />
       <WebsitesTeaser />
-      <EcosystemLink />
       <Reviews />
+      <EcosystemLink />
       <Contact />
     </>
   );
