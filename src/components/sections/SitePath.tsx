@@ -54,7 +54,7 @@ export function SitePath() {
                 setHold(true);
                 setCur(i);
               }}
-              className={cn("gl-card relative flex h-full flex-col rounded-[1.25rem] p-5 transition-transform duration-500", on && "gl-card--gold -translate-y-1")}
+              className={cn("gl-card relative flex h-full flex-col rounded-[1.25rem] p-5 transition-transform duration-500", on && "gl-card--on -translate-y-1")}
             >
               <div className="flex items-center justify-between">
                 <span className={cn("relative transition-transform duration-500", on ? "scale-110 text-gold-200" : "text-gold-300")}>

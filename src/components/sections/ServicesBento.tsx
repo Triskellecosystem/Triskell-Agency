@@ -30,7 +30,7 @@ export function ServicesBento({ items }: { items: Service[] }) {
           return (
             <li key={s.title} className="sv-item h-full" style={{ "--fx": x, "--fy": y, "--fr": r, "--i": i, "--c": TONES[i % TONES.length] } as React.CSSProperties}>
               <Link href={s.href ?? "/contatti"} className="sv-float group/sv block h-full">
-                <Spotlight className={`si-card gl-card ${i === 0 ? "gl-card--gold" : ""} flex h-full flex-col rounded-[1.25rem] p-5`} size={280}>
+                <Spotlight className={`si-card gl-card flex h-full flex-col rounded-[1.25rem] p-5`} size={280}>
                   <div className="relative z-[2] flex h-full flex-col">
                     <div className="flex items-start justify-between">
                       <span className="si-ico grid h-12 w-12 place-items-center rounded-2xl" style={{ animationDelay: `${i * 0.35}s` }}>

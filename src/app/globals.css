@@ -2410,7 +2410,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .glow-border { border: 2px solid transparent !important; background: linear-gradient(160deg, rgb(10 40 80 / 0.94), rgb(3 20 42 / 0.96)) padding-box, linear-gradient(120deg, #3aa4ff, #9ad8ff 40%, #fde08a 80%, #f7c85c) border-box !important; box-shadow: 0 0 40px -4px rgb(58 150 255 / 0.55), 20px 20px 50px -20px rgb(247 200 92 / 0.45) !important; }
 .btn-glow-outline { box-shadow: 0 0 24px -6px rgb(247 200 92 / 0.6); border-color: rgb(253 214 120 / 0.85) !important; }
 /* lascia spazio all'onda luminosa in fondo alle sezioni che la usano, così non passa sopra le schede */
-section:has(> .sglow), section:has(> div > .sglow) { padding-bottom: clamp(7rem, 4rem + 8vw, 11rem); }
+
 .sglow-wave { height: clamp(7rem, 13vw, 11rem); }
 
 /* ===== Pagina Social: stesso stile luminoso ma più scuro e con l'oro del brand (meno "vetro") ===== */
@@ -2442,3 +2442,7 @@ section:has(> .sglow), section:has(> div > .sglow) { padding-bottom: clamp(7rem,
 @keyframes case-dot { from { transform: scale(0.4); opacity: 0; } to { transform: none; opacity: 1; } }
 @media (max-width: 639px) { .case-steps { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } .case-steps-line { display: none; } }
 @media (prefers-reduced-motion: reduce) { .case-step-dot { animation: none; } }
+
+/* divisore delicato tra le sezioni (al posto dell'onda) */
+.sglow-line { position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent, rgb(120 200 255 / 0.35) 25%, rgb(247 200 92 / 0.55) 50%, rgb(120 200 255 / 0.35) 75%, transparent); }
+.gl-card--on { border-color: rgb(160 220 255 / 0.95) !important; box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.14), 0 0 44px -4px rgb(58 150 255 / 0.85) !important; }

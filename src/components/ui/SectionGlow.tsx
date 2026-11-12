@@ -28,7 +28,8 @@ export function SectionGlow({ floor, alt, className }: { floor?: boolean; alt?: 
     <div aria-hidden="true" className={cn("sglow pointer-events-none absolute inset-0 -z-10 overflow-hidden", className)}>
       <span className="sglow-bg absolute inset-0" />
       {floor && <span className="sglow-floor absolute inset-0"><i /></span>}
-      <svg className="sglow-wave" viewBox="0 0 1600 260" preserveAspectRatio="none">
+      <span className="sglow-line" />
+      <svg className="sglow-wave hidden" viewBox="0 0 1600 260" preserveAspectRatio="none">
         <defs>
           <linearGradient id={alt ? "sgl-b" : "sgl-a"} x1="0" y1="0" x2="1" y2="0">
             <stop offset="0" stopColor="#3aa4ff" stopOpacity="0.2" />
