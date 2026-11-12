@@ -24,7 +24,7 @@ export function MetodoEquation({ className, fly }: { className?: string; fly?: b
         <div key={t.name} className="contents">
           <div
             className={cn(
-              "meq-tile relative flex flex-col rounded-[1.25rem] border p-5",
+              "meq-tile relative flex flex-col rounded-[1.25rem] border p-5 max-sm:flex-row max-sm:flex-wrap max-sm:items-center max-sm:gap-x-3 max-sm:gap-y-1 max-sm:p-3.5",
               t.kind === "a" && "gl-card",
               t.kind === "b" && "gl-card gl-card--teal",
               t.kind === "opt" && "gl-card",
@@ -33,20 +33,20 @@ export function MetodoEquation({ className, fly }: { className?: string; fly?: b
             style={{ "--i": i } as React.CSSProperties}
           >
             {t.tag && <span className="absolute -top-2.5 right-4 rounded-full border border-white/20 bg-night px-2 py-0.5 text-[0.5625rem] font-bold uppercase tracking-wider text-fg-2">{t.tag}</span>}
-            <span className={cn("grid h-11 w-11 place-items-center rounded-xl", t.kind === "a" && "bg-[#1a6cff] text-white shadow-[0_0_20px_rgb(26_108_255/0.6)]", t.kind === "b" && "bg-[linear-gradient(135deg,#2f7d6e,#5b6b2a)] text-gold-200", t.kind === "opt" && "bg-[#1a6cff] text-white shadow-[0_0_20px_rgb(26_108_255/0.6)]", t.kind === "res" && "bg-[image:var(--gradient-gold-btn)] text-night")}>
+            <span className={cn("grid h-11 w-11 shrink-0 place-items-center rounded-xl max-sm:h-9 max-sm:w-9", t.kind === "a" && "bg-[#1a6cff] text-white shadow-[0_0_20px_rgb(26_108_255/0.6)]", t.kind === "b" && "bg-[linear-gradient(135deg,#2f7d6e,#5b6b2a)] text-gold-200", t.kind === "opt" && "bg-[#1a6cff] text-white shadow-[0_0_20px_rgb(26_108_255/0.6)]", t.kind === "res" && "bg-[image:var(--gradient-gold-btn)] text-night")}>
               <Icon name={t.icon} className="h-5 w-5" strokeWidth={2} />
             </span>
-            <p className={cn("mt-4 font-display text-[clamp(1.375rem,1.1rem+1vw,1.875rem)] font-bold leading-none tracking-[-0.03em]", t.kind === "res" ? "text-gold" : "text-fg")}>{t.name}</p>
+            <p className={cn("mt-4 font-display text-[clamp(1.375rem,1.1rem+1vw,1.875rem)] font-bold leading-none tracking-[-0.03em] max-sm:mt-0 max-sm:text-[1.25rem]", t.kind === "res" ? "text-gold" : "text-fg")}>{t.name}</p>
             {t.kind === "res" && (
               <>
-                <svg aria-hidden="true" viewBox="0 0 120 70" className="pointer-events-none absolute right-3 top-3 h-14 w-24" fill="none">
+                <svg aria-hidden="true" viewBox="0 0 120 70" className="pointer-events-none absolute right-3 top-3 h-14 w-24 max-sm:h-10 max-sm:w-16" fill="none">
                   <path d="M4 64 C 50 60, 80 40, 110 8" stroke="#fde08a" strokeWidth="3.5" strokeLinecap="round" />
                   <path d="M98 6 L112 6 L110 20" stroke="#fde08a" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 <ResultCounter />
               </>
             )}
-            <ul className="mt-3 space-y-1">
+            <ul className={cn("mt-3 space-y-1", t.kind === "res" ? "max-sm:mt-1 max-sm:w-full" : "max-sm:hidden")}>
               {t.points.map((p) => (
                 <li key={p} className="flex items-start gap-1.5 text-[0.8125rem] leading-snug text-fg-2">
                   <Icon name="check" className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold-300" strokeWidth={2.6} />
@@ -56,8 +56,8 @@ export function MetodoEquation({ className, fly }: { className?: string; fly?: b
             </ul>
           </div>
           {i < ops.length && (
-            <span aria-hidden="true" className="meq-op grid place-items-center py-1 lg:py-0" style={{ "--i": i } as React.CSSProperties}>
-              <span className={cn("grid h-10 w-10 place-items-center rounded-full font-display text-[1.375rem] font-bold", ops[i] === "=" ? "bg-gold-300 text-night shadow-[0_0_24px_rgb(247_200_92/0.6)]" : "border-2 border-gold-300/70 text-gold-300")}>{ops[i]}</span>
+            <span aria-hidden="true" className="meq-op grid place-items-center py-1 max-sm:py-0 lg:py-0" style={{ "--i": i } as React.CSSProperties}>
+              <span className={cn("grid h-10 w-10 place-items-center rounded-full font-display text-[1.375rem] font-bold max-sm:h-7 max-sm:w-7 max-sm:text-[1rem]", ops[i] === "=" ? "bg-gold-300 text-night shadow-[0_0_24px_rgb(247_200_92/0.6)]" : "border-2 border-gold-300/70 text-gold-300")}>{ops[i]}</span>
             </span>
           )}
         </div>

@@ -27,12 +27,12 @@ export function AiAgents() {
           <Reveal y={12} blur={0} delay={0.2}>
             <dl className="mt-7 grid max-w-xl grid-cols-3 gap-3">
               {a.console.stats.map((s, k) => (
-                <div key={s.label} className="gl-card flex flex-col rounded-2xl px-3.5 py-3.5">
-                  <dd className="flex items-center gap-2 font-display text-[clamp(1.5rem,1.1rem+1.4vw,2.25rem)] font-bold leading-none tracking-[-0.045em]">
-                    <Icon name={(["zap", "clock", "users"] as IconName[])[k]!} className="h-6 w-6 shrink-0 text-gold-300" strokeWidth={1.8} />
+                <div key={s.label} className="gl-card flex flex-col rounded-2xl px-3.5 py-3.5 max-sm:px-2.5 max-sm:py-3">
+                  <dd className="flex items-center gap-2 whitespace-nowrap font-display text-[clamp(1.5rem,1.1rem+1.4vw,2.25rem)] font-bold leading-none tracking-[-0.045em] max-sm:gap-1 max-sm:text-[1.25rem]">
+                    <Icon name={(["zap", "clock", "users"] as IconName[])[k]!} className="h-6 w-6 shrink-0 text-gold-300 max-sm:h-4 max-sm:w-4" strokeWidth={1.8} />
                     <CountUp {...s} className="text-gold" />
                   </dd>
-                  <dt className="mt-1.5 text-[0.8125rem] text-fg-2">{s.label}</dt>
+                  <dt className="mt-1.5 text-[0.8125rem] text-fg-2 max-sm:text-[0.6875rem]">{s.label}</dt>
                 </div>
               ))}
             </dl>

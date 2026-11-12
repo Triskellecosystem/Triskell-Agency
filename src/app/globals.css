@@ -2515,3 +2515,12 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .triski-dots i:nth-child(2) { animation-delay: 0.15s; } .triski-dots i:nth-child(3) { animation-delay: 0.3s; }
 html[data-loading] .triski-root { visibility: hidden; }
 @media (prefers-reduced-motion: reduce) { .triski, .triski-eyes, .triski-bulb, .triski-heart, .triski--talk .triski-mouth, .triski-bubble, .triski-dots i { animation: none; } }
+
+/* ===== Mobile ===== */
+@media (max-width: 639px) {
+  /* servizi: carosello orizzontale, niente volo delle schede da fuori schermo */
+  .sv-item { transform: translate3d(0, 24px, 0); }
+  .sv::-webkit-scrollbar { display: none; }
+  /* footer: spazio in fondo così Triskello non copre il testo */
+  footer { padding-bottom: 5.5rem; }
+}

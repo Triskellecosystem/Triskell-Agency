@@ -75,7 +75,7 @@ export function AiChat() {
           </p>
         </div>
       </div>
-      <div className="flex h-[23rem] flex-col justify-end gap-2 overflow-hidden px-3 py-3" style={{ backgroundImage: "radial-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px)", backgroundSize: "14px 14px" }}>
+      <div className="flex h-[23rem] flex-col justify-end gap-2 overflow-hidden px-3 py-3 max-sm:h-[18rem]" style={{ backgroundImage: "radial-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px)", backgroundSize: "14px 14px" }}>
         {c.messages.slice(0, shownMsgs).map((m, i) => (
           <div key={`${i}-${m.text}`} className={cn("chat-msg max-w-[84%] rounded-xl px-3 py-2 text-[0.8125rem] leading-snug text-white shadow", m.from === "user" ? "self-end rounded-tr-sm bg-[#005c4b]" : "self-start rounded-tl-sm bg-[#1f2c34]")}>
             {m.from === "ai" && <p className="mb-0.5 text-[0.625rem] font-semibold text-lime-300">Irelia</p>}

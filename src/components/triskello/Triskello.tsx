@@ -56,6 +56,13 @@ export function Triskello() {
     return () => window.clearTimeout(t);
   }, []);
 
+  // su cellulare il fumetto copre parte della pagina: dopo qualche secondo si chiude da solo
+  useEffect(() => {
+    if (!hello || window.innerWidth >= 640) return;
+    const t = window.setTimeout(() => setHello(false), 8000);
+    return () => window.clearTimeout(t);
+  }, [hello]);
+
   useEffect(() => {
     list.current?.scrollTo({ top: list.current.scrollHeight });
   }, [msgs, open]);

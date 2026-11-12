@@ -43,7 +43,7 @@ export function SitePath() {
           <span className="absolute inset-y-0 left-0 rounded-full bg-[image:var(--gradient-gold-btn)] shadow-[0_0_12px_rgb(247_200_92/0.8)] transition-[width] duration-700 ease-out-expo" style={{ width: `${pct}%` }} />
         </span>
       </div>
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-3 max-sm:gap-2 sm:grid-cols-2 lg:grid-cols-4">
         {steps.map((s, i) => {
           const on = i === cur;
           const done = cur >= 0 && i < cur;
@@ -54,21 +54,26 @@ export function SitePath() {
                 setHold(true);
                 setCur(i);
               }}
-              className={cn("gl-card relative flex h-full flex-col rounded-[1.25rem] p-5 transition-transform duration-500", on && "gl-card--on -translate-y-1")}
+              className={cn("gl-card relative flex h-full flex-col rounded-[1.25rem] p-5 transition-transform duration-500 max-sm:flex-row max-sm:items-start max-sm:gap-3 max-sm:p-3.5", on && "gl-card--on -translate-y-1")}
             >
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between max-sm:shrink-0">
                 <span className={cn("relative transition-transform duration-500", on ? "scale-110 text-gold-200" : "text-gold-300")}>
-                  <Icon name={s.icon} className="h-8 w-8" strokeWidth={1.6} />
+                  <Icon name={s.icon} className="h-8 w-8 max-sm:h-6 max-sm:w-6" strokeWidth={1.6} />
                   {done && <span className="absolute -bottom-1 -right-2 grid h-4 w-4 place-items-center rounded-full bg-gold-300 text-night"><Icon name="check" className="h-2.5 w-2.5" strokeWidth={3.2} /></span>}
                 </span>
-                <span className={cn("font-display text-[1rem] font-semibold", on ? "text-gold-200" : "text-fg-2")}>0{i + 1}</span>
+                <span className={cn("font-display text-[1rem] font-semibold max-sm:hidden", on ? "text-gold-200" : "text-fg-2")}>0{i + 1}</span>
               </div>
-              <p className="mt-4 font-display text-[1.25rem] font-bold leading-tight text-fg">{s.title}</p>
-              <p className="mt-1.5 flex-1 text-[0.875rem] leading-snug text-fg-2">{s.text}</p>
+              <div className="flex flex-1 flex-col max-sm:min-w-0">
+                <p className="mt-4 font-display text-[1.25rem] font-bold leading-tight text-fg max-sm:mt-0 max-sm:text-[1.0625rem]">
+                  <span className={cn("mr-1.5 text-[0.8125rem] font-semibold sm:hidden", on ? "text-gold-200" : "text-fg-3")}>0{i + 1}</span>
+                  {s.title}
+                </p>
+                <p className="mt-1.5 flex-1 text-[0.875rem] leading-snug text-fg-2 max-sm:mt-1 max-sm:text-[0.8125rem]">{s.text}</p>
+              </div>
             </div>
           );
         })}
-        <Link href="/contatti" className="gl-card group flex h-full flex-col items-center justify-center gap-3 rounded-[1.25rem] p-5 text-center">
+        <Link href="/contatti" className="gl-card group flex h-full flex-col items-center justify-center gap-3 rounded-[1.25rem] p-5 text-center max-sm:gap-2 max-sm:p-4">
           <span className="text-gold-300">
             <Icon name="rocket" className="h-9 w-9" strokeWidth={1.6} />
           </span>

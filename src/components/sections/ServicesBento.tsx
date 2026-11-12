@@ -24,11 +24,11 @@ const FROM = [
 export function ServicesBento({ items }: { items: Service[] }) {
   return (
     <Reveal y={0} blur={0}>
-      <ul className="sv grid gap-3 max-md:grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+      <ul className="sv grid gap-3 sm:grid-cols-2 lg:grid-cols-4 max-sm:-mx-[var(--gutter)] max-sm:flex max-sm:snap-x max-sm:snap-mandatory max-sm:overflow-x-auto max-sm:px-[var(--gutter)] max-sm:pb-3 max-sm:[scrollbar-width:none]">
         {items.map((s, i) => {
           const [x, y, r] = FROM[i % FROM.length]!;
           return (
-            <li key={s.title} className="sv-item h-full" style={{ "--fx": x, "--fy": y, "--fr": r, "--i": i, "--c": TONES[i % TONES.length] } as React.CSSProperties}>
+            <li key={s.title} className="sv-item h-full max-sm:w-[82%] max-sm:shrink-0 max-sm:snap-center" style={{ "--fx": x, "--fy": y, "--fr": r, "--i": i, "--c": TONES[i % TONES.length] } as React.CSSProperties}>
               <Link href={s.href ?? "/contatti"} className="sv-float group/sv block h-full">
                 <Spotlight className={`si-card gl-card flex h-full flex-col rounded-[1.25rem] p-5`} size={280}>
                   <div className="relative z-[2] flex h-full flex-col">
@@ -61,6 +61,9 @@ export function ServicesBento({ items }: { items: Service[] }) {
           );
         })}
       </ul>
+      <p className="mt-2 flex items-center justify-center gap-1.5 text-[0.75rem] text-fg-3 sm:hidden">
+        <Icon name="arrow-right" className="h-3.5 w-3.5" /> Scorri per vedere tutti i servizi
+      </p>
     </Reveal>
   );
 }
