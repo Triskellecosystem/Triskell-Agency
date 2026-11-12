@@ -20,6 +20,7 @@ const VIDEOS: Record<string, { src: string; poster: string }> = {
   "forme-fitness": { src: "/video/case-forme.mp4", poster: "/video/case-forme.jpg" },
   "mela-med": { src: "/video/case-mela.mp4", poster: "/video/case-mela.jpg" },
   "urban-fitness": { src: "/video/case-urban.mp4", poster: "/video/case-urban.jpg" },
+  "emme-diffusion": { src: "/video/case-emme.mp4", poster: "/video/case-emme.jpg" },
 };
 const STAT_ICONS: IconName[] = ["calendar", "users", "chart", "zap", "target", "trending"];
 const STEP_ICONS: IconName[] = ["search", "monitor", "megaphone", "chart", "bot", "rocket", "target", "layers"];

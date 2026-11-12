@@ -43,7 +43,7 @@ export default function PortfolioPage() {
             )
           ))}
           <RevealItem y={30} className="h-full lg:col-span-2 xl:col-span-1">
-            <NextCaseCard />
+            <NextCaseCard compact />
           </RevealItem>
         </RevealGroup>
       </Section>
