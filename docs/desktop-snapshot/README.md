@@ -1,13 +1,13 @@
 # Archivio desktop del sito Triskell Agency
 
-Screenshot di ogni sezione di ogni pagina, presi il 12/11/2026 a **1440×900 px** (desktop), dal codice al commit `ac6ea2e` (tag git `desktop-v1`).
+Screenshot di ogni sezione di ogni pagina, presi il 12/11/2026 a **1440×900 px** (desktop), dal codice al commit `ac6ea2e`.
 Servono come riferimento della versione desktop prima del lavoro di ottimizzazione per cellulare.
 
 - `00-pagina-intera.jpg`: la pagina completa, dall'alto in basso.
 - `NN-titolo.jpg`: una sezione alla volta, nell'ordine in cui compare.
 - `NN-titolo-a/b/c….jpg`: sezioni lunghe con animazioni legate allo scroll, salvate in più schermate successive.
 
-Per riportare il sito esattamente a questo stato: `git checkout desktop-v1`.
+Per riportare il sito esattamente a questo stato: `git checkout ac6ea2e`.
 
 
 ## Home (`/`)
