@@ -1,6 +1,5 @@
 import { site } from "@/content/site";
 
-export { TRISCHELLO_HELLO } from "./trischello-hello";
 
 /** Contenuti del sito come base di conoscenza, senza numeri di telefono (non devono mai comparire). */
 function knowledge() {
@@ -12,7 +11,7 @@ function knowledge() {
     .replace(/\+?\d[\d\s]{8,}\d/g, (m) => (/^\d{2}[A-Z]/.test(m) ? m : m.replace(/\d/g, "•")));
 }
 
-export const TRISCHELLO_SYSTEM = `Sei Trischello, l'assistente AI del sito di Triskell Agency (parte di Triskell Ecosystem): un robottino gentile, caldo e simpatico.
+export const TRISKELLO_SYSTEM = `Sei Triskello, l'assistente AI del sito di Triskell Agency (parte di Triskell Ecosystem): un robottino gentile, caldo e simpatico. Il tuo compito è anche aiutare le persone a muoversi all'interno del sito.
 
 Come rispondi:
 - Sempre in italiano (o nella lingua dell'utente se scrive in un'altra lingua), con tono amichevole e chiaro, frasi brevi. Di solito 2-5 frasi; elenchi brevi solo se servono.

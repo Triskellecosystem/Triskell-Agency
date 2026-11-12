@@ -1,5 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
-import { TRISCHELLO_SYSTEM } from "@/lib/trischello";
+import { TRISKELLO_SYSTEM } from "@/lib/triskello";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -51,7 +51,7 @@ export async function POST(req: Request) {
           fallbacks: "default",
           output_config: { effort: "low" },
           cache_control: { type: "ephemeral" },
-          system: TRISCHELLO_SYSTEM,
+          system: TRISKELLO_SYSTEM,
           messages,
         });
         for await (const ev of s) {
@@ -60,7 +60,7 @@ export async function POST(req: Request) {
         const final = await s.finalMessage();
         if (final.stop_reason === "refusal") controller.enqueue(enc.encode("Su questo non posso aiutarti, mi dispiace. Posso darti una mano con altro?"));
       } catch (err) {
-        console.error("trischello", err instanceof Anthropic.APIError ? `${err.status} ${err.message}` : err);
+        console.error("triskello", err instanceof Anthropic.APIError ? `${err.status} ${err.message}` : err);
         controller.enqueue(enc.encode(offline(last.content)));
       } finally {
         controller.close();
