@@ -1,5 +1,6 @@
 import { AgencyHero } from "@/components/sections/AgencyHero";
 import { AiAgents } from "@/components/sections/AiAgents";
+import { Reviews } from "@/components/sections/Reviews";
 import { Contact } from "@/components/sections/Contact";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { EcosystemLink } from "@/components/sections/EcosystemLink";
@@ -43,6 +44,7 @@ export default function HomePage() {
       <CtaBand content={site.cta.results} glow />
       <WebsitesTeaser />
       <EcosystemLink />
+      <Reviews />
       <Contact />
     </>
   );
