@@ -75,7 +75,7 @@ export function Teleprompter() {
         </div>
         <figure className="min-w-0">
           <figcaption className="mb-2.5 text-center text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-gold-200">2 · Lo editiamo noi</figcaption>
-          <PhoneVideo kind="edited" src="/video/editato.mp4" poster="/video/editato.jpg" label="Lo stesso video editato da Triskell, con grafiche, icone e musica" />
+          <PhoneVideo kind="edited" src="/video/editato-v2.mp4" poster="/video/editato-v2.jpg" label="Lo stesso video editato da Triskell, con grafiche, icone e musica" />
           <ul aria-hidden="true" className="tp-adds mt-2.5 grid grid-cols-2 gap-1.5">
             {([["play", "Sottotitoli"], ["pen", "Grafica e testi"], ["music", "Musica"], ["layers", "Stile pro"]] as const).map(([ic, l], k) => (
               <li key={l} className="flex items-center gap-1.5 rounded-lg border border-gold-300/30 bg-night/70 px-2 py-1 text-[0.625rem] font-medium text-fg" style={{ animationDelay: `${0.4 + k * 0.2}s` }}>
