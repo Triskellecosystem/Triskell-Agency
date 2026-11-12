@@ -62,12 +62,12 @@ export function PhoneVideo({ src, poster, label, kind }: { src: string; poster: 
 export function Teleprompter() {
   return (
     <div>
-      <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2.5 sm:gap-4">
+      <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-start gap-2.5 sm:gap-4">
         <figure className="min-w-0">
           <figcaption className="mb-2.5 text-center text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-fg-3">1 · Registri tu</figcaption>
           <PhoneVideo kind="raw" src="/video/registri-tu.mp4" poster="/video/registri-tu.jpg" label="La ripresa grezza fatta col telefono, senza montaggio" />
         </figure>
-        <div aria-hidden="true" className="flex flex-col items-center gap-2 pt-6">
+        <div aria-hidden="true" className="flex flex-col items-center gap-2 self-center pb-10">
           <span className="ba-arrow grid h-11 w-11 place-items-center rounded-full bg-[image:var(--gradient-gold-btn)] text-night shadow-[0_0_30px_-6px_rgb(247_200_92/0.7)] sm:h-12 sm:w-12">
             <Icon name="arrow-right" className="h-5 w-5" strokeWidth={2.4} />
           </span>
@@ -76,6 +76,14 @@ export function Teleprompter() {
         <figure className="min-w-0">
           <figcaption className="mb-2.5 text-center text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-gold-200">2 · Lo editiamo noi</figcaption>
           <PhoneVideo kind="edited" src="/video/editato.mp4" poster="/video/editato.jpg" label="Lo stesso video editato da Triskell, con grafiche, icone e musica" />
+          <ul aria-hidden="true" className="tp-adds mt-2.5 grid grid-cols-2 gap-1.5">
+            {([["play", "Sottotitoli"], ["pen", "Grafica e testi"], ["music", "Musica"], ["layers", "Stile pro"]] as const).map(([ic, l], k) => (
+              <li key={l} className="flex items-center gap-1.5 rounded-lg border border-gold-300/30 bg-night/70 px-2 py-1 text-[0.625rem] font-medium text-fg" style={{ animationDelay: `${0.4 + k * 0.2}s` }}>
+                <Icon name={ic} className="h-3 w-3 shrink-0 text-gold-300" strokeWidth={2} />
+                {l}
+              </li>
+            ))}
+          </ul>
         </figure>
       </div>
       <p className="mt-4 text-center text-[0.8125rem] text-fg-2">

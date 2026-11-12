@@ -31,9 +31,9 @@ export function PillarList() {
               onMouseEnter={() => setCur(i)}
               onFocus={() => setCur(i)}
               onClick={() => setCur(i)}
-              className={cn("pl-card group relative flex w-full items-start gap-4 overflow-hidden rounded-2xl border px-4 py-3.5 text-left transition-[border-color,background-color,box-shadow] duration-400", on ? "border-gold-300/60 bg-[linear-gradient(120deg,rgb(247_200_92/0.12),rgb(4_33_58/0.7))] shadow-[0_0_40px_-16px_rgb(247_200_92/0.6)]" : "border-white/10 bg-[rgb(10_30_48/0.6)] hover:border-white/20")}
+              className={cn("pl-card gl-card group relative flex w-full items-start gap-4 overflow-hidden rounded-2xl px-4 py-3.5 text-left transition-[box-shadow,transform] duration-400", on && "gl-card--gold")}
             >
-              <span className={cn("grid h-11 w-11 shrink-0 place-items-center rounded-xl border transition-[background-color,color,border-color] duration-300", on ? "border-gold-300 bg-gold-300 text-night" : "border-gold-300/30 bg-night/60 text-gold-300")}>
+              <span className={cn("grid h-11 w-11 shrink-0 place-items-center rounded-xl border transition-[background-color,color,border-color] duration-300", on ? "border-gold-300 bg-[image:var(--gradient-gold-btn)] text-night" : "border-white/15 bg-night/60 text-gold-300")}>
                 <Icon name={p.icon} className="h-5 w-5" strokeWidth={1.8} />
               </span>
               <span className="min-w-0 flex-1 pt-0.5">

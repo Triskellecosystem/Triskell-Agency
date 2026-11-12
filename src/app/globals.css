@@ -2412,3 +2412,23 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 /* lascia spazio all'onda luminosa in fondo alle sezioni che la usano, così non passa sopra le schede */
 section:has(> .sglow), section:has(> div > .sglow) { padding-bottom: clamp(7rem, 4rem + 8vw, 11rem); }
 .sglow-wave { height: clamp(7rem, 13vw, 11rem); }
+
+/* ===== Pagina Social: stesso stile luminoso ma più scuro e con l'oro del brand (meno "vetro") ===== */
+.tone-dark .gl-card { background: linear-gradient(165deg, rgb(10 36 68 / 0.92), rgb(3 16 32 / 0.97)) !important; border-color: rgb(110 190 255 / 0.5) !important; box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06), 0 0 28px -8px rgb(58 150 255 / 0.5) !important; }
+.tone-dark .gl-card--gold { background: linear-gradient(165deg, rgb(48 38 14 / 0.92), rgb(6 18 34 / 0.97)) !important; border-color: rgb(247 200 92 / 0.75) !important; box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06), 0 0 32px -8px rgb(247 200 92 / 0.5) !important; }
+.tone-dark .sglow-bg { background: radial-gradient(55% 50% at 50% 40%, rgb(25 80 160 / 0.28), transparent 75%), linear-gradient(180deg, #041d3a 0%, #031830 55%, #021327 100%); }
+.tone-dark .glow-border, .tone-dark .cta-soft { background: linear-gradient(160deg, rgb(8 30 58 / 0.95), rgb(2 14 30 / 0.97)) padding-box, linear-gradient(120deg, #3aa4ff, #9ad8ff 40%, #f7c85c 85%) border-box !important; }
+.gl-strip { border: 1.5px solid transparent; background: linear-gradient(160deg, rgb(8 30 58 / 0.95), rgb(2 14 30 / 0.97)) padding-box, linear-gradient(90deg, rgb(110 190 255 / 0.7), rgb(110 190 255 / 0.35) 50%, rgb(247 200 92 / 0.8)) border-box; box-shadow: 0 0 36px -10px rgb(58 150 255 / 0.55); }
+@keyframes spx-gain { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+.spx-gain svg { animation: spx-gain 2.6s ease-in-out infinite; animation-delay: calc(var(--i) * 0.4s); }
+@media (prefers-reduced-motion: reduce) { .spx-gain svg { animation: none; } }
+/* Social: telefono luminoso + pannello in vetro scuro per follower, messaggi e numeri */
+.lp-social { gap: 2rem; }
+.lp-social .lp2-phone { border-color: #0d1b2c; box-shadow: 0 0 0 2px rgb(140 210 255 / 0.55), 0 0 40px 4px rgb(58 150 255 / 0.5), 0 60px 100px -40px rgb(0 0 0 / 0.95); }
+.lp-social .lp2-today { border: 1.5px solid rgb(247 200 92 / 0.75); background: linear-gradient(165deg, rgb(48 38 14 / 0.9), rgb(6 18 34 / 0.95)); box-shadow: 0 0 32px -8px rgb(247 200 92 / 0.5); }
+.lp-social .lp2-bubble { background: rgb(6 20 38 / 0.92) !important; border: 1.5px solid rgb(247 200 92 / 0.85); color: var(--color-gold-200) !important; box-shadow: 0 0 24px -4px rgb(247 200 92 / 0.6) !important; }
+.lp-social li[class*="rounded-2xl"] { border-color: rgb(110 190 255 / 0.45) !important; background: rgb(6 22 42 / 0.88) !important; }
+.lp-social .lp2-stat { border-width: 1.5px; background: rgb(6 22 42 / 0.9) !important; box-shadow: 0 0 26px -8px rgb(58 150 255 / 0.55); }
+.tp-adds li { opacity: 0; transform: translateX(-8px); animation: tp-add 0.6s var(--ease-out-expo) forwards; }
+@keyframes tp-add { to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .tp-adds li { opacity: 1; transform: none; animation: none; } }
