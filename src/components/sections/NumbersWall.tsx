@@ -4,7 +4,7 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Spotlight } from "@/components/ui/Spotlight";
 import { CountUp } from "@/components/motion/CountUp";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { SectionBg } from "@/components/ui/SectionBg";
+import { SectionGlow } from "@/components/ui/SectionGlow";
 
 /**
  * Muro dei numeri: sei tessere enormi che entrano alternate dai lati, il numero cresce, una barra si riempie e un
@@ -14,13 +14,13 @@ export function NumbersWall() {
   const n = site.numbers;
   return (
     <Section id="numeri" labelledBy="numeri-title">
-      <SectionBg kind="c-hex" />
+      <SectionGlow />
       <SectionHeading id="numeri-title" overline={n.overline} title={n.title} line={n.line} align="center" />
 
       <RevealGroup className="mt-8 grid gap-2.5 max-md:grid-cols-2 md:grid-cols-3 lg:grid-cols-6" stagger={0.08}>
         {n.items.map((m, i) => (
           <RevealItem key={m.label} y={30} className="h-full" >
-            <Spotlight className="num-tile res-cell group/num relative h-full overflow-hidden rounded-xl border border-white/[0.12] bg-[linear-gradient(160deg,var(--color-surface-2),var(--color-night-raised))] p-4 transition-[border-color,box-shadow] duration-[var(--dur-base)] ease-out-expo hover:border-gold-300/70 hover:shadow-[0_0_30px_-12px_rgb(247_200_92/0.55)]" size={220}>
+            <Spotlight className={`num-tile res-cell gl-card ${i === 3 ? "gl-card--gold" : ""} group/num relative h-full overflow-hidden rounded-xl p-4`} size={220}>
               <span aria-hidden="true" className="num-shine" style={{ animationDelay: `${i * 0.9}s` }} />
               <span aria-hidden="true" className="res-burst" style={{ "--i": i } as React.CSSProperties} />
               <div className="relative z-[2]" style={{ "--i": i } as React.CSSProperties}>

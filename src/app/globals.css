@@ -2432,3 +2432,13 @@ section:has(> .sglow), section:has(> div > .sglow) { padding-bottom: clamp(7rem,
 .tp-adds li { opacity: 0; transform: translateX(-8px); animation: tp-add 0.6s var(--ease-out-expo) forwards; }
 @keyframes tp-add { to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .tp-adds li { opacity: 1; transform: none; animation: none; } }
+
+/* Case study: finestra compatta in stile luminoso */
+.case-dialog::backdrop { background: rgb(1 10 22 / 0.8); backdrop-filter: blur(6px); }
+.case-shell { border: 2px solid transparent; background: linear-gradient(170deg, #062449, #031a36 60%, #02132a) padding-box, linear-gradient(120deg, #3aa4ff, rgb(120 200 255 / 0.4) 45%, #f7c85c) border-box; box-shadow: 0 0 60px -10px rgb(58 150 255 / 0.5), 0 40px 120px -20px rgb(0 0 0 / 0.95); }
+.case-media { border: 1.5px solid rgb(120 200 255 / 0.65); box-shadow: 0 0 34px -6px rgb(58 150 255 / 0.55); }
+.case-steps-line { position: absolute; left: 12%; right: 12%; top: 1.5rem; height: 2px; background: linear-gradient(90deg, rgb(247 200 92 / 0.2), #f7c85c, rgb(247 200 92 / 0.2)); box-shadow: 0 0 12px rgb(247 200 92 / 0.6); }
+.case-step-dot { box-shadow: 0 0 20px -2px rgb(247 200 92 / 0.6); animation: case-dot 0.6s var(--ease-out-expo) both; animation-delay: calc(0.15s + var(--i) * 0.15s); }
+@keyframes case-dot { from { transform: scale(0.4); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (max-width: 639px) { .case-steps { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } .case-steps-line { display: none; } }
+@media (prefers-reduced-motion: reduce) { .case-step-dot { animation: none; } }

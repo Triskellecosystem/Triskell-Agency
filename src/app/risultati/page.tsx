@@ -8,7 +8,7 @@ import { Section } from "@/components/ui/Section";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { site } from "@/content/site";
 import { LightRays } from "@/components/ui/LightRays";
-import { SectionBg } from "@/components/ui/SectionBg";
+import { SectionGlow } from "@/components/ui/SectionGlow";
 import { HeroFx } from "@/components/ui/HeroFx";
 
 export const metadata: Metadata = {
@@ -25,7 +25,7 @@ export default function PortfolioPage() {
       <div className="container-x"><span aria-hidden="true" className="sec-line block h-px" /></div>
       <NumbersWall />
       <Section id="progetti" labelledBy="progetti-title" className="pt-[clamp(1rem,2vw,2rem)]">
-        <SectionBg kind="c-halftone" />
+        <SectionGlow />
         <h2 id="progetti-title" className="sr-only">
           {portfolio.title.replace(/[[\]]/g, "")}
         </h2>

@@ -18,8 +18,8 @@ export function CaseCard({ item, priority = false }: { item: CaseStudy; href?: s
   const [open, setOpen] = useState(false);
   return (
     <>
-    <article id={item.id} className="group/case relative flex h-full scroll-mt-28 flex-col overflow-hidden rounded-card border border-line bg-[linear-gradient(170deg,var(--color-surface-2),var(--color-night-raised))] transition-[border-color,box-shadow] duration-[var(--dur-base)] ease-out-expo hover:border-gold-300/60 hover:shadow-[0_0_40px_-12px_rgb(247_200_92/0.45)]">
-      <div className="relative h-44 overflow-hidden bg-night max-md:h-32">
+    <article id={item.id} className="gl-card group/case relative flex h-full scroll-mt-28 flex-col overflow-hidden rounded-[1.25rem] transition-transform duration-[var(--dur-base)] ease-out-expo hover:-translate-y-1">
+      <div className="relative h-32 overflow-hidden bg-night">
         <Image
           src={item.image}
           alt={`${item.client}: immagine del progetto`}
@@ -29,30 +29,29 @@ export function CaseCard({ item, priority = false }: { item: CaseStudy; href?: s
           className="object-cover transition-transform duration-[900ms] ease-out-expo group-hover/case:scale-[1.07]"
         />
         <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-night/85 via-night/10 to-transparent" />
-        <span className="absolute bottom-3 left-4 inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-night/70 px-2.5 py-1 text-[0.6875rem] font-semibold uppercase tracking-wider text-fg backdrop-blur">
+        <span className="absolute bottom-2.5 left-3 inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-night/75 px-2 py-0.5 text-[0.625rem] font-semibold uppercase tracking-wider text-fg backdrop-blur">
           <Icon name={item.icon} className="h-3.5 w-3.5 text-gold-300" />
           {item.tag}
         </span>
       </div>
 
-      <div className="flex flex-1 flex-col p-5 max-md:p-4">
-        <p className="text-[0.75rem] font-medium text-fg-2">
+      <div className="flex flex-1 flex-col p-4">
+        <p className="truncate text-[0.6875rem] font-medium text-fg-2">
           {item.sector} · {item.place}
         </p>
-        <h3 className="mt-1 font-display text-[1.25rem] font-semibold leading-tight tracking-tight text-fg">{item.client}</h3>
+        <h3 className="mt-0.5 truncate font-display text-[1.0625rem] font-semibold leading-tight tracking-tight text-fg">{item.client}</h3>
 
-        <dl className="mt-4 grid grid-cols-2 gap-3 border-y border-line py-4 max-md:mt-3 max-md:py-3">
+        <dl className="mt-3 grid grid-cols-2 gap-2 border-t border-white/10 pt-3">
           {item.stats.map((st) => (
             <div key={st.label}>
-              <dd className="order-1 font-display text-[1.5rem] font-bold leading-none tracking-[-0.03em] text-azure-300">{st.value}</dd>
-              <dt className="mt-1.5 text-[0.6875rem] font-semibold uppercase leading-tight tracking-wider text-fg-2">{st.label}</dt>
+              <dd className="order-1 truncate font-display text-[1.25rem] font-bold leading-none tracking-[-0.03em] text-azure-300">{st.value}</dd>
+              <dt className="mt-1 text-[0.5625rem] font-semibold uppercase leading-tight tracking-wider text-fg-2">{st.label}</dt>
             </div>
           ))}
         </dl>
 
-        <p className="mt-4 flex-1 text-[0.9375rem] leading-snug text-fg-2 max-md:hidden">{item.text}</p>
 
-        <button type="button" onClick={() => setOpen(true)} aria-haspopup="dialog" className="case-open mt-5 max-md:mt-auto max-md:pt-3 max-md:pb-1 inline-flex w-fit items-center gap-2 text-small font-semibold text-gold-300 transition-colors hover:text-gold-100">
+        <button type="button" onClick={() => setOpen(true)} aria-haspopup="dialog" className="case-open mt-auto inline-flex w-fit items-center gap-1.5 pt-3 text-[0.8125rem] font-semibold text-gold-300 transition-colors hover:text-gold-100">
           {site.portfolio.open}
           <Icon name="arrow-right" className="h-4 w-4" />
         </button>
