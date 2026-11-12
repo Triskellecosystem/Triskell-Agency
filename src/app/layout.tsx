@@ -1,3 +1,4 @@
+import { Trischello } from "@/components/trischello/Trischello";
 import type { Metadata, Viewport } from "next";
 import { Inter, Sora } from "next/font/google";
 import { site } from "@/content/site";
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           <main id="main" className="overflow-x-clip">{children}</main>
           <Footer />
+          <Trischello />
         </Providers>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
       </body>
