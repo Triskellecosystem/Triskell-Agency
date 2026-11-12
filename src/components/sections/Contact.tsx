@@ -76,9 +76,11 @@ export function Contact({ bg, variant }: { bg?: BgKind; variant?: "panel" } = {}
               </li>
             ))}
           </ul>
-          <a href={site.brand.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex w-fit items-center gap-2 rounded-full border border-gold-400/50 px-4 py-2 font-display text-[0.875rem] font-semibold text-gold-200 transition-[background-color,border-color] hover:border-gold-300 hover:bg-gold-300/10">
-            <SocialIcon id="whatsapp" className="h-5 w-5" />
-            WhatsApp · {site.brand.phone}
+          <a href={site.brand.whatsapp} target="_blank" rel="noopener noreferrer" className="btn-glow-outline group inline-flex w-fit items-center gap-4 rounded-full border-2 px-6 py-3.5 font-display text-[1.0625rem] font-semibold leading-tight text-fg transition-colors hover:bg-gold-300/10">
+            <SocialIcon id="whatsapp" className="h-8 w-8 text-[#25d366]" />
+            Contattaci direttamente
+            <br className="hidden sm:block" /> su WhatsApp
+            <Icon name="arrow-right" className="h-5 w-5 text-gold-300 transition-transform group-hover:translate-x-1" strokeWidth={2.2} />
           </a>
         </div>
         <Reveal y={30} blur={4}>

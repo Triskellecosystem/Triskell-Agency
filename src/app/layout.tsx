@@ -49,7 +49,6 @@ const organizationJsonLd = {
   logo: `${site.brand.url}/brand/triskell-medallion.png`,
   description: site.brand.description,
   email: site.brand.email,
-  telephone: site.brand.phone,
   parentOrganization: { "@type": "Organization", name: "Triskell Ecosystem", url: site.brand.ecosystemUrl },
   sameAs: site.footer.social.filter((s) => s.id !== "whatsapp").map((s) => s.href),
 };

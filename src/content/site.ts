@@ -189,7 +189,6 @@ export const site = {
     email: "triskel.ecosystem@gmail.com",
     vat: "IT02759140995",
     owner: "Tomaso Forno",
-    phone: "+39 348 430 1500",
     whatsapp: "https://wa.me/393484301500",
     locale: "it_IT",
     /** Sito generale dell'ecosistema, mostrato come "infrastruttura" dietro l'agenzia. */

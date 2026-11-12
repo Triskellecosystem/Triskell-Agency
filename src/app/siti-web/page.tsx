@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
 import { site } from "@/content/site";
-import { SectionBg } from "@/components/ui/SectionBg";
+import { SectionGlow } from "@/components/ui/SectionGlow";
 
 export const metadata: Metadata = {
   title: "Siti web",
@@ -45,7 +45,7 @@ export default function SitesPage() {
 
 
       <Section id="percorso" labelledBy="percorso-title">
-        <SectionBg kind="c-hud" />
+        <SectionGlow />
 
         <SectionHeading id="percorso-title" overline="Come lo creiamo" title={p.processTitle} line={p.processLine} align="center" />
         <Reveal y={16} blur={0} className="mt-10">

@@ -142,7 +142,7 @@ export function ContactLinks() {
               <SocialIcon id="whatsapp" className="h-[1.125rem] w-[1.125rem]" />
             </span>
             <p className="min-w-0 leading-tight">
-              <span className="block font-display text-[0.9375rem] font-bold text-fg">{f.whatsapp.title} · {brand.phone}</span>
+              <span className="block font-display text-[0.9375rem] font-bold text-fg">Contattaci direttamente su WhatsApp</span>
               <span className="text-[0.75rem] text-fg-2">{f.whatsapp.text}</span>
             </p>
             <Icon name="arrow-up-right" className="ml-auto h-4 w-4 shrink-0 text-[#7dffb0]" />
