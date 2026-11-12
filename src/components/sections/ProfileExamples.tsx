@@ -7,14 +7,20 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
 
 const profiles = [
+  { id: "naturae", label: "Cosmetica naturale" },
   { id: "vertis", label: "Palestra" },
+  { id: "borgo", label: "Osteria" },
   { id: "essentia", label: "Centro benessere" },
+  { id: "viaggiare", label: "Agenzia viaggi" },
   { id: "bianchi", label: "Osteopata" },
+  { id: "clubdonne", label: "Palestra femminile" },
   { id: "nocciolo", label: "Ristorante" },
+  { id: "lunaria", label: "Benessere olistico" },
   { id: "lavie", label: "Centro estetico" },
+  { id: "elevare", label: "Immobiliare" },
   { id: "lumina", label: "Studio dentistico" },
+  { id: "terraviva", label: "Agriturismo e retreat" },
   { id: "donnamaria", label: "Pizzeria" },
-  { id: "dubai", label: "Immobiliare" },
 ];
 
 /**
