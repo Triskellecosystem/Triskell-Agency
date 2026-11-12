@@ -2337,10 +2337,10 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .hw-floor::after { content: ""; position: absolute; left: var(--hvx, 64%); top: var(--hz, 70%); width: 60rem; height: 14rem; transform: translate(-50%, -50%); background: radial-gradient(closest-side, rgb(120 190 255 / 0.35), rgb(247 200 92 / 0.08) 55%, transparent); filter: blur(6px); }
 /* telefono inclinato in 3D con bordo luminoso */
 .lp-hero { perspective: 1300px; }
-.lp-hero > div:first-child { transform: rotateY(-16deg) rotateX(5deg) rotateZ(2deg); transform-style: preserve-3d; }
+.lp-hero > div:first-child { transform: rotateY(calc(-16deg + var(--ty, 0deg))) rotateX(calc(5deg + var(--tx, 0deg))) rotateZ(2deg); transform-style: preserve-3d; transition: transform 0.6s var(--ease-out-expo); }
 .lp-hero .lp2-phone { border-color: #0d1b2c; box-shadow: 0 0 0 2px rgb(140 210 255 / 0.55), 0 0 40px 4px rgb(58 150 255 / 0.55), 0 0 120px 10px rgb(40 120 230 / 0.35), 0 70px 110px -40px rgb(0 0 0 / 0.95); }
 /* pannello in vetro con i messaggi e i numeri */
-.lp-hero > div:last-child { position: relative; padding: 1rem; border-radius: 1.75rem; border: 1.5px solid rgb(120 200 255 / 0.45); background: linear-gradient(160deg, rgb(40 110 190 / 0.35), rgb(6 30 60 / 0.65)); backdrop-filter: blur(10px); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.18), 0 0 60px -8px rgb(58 150 255 / 0.55), 0 40px 80px -40px rgb(0 0 0 / 0.9); transform: rotateY(-10deg) rotateX(3deg); }
+.lp-hero > div:last-child { position: relative; padding: 1rem; border-radius: 1.75rem; border: 1.5px solid rgb(120 200 255 / 0.45); background: linear-gradient(160deg, rgb(40 110 190 / 0.35), rgb(6 30 60 / 0.65)); backdrop-filter: blur(10px); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.18), 0 0 60px -8px rgb(58 150 255 / 0.55), 0 40px 80px -40px rgb(0 0 0 / 0.9); transform: rotateY(calc(-10deg + var(--ty, 0deg) * 0.6)) rotateX(calc(3deg + var(--tx, 0deg) * 0.6)); transition: transform 0.7s var(--ease-out-expo); }
 .lp-hero > div:last-child::before { content: ""; position: absolute; right: -6px; bottom: -6px; width: 9rem; height: 9rem; border-radius: 1.75rem; background: radial-gradient(closest-side at 100% 100%, rgb(253 214 120 / 0.55), transparent); filter: blur(14px); z-index: -1; }
 .lp-hero .lp2-today { border-color: rgb(120 200 255 / 0.4); background: linear-gradient(135deg, rgb(70 140 220 / 0.25), rgb(8 34 64 / 0.7)); }
 @media (prefers-reduced-motion: reduce) { .lp-hero > div { transform: none; } }
@@ -2481,3 +2481,18 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .ld2-arc--corner::after { display: none; }
 .ld2-mark { padding: 0.6rem; border-radius: 9999px; border: 3px solid #f7c85c; box-shadow: 0 0 24px rgb(247 200 92 / 0.45); }
 @media (max-width: 640px) { .ld2-arc { width: 19rem; height: 17rem; margin: -8.5rem 0 0 -9.5rem; } }
+
+/* Irelia: flusso schematico a nodi */
+.irf--ads { --irf: 148 163 184; }
+.irf--ai { --irf: 56 189 248; }
+.irf--tu { --irf: 247 200 92; }
+.irf-dot { background: rgb(var(--irf)); box-shadow: 0 0 8px rgb(var(--irf) / 0.8); }
+.irf-ic { background: rgb(var(--irf) / 0.14); color: rgb(var(--irf)); box-shadow: inset 0 0 0 1px rgb(var(--irf) / 0.5); }
+.irf-tag { background: rgb(var(--irf) / 0.16); color: rgb(var(--irf)); }
+.irf-btn--on { border-color: rgb(var(--irf) / 0.75); background: rgb(var(--irf) / 0.1); box-shadow: 0 0 18px -6px rgb(var(--irf) / 0.7); }
+.irf-node { position: relative; }
+.irf-node:not(:nth-child(3n))::after {
+  content: ""; position: absolute; top: 50%; right: -1.15rem; width: 0.8rem; height: 0.8rem; transform: translateY(-50%);
+  background: rgb(255 255 255 / 0.45);
+  clip-path: polygon(0 35%, 55% 35%, 55% 10%, 100% 50%, 55% 90%, 55% 65%, 0 65%);
+}

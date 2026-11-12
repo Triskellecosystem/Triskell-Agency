@@ -20,7 +20,7 @@ export function NumbersWall() {
       <RevealGroup className="mt-8 grid gap-2.5 max-md:grid-cols-2 md:grid-cols-3 lg:grid-cols-6" stagger={0.08}>
         {n.items.map((m, i) => (
           <RevealItem key={m.label} y={30} className="h-full" >
-            <Spotlight className={`num-tile res-cell gl-card ${i === 3 ? "gl-card--gold" : ""} group/num relative h-full overflow-hidden rounded-xl p-4`} size={220}>
+            <Spotlight className={`num-tile res-cell gl-card group/num relative h-full overflow-hidden rounded-xl p-4`} size={220}>
               <span aria-hidden="true" className="num-shine" style={{ animationDelay: `${i * 0.9}s` }} />
               <span aria-hidden="true" className="res-burst" style={{ "--i": i } as React.CSSProperties} />
               <div className="relative z-[2]" style={{ "--i": i } as React.CSSProperties}>

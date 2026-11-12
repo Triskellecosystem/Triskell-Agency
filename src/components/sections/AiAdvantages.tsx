@@ -57,47 +57,94 @@ function Drawer({ id, mark, title, open, onToggle, children }: { id: string; mar
 }
 
 /** Due tendine: come funziona Irelia (passaggi in elenco + garanzie) e i vantaggi dell'assistente digitale. */
+const WHO = {
+  ads: { label: "Campagna", cls: "irf--ads" },
+  ai: { label: "Irelia", cls: "irf--ai" },
+  tu: { label: "Tu", cls: "irf--tu" },
+} as const;
+
+/** Vantaggi in forma breve: icona + 2-3 parole. Il dettaglio completo resta in site.ai.advantages. */
+const ADV_SHORT: Record<string, string> = {
+  "Risponde in pochi secondi": "Risponde in secondi",
+  "Scrive come una persona": "Tono umano",
+  "Nessun lead perso": "Zero lead persi",
+  "Raccoglie la fascia oraria": "Sa quando richiamare",
+  "Ricorda gli appuntamenti": "Meno assenze",
+  "Collegato al tuo CRM": "Collegato al CRM",
+  "Seguito da noi": "Seguito da noi",
+};
+
 export function AiAdvantages() {
   const a = site.ai;
   const [open, setOpen] = useState<number | null>(null);
+  const [step, setStep] = useState(0);
   const t = (i: number) => setOpen((o) => (o === i ? null : i));
+  const cur = a.steps[step] ?? a.steps[0]!;
+  const advs = a.advantages.filter((v) => v.title in ADV_SHORT);
+  const hours = a.advantages.find((v) => v.icon === "hourglass");
   return (
     <div className="grid gap-2.5">
       <Drawer id="ai-how" mark={<FlowMark />} title="Come funziona Irelia" open={open === 0} onToggle={() => t(0)}>
-        <ol className="space-y-2 px-5 pb-5">
-          {a.steps.map((s, i) => (
-            <li key={s.title} className={cn("flex gap-3 rounded-xl border border-white/[0.07] bg-night/40 px-3.5 py-3", open === 0 && "adv-in")} style={{ animationDelay: `${i * 0.06}s` }}>
-              <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gold-300 font-mono text-[0.6875rem] font-bold text-night">{i + 1}</span>
-              <span className="min-w-0">
-                <strong className="block text-[0.9375rem] font-semibold leading-snug text-fg">{s.title}</strong>
-                <span className="mt-0.5 block text-[0.8125rem] leading-relaxed text-fg-2">{s.text}</span>
+        <div className="px-4 pb-5 sm:px-5">
+          <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-fg-3">
+            {Object.values(WHO).map((w) => (
+              <span key={w.label} className={cn("irf-leg inline-flex items-center gap-1.5", w.cls)}>
+                <span className="irf-dot h-2 w-2 rounded-full" />
+                {w.label}
               </span>
-            </li>
-          ))}
-          <li className="flex flex-wrap gap-1.5 pt-2">
+            ))}
+          </div>
+          <ol className="irf grid grid-cols-3 gap-x-5 gap-y-3">
+            {a.steps.map((s, i) => (
+              <li key={s.title} className={cn("irf-node", WHO[s.who].cls, open === 0 && "adv-in")} style={{ animationDelay: `${i * 0.07}s` }}>
+                <button
+                  type="button"
+                  onClick={() => setStep(i)}
+                  aria-pressed={step === i}
+                  className={cn("irf-btn flex w-full flex-col items-center gap-1.5 rounded-xl border px-1.5 py-2.5 text-center transition-[border-color,background-color,transform] duration-300", step === i ? "irf-btn--on" : "border-white/[0.08] bg-night/40 hover:-translate-y-0.5")}
+                >
+                  <span className="irf-ic relative grid h-9 w-9 place-items-center rounded-full">
+                    <Icon name={s.icon} className="h-4 w-4" strokeWidth={2.2} />
+                    <span className="absolute -right-1.5 -top-1 grid h-4 w-4 place-items-center rounded-full bg-night font-mono text-[0.5625rem] font-bold text-fg ring-1 ring-white/25">{i + 1}</span>
+                  </span>
+                  <span className="text-[0.75rem] font-semibold leading-tight text-fg sm:text-[0.8125rem]">{s.short}</span>
+                </button>
+              </li>
+            ))}
+          </ol>
+          <p key={step} aria-live="polite" className="adv-in mt-3 flex items-start gap-2.5 rounded-xl border border-white/[0.08] bg-night/50 px-3.5 py-2.5 text-[0.8125rem] leading-snug text-fg-2">
+            <span className={cn("irf-tag mt-px shrink-0 rounded-full px-2 py-0.5 text-[0.625rem] font-bold uppercase tracking-[0.1em]", WHO[cur.who].cls)}>{step + 1} · {WHO[cur.who].label}</span>
+            <span>{cur.text}</span>
+          </p>
+          <div className="mt-3 flex flex-wrap gap-1.5">
             {a.badges.map((b) => (
               <span key={b} className="inline-flex items-center gap-1.5 rounded-full border border-gold-300/40 bg-gold-300/[0.08] px-3 py-1 text-[0.75rem] font-semibold text-gold-200">
                 <Icon name="check" className="h-3 w-3" strokeWidth={3} />
                 {b}
               </span>
             ))}
-          </li>
-        </ol>
+          </div>
+        </div>
       </Drawer>
       <Drawer id="ai-adv" mark={<GemMark />} title={a.advantagesLabel} open={open === 1} onToggle={() => t(1)}>
-        <ul className="grid gap-2 px-5 pb-5 sm:grid-cols-2">
-          {a.advantages.map((v, i) => (
-            <li key={v.title} className={cn("group/adv rounded-xl border border-white/[0.07] bg-[linear-gradient(150deg,rgb(247_200_92/0.06),rgb(1_15_28/0.5))] p-3 transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-gold-300/60", open === 1 && "adv-flip")} style={{ animationDelay: `${i * 0.05}s` }}>
-              <span className="flex items-center gap-2">
-                <span className="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-[linear-gradient(135deg,#fde08a,#e9a33a)] text-night">
-                  <Icon name={v.icon} className="h-3.5 w-3.5" strokeWidth={2.2} />
+        <div className="px-4 pb-5 sm:px-5">
+          <ul className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+            {advs.map((v, i) => (
+              <li key={v.title} title={v.text} className={cn("flex flex-col items-center gap-2 rounded-xl border border-white/[0.08] bg-night/40 px-2 py-3 text-center transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-gold-300/60", open === 1 && "adv-flip")} style={{ animationDelay: `${i * 0.05}s` }}>
+                <span className="grid h-9 w-9 place-items-center rounded-xl bg-[linear-gradient(135deg,#fde08a,#e9a33a)] text-night">
+                  <Icon name={v.icon} className="h-4 w-4" strokeWidth={2.2} />
                 </span>
-                <span className="font-display text-[0.875rem] font-bold leading-tight text-fg">{v.title}</span>
-              </span>
-              <span className="mt-1.5 block text-[0.75rem] leading-snug text-fg-2">{v.text}</span>
-            </li>
-          ))}
-        </ul>
+                <span className="text-[0.75rem] font-semibold leading-tight text-fg sm:text-[0.8125rem]">{ADV_SHORT[v.title]}</span>
+              </li>
+            ))}
+            {hours && (
+              <li className={cn("flex flex-col items-center justify-center gap-1 rounded-xl border border-gold-300/45 bg-gold-300/[0.07] px-2 py-3 text-center", open === 1 && "adv-flip")} style={{ animationDelay: `${advs.length * 0.05}s` }}>
+                <span className="font-display text-[1.5rem] font-bold leading-none text-gold-200">≈6 h</span>
+                <span className="text-[0.75rem] font-semibold leading-tight text-fg-2">libere a settimana</span>
+              </li>
+            )}
+          </ul>
+        </div>
       </Drawer>
     </div>
   );

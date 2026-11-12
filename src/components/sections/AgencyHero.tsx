@@ -4,6 +4,7 @@ import { Icon } from "@/components/ui/Icon";
 import { DigitalCursor } from "@/components/motion/DigitalCursor";
 import { HeroNumbers } from "./HeroNumbers";
 import { LivePhone } from "./LivePhone";
+import { TiltVars } from "@/components/ui/TiltVars";
 import { LightRays } from "@/components/ui/LightRays";
 import { HeroFx } from "@/components/ui/HeroFx";
 
@@ -59,7 +60,7 @@ export function AgencyHero() {
         </div>
 
         <div className="hidden lg:col-span-6 lg:block">
-          <LivePhone className="lp-hero" />
+          <TiltVars><LivePhone className="lp-hero" /></TiltVars>
         </div>
       </div>
     </section>
