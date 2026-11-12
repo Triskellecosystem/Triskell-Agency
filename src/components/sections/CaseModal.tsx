@@ -14,9 +14,9 @@ import { LogoMark } from "@/components/brand/LogoMark";
  * Il resto della storia si apre con "Leggi tutta la storia". I dettagli si caricano solo all'apertura.
  */
 
-/** Video dei case study (formato reel): solo per i clienti che ce l'hanno dato. */
-const VIDEOS: Record<string, { src: string; poster: string }> = {
-  "gabriele-gatti": { src: "/video/case-gatti.mp4", poster: "/video/case-gatti.jpg" },
+/** Video dei case study, nel loro formato originale (reel o orizzontale): solo per i clienti che ce l'hanno dato. */
+const VIDEOS: Record<string, { src: string; poster: string; wide?: boolean }> = {
+  "gabriele-gatti": { src: "/video/case-gatti.mp4", poster: "/video/case-gatti.jpg", wide: true },
   "forme-fitness": { src: "/video/case-forme.mp4", poster: "/video/case-forme.jpg" },
   "mela-med": { src: "/video/case-mela.mp4", poster: "/video/case-mela.jpg" },
   "urban-fitness": { src: "/video/case-urban.mp4", poster: "/video/case-urban.jpg" },
@@ -72,7 +72,7 @@ export function CaseModal({ item, onClose }: { item: CaseStudy; onClose: () => v
 
         <div className="p-5 sm:p-8">
           {/* intestazione */}
-          <div className={`grid items-center gap-6 ${video ? "md:grid-cols-[minmax(0,1fr)_auto]" : "md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]"}`}>
+          <div className={`grid items-center gap-6 ${video && !video.wide ? "md:grid-cols-[minmax(0,1fr)_auto]" : "md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]"}`}>
             <div>
               <p className="inline-flex items-center gap-2 rounded-full border border-gold-300/50 px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-gold-200">
                 <Icon name="briefcase" className="h-3.5 w-3.5" strokeWidth={2} />
@@ -84,9 +84,9 @@ export function CaseModal({ item, onClose }: { item: CaseStudy; onClose: () => v
               </p>
               <p className="mt-3 max-w-md text-[0.9375rem] leading-snug text-fg-2">{d?.lead ?? item.text}</p>
             </div>
-            <div className={`case-media relative overflow-hidden rounded-[1.25rem] ${video ? "mx-auto w-[min(15rem,70vw)] md:mr-10" : ""}`}>
+            <div className={`case-media relative overflow-hidden rounded-[1.25rem] ${video && !video.wide ? "mx-auto w-[min(15rem,70vw)] md:mr-10" : ""}`}>
               {video ? (
-                <CaseVideo src={video.src} poster={video.poster} label={`Video del case study ${item.client}`} />
+                <CaseVideo src={video.src} poster={video.poster} wide={video.wide} label={`Video del case study ${item.client}`} />
               ) : (
                 <div className="relative aspect-video">
                   <Image src={item.image} alt="" fill sizes="32rem" className="object-cover" />
@@ -251,14 +251,14 @@ export function CaseModal({ item, onClose }: { item: CaseStudy; onClose: () => v
 }
 
 /** Video del case study: parte senza audio, con il pulsante per attivarlo. */
-function CaseVideo({ src, poster, label }: { src: string; poster: string; label: string }) {
+function CaseVideo({ src, poster, label, wide }: { src: string; poster: string; label: string; wide?: boolean }) {
   const v = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
   useEffect(() => {
     v.current?.play().catch(() => {});
   }, []);
   return (
-    <div className="relative aspect-[9/16] bg-black">
+    <div className={`relative bg-black ${wide ? "aspect-video" : "aspect-[9/16]"}`}>
       <video ref={v} src={src} poster={poster} muted loop playsInline autoPlay aria-label={label} className="absolute inset-0 h-full w-full object-cover" />
       <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-night/75 px-2.5 py-1 text-[0.6875rem] font-semibold text-fg backdrop-blur">
         <Icon name="play" className="h-3 w-3 text-gold-300" strokeWidth={2.4} />
