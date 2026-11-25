@@ -129,7 +129,7 @@ export function Header() {
 
   return (
     <>
-      <header className="group/header fixed inset-x-0 top-0 z-50">
+      <header data-site-header="" className="group/header fixed inset-x-0 top-0 z-50">
         {/* Pannello blur: appare e si accorcia con transform/opacity */}
         <div
           aria-hidden="true"

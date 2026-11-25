@@ -1,0 +1,63 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/cn";
+import { Icon, type IconName } from "@/components/ui/Icon";
+
+const MODES = [
+  { id: "noi", icon: "camera", label: "Veniamo noi in palestra", title: "Giriamo noi, tu alleni", points: ["Riprese professionali in palestra", "Coach, attrezzi e clienti veri", "Montaggio e pubblicazione inclusi"], videos: [{ src: "/video/riprese-1.mp4", poster: "/video/riprese-1.jpg" }, { src: "/video/riprese-2.mp4", poster: "/video/riprese-2.jpg" }] },
+  { id: "tu", icon: "smartphone", label: "Registri tu", title: "Registri tu, al resto pensiamo noi", points: ["Script pronti da leggere", "Indicazioni su luce e inquadrature", "Editing professionale fatto da noi"], videos: [{ src: "/video/registri-tu.mp4", poster: "/video/registri-tu.jpg" }, { src: "/video/editato-v2.mp4", poster: "/video/editato-v2.jpg" }] },
+] as const satisfies ReadonlyArray<{ id: string; icon: IconName; label: string; title: string; points: readonly string[]; videos: ReadonlyArray<{ src: string; poster: string }> }>;
+
+function Clip({ src, poster, tag }: { src: string; poster: string; tag: string }) {
+  const v = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const el = v.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => (e?.isIntersecting ? el.play().catch(() => {}) : el.pause()), { threshold: 0.3 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [src]);
+  return (
+    <figure className="fit-phone relative aspect-[9/16] w-full overflow-hidden rounded-[1.5rem]">
+      <video ref={v} key={src} src={src} poster={poster} muted loop playsInline preload="metadata" className="absolute inset-0 h-full w-full object-cover" />
+      <figcaption className="fit-h absolute left-3 top-3 rounded-md bg-black/70 px-2 py-1 text-[0.625rem] text-fit-300 backdrop-blur">{tag}</figcaption>
+    </figure>
+  );
+}
+
+/** Riprese: veniamo noi in palestra oppure registri tu. Interruttore con i video veri delle due modalità. */
+export function FitShoots() {
+  const [m, setM] = useState(0);
+  const mode = MODES[m]!;
+  return (
+    <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.05fr]">
+      <div>
+        <div className="grid gap-2 sm:grid-cols-2">
+          {MODES.map((x, i) => (
+            <button key={x.id} type="button" onClick={() => setM(i)} aria-pressed={m === i} className={cn("fit-tab flex items-center gap-3 rounded-xl px-4 py-3 text-left", m === i && "fit-tab--on")}>
+              <Icon name={x.icon} className="h-5 w-5 shrink-0" strokeWidth={2} />
+              <span className="text-[0.9375rem] font-bold">{x.label}</span>
+            </button>
+          ))}
+        </div>
+        <div key={mode.id} className="fit-fade mt-6">
+          <h3 className="fit-h text-[clamp(1.5rem,1.2rem+1.2vw,2.25rem)] leading-[1.05] text-white">{mode.title}</h3>
+          <ul className="mt-5 space-y-3">
+            {mode.points.map((p) => (
+              <li key={p} className="flex items-center gap-3 text-[1rem] text-white/80">
+                <span className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-fit-300/15 text-fit-300"><Icon name="check" className="h-4 w-4" strokeWidth={3} /></span>
+                {p}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-5 text-[0.875rem] text-white/50">In entrambi i casi la qualità resta la stessa: cambia solo quanto tempo ci metti tu.</p>
+        </div>
+      </div>
+      <div key={mode.id + "v"} className="fit-fade mx-auto grid w-full max-w-md grid-cols-2 gap-4">
+        <Clip src={mode.videos[0].src} poster={mode.videos[0].poster} tag={m === 0 ? "Dietro le quinte" : "Girato da te"} />
+        <div className="translate-y-8"><Clip src={mode.videos[1].src} poster={mode.videos[1].poster} tag={m === 0 ? "Sul set" : "Editato da noi"} /></div>
+      </div>
+    </div>
+  );
+}

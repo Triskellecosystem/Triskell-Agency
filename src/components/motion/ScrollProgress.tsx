@@ -32,6 +32,7 @@ export function ScrollProgress() {
       ref={ref}
       aria-hidden="true"
       style={{ transform: "scaleX(0)" }}
+      data-scroll-progress=""
       className="pointer-events-none fixed inset-x-0 top-0 z-[70] h-[3px] origin-left bg-[image:var(--gradient-gold-btn)] will-change-transform"
     />
   );

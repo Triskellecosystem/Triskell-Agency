@@ -59,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="it" className={`${sora.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>
         {/* una volta per sessione: se la schermata di caricamento è già stata vista, non compare di nuovo */}
-        <script dangerouslySetInnerHTML={{ __html: `try{if(sessionStorage.getItem("tk-loaded")){document.documentElement.setAttribute("data-no-loader","")}else{document.documentElement.setAttribute("data-loading","")}}catch(e){}` }} />
+        <script dangerouslySetInnerHTML={{ __html: `try{if(sessionStorage.getItem("tk-loaded")||location.pathname.indexOf("/palestre")===0){document.documentElement.setAttribute("data-no-loader","")}else{document.documentElement.setAttribute("data-loading","")}}catch(e){}` }} />
       </head>
       <body>
         <Loader />

@@ -25,6 +25,14 @@
   --color-fg-3: #91979a;
 
   /* --- Oro ------------------------------------------------------------------ */
+  /* Verde fluo della landing palestre */
+  --color-fit-100: #ecffc4;
+  --color-fit-200: #ccff5c;
+  --color-fit-300: #a6ff00;
+  --color-fit-400: #8ee000;
+  --color-fit-500: #6fb800;
+  --color-fit-700: #2f5200;
+  --color-fit-900: #0b1405;
   --color-gold-100: #fff7be;
   --color-gold-200: #fdda5a;
   --color-gold-300: #f7c85c;

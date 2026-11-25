@@ -10,7 +10,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-line bg-night-deep">
+    <footer data-site-footer="" className="relative border-t border-line bg-night-deep">
       <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-400/40 to-transparent" />
       <div className="container-x grid gap-12 py-14 max-md:grid-cols-2 max-md:gap-x-6 max-md:gap-y-9 max-md:py-10 md:grid-cols-3 md:py-16 lg:grid-cols-12">
         <div className="max-md:col-span-2 md:col-span-3 lg:col-span-3">
