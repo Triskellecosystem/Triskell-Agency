@@ -152,7 +152,7 @@ export default function PalestrePage() {
         <div className="fit-strip-track flex w-max gap-8">
           {[0, 1].map((k) => (
             <span key={k} className="flex gap-8">
-              {["Più iscritti", "Campagne ADV", "Reel che convertono", "Riprese in palestra", "Irelia AI", "CRM", "Prove gratuite", "Risultati misurati"].map((w) => (
+              {["Più iscritti", "Campagne ADV", "Reel che convertono", "Riprese in palestra", "Segretaria AI", "CRM", "Prove gratuite", "Risultati misurati"].map((w) => (
                 <span key={w + k} className="fit-h flex items-center gap-8 whitespace-nowrap text-[1.125rem] text-black">{w}<span className="h-2.5 w-2.5 rotate-45 bg-black" /></span>
               ))}
             </span>
@@ -188,22 +188,25 @@ export default function PalestrePage() {
       <Sep />
 
       {/* NUMERI */}
-      <section aria-labelledby="fit-numbers" className="fit-band relative isolate overflow-hidden py-20 lg:py-24">
+      <section aria-labelledby="fit-numbers" className="fit-bg-dots relative isolate overflow-hidden py-16 lg:py-20">
         <div className="container-x">
           <Reveal y={12} blur={0} className="text-center">
             <Kicker>I numeri delle palestre che seguiamo</Kicker>
             <Title id="fit-numbers" className="mx-auto max-w-3xl">Ecco cosa possiamo <G>portarti</G>.</Title>
           </Reveal>
           <Reveal y={0} blur={0} className="mt-12">
-            <ul className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+            <ul className="fit-helix mx-auto grid max-w-4xl grid-cols-2 gap-3 lg:grid-cols-4">
               {fit.numbers.map((n, i) => (
-                <li key={n.label} className="fit-pop fit-stat relative flex aspect-square flex-col justify-between overflow-hidden rounded-2xl p-5 sm:p-7" style={{ "--i": i } as React.CSSProperties}>
-                  <span className="font-mono text-[0.6875rem] font-bold text-fit-300/70">0{i + 1}</span>
-                  <span>
-                    <CountUp value={n.value} prefix={n.prefix} suffix={n.suffix} className="fit-num block whitespace-nowrap text-[clamp(2rem,1.2rem+2.8vw,3.75rem)] leading-none" duration={1.4} />
-                    <span className="mt-2 block text-[1rem] font-bold text-white sm:text-[1.125rem]">{n.label}</span>
-                    <span className="mt-1 block text-[0.75rem] text-white/50">{n.note}</span>
-                  </span>
+                <li key={n.label} className="fit-helix-item" style={{ "--i": i } as React.CSSProperties}>
+                  <div className="fit-stat fit-stat--sm relative flex flex-col overflow-hidden rounded-2xl px-4 py-4">
+                    <span className="flex items-center justify-between">
+                      <span className="fit-ico grid h-8 w-8 place-items-center rounded-lg"><Icon name={(["users", "target", "calendar", "trending"] as const)[i]!} className="h-4 w-4" strokeWidth={2.2} /></span>
+                      <span className="font-mono text-[0.625rem] font-bold text-fit-300/70">0{i + 1}</span>
+                    </span>
+                    <CountUp value={n.value} prefix={n.prefix} suffix={n.suffix} className="fit-num mt-3 block whitespace-nowrap text-[clamp(1.6rem,1.1rem+1.6vw,2.4rem)] leading-none" duration={1.4} />
+                    <span className="mt-1.5 block text-[0.875rem] font-bold leading-tight text-white">{n.label}</span>
+                    <span className="mt-0.5 block text-[0.6875rem] text-white/50">{n.note}</span>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -221,14 +224,14 @@ export default function PalestrePage() {
           <Reveal y={12} blur={0} className="text-center">
             <Kicker>Metodo Triskell Fitness</Kicker>
             <Title id="fit-metodo" className="mx-auto max-w-4xl">Social + Campagne = <G>più iscritti</G></Title>
-            <p className="mx-auto mt-4 max-w-2xl text-[1.0625rem] text-white/70">Il profilo dà fiducia, le campagne portano persone, Irelia AI non ne perde nessuna. Un solo team per tutto.</p>
+            <p className="mx-auto mt-4 max-w-2xl text-[1.0625rem] text-white/70">Il profilo dà fiducia, le campagne portano persone, la segretaria AI non ne perde nessuna. Un solo team per tutto.</p>
           </Reveal>
           <Reveal y={0} blur={0} className="mt-12">
             <div className="fit-eq grid items-stretch gap-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1.15fr]">
               {[
                 { icon: "smartphone", t: "Social", p: "Reel e post che mostrano la tua palestra" },
                 { icon: "target", t: "Campagne", p: "Meta e Google Ads sulla tua zona" },
-                { icon: "bot", t: "Irelia AI", p: "Risponde a ogni contatto in pochi secondi" },
+                { icon: "bot", t: "Segretaria AI", p: "Risponde a ogni contatto in pochi secondi" },
               ].map((x, i) => (
                 <div key={x.t} className="contents">
                   <div className="fit-pop fit-card flex items-center gap-4 rounded-2xl p-5 lg:flex-col lg:items-start" style={{ "--i": i * 2 } as React.CSSProperties}>
@@ -247,8 +250,8 @@ export default function PalestrePage() {
             </div>
           </Reveal>
           <Reveal y={12} blur={0} className="mt-14">
-            <p className="mb-4 text-center text-[0.8125rem] font-bold uppercase tracking-[0.22em] text-white/60">Da un contenuto a un nuovo iscritto</p>
-            <FitFunnel />
+            <p className="mb-8 text-center text-[0.8125rem] font-bold uppercase tracking-[0.22em] text-white/60">Da un contenuto a un nuovo iscritto</p>
+            <div className="mx-auto max-w-3xl"><FitFunnel /></div>
           </Reveal>
         </div>
       </section>
@@ -256,7 +259,7 @@ export default function PalestrePage() {
       <Sep />
 
       {/* PROFILO */}
-      <section aria-labelledby="fit-feed" className="fit-band relative isolate overflow-hidden py-20 lg:py-28">
+      <section aria-labelledby="fit-feed" className="fit-bg-hex relative isolate overflow-hidden py-20 lg:py-28">
         <div className="container-x grid items-center gap-12 lg:grid-cols-2">
           <Reveal y={12} blur={0}>
             <Kicker>Il profilo che costruiamo</Kicker>
@@ -282,7 +285,7 @@ export default function PalestrePage() {
       <Sep />
 
       {/* PACCHETTI */}
-      <section id="pacchetti" aria-labelledby="fit-pack" className="fit-bg-beams relative isolate overflow-hidden py-20 lg:py-28">
+      <section id="pacchetti" aria-labelledby="fit-pack" className="fit-bg-stage relative isolate overflow-hidden py-20 lg:py-28">
         <div className="fit-squares" aria-hidden="true" />
         <div className="container-x relative">
           <Reveal y={12} blur={0} className="text-center">
@@ -298,52 +301,55 @@ export default function PalestrePage() {
 
       <Sep />
 
-      {/* IRELIA */}
-      <section aria-labelledby="fit-irelia" className="fit-bg-glow relative isolate overflow-hidden py-20 lg:py-28">
+      {/* SEGRETARIA AI */}
+      <section aria-labelledby="fit-ai" className="fit-bg-aurora fit-ai relative isolate overflow-hidden py-14 lg:py-16">
         <div className="fit-squares" aria-hidden="true" />
-        <div className="container-x relative grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="container-x relative grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           <div>
             <Reveal y={12} blur={0}>
               <Kicker>Il nostro vantaggio competitivo</Kicker>
-              <Title id="fit-irelia">Irelia, l&apos;AI che <G>non ti fa perdere</G> nessun cliente.</Title>
-              <p className="mt-5 max-w-xl text-[1.0625rem] text-white/70">{site.ai.line}</p>
+              <Title id="fit-ai" className="text-[clamp(1.9rem,1.3rem+2vw,3rem)]">La segretaria AI che <G>non ti fa perdere</G> nessun cliente.</Title>
+              <p className="mt-4 max-w-xl text-[1rem] text-white/70">Arriva un contatto dalla campagna: l&apos;assistente AI gli scrive subito su WhatsApp, raccoglie quando vuole essere richiamato e tu chiami un cliente già pronto.</p>
             </Reveal>
-            <Reveal y={0} blur={0} className="mt-7">
-              <dl className="grid max-w-lg grid-cols-3 gap-2.5">
+            <Reveal y={0} blur={0} className="mt-5">
+              <dl className="grid max-w-md grid-cols-3 gap-2">
                 {site.ai.console.stats.map((st, k) => (
-                  <div key={st.label} className="fit-pop fit-stat relative overflow-hidden rounded-xl px-3 py-3.5" style={{ "--i": k } as React.CSSProperties}>
-                    <dd><CountUp {...st} className="fit-num block whitespace-nowrap text-[clamp(1.4rem,1rem+1.2vw,2rem)] leading-none" duration={1.2} /></dd>
-                    <dt className="mt-1.5 text-[0.75rem] font-semibold text-white/70">{st.label}</dt>
+                  <div key={st.label} className="fit-pop fit-stat relative overflow-hidden rounded-xl px-3 py-2.5" style={{ "--i": k } as React.CSSProperties}>
+                    <dd><CountUp {...st} className="fit-num block whitespace-nowrap text-[clamp(1.25rem,0.9rem+1vw,1.75rem)] leading-none" duration={1.2} /></dd>
+                    <dt className="mt-1 text-[0.6875rem] font-semibold text-white/70">{st.label}</dt>
                   </div>
                 ))}
               </dl>
             </Reveal>
-            <Reveal y={0} blur={0} className="mt-7">
-              <ol className="relative space-y-2 pl-1">
-                <span aria-hidden="true" className="fit-irelia-line absolute bottom-4 left-[1.1rem] top-4 w-px" />
+            <Reveal y={0} blur={0} className="mt-5">
+              <ol className="grid gap-1.5 sm:grid-cols-2">
                 {site.ai.steps.map((st, k) => (
-                  <li key={st.title} className="fit-pop relative flex items-center gap-3" style={{ "--i": k + 3 } as React.CSSProperties}>
-                    <span className={`fit-irelia-dot relative z-[1] grid h-9 w-9 shrink-0 place-items-center rounded-lg ${st.who === "ai" ? "fit-irelia-dot--ai" : st.who === "tu" ? "fit-irelia-dot--tu" : ""}`}>
-                      <Icon name={st.icon} className="h-4 w-4" strokeWidth={2.2} />
+                  <li key={st.title} className="fit-pop fit-ai-step flex items-center gap-2.5 rounded-lg px-2.5 py-2" style={{ "--i": k + 3 } as React.CSSProperties}>
+                    <span className={`fit-irelia-dot grid h-7 w-7 shrink-0 place-items-center rounded-md ${st.who === "ai" ? "fit-irelia-dot--ai" : st.who === "tu" ? "fit-irelia-dot--tu" : ""}`}>
+                      <Icon name={st.icon} className="h-3.5 w-3.5" strokeWidth={2.2} />
                     </span>
-                    <span className="text-[0.9375rem] font-semibold text-white">{st.title}</span>
-                    <span className={`ml-auto shrink-0 rounded-md px-2 py-0.5 text-[0.625rem] font-bold uppercase tracking-wider ${st.who === "ai" ? "bg-fit-300 text-black" : st.who === "tu" ? "border border-white/25 text-white/80" : "text-white/45"}`}>{st.who === "ai" ? "Irelia" : st.who === "tu" ? "Tu" : "Campagna"}</span>
+                    <span className="text-[0.8125rem] font-semibold leading-tight text-white">{st.title.replace("Irelia", "L'AI")}</span>
+                    <span className={`ml-auto shrink-0 rounded px-1.5 py-0.5 text-[0.5625rem] font-bold uppercase tracking-wider ${st.who === "ai" ? "bg-fit-300 text-black" : st.who === "tu" ? "border border-white/25 text-white/80" : "text-white/45"}`}>{st.who === "ai" ? "AI" : st.who === "tu" ? "Tu" : "Ads"}</span>
                   </li>
                 ))}
               </ol>
             </Reveal>
+            <Reveal y={0} blur={0} className="mt-6">
+              <Link href="#contatti" className="fit-btn fit-btn--pulse">
+                <Icon name="calendar" className="h-5 w-5" strokeWidth={2.2} /> Voglio la segretaria AI
+              </Link>
+            </Reveal>
           </div>
-          <Reveal from="right" blur={0}>
-            <AiChat chat={fit.chat} />
+          <Reveal from="right" blur={0} className="mx-auto w-full max-w-[21rem]">
+            <AiChat chat={fit.chat} bot="Segretaria AI" />
           </Reveal>
         </div>
-        <div className="container-x"><CtaRow text="Vuoi Irelia anche nella tua palestra?" /></div>
       </section>
 
       <Sep />
 
       {/* CRM */}
-      <section aria-labelledby="fit-crm" className="fit-bg-beams relative isolate overflow-hidden py-20 lg:py-28">
+      <section aria-labelledby="fit-crm" className="fit-bg-rays relative isolate overflow-hidden py-20 lg:py-28">
         <div className="fit-squares" aria-hidden="true" />
         <div className="container-x relative grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
           <Reveal y={0} blur={0} className="order-2 lg:order-1">
@@ -382,7 +388,7 @@ export default function PalestrePage() {
       <Sep />
 
       {/* RIPRESE */}
-      <section aria-labelledby="fit-shoot" className="fit-band relative isolate overflow-hidden py-20 lg:py-28">
+      <section aria-labelledby="fit-shoot" className="fit-bg-aurora2 relative isolate overflow-hidden py-20 lg:py-28">
         <div className="container-x">
           <Reveal y={12} blur={0} className="mb-10 max-w-3xl">
             <Kicker>Le riprese</Kicker>
@@ -425,14 +431,14 @@ export default function PalestrePage() {
       <Sep />
 
       {/* RECENSIONI */}
-      <div className="fit-band">
+      <div className="fit-bg-glow">
         <Reviews />
       </div>
 
       <Sep />
 
       {/* FAQ */}
-      <section aria-labelledby="fit-faq" className="fit-bg-beams relative isolate overflow-hidden py-16 lg:py-20">
+      <section aria-labelledby="fit-faq" className="fit-bg-dots relative isolate overflow-hidden py-16 lg:py-20">
         <div className="container-x">
           <Reveal y={12} blur={0} className="mb-8 text-center">
             <Kicker>Domande frequenti</Kicker>

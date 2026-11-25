@@ -2794,3 +2794,49 @@ body:has(.fit-page) .triski-root { --color-gold-300: #a6ff00; --color-gold-200: 
 .fit-crm-card { background: rgb(20 30 14 / 0.95); border: 1px solid rgb(255 255 255 / 0.08); }
 .fit-crm-card--new { border-color: #a6ff00; box-shadow: 0 0 18px -2px rgb(166 255 0 / 0.7); animation: fit-crm-in 0.6s var(--ease-out-expo); }
 @keyframes fit-crm-in { from { transform: translateX(-30px) scale(0.9); opacity: 0; } }
+
+/* ===== Palestre v4 ===== */
+/* sfondi delicati e diversi per sezione */
+.fit-bg-dots { background: radial-gradient(circle, rgb(166 255 0 / 0.11) 1px, transparent 1.6px) 0 0 / 22px 22px, radial-gradient(60% 50% at 50% 0%, rgb(90 160 0 / 0.2), transparent 70%), #040704; }
+.fit-bg-hex { background: radial-gradient(45% 55% at 85% 50%, rgb(120 210 0 / 0.17), transparent 70%), radial-gradient(35% 40% at 10% 10%, rgb(166 255 0 / 0.07), transparent 70%), conic-gradient(from 210deg at 85% 50%, transparent, rgb(166 255 0 / 0.05), transparent 30%), #050805; }
+.fit-bg-stage { background: radial-gradient(50% 40% at 50% 100%, rgb(140 230 0 / 0.22), transparent 70%), linear-gradient(180deg, #040704, #081206 60%, #040704); }
+.fit-bg-aurora { background: radial-gradient(40% 60% at 80% 40%, rgb(110 200 0 / 0.2), transparent 70%), radial-gradient(45% 50% at 10% 80%, rgb(30 120 70 / 0.22), transparent 70%), #040704; }
+.fit-bg-aurora2 { background: radial-gradient(50% 50% at 25% 30%, rgb(60 170 40 / 0.18), transparent 70%), radial-gradient(40% 40% at 90% 90%, rgb(166 255 0 / 0.1), transparent 70%), #050805; }
+.fit-bg-rays { background: repeating-linear-gradient(100deg, transparent 0 80px, rgb(166 255 0 / 0.025) 80px 82px), radial-gradient(55% 50% at 20% 50%, rgb(120 210 0 / 0.16), transparent 70%), #040704; }
+.fit-bg-dots::after, .fit-bg-hex::after, .fit-bg-stage::after, .fit-bg-aurora::after, .fit-bg-aurora2::after, .fit-bg-rays::after { content: ""; position: absolute; inset: auto 0 0; height: 1px; background: linear-gradient(90deg, transparent, rgb(166 255 0 / 0.25), transparent); }
+.fit-bg-aurora::before, .fit-bg-aurora2::before { content: ""; position: absolute; inset: -20%; z-index: -1; background: radial-gradient(30% 30% at 50% 50%, rgb(166 255 0 / 0.08), transparent 70%); animation: fit-drift 14s ease-in-out infinite alternate; pointer-events: none; }
+@keyframes fit-drift { from { transform: translate(-15%, -10%); } to { transform: translate(15%, 10%); } }
+
+/* numeri: entrata a spirale 3D, riquadri compatti */
+.fit-helix { perspective: 1100px; }
+.fit-helix-item { opacity: 0; transform: rotateY(calc(160deg + var(--i) * 40deg)) translateZ(-260px) translateY(calc(-120px - var(--i) * 40px)) rotateY(calc(-160deg - var(--i) * 40deg)) scale(0.5); transition: transform 1.3s cubic-bezier(0.2, 0.9, 0.25, 1), opacity 0.7s; transition-delay: calc(var(--i) * 0.14s); }
+[data-revealed] .fit-helix-item { opacity: 1; transform: none; }
+.fit-helix-item .fit-stat--sm { transition: transform 0.5s var(--ease-out-expo), border-color 0.3s, box-shadow 0.3s; }
+.fit-helix-item:hover .fit-stat--sm { transform: translateY(-6px) rotateY(10deg); }
+[data-revealed] .fit-helix-item .fit-stat--sm { animation: fit-hover 5s ease-in-out calc(1.4s + var(--i) * -1.2s) infinite; }
+@keyframes fit-hover { 0%, 100% { translate: 0 0; } 50% { translate: 0 -6px; } }
+
+/* spirale verticale del percorso */
+.fit-spiral-path { stroke: rgb(166 255 0 / 0.45); stroke-width: 2.5; stroke-dasharray: 6 7; animation: fit-dash 1.2s linear infinite; filter: drop-shadow(0 0 4px rgb(166 255 0 / 0.6)); vector-effect: non-scaling-stroke; }
+@keyframes fit-dash { to { stroke-dashoffset: -26; } }
+.fit-node { color: rgb(255 255 255 / 0.6); background: #0b130a; border: 1.5px solid rgb(166 255 0 / 0.3); box-shadow: 0 10px 24px -10px #000; transition: background-color 0.4s, color 0.4s, box-shadow 0.4s, border-color 0.4s; }
+.fit-node--done { color: #d6ff8a; border-color: rgb(166 255 0 / 0.6); }
+.fit-node--on { color: #000; background: #a6ff00; border-color: #a6ff00; box-shadow: 0 0 30px 0 rgb(166 255 0 / 0.85); }
+.fit-fstep { border: 1px solid transparent; transition: background-color 0.35s, border-color 0.35s; }
+.fit-fstep > span:last-child > span:last-child { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.45s var(--ease-out-expo), opacity 0.35s; }
+.fit-fstep--on { background: rgb(166 255 0 / 0.07); border-color: rgb(166 255 0 / 0.45); box-shadow: 0 0 30px -12px rgb(166 255 0 / 0.6); }
+.fit-fstep--on > span:last-child > span:last-child { max-height: 4rem; opacity: 1; }
+.fit-fstep:not(.fit-fstep--on) .fit-h { color: rgb(255 255 255 / 0.55); }
+
+/* pacchetto centrale in risalto */
+.fit-pack--star { border: 2px solid transparent; background: linear-gradient(165deg, rgb(30 50 12), rgb(6 10 4)) padding-box, conic-gradient(from var(--fit-ang, 0deg), #a6ff00, #1d3a0c 25%, #e2ff9a 50%, #1d3a0c 75%, #a6ff00) border-box; animation: fit-ang 4s linear infinite, fit-star 2.4s ease-in-out infinite; }
+@media (min-width: 768px) { .fit-pack--star { transform: scale(1.06); padding-top: 2.25rem; padding-bottom: 2.25rem; } .fit-pack--star.fit-pack--on { transform: scale(1.06) translateY(-6px); } }
+@property --fit-ang { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@keyframes fit-ang { to { --fit-ang: 360deg; } }
+@keyframes fit-star { 0%, 100% { box-shadow: 0 0 40px -10px rgb(166 255 0 / 0.6); } 50% { box-shadow: 0 0 80px -4px rgb(166 255 0 / 0.95); } }
+.fit-pack--star .fit-h.absolute { animation: fit-btn-pulse 1.8s ease-in-out infinite; }
+
+/* segretaria AI: tutto in una schermata */
+.fit-ai-step { background: rgb(255 255 255 / 0.03); border: 1px solid rgb(166 255 0 / 0.14); }
+.fit-ai [class*="h-[23rem]"] { height: 15.5rem !important; }
+@media (prefers-reduced-motion: reduce) { .fit-helix-item { opacity: 1; transform: none; transition: none; } .fit-spiral-path, .fit-pack--star, [data-revealed] .fit-helix-item .fit-stat--sm, .fit-bg-aurora::before, .fit-bg-aurora2::before { animation: none; } }

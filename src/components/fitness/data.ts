@@ -7,7 +7,7 @@ export const fit = {
     { icon: "calendar", now: "Pieno a settembre, vuoto a luglio", next: "Contatti nuovi ogni mese, anche d'estate, con campagne sempre attive" },
     { icon: "smartphone", now: "Social fatti quando c'è tempo", next: "Contenuti pianificati ogni settimana, con script pronti e riprese" },
     { icon: "megaphone", now: "Promo e volantini che non portano nessuno", next: "Campagne Meta e Google mirate sulla tua zona, misurate al centesimo" },
-    { icon: "phone", now: "Contatti che nessuno richiama", next: "Irelia AI scrive a ogni contatto in pochi secondi, anche la sera" },
+    { icon: "phone", now: "Contatti che nessuno richiama", next: "La segretaria AI scrive a ogni contatto in pochi secondi, anche la sera" },
     { icon: "chart", now: "Non sai quanto ti costa un iscritto", next: "Report mensile: costo per contatto, prove prenotate e iscrizioni" },
     { icon: "users", now: "Concorrenza a ogni angolo", next: "Un profilo che ti fa scegliere, non solo trovare" },
   ] satisfies Array<{ icon: IconName; now: string; next: string }>,
@@ -23,24 +23,24 @@ export const fit = {
     { icon: "video", title: "Contenuto", text: "Reel e post che mostrano palestra, coach e risultati veri." },
     { icon: "target", title: "Campagna", text: "Meta e Google Ads mirate sulle persone della tua zona." },
     { icon: "user", title: "Contatto", text: "La persona lascia nome e numero per la prova gratuita." },
-    { icon: "bot", title: "Irelia AI", text: "Gli scrive subito su WhatsApp e fissa quando richiamarlo." },
+    { icon: "bot", title: "Segretaria AI", text: "Gli scrive subito su WhatsApp e fissa quando richiamarlo." },
     { icon: "dumbbell", title: "Prova", text: "Tu lo chiami all'ora giusta e viene in palestra." },
     { icon: "trophy", title: "Iscritto", text: "Un nuovo abbonamento, e il ciclo riparte ogni mese." },
   ] satisfies Array<{ icon: IconName; title: string; text: string }>,
 
   packages: [
-    { name: "Power", contents: 12, perWeek: "3 a settimana", campaigns: "4–5 campagne Meta e Google", points: ["Strategia e piano editoriale", "Script pronti per i video", "Editing e pubblicazione", "Report mensile con i numeri"], tag: "Base consigliata" },
-    { name: "Beast", contents: 24, perWeek: "6 a settimana", campaigns: "Campagne sempre attive + test continui", points: ["Tutto di Power", "Doppio dei contenuti, presenza costante", "Test continui su offerte e creatività", "Call mensile sui numeri"], tag: "Il più scelto" },
-    { name: "Legend", contents: 30, perWeek: "un contenuto nuovo ogni giorno", campaigns: "Campagne continue + Irelia AI", points: ["Tutto di Beast", "Ogni giorno un contenuto nuovo", "Irelia AI che scrive a ogni contatto", "CRM per seguire prove e iscrizioni"], tag: "Tutto il mese" },
+    { name: "Warm Up", contents: 12, perWeek: "3 a settimana", campaigns: "4–5 campagne Meta e Google", points: ["Strategia e piano editoriale", "Script pronti per i video", "Editing e pubblicazione", "Report mensile con i numeri"], tag: "Per partire" },
+    { name: "Full Power", contents: 24, perWeek: "6 a settimana", campaigns: "Campagne sempre attive + test continui", points: ["Tutto di Warm Up", "Doppio dei contenuti, presenza costante", "Test continui su offerte e creatività", "Call mensile sui numeri"], tag: "Il più scelto" },
+    { name: "Champion", contents: 30, perWeek: "un contenuto nuovo ogni giorno", campaigns: "Campagne continue + segretaria AI", points: ["Tutto di Full Power", "Ogni giorno un contenuto nuovo", "Segretaria AI che scrive a ogni contatto", "CRM per seguire prove e iscrizioni"], tag: "Tutto il mese" },
   ],
 
-  /** Chat dimostrativa di Irelia per una palestra (stessa grafica dell'agency). */
+  /** Chat dimostrativa della segretaria AI per una palestra (stessa grafica dell'agency). */
   chat: {
     name: "La Tua Palestra",
-    status: "Irelia · il tuo assistente AI",
+    status: "Segretaria AI · risponde H24",
     lead: "Nuovo contatto da Meta Ads",
     messages: [
-      { from: "ai", text: "Ciao! Sono Irelia, l'assistente de La Tua Palestra 💪 Ho visto che ti interessa la prova gratuita.", time: "21:14" },
+      { from: "ai", text: "Ciao! Sono l'assistente de La Tua Palestra 💪 Ho visto che ti interessa la prova gratuita.", time: "21:14" },
       { from: "ai", text: "In che fascia oraria preferisci essere richiamato?", time: "21:14" },
       { from: "user", text: "Domani dopo le 18, grazie!", time: "21:16" },
       { from: "ai", text: "Perfetto! Ti chiamiamo domani tra le 18 e le 19. A presto!", time: "21:16" },
@@ -55,6 +55,6 @@ export const fit = {
     { q: "Devo registrare io i video?", a: "Scegli tu: veniamo noi in palestra a girare, oppure registri tu con script pronti e indicazioni passo passo. L'editing lo facciamo sempre noi." },
     { q: "In quanto tempo arrivano i primi contatti?", a: "Le campagne iniziano a portare contatti già dalle prime settimane. Per avere un sistema stabile e numeri affidabili servono alcuni mesi di rodaggio: per questo consigliamo almeno 6 mesi." },
     { q: "Perché il pacchetto da 6 mesi conviene?", a: "Perché ti diamo una scontistica maggiore e perché in 6 mesi c'è il tempo di costruire il profilo, ottimizzare le campagne e vedere i risultati crescere davvero." },
-    { q: "Chi risponde ai contatti che arrivano?", a: "Con Irelia AI ogni contatto riceve subito un messaggio su WhatsApp, anche di sera e nel weekend. Tu trovi nome, richiesta e orario in cui richiamarlo." },
+    { q: "Chi risponde ai contatti che arrivano?", a: "Con la segretaria AI ogni contatto riceve subito un messaggio su WhatsApp, anche di sera e nel weekend. Tu trovi nome, richiesta e orario in cui richiamarlo." },
   ],
 };

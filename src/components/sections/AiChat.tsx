@@ -10,7 +10,7 @@ import { Icon } from "@/components/ui/Icon";
  * Chat dimostrativa stile WhatsApp: arriva il contatto dalla campagna, Irelia scrive per prima (con i puntini
  * "sta scrivendo"), il cliente indica la fascia oraria, compare "Lead caldo" e poi il promemoria. Poi ricomincia.
  */
-export function AiChat({ chat }: { chat?: typeof site.ai.chat } = {}) {
+export function AiChat({ chat, bot = "Irelia" }: { chat?: typeof site.ai.chat; bot?: string } = {}) {
   const c = chat ?? site.ai.chat;
   const ref = useRef<HTMLDivElement>(null);
   const n = c.messages.length;
@@ -57,7 +57,7 @@ export function AiChat({ chat }: { chat?: typeof site.ai.chat } = {}) {
           </span>
           <span className="leading-tight">
             <span className="block text-[0.8125rem] font-bold text-fg">{c.lead}</span>
-            <span className="block text-[0.6875rem] text-fg-3">Irelia gli scrive subito</span>
+            <span className="block text-[0.6875rem] text-fg-3">{bot} gli scrive subito</span>
           </span>
           <span className="ml-auto inline-flex items-center gap-1 text-[0.625rem] font-bold uppercase tracking-wider text-lime-300"><span className="agent-live h-1.5 w-1.5 rounded-full bg-lime-300" />ora</span>
         </div>
@@ -78,7 +78,7 @@ export function AiChat({ chat }: { chat?: typeof site.ai.chat } = {}) {
       <div className="flex h-[23rem] flex-col justify-end gap-2 overflow-hidden px-3 py-3 max-sm:h-[18rem]" style={{ backgroundImage: "radial-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px)", backgroundSize: "14px 14px" }}>
         {c.messages.slice(0, shownMsgs).map((m, i) => (
           <div key={`${i}-${m.text}`} className={cn("chat-msg max-w-[84%] rounded-xl px-3 py-2 text-[0.8125rem] leading-snug text-white shadow", m.from === "user" ? "self-end rounded-tr-sm bg-[#005c4b]" : "self-start rounded-tl-sm bg-[#1f2c34]")}>
-            {m.from === "ai" && <p className="mb-0.5 text-[0.625rem] font-semibold text-lime-300">Irelia</p>}
+            {m.from === "ai" && <p className="mb-0.5 text-[0.625rem] font-semibold text-lime-300">{bot}</p>}
             {m.text}
             <span className="ml-2 align-bottom text-[0.5625rem] text-white/50">{m.time}</span>
           </div>

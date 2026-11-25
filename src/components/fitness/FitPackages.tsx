@@ -9,7 +9,7 @@ import { fit } from "./data";
 /** Pacchetti Social + Campagne in base ai contenuti; interruttore mensile / 6 mesi (scontistica maggiore). */
 export function FitPackages() {
   const [six, setSix] = useState(true);
-  const [pick, setPick] = useState(0);
+  const [pick, setPick] = useState(1);
   return (
     <div>
       <div className="flex justify-center">
@@ -25,10 +25,10 @@ export function FitPackages() {
         {six ? "Pacchetto da 6 mesi: scontistica maggiore e il tempo giusto per far crescere i numeri." : "Massima flessibilità, mese per mese. Il percorso consigliato resta di almeno 6 mesi."}
       </p>
 
-      <ul className="mt-8 grid gap-4 md:grid-cols-3">
+      <ul className="mt-10 grid items-center gap-5 md:grid-cols-3">
         {fit.packages.map((p, i) => (
           <li key={p.name} className="fit-pop" style={{ "--i": i } as React.CSSProperties}>
-            <button type="button" onClick={() => setPick(i)} onMouseEnter={() => setPick(i)} aria-pressed={pick === i} className={cn("fit-pack relative flex h-full w-full flex-col rounded-2xl p-6 text-left", pick === i && "fit-pack--on")}>
+            <button type="button" onClick={() => setPick(i)} onMouseEnter={() => setPick(i)} aria-pressed={pick === i} className={cn("fit-pack relative flex h-full w-full flex-col rounded-2xl p-6 text-left", pick === i && "fit-pack--on", i === 1 && "fit-pack--star")}>
               {p.tag && <span className="fit-h absolute -top-3 left-6 rounded-md bg-fit-300 px-2.5 py-1 text-[0.6875rem] text-black">{p.tag}</span>}
               <span className="fit-h text-[1.5rem] text-white">{p.name}</span>
               <span className="mt-4 flex items-end gap-2">

@@ -30,7 +30,7 @@ function Clip({ c, sound, onSound }: { c: Clip; sound: boolean; onSound: () => v
   return (
     <figure className={cn("fit-phone relative w-full overflow-hidden rounded-[1.25rem]", c.wide ? "aspect-video" : "aspect-[9/16]")}>
       <video ref={v} key={c.src} src={c.src} poster={c.poster} muted loop playsInline preload="metadata" className="absolute inset-0 h-full w-full object-contain" />
-      <figcaption className="fit-h absolute left-3 top-3 rounded-md bg-black/70 px-2 py-1 text-[0.625rem] text-fit-300 backdrop-blur">{c.tag}</figcaption>
+      <figcaption className="fit-h absolute right-3 top-3 rounded-md bg-black/70 px-2 py-1 text-[0.625rem] text-fit-300 backdrop-blur">{c.tag}</figcaption>
       <button type="button" onClick={onSound} aria-label={sound ? "Disattiva l'audio" : "Attiva l'audio"} className={cn("absolute bottom-3 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full border px-3 py-1.5 text-[0.75rem] font-bold backdrop-blur-md transition-colors", sound ? "border-fit-300 bg-fit-300 text-black" : "border-white/30 bg-black/60 text-white hover:border-fit-300")}>
         <Icon name={sound ? "volume" : "volume-off"} className="h-4 w-4" strokeWidth={2} />
         {sound ? "Audio attivo" : "Attiva audio"}
