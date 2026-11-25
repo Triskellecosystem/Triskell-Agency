@@ -2570,7 +2570,7 @@ body:has(.fit-page) { background: #030503; }
 .fit-chip--1 { left: -4%; top: 12%; }
 .fit-chip--2 { right: -6%; top: 46%; animation-delay: -1.6s; }
 .fit-chip--3 { left: 4%; bottom: 2%; animation-delay: -3.2s; }
-@keyframes fit-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes fit-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -10px; } }
 @media (max-width: 639px) { .fit-chip { padding: 0.5rem 0.7rem; } .fit-chip .fit-num { font-size: 1.125rem !important; } .fit-chip--1 { left: 0; } .fit-chip--2 { right: 0; } }
 
 .fit-strip { background: #a6ff00; transform: rotate(-1.2deg) scale(1.03); box-shadow: 0 0 40px rgb(166 255 0 / 0.5); position: relative; z-index: 2; }
@@ -2637,3 +2637,75 @@ body:has(.fit-page) { background: #030503; }
 body:has(.fit-page) [data-scroll-progress] { background: linear-gradient(90deg, #74c800, #a6ff00) !important; box-shadow: 0 0 10px #a6ff00; }
 .fit .case-shell { background: linear-gradient(170deg, #0d1a08, #050805 60%, #020302) padding-box, linear-gradient(120deg, #a6ff00, rgb(166 255 0 / 0.25) 50%, #a6ff00) border-box !important; box-shadow: 0 0 80px -20px rgb(166 255 0 / 0.6) !important; }
 .fit .case-dialog::backdrop { background: rgb(0 0 0 / 0.85); }
+
+/* Palestre v2: 3D, telefono, tabella, divisori, sfondi, pulsazioni */
+.fit-tilt { perspective: 1200px; }
+.fit-tilt-body { transform-style: preserve-3d; transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); will-change: transform; }
+.fit-tilt-shine { background: radial-gradient(circle at var(--mx, 50%) var(--my, 30%), rgb(255 255 255 / 0.22), transparent 45%); mix-blend-mode: soft-light; }
+.fit-hero-card { transform: translateZ(30px); border: 1.5px solid rgb(166 255 0 / 0.6); box-shadow: 0 0 0 6px rgb(166 255 0 / 0.06), 0 0 70px -10px rgb(166 255 0 / 0.7), 0 60px 90px -40px #000; }
+.fit-hero-img { transform: scale(1.08) translate(calc(var(--ry, 0deg) / 1deg * -0.6px), calc(var(--rx, 0deg) / 1deg * 0.6px)); }
+.fit-scan { top: -6rem; background: linear-gradient(transparent, rgb(166 255 0 / 0.16), transparent); animation: fit-scan 4.5s linear infinite; }
+@keyframes fit-scan { to { top: 110%; } }
+.fit-tilt-body .fit-chip { transform: translateZ(80px); }
+.fit-tilt-body .fit-chip--1 { left: -14%; top: 14%; }
+.fit-tilt-body .fit-chip--2 { right: -14%; top: 46%; }
+.fit-tilt-body .fit-chip--3 { left: -10%; bottom: 8%; }
+@media (max-width: 639px) { .fit-tilt-body .fit-chip--1 { left: -4%; } .fit-tilt-body .fit-chip--2 { right: -4%; } .fit-tilt-body .fit-chip--3 { left: -2%; } }
+.fit-tilt-body .fit-ring { inset: 10% -14%; transform: translateZ(-60px); }
+
+.fit-iphone { background: linear-gradient(145deg, #3b4636, #10140e 40%, #2a3326); box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.12), 0 0 0 1.5px rgb(166 255 0 / 0.5), 0 0 60px -6px rgb(166 255 0 / 0.55), 0 60px 80px -40px #000; transform: translateZ(20px); }
+.fit-iphone-btn { position: absolute; width: 3px; border-radius: 2px; background: #2a3326; left: -3px; }
+.fit-iphone-btn--a { top: 22%; height: 2.8rem; } .fit-iphone-btn--b { top: 36%; height: 2.8rem; }
+.fit-phone-halo { position: absolute; inset: 8% -10%; border-radius: 9999px; background: radial-gradient(closest-side, rgb(166 255 0 / 0.35), transparent); filter: blur(30px); transform: translateZ(-80px); }
+.fit-story { background: conic-gradient(#a6ff00, #e9ff8a, #5fd400, #a6ff00); animation: fit-spin 6s linear infinite; }
+.fit-story > span { animation: fit-spin 6s linear infinite reverse; }
+.fit-hl span:first-child { animation: fit-hl 3.6s ease-in-out infinite; animation-delay: calc(var(--i) * 0.5s); }
+@keyframes fit-hl { 0%, 70%, 100% { box-shadow: none; } 80% { box-shadow: 0 0 14px rgb(166 255 0 / 0.8); } }
+
+.fit-sep { background: linear-gradient(90deg, transparent, rgb(166 255 0 / 0.45) 20%, rgb(166 255 0 / 0.45) 80%, transparent); overflow: visible; }
+.fit-sep-run { position: absolute; top: -1px; height: 3px; width: 18%; left: -18%; background: linear-gradient(90deg, transparent, #d8ff7a, transparent); filter: drop-shadow(0 0 6px #a6ff00); animation: fit-run 5s ease-in-out infinite; }
+@keyframes fit-run { to { left: 100%; } }
+.fit-sep-gem { position: absolute; left: 50%; top: 50%; width: 10px; height: 10px; background: #a6ff00; transform: translate(-50%, -50%) rotate(45deg); box-shadow: 0 0 14px #a6ff00; animation: fit-gem 2.4s ease-in-out infinite; }
+@keyframes fit-gem { 50% { box-shadow: 0 0 26px 4px #a6ff00; transform: translate(-50%, -50%) rotate(45deg) scale(1.3); } }
+
+.fit-bg-beams { background: linear-gradient(115deg, transparent 0 30%, rgb(166 255 0 / 0.05) 30% 34%, transparent 34% 62%, rgb(166 255 0 / 0.04) 62% 64%, transparent 64%), radial-gradient(60% 50% at 100% 0%, rgb(110 190 0 / 0.16), transparent 70%), radial-gradient(50% 40% at 0% 100%, rgb(110 190 0 / 0.12), transparent 70%), #030503; }
+.fit-bg-glow { background: radial-gradient(70% 45% at 50% 0%, rgb(110 190 0 / 0.18), transparent 70%), radial-gradient(40% 35% at 0% 60%, rgb(166 255 0 / 0.07), transparent 70%), #030503; }
+.fit-bg-glow::after, .fit-bg-beams::after { content: ""; position: absolute; inset: auto 0 0; height: 1px; background: linear-gradient(90deg, transparent, rgb(166 255 0 / 0.25), transparent); }
+
+.fit-btn--pulse { position: relative; animation: fit-btn-pulse 2.2s ease-in-out infinite; }
+@keyframes fit-btn-pulse { 0%, 100% { box-shadow: 0 0 0 1px rgb(200 255 90 / 0.6), 0 10px 34px -8px rgb(166 255 0 / 0.75), 0 0 0 0 rgb(166 255 0 / 0.5); } 50% { box-shadow: 0 0 0 1px rgb(220 255 140 / 0.9), 0 12px 44px -4px rgb(166 255 0 / 0.95), 0 0 0 10px rgb(166 255 0 / 0); } }
+.fit-blink { animation: fit-blink 1.4s steps(2) infinite; }
+@keyframes fit-blink { 50% { opacity: 0.25; } }
+.fit-kicker > span { animation: fit-blink 1.6s ease-in-out infinite; }
+.fit-glow { animation: fit-neon 4s ease-in-out infinite; }
+@keyframes fit-neon { 0%, 100% { text-shadow: 0 0 22px rgb(166 255 0 / 0.55); } 45% { text-shadow: 0 0 34px rgb(166 255 0 / 0.95), 0 0 6px #d8ff7a; } 47% { text-shadow: none; } 49% { text-shadow: 0 0 34px rgb(166 255 0 / 0.95); } }
+[data-revealed] .fit-stat .fit-num { animation: fit-flicker 1.2s steps(1) 0.2s both; }
+@keyframes fit-flicker { 0% { opacity: 0.2; } 10% { opacity: 1; } 20% { opacity: 0.3; } 30%, 100% { opacity: 1; } }
+.fit-next { animation: fit-next 2.6s ease-in-out infinite; }
+@keyframes fit-next { 0%, 100% { box-shadow: 0 0 40px -18px rgb(166 255 0 / 0.6); border-color: rgb(166 255 0 / 0.5); transform: scale(1); } 50% { box-shadow: 0 0 70px -6px rgb(166 255 0 / 0.95); border-color: #a6ff00; transform: scale(1.02); } }
+
+.fit-table { background: linear-gradient(165deg, rgb(14 22 10 / 0.95), rgb(4 6 3 / 0.98)); border: 1.5px solid rgb(166 255 0 / 0.3); box-shadow: 0 0 60px -20px rgb(166 255 0 / 0.5); }
+.fit-table-head { border-bottom: 1px solid rgb(166 255 0 / 0.2); background: rgb(166 255 0 / 0.04); }
+.fit-row { border-bottom: 1px solid rgb(255 255 255 / 0.06); transition: background-color 0.4s; }
+.fit-row:last-child { border-bottom: 0; }
+.fit-row-arrow { color: rgb(255 255 255 / 0.3); border: 1px solid rgb(255 255 255 / 0.12); transition: all 0.45s var(--ease-out-expo); }
+.fit-row-next { color: rgb(255 255 255 / 0.35); transition: color 0.5s; }
+.fit-row-ico { color: rgb(166 255 0 / 0.4); background: rgb(166 255 0 / 0.05); transition: all 0.5s; }
+.fit-row--on .fit-row-next { color: #fff; }
+.fit-row--on .fit-row-ico { color: #000; background: #a6ff00; box-shadow: 0 0 14px rgb(166 255 0 / 0.7); }
+.fit-row--on .fit-row-arrow { color: #000; background: #a6ff00; border-color: #a6ff00; box-shadow: 0 0 16px rgb(166 255 0 / 0.7); }
+.fit-row--hover { background: rgb(166 255 0 / 0.06); }
+.fit-row--on .fit-row-now { text-decoration: line-through; text-decoration-color: rgb(255 90 90 / 0.6); }
+@media (max-width: 639px) {
+  .fit-row, .fit-table-head { grid-template-columns: 1fr; gap: 0.5rem; }
+  .fit-table-head > span:nth-child(2), .fit-row-arrow { display: none; }
+  .fit-table-head { display: none; }
+  .fit-row-next { padding-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fit-btn--pulse, .fit-blink, .fit-kicker > span, .fit-glow, .fit-next, .fit-sep-run, .fit-sep-gem, .fit-scan, .fit-story, .fit-story > span, .fit-hl span:first-child { animation: none; }
+}
+.fit .ct-feat { border-image: linear-gradient(90deg, rgb(166 255 0 / 0.5), transparent 80%) 1; }
+.fit #contatti .opacity-20 { filter: hue-rotate(40deg) saturate(1.6); }
+.fit #contatti a[href^="https://wa.me"] { border-color: rgb(166 255 0 / 0.7) !important; box-shadow: 0 0 26px -8px rgb(166 255 0 / 0.7) !important; }
+.fit #contatti [class*="rgb(247_200_92"] { box-shadow: 0 0 24px -6px rgb(166 255 0 / 0.6) !important; background: rgb(166 255 0 / 0.08) !important; }

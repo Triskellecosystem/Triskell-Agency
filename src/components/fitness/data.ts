@@ -2,14 +2,15 @@ import type { IconName } from "@/components/ui/Icon";
 
 /** Contenuti della landing palestre (pagina non collegata dal sito: si raggiunge solo dal link diretto). */
 export const fit = {
-  pains: [
-    { icon: "calendar", title: "Pieno a settembre, vuoto a luglio", text: "Gli iscritti arrivano a ondate e non sai mai come sarà il mese dopo." },
-    { icon: "smartphone", title: "Social fatti quando c'è tempo", text: "Un post ogni tanto, nessun piano: il profilo non racconta quanto vale la palestra." },
-    { icon: "megaphone", title: "Promo che non portano nessuno", text: "Volantini e sponsorizzate a caso: soldi spesi senza sapere cosa rendono." },
-    { icon: "phone", title: "Contatti che nessuno richiama", text: "Arrivano richieste, ma tra lezioni e reception si perdono per strada." },
-    { icon: "chart", title: "Non sai quanto costa un iscritto", text: "Nessun numero chiaro: impossibile capire cosa funziona e cosa no." },
-    { icon: "users", title: "Concorrenza a ogni angolo", text: "Low cost e catene aprono vicino a te: serve farsi scegliere, non solo trovare." },
-  ] satisfies Array<{ icon: IconName; title: string; text: string }>,
+  /** Oggi → Con Triskell Fitness: ogni problema accanto al vantaggio che lo risolve. */
+  compare: [
+    { icon: "calendar", now: "Pieno a settembre, vuoto a luglio", next: "Contatti nuovi ogni mese, anche d'estate, con campagne sempre attive" },
+    { icon: "smartphone", now: "Social fatti quando c'è tempo", next: "Contenuti pianificati ogni settimana, con script pronti e riprese" },
+    { icon: "megaphone", now: "Promo e volantini che non portano nessuno", next: "Campagne Meta e Google mirate sulla tua zona, misurate al centesimo" },
+    { icon: "phone", now: "Contatti che nessuno richiama", next: "Irelia AI scrive a ogni contatto in pochi secondi, anche la sera" },
+    { icon: "chart", now: "Non sai quanto ti costa un iscritto", next: "Report mensile: costo per contatto, prove prenotate e iscrizioni" },
+    { icon: "users", now: "Concorrenza a ogni angolo", next: "Un profilo che ti fa scegliere, non solo trovare" },
+  ] satisfies Array<{ icon: IconName; now: string; next: string }>,
 
   numbers: [
     { value: 60, prefix: "30–", suffix: "", label: "lead al mese", note: "Forme Fitness · Urban Fitness" },

@@ -1,15 +1,18 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { cn } from "@/lib/cn";
 import { Icon, type IconName } from "@/components/ui/Icon";
 
-const MODES = [
-  { id: "noi", icon: "camera", label: "Veniamo noi in palestra", title: "Giriamo noi, tu alleni", points: ["Riprese professionali in palestra", "Coach, attrezzi e clienti veri", "Montaggio e pubblicazione inclusi"], videos: [{ src: "/video/riprese-1.mp4", poster: "/video/riprese-1.jpg" }, { src: "/video/riprese-2.mp4", poster: "/video/riprese-2.jpg" }] },
-  { id: "tu", icon: "smartphone", label: "Registri tu", title: "Registri tu, al resto pensiamo noi", points: ["Script pronti da leggere", "Indicazioni su luce e inquadrature", "Editing professionale fatto da noi"], videos: [{ src: "/video/registri-tu.mp4", poster: "/video/registri-tu.jpg" }, { src: "/video/editato-v2.mp4", poster: "/video/editato-v2.jpg" }] },
-] as const satisfies ReadonlyArray<{ id: string; icon: IconName; label: string; title: string; points: readonly string[]; videos: ReadonlyArray<{ src: string; poster: string }> }>;
+type Clip = { src: string; poster: string; tag: string; wide: boolean };
+const MODES: Array<{ id: string; icon: IconName; label: string; title: string; points: string[]; clips: Clip[] }> = [
+  { id: "noi", icon: "camera", label: "Veniamo noi in palestra", title: "Giriamo noi, tu alleni", points: ["Riprese professionali in palestra", "Coach, attrezzi e clienti veri", "Montaggio e pubblicazione inclusi"], clips: [{ src: "/video/riprese-1.mp4", poster: "/video/riprese-1.jpg", tag: "Dietro le quinte", wide: true }, { src: "/video/riprese-2.mp4", poster: "/video/riprese-2.jpg", tag: "Sul set", wide: true }] },
+  { id: "tu", icon: "smartphone", label: "Registri tu", title: "Registri tu, al resto pensiamo noi", points: ["Script pronti da leggere", "Indicazioni su luce e inquadrature", "Editing professionale fatto da noi"], clips: [{ src: "/video/registri-tu.mp4", poster: "/video/registri-tu.jpg", tag: "Girato da te", wide: false }, { src: "/video/editato-v2.mp4", poster: "/video/editato-v2.jpg", tag: "Editato da noi", wide: false }] },
+];
 
-function Clip({ src, poster, tag }: { src: string; poster: string; tag: string }) {
+/** Un video nel suo formato originale, senza audio all'inizio e con il pulsante per attivarlo. */
+function Clip({ c, sound, onSound }: { c: Clip; sound: boolean; onSound: () => void }) {
   const v = useRef<HTMLVideoElement>(null);
   useEffect(() => {
     const el = v.current;
@@ -17,25 +20,36 @@ function Clip({ src, poster, tag }: { src: string; poster: string; tag: string }
     const io = new IntersectionObserver(([e]) => (e?.isIntersecting ? el.play().catch(() => {}) : el.pause()), { threshold: 0.3 });
     io.observe(el);
     return () => io.disconnect();
-  }, [src]);
+  }, [c.src]);
+  useEffect(() => {
+    const el = v.current;
+    if (!el) return;
+    el.muted = !sound;
+    if (sound) el.play().catch(() => {});
+  }, [sound]);
   return (
-    <figure className="fit-phone relative aspect-[9/16] w-full overflow-hidden rounded-[1.5rem]">
-      <video ref={v} key={src} src={src} poster={poster} muted loop playsInline preload="metadata" className="absolute inset-0 h-full w-full object-cover" />
-      <figcaption className="fit-h absolute left-3 top-3 rounded-md bg-black/70 px-2 py-1 text-[0.625rem] text-fit-300 backdrop-blur">{tag}</figcaption>
+    <figure className={cn("fit-phone relative w-full overflow-hidden rounded-[1.25rem]", c.wide ? "aspect-video" : "aspect-[9/16]")}>
+      <video ref={v} key={c.src} src={c.src} poster={c.poster} muted loop playsInline preload="metadata" className="absolute inset-0 h-full w-full object-contain" />
+      <figcaption className="fit-h absolute left-3 top-3 rounded-md bg-black/70 px-2 py-1 text-[0.625rem] text-fit-300 backdrop-blur">{c.tag}</figcaption>
+      <button type="button" onClick={onSound} aria-label={sound ? "Disattiva l'audio" : "Attiva l'audio"} className={cn("absolute bottom-3 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full border px-3 py-1.5 text-[0.75rem] font-bold backdrop-blur-md transition-colors", sound ? "border-fit-300 bg-fit-300 text-black" : "border-white/30 bg-black/60 text-white hover:border-fit-300")}>
+        <Icon name={sound ? "volume" : "volume-off"} className="h-4 w-4" strokeWidth={2} />
+        {sound ? "Audio attivo" : "Attiva audio"}
+      </button>
     </figure>
   );
 }
 
-/** Riprese: veniamo noi in palestra oppure registri tu. Interruttore con i video veri delle due modalità. */
+/** Riprese: veniamo noi in palestra oppure registri tu. Interruttore con i video veri, nel loro formato e con audio. */
 export function FitShoots() {
   const [m, setM] = useState(0);
+  const [sound, setSound] = useState<number | null>(null);
   const mode = MODES[m]!;
   return (
-    <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.05fr]">
+    <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
       <div>
         <div className="grid gap-2 sm:grid-cols-2">
           {MODES.map((x, i) => (
-            <button key={x.id} type="button" onClick={() => setM(i)} aria-pressed={m === i} className={cn("fit-tab flex items-center gap-3 rounded-xl px-4 py-3 text-left", m === i && "fit-tab--on")}>
+            <button key={x.id} type="button" onClick={() => { setM(i); setSound(null); }} aria-pressed={m === i} className={cn("fit-tab flex items-center gap-3 rounded-xl px-4 py-3 text-left", m === i && "fit-tab--on")}>
               <Icon name={x.icon} className="h-5 w-5 shrink-0" strokeWidth={2} />
               <span className="text-[0.9375rem] font-bold">{x.label}</span>
             </button>
@@ -52,11 +66,17 @@ export function FitShoots() {
             ))}
           </ul>
           <p className="mt-5 text-[0.875rem] text-white/50">In entrambi i casi la qualità resta la stessa: cambia solo quanto tempo ci metti tu.</p>
+          <Link href="#contatti" className="fit-btn fit-btn--pulse mt-6">
+            <Icon name="calendar" className="h-5 w-5" strokeWidth={2.2} /> Prenota la call gratuita
+          </Link>
         </div>
       </div>
-      <div key={mode.id + "v"} className="fit-fade mx-auto grid w-full max-w-md grid-cols-2 gap-4">
-        <Clip src={mode.videos[0].src} poster={mode.videos[0].poster} tag={m === 0 ? "Dietro le quinte" : "Girato da te"} />
-        <div className="translate-y-8"><Clip src={mode.videos[1].src} poster={mode.videos[1].poster} tag={m === 0 ? "Sul set" : "Editato da noi"} /></div>
+      <div key={mode.id + "v"} className={cn("fit-fade mx-auto grid w-full gap-4", mode.clips[0]!.wide ? "max-w-2xl" : "max-w-md grid-cols-2")}>
+        {mode.clips.map((c, i) => (
+          <div key={c.src} className={cn(mode.clips[0]!.wide ? (i ? "ml-[12%]" : "mr-[12%]") : i ? "translate-y-8" : "")}>
+            <Clip c={c} sound={sound === i} onSound={() => setSound((s) => (s === i ? null : i))} />
+          </div>
+        ))}
       </div>
     </div>
   );

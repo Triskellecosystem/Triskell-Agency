@@ -14,6 +14,9 @@ import { FitFunnel } from "@/components/fitness/FitFunnel";
 import { FitPackages } from "@/components/fitness/FitPackages";
 import { FitShoots } from "@/components/fitness/FitShoots";
 import { FitFaq } from "@/components/fitness/FitFaq";
+import { FitCompare } from "@/components/fitness/FitCompare";
+import { FitProfilePhone } from "@/components/fitness/FitProfilePhone";
+import { FitTilt } from "@/components/fitness/FitTilt";
 import { fit } from "@/components/fitness/data";
 
 /**
@@ -42,6 +45,28 @@ function Title({ id, children, className = "" }: { id?: string; children: React.
     <h2 id={id} className={`fit-h mt-4 text-[clamp(2rem,1.4rem+2.6vw,3.5rem)] leading-[0.98] text-white ${className}`}>
       {children}
     </h2>
+  );
+}
+
+/** Divisore tra sezioni: linea sottile verde con una luce che la percorre e un rombo che pulsa al centro. */
+function Sep() {
+  return (
+    <div aria-hidden="true" className="fit-sep relative h-px">
+      <span className="fit-sep-run" />
+      <span className="fit-sep-gem" />
+    </div>
+  );
+}
+
+/** Invito a prenotare la call, ripetuto lungo la pagina. */
+function CtaRow({ text }: { text: string }) {
+  return (
+    <Reveal y={10} blur={0} className="mt-10 flex flex-col items-center gap-3 text-center">
+      <p className="text-[1rem] font-semibold text-white/75">{text}</p>
+      <Link href="#contatti" className="fit-btn fit-btn--pulse">
+        <Icon name="calendar" className="h-5 w-5" strokeWidth={2.2} /> Prenota la call gratuita
+      </Link>
+    </Reveal>
   );
 }
 
@@ -76,8 +101,8 @@ export default function PalestrePage() {
           <div>
             <Reveal y={12} blur={0}><Kicker>Per palestre e centri fitness</Kicker></Reveal>
             <Reveal y={18} blur={6} delay={0.1}>
-              <h1 id="fit-title" className="fit-h mt-5 text-[clamp(2.75rem,1.6rem+5vw,5.75rem)] leading-[0.9] text-white">
-                Hai una palestra?<br />Vuoi <G>più iscritti</G>?
+              <h1 id="fit-title" className="fit-h mt-5 text-[clamp(2.25rem,1.4rem+3.6vw,4.5rem)] leading-[0.95] text-white">
+                Hai una palestra o ti occupi di fitness e vorresti <G>più clienti</G>?
               </h1>
             </Reveal>
             <Reveal y={12} blur={0} delay={0.2}>
@@ -86,7 +111,7 @@ export default function PalestrePage() {
               </p>
             </Reveal>
             <Reveal y={12} blur={0} delay={0.3} className="mt-8 flex flex-wrap gap-3">
-              <Link href="#contatti" className="fit-btn">
+              <Link href="#contatti" className="fit-btn fit-btn--pulse">
                 <Icon name="calendar" className="h-5 w-5" strokeWidth={2.2} /> Prenota la call gratuita
               </Link>
               <Link href="#risultati" className="fit-btn fit-btn--ghost">
@@ -102,15 +127,21 @@ export default function PalestrePage() {
             </Reveal>
           </div>
 
-          <Reveal from="scale" blur={0} className="relative mx-auto w-full max-w-[30rem]">
-            <div className="fit-emblem relative aspect-square">
-              <span aria-hidden="true" className="fit-ring fit-ring--a" />
-              <span aria-hidden="true" className="fit-ring fit-ring--b" />
-              <Image src="/fitness/logo.webp" alt="Triskell Agency Fitness" fill sizes="30rem" className="fit-logo object-contain mix-blend-screen" priority />
-            </div>
-            <div className="fit-chip fit-chip--1"><span className="fit-num text-[1.5rem]">30–60</span><span>lead al mese</span></div>
-            <div className="fit-chip fit-chip--2"><span className="fit-num text-[1.5rem]">~1 su 3</span><span>prenota la prova</span></div>
-            <div className="fit-chip fit-chip--3"><span className="fit-num text-[1.5rem]">500+</span><span>contatti in un anno</span></div>
+          <Reveal from="scale" blur={0} className="relative mx-auto w-full max-w-[23rem] lg:max-w-[25rem]">
+            <FitTilt max={10}>
+              <div className="fit-tilt-body relative">
+                <span aria-hidden="true" className="fit-ring fit-ring--a" />
+                <span aria-hidden="true" className="fit-ring fit-ring--b" />
+                <div className="fit-hero-card relative aspect-[941/1672] overflow-hidden rounded-[1.75rem]">
+                  <Image src="/fitness/hero.webp" alt="Coach e cliente che si allenano in una palestra Triskell Agency Fitness" fill priority sizes="(min-width: 1024px) 25rem, 90vw" className="fit-hero-img object-cover" />
+                  <span aria-hidden="true" className="fit-tilt-shine pointer-events-none absolute inset-0" />
+                  <span aria-hidden="true" className="fit-scan pointer-events-none absolute inset-x-0 h-24" />
+                </div>
+                <div className="fit-chip fit-chip--1"><span className="fit-num text-[1.5rem]">30–60</span><span>lead al mese</span></div>
+                <div className="fit-chip fit-chip--2"><span className="fit-num text-[1.5rem]">~1 su 3</span><span>prenota la prova</span></div>
+                <div className="fit-chip fit-chip--3"><span className="fit-num text-[1.5rem]">500+</span><span>contatti in un anno</span></div>
+              </div>
+            </FitTilt>
           </Reveal>
         </div>
       </section>
@@ -128,34 +159,32 @@ export default function PalestrePage() {
         </div>
       </div>
 
-      {/* LA DOMANDA */}
-      <section aria-labelledby="fit-pains" className="relative isolate overflow-hidden py-20 lg:py-28">
+      {/* DOVE SEI ORA → DOVE PUOI ARRIVARE */}
+      <section aria-labelledby="fit-pains" className="fit-bg-beams relative isolate overflow-hidden py-20 lg:py-28">
         <div className="fit-squares" aria-hidden="true" />
         <div className="container-x relative">
-          <Reveal y={12} blur={0} className="max-w-3xl">
+          <Reveal y={12} blur={0} className="mx-auto max-w-3xl text-center">
             <Kicker>Ti riconosci?</Kicker>
-            <Title id="fit-pains">La palestra va bene, <G>ma potrebbe andare molto meglio</G>.</Title>
+            <Title id="fit-pains">Dove sei ora e <G>dove puoi arrivare</G>.</Title>
+            <p className="mx-auto mt-4 max-w-2xl text-[1.0625rem] text-white/70">A sinistra le situazioni che ci raccontano le palestre ogni giorno. A destra come cambiano quando lavoriamo insieme.</p>
           </Reveal>
-          <Reveal y={0} blur={0} className="mt-10">
-            <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {fit.pains.map((p, i) => (
-                <li key={p.title} className="fit-pop fit-card group rounded-2xl p-5" style={{ "--i": i } as React.CSSProperties}>
-                  <span className="fit-ico grid h-11 w-11 place-items-center rounded-lg"><Icon name={p.icon} className="h-5 w-5" strokeWidth={2} /></span>
-                  <p className="mt-4 text-[1.0625rem] font-bold text-white">{p.title}</p>
-                  <p className="mt-1.5 text-[0.9375rem] leading-snug text-white/65">{p.text}</p>
-                </li>
-              ))}
-            </ul>
+          <Reveal y={16} blur={0} className="mx-auto mt-10 max-w-5xl">
+            <FitCompare />
           </Reveal>
-          <Reveal y={16} blur={0} className="fit-answer relative mt-12 overflow-hidden rounded-3xl p-8 text-center sm:p-12">
+          <Reveal y={16} blur={0} className="fit-answer relative mt-14 overflow-hidden rounded-3xl p-8 text-center sm:p-12">
             <FitGrid cell={40} density={0.06} />
             <p className="relative text-[0.8125rem] font-bold uppercase tracking-[0.22em] text-fit-300">Noi rispondiamo a una domanda sola</p>
-            <p className="fit-h relative mx-auto mt-4 max-w-4xl text-[clamp(1.75rem,1.2rem+2.4vw,3.25rem)] leading-[1.02] text-white">
-              «Come porto <G>nuovi iscritti</G> in palestra, <G>ogni mese</G>?»
+            <p className="fit-h relative mx-auto mt-4 max-w-4xl text-[clamp(1.6rem,1.1rem+2.2vw,3rem)] leading-[1.04] text-white">
+              «Come faccio a fare <G>più iscritti</G> per la mia palestra, per la mia attività di fitness, <G>ogni mese</G>?»
             </p>
+            <Link href="#contatti" className="fit-btn fit-btn--pulse relative mt-7">
+              <Icon name="calendar" className="h-5 w-5" strokeWidth={2.2} /> Scoprilo in una call gratuita
+            </Link>
           </Reveal>
         </div>
       </section>
+
+      <Sep />
 
       {/* NUMERI */}
       <section aria-labelledby="fit-numbers" className="fit-band relative isolate overflow-hidden py-20 lg:py-24">
@@ -178,11 +207,14 @@ export default function PalestrePage() {
               ))}
             </ul>
           </Reveal>
+          <CtaRow text="Vuoi numeri così anche per la tua palestra?" />
         </div>
       </section>
 
+      <Sep />
+
       {/* METODO */}
-      <section aria-labelledby="fit-metodo" className="relative isolate overflow-hidden py-20 lg:py-28">
+      <section aria-labelledby="fit-metodo" className="fit-bg-glow relative isolate overflow-hidden py-20 lg:py-28">
         <div className="fit-squares" aria-hidden="true" />
         <div className="container-x relative">
           <Reveal y={12} blur={0} className="text-center">
@@ -220,6 +252,8 @@ export default function PalestrePage() {
         </div>
       </section>
 
+      <Sep />
+
       {/* PROFILO */}
       <section aria-labelledby="fit-feed" className="fit-band relative isolate overflow-hidden py-20 lg:py-28">
         <div className="container-x grid items-center gap-12 lg:grid-cols-2">
@@ -234,45 +268,20 @@ export default function PalestrePage() {
                 </li>
               ))}
             </ul>
+            <Link href="#contatti" className="fit-btn fit-btn--pulse mt-8">
+              <Icon name="calendar" className="h-5 w-5" strokeWidth={2.2} /> Voglio un profilo così
+            </Link>
           </Reveal>
-          <Reveal y={0} blur={0} className="mx-auto w-full max-w-[22rem]">
-            <div className="fit-device rounded-[2.4rem] p-2.5">
-              <div className="overflow-hidden rounded-[1.9rem] bg-black">
-                <div className="flex items-center gap-3 px-4 pb-3 pt-5">
-                  <Image src="/fitness/mark.webp" alt="" width={56} height={53} className="h-14 w-14 rounded-full border-2 border-fit-300 bg-black object-contain p-1 mix-blend-screen" />
-                  <div className="grid flex-1 grid-cols-3 text-center text-white">
-                    {[["312", "post"], ["14,8k", "follower"], ["52", "seguiti"]].map(([v, l]) => (
-                      <span key={l}><span className="block text-[0.9375rem] font-bold">{v}</span><span className="text-[0.6875rem] text-white/60">{l}</span></span>
-                    ))}
-                  </div>
-                </div>
-                <div className="px-4 text-[0.75rem] leading-snug text-white/80">
-                  <p className="font-bold text-white">La tua palestra</p>
-                  <p>Allenamento, risultati, community 💪</p>
-                  <p className="text-fit-300">Prenota la prova gratuita ↓</p>
-                </div>
-                <div className="mt-3 flex justify-between px-4">
-                  {[["chart", "Risultati"], ["dumbbell", "Corsi"], ["play", "Video"], ["users", "Clienti"], ["calendar", "Prova"]].map(([ic, l]) => (
-                    <span key={l} className="flex flex-col items-center gap-1 text-[0.5625rem] text-white/70">
-                      <span className="grid h-10 w-10 place-items-center rounded-full border border-fit-300/70 text-fit-300"><Icon name={ic as "chart"} className="h-4 w-4" strokeWidth={2} /></span>{l}
-                    </span>
-                  ))}
-                </div>
-                <ul className="fit-feed mt-3 grid grid-cols-3 gap-0.5">
-                  {Array.from({ length: 9 }, (_, i) => (
-                    <li key={i} className="fit-tile relative aspect-square overflow-hidden" style={{ "--i": i } as React.CSSProperties}>
-                      <Image src={`/fitness/post-${i}.webp`} alt="" fill sizes="7rem" className="object-cover" />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+          <Reveal y={0} blur={0}>
+            <FitProfilePhone />
           </Reveal>
         </div>
       </section>
 
+      <Sep />
+
       {/* PACCHETTI */}
-      <section id="pacchetti" aria-labelledby="fit-pack" className="relative isolate overflow-hidden py-20 lg:py-28">
+      <section id="pacchetti" aria-labelledby="fit-pack" className="fit-bg-beams relative isolate overflow-hidden py-20 lg:py-28">
         <div className="fit-squares" aria-hidden="true" />
         <div className="container-x relative">
           <Reveal y={12} blur={0} className="text-center">
@@ -285,6 +294,8 @@ export default function PalestrePage() {
           </Reveal>
         </div>
       </section>
+
+      <Sep />
 
       {/* RIPRESE */}
       <section aria-labelledby="fit-shoot" className="fit-band relative isolate overflow-hidden py-20 lg:py-28">
@@ -299,8 +310,10 @@ export default function PalestrePage() {
         </div>
       </section>
 
+      <Sep />
+
       {/* CASI STUDIO */}
-      <section id="risultati" aria-labelledby="fit-cases" className="relative isolate scroll-mt-16 overflow-hidden py-20 lg:py-28">
+      <section id="risultati" aria-labelledby="fit-cases" className="fit-bg-glow relative isolate scroll-mt-16 overflow-hidden py-20 lg:py-28">
         <div className="fit-squares" aria-hidden="true" />
         <div className="container-x relative">
           <Reveal y={12} blur={0} className="max-w-3xl">
@@ -314,10 +327,10 @@ export default function PalestrePage() {
                 <li key={c.id} className="fit-pop" style={{ "--i": i } as React.CSSProperties}><CaseCard item={c} /></li>
               ))}
               <li className="fit-pop" style={{ "--i": cases.length } as React.CSSProperties}>
-                <Link href="#contatti" className="fit-answer group relative flex h-full min-h-[16rem] flex-col justify-between overflow-hidden rounded-[1.25rem] p-6">
+                <Link href="#contatti" className="fit-answer fit-next group relative flex h-full min-h-[16rem] flex-col justify-between overflow-hidden rounded-[1.25rem] p-6">
                   <span className="text-[0.75rem] font-bold uppercase tracking-[0.2em] text-fit-300">Il prossimo caso studio</span>
                   <span className="fit-h text-[2rem] leading-[1] text-white">Potrebbe essere <G>la tua palestra</G>.</span>
-                  <span className="fit-btn fit-btn--sm w-fit">Prenota la call <Icon name="arrow-right" className="h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={2.6} /></span>
+                  <span className="fit-btn fit-btn--sm fit-btn--pulse w-fit">Prenota la call <Icon name="arrow-right" className="h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={2.6} /></span>
                 </Link>
               </li>
             </ul>
@@ -325,21 +338,28 @@ export default function PalestrePage() {
         </div>
       </section>
 
+      <Sep />
+
       {/* RECENSIONI */}
       <div className="fit-band">
         <Reviews />
       </div>
 
+      <Sep />
+
       {/* FAQ */}
-      <section aria-labelledby="fit-faq" className="relative isolate overflow-hidden py-20 lg:py-24">
+      <section aria-labelledby="fit-faq" className="fit-bg-beams relative isolate overflow-hidden py-20 lg:py-24">
         <div className="container-x">
           <Reveal y={12} blur={0} className="mb-10 text-center">
             <Kicker>Domande frequenti</Kicker>
             <Title id="fit-faq">Le domande che <G>ci fanno le palestre</G>.</Title>
           </Reveal>
           <Reveal y={12} blur={0}><FitFaq /></Reveal>
+          <CtaRow text="Hai un'altra domanda? Parliamone in call, è gratuita." />
         </div>
       </section>
+
+      <Sep />
 
       {/* CONTATTI */}
       <div className="fit-band">
