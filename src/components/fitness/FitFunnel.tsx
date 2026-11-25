@@ -6,118 +6,96 @@ import { Icon } from "@/components/ui/Icon";
 import { fit } from "./data";
 
 const N = fit.funnel.length;
-const STEP_Y = 74; // distanza verticale tra i nodi
-const R = 64; // raggio della spirale
 
 /**
- * Da un contenuto a un nuovo iscritto: una piccola spirale 3D che scende in verticale e gira piano. Il passo
- * attivo si accende e a lato si legge la spiegazione di tutti i passi (quello attivo evidenziato).
+ * Da un contenuto a un nuovo iscritto, come la spirale dei siti dell'agency: la sezione resta ferma mentre scorri,
+ * la spirale gira e scende portando davanti un passo alla volta. A lato l'elenco dei passi segue l'avanzamento.
  */
 export function FitFunnel() {
-  const wrap = useRef<HTMLDivElement>(null);
-  const nodes = useRef<Array<HTMLSpanElement | null>>([]);
-  const path = useRef<SVGPathElement>(null);
-  const [cur, setCur] = useState(0);
-  const [hold, setHold] = useState(false);
-  const [seen, setSeen] = useState(false);
-
+  const box = useRef<HTMLDivElement>(null);
+  const [p, setP] = useState(0);
   useEffect(() => {
-    const el = wrap.current;
+    const el = box.current;
     if (!el) return;
-    const io = new IntersectionObserver(([e]) => setSeen(!!e?.isIntersecting), { threshold: 0.25 });
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!seen || hold || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const t = window.setInterval(() => setCur((c) => (c + 1) % N), 1900);
-    return () => window.clearInterval(t);
-  }, [seen, hold]);
-
-  // spirale che gira piano: posizione, profondità e scala di ogni nodo
-  useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let raf = 0;
-    const draw = (time: number) => {
-      const rot = reduced ? 0 : time / 2600;
-      const pts: Array<[number, number]> = [];
-      for (let i = 0; i < N; i++) {
-        const a = i * 1.05 + rot;
-        const x = Math.sin(a) * R, z = Math.cos(a);
-        const y = 30 + i * STEP_Y;
-        const s = 0.78 + 0.22 * (z + 1) / 2;
-        const el = nodes.current[i];
-        if (el) {
-          el.style.transform = `translate(${x.toFixed(1)}px, ${y}px) translate(-50%, -50%) scale(${s.toFixed(3)})`;
-          el.style.zIndex = String(Math.round((z + 1) * 10));
-          el.style.opacity = String(0.55 + 0.45 * (z + 1) / 2);
-        }
-        pts.push([90 + x, y]);
-      }
-      if (path.current) {
-        let d = "";
-        // curva liscia che passa per i nodi
-        for (let i = 0; i < pts.length; i++) {
-          const [x, y] = pts[i]!;
-          if (i === 0) d += `M${x},${y}`;
-          else {
-            const [px, py] = pts[i - 1]!;
-            d += ` C${px},${py + STEP_Y * 0.5} ${x},${y - STEP_Y * 0.5} ${x},${y}`;
-          }
-        }
-        path.current.setAttribute("d", d);
-      }
-      if (!reduced) raf = requestAnimationFrame(draw);
+    const apply = () => {
+      raf = 0;
+      const r = el.getBoundingClientRect();
+      const total = r.height - innerHeight;
+      setP(Math.min(1, Math.max(0, -r.top / Math.max(1, total))) * (N - 1));
     };
-    raf = requestAnimationFrame(draw);
-    return () => cancelAnimationFrame(raf);
+    const req = () => { if (!raf) raf = requestAnimationFrame(apply); };
+    window.addEventListener("scroll", req, { passive: true });
+    window.addEventListener("resize", req);
+    req();
+    return () => { window.removeEventListener("scroll", req); window.removeEventListener("resize", req); cancelAnimationFrame(raf); };
   }, []);
-
-  const H = 30 * 2 + (N - 1) * STEP_Y;
+  const front = Math.round(p);
+  const go = (i: number) => {
+    const el = box.current;
+    if (!el) return;
+    const total = el.getBoundingClientRect().height - innerHeight;
+    window.scrollTo({ top: el.offsetTop + (i / (N - 1)) * total + 2, behavior: "smooth" });
+  };
   return (
-    <div ref={wrap} onMouseLeave={() => setHold(false)} className="grid items-center gap-8 md:grid-cols-[11.5rem_1fr] md:gap-12">
-      <div className="fit-spiral3d relative mx-auto w-[11.5rem]" style={{ height: H }}>
-        <svg aria-hidden="true" className="absolute inset-0 h-full w-full overflow-visible" viewBox={`0 0 180 ${H}`} preserveAspectRatio="none">
-          <path ref={path} className="fit-spiral-path" fill="none" />
-        </svg>
-        {fit.funnel.map((s, i) => (
-          <span
-            key={s.title}
-            ref={(el) => { nodes.current[i] = el; }}
-            className="absolute left-1/2 top-0"
-          >
-            <button
-              type="button"
-              onMouseEnter={() => { setHold(true); setCur(i); }}
-              onClick={() => { setHold(true); setCur(i); }}
-              aria-pressed={cur === i}
-              aria-label={s.title}
-              className={cn("fit-node grid h-14 w-14 place-items-center rounded-xl", i < cur && "fit-node--done", cur === i && "fit-node--on")}
-            >
-              <Icon name={s.icon} className="h-6 w-6" strokeWidth={1.9} />
-            </button>
-          </span>
-        ))}
+    <div ref={box} className="relative" style={{ height: `${N * 42 + 70}vh` }}>
+      <div className="sticky top-0 flex h-[100svh] flex-col justify-center overflow-hidden pt-16">
+        <div className="container-x relative grid items-center gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
+          {/* titolo + elenco passi */}
+          <div className="relative z-10">
+            <p className="fit-kicker inline-flex items-center gap-2 rounded-md px-2.5 py-1 text-[0.6875rem] font-bold uppercase tracking-[0.2em]"><span className="h-1.5 w-1.5 rounded-sm bg-fit-300 shadow-[0_0_8px_#a6ff00]" />Il percorso</p>
+            <h2 id="fit-path" className="fit-h mt-3 text-[clamp(1.75rem,1.2rem+2.2vw,3rem)] leading-[0.98] text-white">Da un contenuto a un <span className="fit-glow">nuovo iscritto</span>.</h2>
+            <ol className="mt-5 hidden space-y-1 lg:block">
+              {fit.funnel.map((s, i) => (
+                <li key={s.title}>
+                  <button type="button" onClick={() => go(i)} className={cn("fit-fstep flex w-full items-center gap-3 rounded-xl px-3 py-2 text-left", front === i && "fit-fstep--on")}>
+                    <span className={cn("fit-fdot grid h-7 w-7 shrink-0 place-items-center rounded-md font-mono text-[0.6875rem] font-bold", i < front && "fit-fdot--done", i === front && "fit-fdot--on")}>{i < front ? <Icon name="check" className="h-3.5 w-3.5" strokeWidth={3} /> : `0${i + 1}`}</span>
+                    <span className="fit-h text-[0.9375rem] text-white">{s.title}</span>
+                  </button>
+                </li>
+              ))}
+            </ol>
+            <span className="mt-4 hidden h-1 w-48 overflow-hidden rounded-full bg-white/10 lg:block">
+              <span className="block h-full rounded-full bg-fit-300 shadow-[0_0_10px_#a6ff00]" style={{ width: `${(p / (N - 1)) * 100}%` }} />
+            </span>
+          </div>
+
+          {/* spirale */}
+          <div className="fit-hx relative h-[52svh] lg:h-[70svh]">
+            <span aria-hidden="true" className="fit-hx-axis" />
+            <div className="fit-hx-stage absolute left-1/2 top-1/2">
+              {fit.funnel.map((s, i) => {
+                const d = i - p;
+                const vis = Math.abs(d) < 2.4;
+                const dim = Math.min(1, Math.abs(d) / 1.5);
+                return (
+                  <div
+                    key={s.title}
+                    aria-hidden={i !== front}
+                    className={cn("fit-hx-card absolute rounded-2xl p-5", i === front && "fit-hx-card--on")}
+                    style={{
+                      transform: `translate(-50%, -50%) translateY(${d * 15}svh) rotateY(calc(${d} * var(--fhx-step))) translateZ(var(--fhx-r))`,
+                      opacity: vis ? 1 - dim * 0.65 : 0,
+                      filter: `brightness(${1 - dim * 0.55})`,
+                      zIndex: 100 - Math.round(Math.abs(d) * 10),
+                    }}
+                  >
+                    <span className="flex items-center justify-between">
+                      <span className="fit-hx-ico grid h-12 w-12 place-items-center rounded-xl"><Icon name={s.icon} className="h-6 w-6" strokeWidth={2} /></span>
+                      <span className="fit-h text-[2rem] leading-none text-fit-300/80">0{i + 1}</span>
+                    </span>
+                    <span className="fit-h mt-4 block text-[1.375rem] leading-tight text-white">{s.title}</span>
+                    <span className="mt-1.5 block text-[0.9375rem] leading-snug text-white/70">{s.text}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+        <p className="relative z-10 mt-2 flex items-center justify-center gap-1.5 text-[0.75rem] text-white/50">
+          <Icon name="arrow-down" className="h-3.5 w-3.5 text-fit-300" strokeWidth={2.4} /> Scorri: la spirale gira e ti porta passo dopo passo
+        </p>
       </div>
-      <ol className="space-y-1.5">
-        {fit.funnel.map((s, i) => (
-          <li key={s.title}>
-            <button
-              type="button"
-              onMouseEnter={() => { setHold(true); setCur(i); }}
-              onClick={() => { setHold(true); setCur(i); }}
-              className={cn("fit-fstep flex w-full items-start gap-3 rounded-xl px-4 py-2.5 text-left", cur === i && "fit-fstep--on")}
-            >
-              <span className="fit-h mt-0.5 w-7 shrink-0 text-[0.875rem] text-fit-300">0{i + 1}</span>
-              <span>
-                <span className="fit-h block text-[1rem] text-white">{s.title}</span>
-                <span className="mt-0.5 block text-[0.875rem] leading-snug text-white/65">{s.text}</span>
-              </span>
-            </button>
-          </li>
-        ))}
-      </ol>
     </div>
   );
 }

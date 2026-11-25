@@ -2840,3 +2840,34 @@ body:has(.fit-page) .triski-root { --color-gold-300: #a6ff00; --color-gold-200: 
 .fit-ai-step { background: rgb(255 255 255 / 0.03); border: 1px solid rgb(166 255 0 / 0.14); }
 .fit-ai [class*="h-[23rem]"] { height: 15.5rem !important; }
 @media (prefers-reduced-motion: reduce) { .fit-helix-item { opacity: 1; transform: none; transition: none; } .fit-spiral-path, .fit-pack--star, [data-revealed] .fit-helix-item .fit-stat--sm, .fit-bg-aurora::before, .fit-bg-aurora2::before { animation: none; } }
+
+/* Percorso palestre: spirale guidata dallo scroll */
+.fit-hx { perspective: 1400px; --fhx-step: 52deg; --fhx-w: clamp(15rem, 26vw, 22rem); --fhx-r: calc(var(--fhx-w) * 0.95); mask-image: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent); }
+.fit-hx-stage { transform-style: preserve-3d; }
+.fit-hx-card { width: var(--fhx-w); backface-visibility: hidden; will-change: transform; background: linear-gradient(160deg, rgb(26 42 12 / 0.97), rgb(5 8 4 / 0.98)); border: 1.5px solid rgb(166 255 0 / 0.25); box-shadow: 0 30px 60px -30px #000; }
+.fit-hx-card--on { border-color: #a6ff00; box-shadow: 0 0 50px -10px rgb(166 255 0 / 0.75), 0 30px 60px -30px #000; }
+.fit-hx-ico { color: #a6ff00; background: rgb(166 255 0 / 0.1); border: 1px solid rgb(166 255 0 / 0.4); }
+.fit-hx-card--on .fit-hx-ico { color: #000; background: #a6ff00; box-shadow: 0 0 20px rgb(166 255 0 / 0.7); }
+.fit-hx-axis { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, transparent, rgb(166 255 0 / 0.5), transparent); }
+.fit-hx-axis::after { content: ""; position: absolute; left: 50%; top: 50%; width: 34rem; max-width: 90vw; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 9999px; background: radial-gradient(closest-side, rgb(166 255 0 / 0.14), transparent); }
+.fit-fdot { color: rgb(255 255 255 / 0.5); border: 1px solid rgb(255 255 255 / 0.15); transition: all 0.35s; }
+.fit-fdot--done { color: #a6ff00; border-color: rgb(166 255 0 / 0.5); }
+.fit-fdot--on { color: #000; background: #a6ff00; border-color: #a6ff00; box-shadow: 0 0 16px rgb(166 255 0 / 0.7); }
+@media (max-width: 640px) { .fit-hx { --fhx-w: 72vw; --fhx-r: 30vw; --fhx-step: 34deg; perspective: 1000px; } }
+
+/* Recensioni più compatte sulla landing palestre */
+.fit-reviews section { padding-top: 3rem; padding-bottom: 3rem; }
+.fit-reviews .mt-10.grid { margin-top: 1.75rem; }
+.fit-reviews [class*="max-w-[20rem]"] { max-width: 14.5rem; }
+.fit-reviews .rv-card { padding: 0.85rem; }
+.fit-reviews .rv-card p { -webkit-line-clamp: 3; line-clamp: 3; font-size: 0.78rem; }
+.fit-reviews .gl-card.flex-wrap { padding: 0.75rem 1.1rem; }
+.fit-reviews .gl-card.flex-wrap .text-\[2\.75rem\] { font-size: 2rem; }
+@media (min-width: 1024px) { .fit-reviews .lg\:grid-cols-\[minmax\(0\,0\.75fr\)_minmax\(0\,1\.25fr\)\] { align-items: center; } }
+/* timeline segretaria AI */
+.fit-tl-line { position: absolute; left: 1.25rem; top: 1rem; bottom: 1rem; width: 2px; background: linear-gradient(rgb(166 255 0 / 0.6), rgb(166 255 0 / 0.15)); }
+@media (min-width: 640px) { .fit-tl-line { left: 8%; right: 8%; top: 1.25rem; bottom: auto; width: auto; height: 2px; background: linear-gradient(90deg, rgb(166 255 0 / 0.15), rgb(166 255 0 / 0.7), rgb(166 255 0 / 0.15)); } }
+.fit-tl-dot { color: rgb(255 255 255 / 0.7); background: #0b120a; border: 1.5px solid rgb(255 255 255 / 0.25); }
+.fit-tl-dot--ai { color: #000; background: #a6ff00; border-color: #a6ff00; box-shadow: 0 0 16px -2px rgb(166 255 0 / 0.8); }
+.fit-tl-dot--tu { color: #a6ff00; border-color: rgb(166 255 0 / 0.7); }
+.fit-tl-n { position: absolute; top: -0.35rem; right: -0.35rem; display: grid; place-items: center; width: 1.05rem; height: 1.05rem; border-radius: 9999px; background: #fff; color: #000; font: 800 0.625rem var(--font-display); }

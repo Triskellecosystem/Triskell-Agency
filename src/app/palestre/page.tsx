@@ -167,7 +167,7 @@ export default function PalestrePage() {
           <Reveal y={12} blur={0} className="mx-auto max-w-3xl text-center">
             <Kicker>Ti riconosci?</Kicker>
             <Title id="fit-pains">Dove sei ora e <G>dove puoi arrivare</G>.</Title>
-            <p className="mx-auto mt-4 max-w-2xl text-[1.0625rem] text-white/70">Le situazioni che ci raccontano le palestre ogni giorno, e come cambiano quando lavoriamo insieme.</p>
+            <p className="mx-auto mt-4 max-w-2xl text-[1.0625rem] text-white/70">Le situazioni che ci raccontano le palestre ogni giorno,<br className="max-sm:hidden" /> e come cambiano quando lavoriamo insieme.</p>
           </Reveal>
           <Reveal y={16} blur={0} className="mx-auto mt-10 max-w-5xl">
             <FitCompare />
@@ -249,11 +249,14 @@ export default function PalestrePage() {
               </div>
             </div>
           </Reveal>
-          <Reveal y={12} blur={0} className="mt-14">
-            <p className="mb-8 text-center text-[0.8125rem] font-bold uppercase tracking-[0.22em] text-white/60">Da un contenuto a un nuovo iscritto</p>
-            <div className="mx-auto max-w-3xl"><FitFunnel /></div>
-          </Reveal>
         </div>
+      </section>
+
+      <Sep />
+
+      {/* PERCORSO A SPIRALE, guidato dallo scroll */}
+      <section aria-labelledby="fit-path" className="fit-bg-aurora2 relative isolate overflow-x-clip">
+        <FitFunnel />
       </section>
 
       <Sep />
@@ -304,7 +307,7 @@ export default function PalestrePage() {
       {/* SEGRETARIA AI */}
       <section aria-labelledby="fit-ai" className="fit-bg-aurora fit-ai relative isolate overflow-hidden py-14 lg:py-16">
         <div className="fit-squares" aria-hidden="true" />
-        <div className="container-x relative grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
+        <div className="container-x relative grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-12">
           <div>
             <Reveal y={12} blur={0}>
               <Kicker>Il nostro vantaggio competitivo</Kicker>
@@ -322,14 +325,23 @@ export default function PalestrePage() {
               </dl>
             </Reveal>
             <Reveal y={0} blur={0} className="mt-5">
-              <ol className="grid gap-1.5 sm:grid-cols-2">
-                {site.ai.steps.map((st, k) => (
-                  <li key={st.title} className="fit-pop fit-ai-step flex items-center gap-2.5 rounded-lg px-2.5 py-2" style={{ "--i": k + 3 } as React.CSSProperties}>
-                    <span className={`fit-irelia-dot grid h-7 w-7 shrink-0 place-items-center rounded-md ${st.who === "ai" ? "fit-irelia-dot--ai" : st.who === "tu" ? "fit-irelia-dot--tu" : ""}`}>
-                      <Icon name={st.icon} className="h-3.5 w-3.5" strokeWidth={2.2} />
+              <ol className="fit-tl relative grid grid-cols-1 gap-2 sm:grid-cols-6 sm:gap-1">
+                <span aria-hidden="true" className="fit-tl-line" />
+                {([
+                  ["click", "Arriva un contatto", "ads"],
+                  ["bot", "L'AI gli scrive", "ai"],
+                  ["clock", "Chiede l'orario", "ai"],
+                  ["phone", "Tu lo chiami", "tu"],
+                  ["calendar", "Fissate la prova", "tu"],
+                  ["bell", "L'AI lo ricorda", "ai"],
+                ] as const).map(([ic, t, who], k) => (
+                  <li key={t} className="fit-pop relative flex items-center gap-3 sm:flex-col sm:items-center sm:gap-1.5 sm:text-center" style={{ "--i": k + 3 } as React.CSSProperties}>
+                    <span className={`fit-tl-dot relative z-[1] grid h-10 w-10 shrink-0 place-items-center rounded-full ${who === "ai" ? "fit-tl-dot--ai" : who === "tu" ? "fit-tl-dot--tu" : ""}`}>
+                      <Icon name={ic} className="h-4 w-4" strokeWidth={2.2} />
+                      <span className="fit-tl-n">{k + 1}</span>
                     </span>
-                    <span className="text-[0.8125rem] font-semibold leading-tight text-white">{st.title.replace("Irelia", "L'AI")}</span>
-                    <span className={`ml-auto shrink-0 rounded px-1.5 py-0.5 text-[0.5625rem] font-bold uppercase tracking-wider ${st.who === "ai" ? "bg-fit-300 text-black" : st.who === "tu" ? "border border-white/25 text-white/80" : "text-white/45"}`}>{st.who === "ai" ? "AI" : st.who === "tu" ? "Tu" : "Ads"}</span>
+                    <span className="text-[0.8125rem] font-bold leading-tight text-white sm:text-[0.75rem]">{t}</span>
+                    <span className={`ml-auto rounded px-1.5 py-0.5 text-[0.5625rem] font-bold uppercase tracking-wider sm:ml-0 ${who === "ai" ? "bg-fit-300 text-black" : who === "tu" ? "border border-white/30 text-white/85" : "text-white/50"}`}>{who === "ai" ? "AI" : who === "tu" ? "Tu" : "Campagna"}</span>
                   </li>
                 ))}
               </ol>
@@ -431,7 +443,7 @@ export default function PalestrePage() {
       <Sep />
 
       {/* RECENSIONI */}
-      <div className="fit-bg-glow">
+      <div className="fit-bg-glow fit-reviews">
         <Reviews />
       </div>
 
