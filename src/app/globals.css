@@ -2878,6 +2878,6 @@ body:has(.fit-page) .triski-root { --color-gold-300: #a6ff00; --color-gold-200: 
 @media (max-width: 639px) { .fit-phone-halo { filter: blur(20px); } }
 
 /* riprese: sezione compatta, tutto in una schermata */
-.fit-shoots-sec { padding-top: 3.5rem !important; padding-bottom: 3.5rem !important; }
+.fit-shoots-sec { padding-top: 5rem !important; padding-bottom: 4.5rem !important; }
 .fit-shoots-sec .fit-phone.aspect-\[9\/16\] { height: min(54svh, 29rem); width: auto; }
 @media (max-width: 639px) { .fit-shoots-sec .fit-phone.aspect-\[9\/16\] { height: auto; width: 100%; } .fit-shoots-sec .w-fit { width: 100%; } }

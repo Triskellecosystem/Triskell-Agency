@@ -45,7 +45,7 @@ export function FitShoots({ heading }: { heading?: React.ReactNode }) {
   const [sound, setSound] = useState<number | null>(null);
   const mode = MODES[m]!;
   return (
-    <div className="grid items-center gap-8 lg:grid-cols-[1fr_1fr] lg:gap-12">
+    <div className="grid items-start gap-8 lg:grid-cols-[1fr_1fr] lg:gap-12">
       <div>
         {heading && <div className="mb-6">{heading}</div>}
         <div className="grid gap-2 sm:grid-cols-2">
@@ -72,7 +72,7 @@ export function FitShoots({ heading }: { heading?: React.ReactNode }) {
           </Link>
         </div>
       </div>
-      <div key={mode.id + "v"} className={cn("fit-fade mx-auto grid w-full gap-4", mode.clips[0]!.wide ? "max-w-[min(30rem,100%)]" : "w-fit grid-cols-2 justify-center gap-5")}>
+      <div key={mode.id + "v"} className={cn("fit-fade mx-auto grid w-full gap-4 lg:mt-12", mode.clips[0]!.wide ? "max-w-[min(30rem,100%)]" : "w-fit grid-cols-2 justify-center gap-5")}>
         {mode.clips.map((c, i) => (
           <div key={c.src} className={cn(mode.clips[0]!.wide ? (i ? "ml-[12%]" : "mr-[12%]") : i ? "translate-y-6" : "")}>
             <Clip c={c} sound={sound === i} onSound={() => setSound((s) => (s === i ? null : i))} />
