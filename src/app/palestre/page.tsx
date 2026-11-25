@@ -402,12 +402,15 @@ export default function PalestrePage() {
       {/* RIPRESE */}
       <section aria-labelledby="fit-shoot" className="fit-bg-aurora2 fit-shoots-sec relative isolate overflow-hidden">
         <div className="container-x">
-          <Reveal y={12} blur={0} className="mb-6 max-w-3xl">
-            <Kicker>Le riprese</Kicker>
-            <Title id="fit-shoot" className="!text-[clamp(1.75rem,1.2rem+2vw,2.75rem)]">Veniamo noi in palestra <G>o registri tu</G>: decidi tu.</Title>
-          </Reveal>
           <Reveal y={12} blur={0}>
-            <FitShoots />
+            <FitShoots
+              heading={
+                <>
+                  <Kicker>Le riprese</Kicker>
+                  <Title id="fit-shoot" className="!text-[clamp(1.75rem,1.2rem+2vw,2.75rem)]">Veniamo noi in palestra <G>o registri tu</G>: decidi tu.</Title>
+                </>
+              }
+            />
           </Reveal>
         </div>
       </section>

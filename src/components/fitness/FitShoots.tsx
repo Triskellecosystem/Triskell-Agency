@@ -40,13 +40,14 @@ function Clip({ c, sound, onSound }: { c: Clip; sound: boolean; onSound: () => v
 }
 
 /** Riprese: veniamo noi in palestra oppure registri tu. Interruttore con i video veri, nel loro formato e con audio. */
-export function FitShoots() {
+export function FitShoots({ heading }: { heading?: React.ReactNode }) {
   const [m, setM] = useState(0);
   const [sound, setSound] = useState<number | null>(null);
   const mode = MODES[m]!;
   return (
-    <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+    <div className="grid items-center gap-8 lg:grid-cols-[1fr_1fr] lg:gap-12">
       <div>
+        {heading && <div className="mb-6">{heading}</div>}
         <div className="grid gap-2 sm:grid-cols-2">
           {MODES.map((x, i) => (
             <button key={x.id} type="button" onClick={() => { setM(i); setSound(null); }} aria-pressed={m === i} className={cn("fit-tab flex items-center gap-3 rounded-xl px-4 py-3 text-left", m === i && "fit-tab--on")}>
