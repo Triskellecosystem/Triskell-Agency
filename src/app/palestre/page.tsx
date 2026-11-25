@@ -19,6 +19,8 @@ import { FitProfilePhone } from "@/components/fitness/FitProfilePhone";
 import { FitTilt } from "@/components/fitness/FitTilt";
 import { fit } from "@/components/fitness/data";
 import { AiChat } from "@/components/sections/AiChat";
+import { FitHeroStats } from "@/components/fitness/FitHeroStats";
+import { FitCrm } from "@/components/fitness/FitCrm";
 
 /**
  * Landing per palestre e centri fitness. Non è nel menu, nel footer né nella sitemap e non va indicizzata:
@@ -138,9 +140,7 @@ export default function PalestrePage() {
                   <span aria-hidden="true" className="fit-tilt-shine pointer-events-none absolute inset-0" />
                   <span aria-hidden="true" className="fit-scan pointer-events-none absolute inset-x-0 h-24" />
                 </div>
-                <div className="fit-chip fit-chip--1"><span className="fit-num text-[1.5rem]">30–60</span><span>lead al mese</span></div>
-                <div className="fit-chip fit-chip--2"><span className="fit-num text-[1.5rem]">~1 su 3</span><span>prenota la prova</span></div>
-                <div className="fit-chip fit-chip--3"><span className="fit-num text-[1.5rem]">500+</span><span>contatti in un anno</span></div>
+                <FitHeroStats />
               </div>
             </FitTilt>
           </Reveal>
@@ -338,6 +338,45 @@ export default function PalestrePage() {
           </Reveal>
         </div>
         <div className="container-x"><CtaRow text="Vuoi Irelia anche nella tua palestra?" /></div>
+      </section>
+
+      <Sep />
+
+      {/* CRM */}
+      <section aria-labelledby="fit-crm" className="fit-bg-beams relative isolate overflow-hidden py-20 lg:py-28">
+        <div className="fit-squares" aria-hidden="true" />
+        <div className="container-x relative grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
+          <Reveal y={0} blur={0} className="order-2 lg:order-1">
+            <FitCrm />
+          </Reveal>
+          <div className="order-1 lg:order-2">
+            <Reveal y={12} blur={0}>
+              <Kicker>Il CRM per la tua palestra</Kicker>
+              <Title id="fit-crm">Tutti i tuoi contatti <G>in un posto solo</G>.</Title>
+              <p className="mt-5 max-w-xl text-[1.0625rem] text-white/70">Il CRM è l&apos;archivio intelligente dei tuoi clienti: ogni persona che ti scrive finisce lì, con nome, provenienza e a che punto è. Così sai sempre chi richiamare, chi ha fatto la prova e chi si è iscritto.</p>
+            </Reveal>
+            <Reveal y={0} blur={0} className="mt-7">
+              <ul className="grid gap-2.5 sm:grid-cols-2">
+                {([
+                  ["phone", "Nessun contatto dimenticato", "Ogni richiesta ha un promemoria: nessuno resta senza risposta."],
+                  ["calendar", "Prove e appuntamenti in ordine", "Vedi chi viene a provare e quando, giorno per giorno."],
+                  ["refresh", "Rinnovi e abbonamenti", "Avvisi automatici prima della scadenza: meno abbandoni."],
+                  ["chart", "Sai cosa funziona", "Da quale campagna arriva ogni iscritto e quanto ti costa."],
+                ] as const).map(([ic, t, d], i) => (
+                  <li key={t} className="fit-pop fit-card rounded-xl p-4" style={{ "--i": i } as React.CSSProperties}>
+                    <span className="flex items-center gap-2.5"><span className="fit-ico grid h-9 w-9 shrink-0 place-items-center rounded-lg"><Icon name={ic} className="h-4 w-4" strokeWidth={2.2} /></span><span className="text-[0.9375rem] font-bold text-white">{t}</span></span>
+                    <span className="mt-2 block text-[0.8125rem] leading-snug text-white/65">{d}</span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+            <Reveal y={0} blur={0} className="mt-7">
+              <Link href="#contatti" className="fit-btn fit-btn--pulse">
+                <Icon name="calendar" className="h-5 w-5" strokeWidth={2.2} /> Voglio il CRM per la mia palestra
+              </Link>
+            </Reveal>
+          </div>
+        </div>
       </section>
 
       <Sep />

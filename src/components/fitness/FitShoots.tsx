@@ -8,7 +8,7 @@ import { Icon, type IconName } from "@/components/ui/Icon";
 type Clip = { src: string; poster: string; tag: string; wide: boolean };
 const MODES: Array<{ id: string; icon: IconName; label: string; title: string; points: string[]; clips: Clip[] }> = [
   { id: "noi", icon: "camera", label: "Veniamo noi in palestra", title: "Giriamo noi, tu alleni", points: ["Riprese professionali in palestra", "Coach, attrezzi e clienti veri", "Montaggio e pubblicazione inclusi"], clips: [{ src: "/video/riprese-1.mp4", poster: "/video/riprese-1.jpg", tag: "Dietro le quinte", wide: true }, { src: "/video/riprese-2.mp4", poster: "/video/riprese-2.jpg", tag: "Sul set", wide: true }] },
-  { id: "tu", icon: "smartphone", label: "Registri tu", title: "Registri tu, al resto pensiamo noi", points: ["Script pronti da leggere", "Indicazioni su luce e inquadrature", "Editing professionale fatto da noi"], clips: [{ src: "/video/registri-tu.mp4", poster: "/video/registri-tu.jpg", tag: "Girato da te", wide: false }, { src: "/video/editato-v2.mp4", poster: "/video/editato-v2.jpg", tag: "Editato da noi", wide: false }] },
+  { id: "tu", icon: "smartphone", label: "Registri tu", title: "Registri tu, al resto pensiamo noi", points: ["Script pronti da leggere", "Indicazioni su luce e inquadrature", "Editing professionale fatto da noi"], clips: [{ src: "/video/fit-raw.mp4", poster: "/video/fit-raw.jpg", tag: "Girato da te", wide: false }, { src: "/video/fit-edited.mp4", poster: "/video/fit-edited.jpg", tag: "Editato da noi", wide: false }] },
 ];
 
 /** Un video nel suo formato originale, senza audio all'inizio e con il pulsante per attivarlo. */
