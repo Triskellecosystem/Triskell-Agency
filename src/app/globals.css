@@ -2871,3 +2871,13 @@ body:has(.fit-page) .triski-root { --color-gold-300: #a6ff00; --color-gold-200: 
 .fit-tl-dot--ai { color: #000; background: #a6ff00; border-color: #a6ff00; box-shadow: 0 0 16px -2px rgb(166 255 0 / 0.8); }
 .fit-tl-dot--tu { color: #a6ff00; border-color: rgb(166 255 0 / 0.7); }
 .fit-tl-n { position: absolute; top: -0.35rem; right: -0.35rem; display: grid; place-items: center; width: 1.05rem; height: 1.05rem; border-radius: 9999px; background: #fff; color: #000; font: 800 0.625rem var(--font-display); }
+/* movimento fluido dei telefoni/foto 3D: tutto su livelli composti dalla GPU */
+.fit-tilt-body { transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(0); will-change: transform; backface-visibility: hidden; }
+.fit-hero-img, .fit-iphone, .fit-hero-card { will-change: transform; backface-visibility: hidden; }
+.fit-tilt-shine { will-change: background; }
+@media (max-width: 639px) { .fit-phone-halo { filter: blur(20px); } }
+
+/* riprese: sezione compatta, tutto in una schermata */
+.fit-shoots-sec { padding-top: 3.5rem !important; padding-bottom: 3.5rem !important; }
+.fit-shoots-sec .fit-phone.aspect-\[9\/16\] { height: min(54svh, 29rem); width: auto; }
+@media (max-width: 639px) { .fit-shoots-sec .fit-phone.aspect-\[9\/16\] { height: auto; width: 100%; } .fit-shoots-sec .w-fit { width: 100%; } }

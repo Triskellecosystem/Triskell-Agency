@@ -55,9 +55,9 @@ export function FitShoots() {
             </button>
           ))}
         </div>
-        <div key={mode.id} className="fit-fade mt-6">
-          <h3 className="fit-h text-[clamp(1.5rem,1.2rem+1.2vw,2.25rem)] leading-[1.05] text-white">{mode.title}</h3>
-          <ul className="mt-5 space-y-3">
+        <div key={mode.id} className="fit-fade mt-5">
+          <h3 className="fit-h text-[clamp(1.3rem,1.1rem+0.9vw,1.85rem)] leading-[1.05] text-white">{mode.title}</h3>
+          <ul className="mt-4 space-y-2.5">
             {mode.points.map((p) => (
               <li key={p} className="flex items-center gap-3 text-[1rem] text-white/80">
                 <span className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-fit-300/15 text-fit-300"><Icon name="check" className="h-4 w-4" strokeWidth={3} /></span>
@@ -71,9 +71,9 @@ export function FitShoots() {
           </Link>
         </div>
       </div>
-      <div key={mode.id + "v"} className={cn("fit-fade mx-auto grid w-full gap-4", mode.clips[0]!.wide ? "max-w-2xl" : "max-w-md grid-cols-2")}>
+      <div key={mode.id + "v"} className={cn("fit-fade mx-auto grid w-full gap-4", mode.clips[0]!.wide ? "max-w-[min(30rem,100%)]" : "w-fit grid-cols-2 justify-center gap-5")}>
         {mode.clips.map((c, i) => (
-          <div key={c.src} className={cn(mode.clips[0]!.wide ? (i ? "ml-[12%]" : "mr-[12%]") : i ? "translate-y-8" : "")}>
+          <div key={c.src} className={cn(mode.clips[0]!.wide ? (i ? "ml-[12%]" : "mr-[12%]") : i ? "translate-y-6" : "")}>
             <Clip c={c} sound={sound === i} onSound={() => setSound((s) => (s === i ? null : i))} />
           </div>
         ))}

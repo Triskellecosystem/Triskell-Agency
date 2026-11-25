@@ -400,11 +400,11 @@ export default function PalestrePage() {
       <Sep />
 
       {/* RIPRESE */}
-      <section aria-labelledby="fit-shoot" className="fit-bg-aurora2 relative isolate overflow-hidden py-20 lg:py-28">
+      <section aria-labelledby="fit-shoot" className="fit-bg-aurora2 fit-shoots-sec relative isolate overflow-hidden">
         <div className="container-x">
-          <Reveal y={12} blur={0} className="mb-10 max-w-3xl">
+          <Reveal y={12} blur={0} className="mb-6 max-w-3xl">
             <Kicker>Le riprese</Kicker>
-            <Title id="fit-shoot">Veniamo noi in palestra <G>o registri tu</G>: decidi tu.</Title>
+            <Title id="fit-shoot" className="!text-[clamp(1.75rem,1.2rem+2vw,2.75rem)]">Veniamo noi in palestra <G>o registri tu</G>: decidi tu.</Title>
           </Reveal>
           <Reveal y={12} blur={0}>
             <FitShoots />
