@@ -56,7 +56,7 @@ export function LaptopShowcase() {
           {/* coperchio: fuori (logo) e dentro (schermo) */}
           <div className="lp-lid">
             <div className="lp-back">
-              <Image src="/brand/triskell-medallion.png" alt="" width={160} height={160} sizes="10rem" className="h-[24%] w-auto opacity-90 drop-shadow-[0_0_14px_rgb(247_200_92/0.5)]" />
+              <Image src="/brand/triskell-medallion-256.webp" alt="" width={160} height={160} sizes="10rem" className="h-[24%] w-auto opacity-90 drop-shadow-[0_0_14px_rgb(247_200_92/0.5)]" />
             </div>
             <div className="lp-screen">
               <div className="lp-frame">

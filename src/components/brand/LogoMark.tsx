@@ -9,12 +9,15 @@ type LogoMarkProps = Omit<ImageProps, "src" | "width" | "height" | "alt"> & {
 
 /**
  * Logo REALE di Triskell Ecosystem (medaglione ritagliato dal file originale su fondo trasparente).
- * Sorgente: brand-assets/triskell-logo-completo.png → public/brand/triskell-medallion.png.
+ * Sorgente: brand-assets/triskell-logo-completo.png → public/brand/triskell-medallion.png (+ versioni WebP -128/-256/-448).
  */
 export function LogoMark({ size, alt = "", style, ...props }: LogoMarkProps) {
+  // WebP già ridimensionati (il PNG originale da 640px pesa ~600 KB): il più piccolo che resta nitido a 2x
+  const px = size ?? (parseInt(String(props.sizes ?? ""), 10) || 640);
+  const src = px <= 64 ? "/brand/triskell-medallion-128.webp" : px <= 128 ? "/brand/triskell-medallion-256.webp" : "/brand/triskell-medallion-448.webp";
   return (
     <Image
-      src="/brand/triskell-medallion.png"
+      src={src}
       width={640}
       height={640}
       alt={alt}

@@ -2390,7 +2390,6 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 
 /* ===== Home: sfondo delle sezioni (SectionGlow) e schede luminose ===== */
 .sglow-bg { background: radial-gradient(60% 55% at 50% 40%, rgb(30 100 200 / 0.4), transparent 75%), linear-gradient(180deg, #052850 0%, #04224a 50%, #031b38 100%); mask-image: linear-gradient(180deg, transparent, #000 8%, #000 92%, transparent); }
-.sglow-wave { position: absolute; left: 0; bottom: 0; width: 100%; height: clamp(9rem, 18vw, 15rem); filter: drop-shadow(0 0 6px rgb(60 150 255 / 0.7)); }
 .sglow-floor { perspective: 650px; perspective-origin: 50% 30%; overflow: hidden; mask-image: linear-gradient(180deg, transparent 30%, #000 60%, transparent 92%); }
 .sglow-floor i { position: absolute; left: -60%; right: -60%; top: 55%; height: 140%; transform-origin: 50% 0; transform: rotateX(72deg); background-image: linear-gradient(rgb(90 180 255 / 0.5) 1.5px, transparent 1.5px), linear-gradient(90deg, rgb(90 180 255 / 0.5) 1.5px, transparent 1.5px); background-size: 110px 110px; mask-image: linear-gradient(180deg, #000, transparent 70%); }
 .gl-card { border: 1.5px solid rgb(110 190 255 / 0.65) !important; background: linear-gradient(165deg, rgb(22 78 150 / 0.92), rgb(5 24 50 / 0.96)) !important; box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12), 0 0 34px -6px rgb(58 150 255 / 0.6) !important; }
@@ -2409,9 +2408,6 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 @media (prefers-reduced-motion: reduce) { .cmp5-row { opacity: 1; transform: none; transition: none; } }
 .glow-border { border: 2px solid transparent !important; background: linear-gradient(160deg, rgb(10 40 80 / 0.94), rgb(3 20 42 / 0.96)) padding-box, linear-gradient(120deg, #3aa4ff, #9ad8ff 40%, #fde08a 80%, #f7c85c) border-box !important; box-shadow: 0 0 40px -4px rgb(58 150 255 / 0.55), 20px 20px 50px -20px rgb(247 200 92 / 0.45) !important; }
 .btn-glow-outline { box-shadow: 0 0 24px -6px rgb(247 200 92 / 0.6); border-color: rgb(253 214 120 / 0.85) !important; }
-/* lascia spazio all'onda luminosa in fondo alle sezioni che la usano, così non passa sopra le schede */
-
-.sglow-wave { height: clamp(7rem, 13vw, 11rem); }
 
 /* ===== Pagina Social: stesso stile luminoso ma più scuro e con l'oro del brand (meno "vetro") ===== */
 .tone-dark .gl-card { background: linear-gradient(165deg, rgb(10 36 68 / 0.92), rgb(3 16 32 / 0.97)) !important; border-color: rgb(110 190 255 / 0.5) !important; box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06), 0 0 28px -8px rgb(58 150 255 / 0.5) !important; }
