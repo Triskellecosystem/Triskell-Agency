@@ -21,6 +21,7 @@ import { fit } from "@/components/fitness/data";
 import { AiChat } from "@/components/sections/AiChat";
 import { FitHeroStats } from "@/components/fitness/FitHeroStats";
 import { FitCrm } from "@/components/fitness/FitCrm";
+import { FitScrollLit } from "@/components/fitness/FitScrollLit";
 
 /**
  * Landing per palestre e centri fitness. Non è nel menu, nel footer né nella sitemap e non va indicizzata:
@@ -80,6 +81,7 @@ export default function PalestrePage() {
   const wa = site.brand.whatsapp;
   return (
     <div className="fit fit-page">
+      <FitScrollLit />
       {/* barra in alto, al posto del menu del sito */}
       <div className="fit-bar fixed inset-x-0 top-0 z-50">
         <div className="container-x flex h-16 items-center justify-between gap-4">
@@ -117,12 +119,12 @@ export default function PalestrePage() {
               <Link href="#contatti" className="fit-btn fit-btn--pulse">
                 <Icon name="calendar" className="h-5 w-5" strokeWidth={2.2} /> Prenota la call gratuita
               </Link>
-              <Link href="#risultati" className="fit-btn fit-btn--ghost">
+              <Link href="#risultati" className="fit-btn fit-btn--ghost fit-desk-only">
                 Guarda i risultati <Icon name="arrow-down" className="h-4 w-4" strokeWidth={2.4} />
               </Link>
             </Reveal>
             <Reveal y={10} blur={0} delay={0.4}>
-              <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-[0.875rem] text-white/60">
+              <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-[0.875rem] text-white/60 fit-desk-only">
                 {["Call gratuita di 30 minuti", "Casi studio solo fitness", "Nessun impegno"].map((x) => (
                   <li key={x} className="flex items-center gap-1.5"><Icon name="check" className="h-4 w-4 text-fit-300" strokeWidth={3} />{x}</li>
                 ))}
@@ -335,7 +337,7 @@ export default function PalestrePage() {
                   ["calendar", "Fissate la prova", "tu"],
                   ["bell", "L'AI lo ricorda", "ai"],
                 ] as const).map(([ic, t, who], k) => (
-                  <li key={t} className="fit-pop relative flex items-center gap-3 sm:flex-col sm:items-center sm:gap-1.5 sm:text-center" style={{ "--i": k + 3 } as React.CSSProperties}>
+                  <li key={t} data-lit="" className="fit-tl-li fit-pop relative flex items-center gap-3 sm:flex-col sm:items-center sm:gap-1.5 sm:text-center" style={{ "--i": k + 3 } as React.CSSProperties}>
                     <span className={`fit-tl-dot relative z-[1] grid h-10 w-10 shrink-0 place-items-center rounded-full ${who === "ai" ? "fit-tl-dot--ai" : who === "tu" ? "fit-tl-dot--tu" : ""}`}>
                       <Icon name={ic} className="h-4 w-4" strokeWidth={2.2} />
                       <span className="fit-tl-n">{k + 1}</span>

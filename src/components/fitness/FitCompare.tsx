@@ -33,16 +33,16 @@ export function FitCompare() {
   return (
     <div className={cn("fit-table overflow-hidden rounded-2xl", all && "fit-table--all")}>
       <div className="fit-table-head grid grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 py-4 sm:px-6">
-        <span className="flex items-center gap-2 text-[0.75rem] font-bold uppercase tracking-[0.18em] text-white/55"><span className="h-2 w-2 rounded-full bg-[#ff5a5a] shadow-[0_0_8px_#ff5a5a]" />Dove sei ora</span>
+        <span className="flex items-center gap-2 text-[0.75rem] font-bold uppercase tracking-[0.18em] text-white/55"><span className="h-2 w-2 rounded-full bg-[#ff5a5a] shadow-[0_0_8px_#ff5a5a]" /><span className="max-sm:hidden">Dove sei ora</span><span className="sm:hidden">Ora</span></span>
         <span className="w-8" />
-        <span className="flex items-center gap-2 text-[0.75rem] font-bold uppercase tracking-[0.18em] text-fit-300"><span className="fit-blink h-2 w-2 rounded-full bg-fit-300 shadow-[0_0_10px_#a6ff00]" />Con Triskell Fitness</span>
+        <span className="flex items-center gap-2 text-[0.75rem] font-bold uppercase tracking-[0.18em] text-fit-300"><span className="fit-blink h-2 w-2 rounded-full bg-fit-300 shadow-[0_0_10px_#a6ff00]" /><span className="max-sm:hidden">Con Triskell Fitness</span><span className="sm:hidden">Con noi</span></span>
       </div>
       <ul ref={ref}>
         {fit.compare.map((r, i) => (
           <li key={r.now} className={cn("fit-row grid grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 py-4 sm:px-6", i <= lit && "fit-row--on")}>
-            <span className="fit-row-now text-[0.875rem] leading-snug text-white/55 sm:text-[0.9375rem]"><span className="fit-row-lab fit-row-lab--now sm:hidden">Ora</span>{r.now}</span>
+            <span className="fit-row-now text-[0.875rem] leading-snug text-white/55 sm:text-[0.9375rem]"><Icon name="close" className="fit-row-x h-3.5 w-3.5 shrink-0 sm:hidden" strokeWidth={3} />{r.now}</span>
             <span className="fit-row-arrow grid h-8 w-8 place-items-center rounded-full"><Icon name="arrow-right" className="h-4 w-4" strokeWidth={2.6} /></span>
-            <span className="fit-row-next text-[0.875rem] font-semibold leading-snug sm:text-[0.9375rem]"><span className="fit-row-lab fit-row-lab--next sm:hidden">Con noi</span>{r.next}</span>
+            <span className="fit-row-next text-[0.875rem] font-semibold leading-snug sm:text-[0.9375rem]"><Icon name="check" className="fit-row-v h-3.5 w-3.5 shrink-0 sm:hidden" strokeWidth={3} />{r.next}</span>
           </li>
         ))}
       </ul>

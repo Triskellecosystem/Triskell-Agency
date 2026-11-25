@@ -2962,3 +2962,32 @@ body:has(.fit-page) .triski-root { --color-gold-300: #a6ff00; --color-gold-200: 
   .fit-reviews #recensioni-title { font-size: 1.5rem; }
   .fit-reviews section > div > header p:last-child { display: none; }
 }
+
+/* ===== Palestre mobile v2 ===== */
+.fit-tl-li .fit-tl-dot, .fit-tl-li > span:nth-child(2) { transition: background-color 0.9s, color 0.9s, box-shadow 0.9s, border-color 0.9s, opacity 0.9s; }
+.fit-node--slow { transition-duration: 0.9s !important; }
+@media (max-width: 639px) {
+  /* tabella su due colonne: a sinistra il problema con la X, a destra "con noi" */
+  .fit-table-head { display: grid !important; grid-template-columns: 1fr 1fr !important; padding: 0.6rem 0.8rem !important; gap: 0.6rem !important; }
+  .fit-table-head > span:nth-child(2) { display: none; }
+  .fit-table-head > span { font-size: 0.625rem !important; letter-spacing: 0.14em !important; }
+  .fit-row { grid-template-columns: 1fr 1fr !important; gap: 0.6rem !important; align-items: start !important; padding: 0.65rem 0.8rem !important; }
+  .fit-row-now, .fit-row-next { flex-direction: row !important; align-items: flex-start; gap: 0.35rem !important; font-size: 0.75rem !important; line-height: 1.3 !important; }
+  .fit-row-x { color: #ff6a6a; margin-top: 1px; }
+  .fit-row-v { color: #a6ff00; margin-top: 1px; }
+  .fit-row-now { text-decoration: none !important; }
+  .fit-row-next { color: rgb(255 255 255 / 0.35); }
+
+  /* telefono del profilo un po' più piccolo */
+  .fit .fit-tilt.max-w-\[19rem\] { max-width: 15.5rem; }
+
+  /* segretaria AI: i passi si accendono piano mentre scendi */
+  .fit-tl-li:not([data-on]) .fit-tl-dot { background: #0b120a !important; color: rgb(255 255 255 / 0.35) !important; border-color: rgb(255 255 255 / 0.15) !important; box-shadow: none !important; }
+  .fit-tl-li:not([data-on]) > span:nth-child(2) { opacity: 0.4; }
+  .fit-tl { gap: 0.9rem !important; }
+
+  /* recensioni: video e titolo un po' più grandi */
+  .fit-reviews [class*="max-w-[20rem]"] { max-width: 14.5rem !important; }
+  .fit-reviews #recensioni-title { font-size: 1.85rem !important; }
+}
+@media (max-width: 639px) { .fit-desk-only { display: none !important; } }

@@ -18,7 +18,7 @@ export function FitTilt({ children, className, max = 12 }: { children: React.Rea
     let raf = 0, last = 0, lastInput = -1e9, visible = false;
     let tx = 0, ty = 0; // obiettivo (-1..1)
     let x = 0, y = 0, vx = 0, vy = 0; // stato della molla
-    const K = 38, D = 11; // rigidità e smorzamento
+    let K = 38, D = 11; // rigidità e smorzamento (più reattivi al tocco)
     const PAD = 160; // area allargata intorno all'elemento
     const input = (cx: number, cy: number) => {
       const r = el.getBoundingClientRect();
@@ -41,8 +41,8 @@ export function FitTilt({ children, className, max = 12 }: { children: React.Rea
       el.style.setProperty("--my", `${((y + 1) * 50).toFixed(2)}%`);
       if (visible) raf = requestAnimationFrame(loop);
     };
-    const pm = (e: PointerEvent) => input(e.clientX, e.clientY);
-    const tm = (e: TouchEvent) => { const p = e.touches[0]; if (p) input(p.clientX, p.clientY); };
+    const pm = (e: PointerEvent) => { if (e.pointerType === "mouse") { K = 60; D = 14; } input(e.clientX, e.clientY); };
+    const tm = (e: TouchEvent) => { const p = e.touches[0]; if (p) { K = 140; D = 20; input(p.clientX, p.clientY); } };
     window.addEventListener("pointermove", pm, { passive: true });
     el.addEventListener("touchstart", tm, { passive: true });
     el.addEventListener("touchmove", tm, { passive: true });
