@@ -29,10 +29,25 @@ export const fit = {
   ] satisfies Array<{ icon: IconName; title: string; text: string }>,
 
   packages: [
-    { name: "Start", contents: 8, perWeek: "2 a settimana", campaigns: "2–3 campagne al mese", points: ["Strategia e piano editoriale", "Script pronti per i video", "Editing e pubblicazione", "Report mensile"], tag: "" },
-    { name: "Crescita", contents: 12, perWeek: "3 a settimana", campaigns: "4–5 campagne Meta e Google", points: ["Tutto di Start", "Campagne sempre attive sulla prova gratuita", "Test continui su offerte e creatività", "Call mensile sui numeri"], tag: "Il più scelto" },
-    { name: "Dominio", contents: 16, perWeek: "4 a settimana", campaigns: "Campagne continue + Irelia AI", points: ["Tutto di Crescita", "Irelia AI che scrive a ogni contatto", "CRM per seguire prove e iscrizioni", "Priorità su riprese e novità"], tag: "" },
+    { name: "Power", contents: 12, perWeek: "3 a settimana", campaigns: "4–5 campagne Meta e Google", points: ["Strategia e piano editoriale", "Script pronti per i video", "Editing e pubblicazione", "Report mensile con i numeri"], tag: "Base consigliata" },
+    { name: "Beast", contents: 24, perWeek: "6 a settimana", campaigns: "Campagne sempre attive + test continui", points: ["Tutto di Power", "Doppio dei contenuti, presenza costante", "Test continui su offerte e creatività", "Call mensile sui numeri"], tag: "Il più scelto" },
+    { name: "Legend", contents: 30, perWeek: "un contenuto nuovo ogni giorno", campaigns: "Campagne continue + Irelia AI", points: ["Tutto di Beast", "Ogni giorno un contenuto nuovo", "Irelia AI che scrive a ogni contatto", "CRM per seguire prove e iscrizioni"], tag: "Tutto il mese" },
   ],
+
+  /** Chat dimostrativa di Irelia per una palestra (stessa grafica dell'agency). */
+  chat: {
+    name: "La Tua Palestra",
+    status: "Irelia · il tuo assistente AI",
+    lead: "Nuovo contatto da Meta Ads",
+    messages: [
+      { from: "ai", text: "Ciao! Sono Irelia, l'assistente de La Tua Palestra 💪 Ho visto che ti interessa la prova gratuita.", time: "21:14" },
+      { from: "ai", text: "In che fascia oraria preferisci essere richiamato?", time: "21:14" },
+      { from: "user", text: "Domani dopo le 18, grazie!", time: "21:16" },
+      { from: "ai", text: "Perfetto! Ti chiamiamo domani tra le 18 e le 19. A presto!", time: "21:16" },
+    ],
+    booked: "Lead caldo · da richiamare domani 18–19",
+    reminder: "Promemoria inviato: prova giovedì 18:30",
+  },
 
   faq: [
     { q: "Funziona anche per una palestra piccola?", a: "Sì: la maggior parte dei nostri clienti fitness sono palestre e studi locali. Le campagne lavorano sulla tua zona, quindi conta essere i più convincenti lì, non essere grandi." },

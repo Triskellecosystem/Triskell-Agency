@@ -9,7 +9,7 @@ import { fit } from "./data";
 /** Pacchetti Social + Campagne in base ai contenuti; interruttore mensile / 6 mesi (scontistica maggiore). */
 export function FitPackages() {
   const [six, setSix] = useState(true);
-  const [pick, setPick] = useState(1);
+  const [pick, setPick] = useState(0);
   return (
     <div>
       <div className="flex justify-center">
@@ -33,7 +33,7 @@ export function FitPackages() {
               <span className="fit-h text-[1.5rem] text-white">{p.name}</span>
               <span className="mt-4 flex items-end gap-2">
                 <span className="fit-num text-[3.5rem] leading-none">{p.contents}</span>
-                <span className="pb-1.5 text-[0.9375rem] font-semibold leading-tight text-white">contenuti<br /><span className="text-white/60">al mese · {p.perWeek}</span></span>
+                <span className="pb-1.5 text-[0.9375rem] font-semibold leading-tight text-white">contenuti al mese<br /><span className="text-white/60">{p.perWeek}</span></span>
               </span>
               <span className="mt-3 flex items-center gap-2 text-[0.9375rem] font-semibold text-fit-200">
                 <Icon name="target" className="h-4 w-4" strokeWidth={2.2} /> {p.campaigns}

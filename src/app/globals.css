@@ -2749,3 +2749,12 @@ body:has(.fit-page) .triski-root { --color-gold-300: #a6ff00; --color-gold-200: 
 }
 .fit-iphone { transform: translateZ(50px); }
 .fit-phone-halo { transform: translateZ(-140px); }
+.fit-table-foot--on { animation: fit-foot 1.8s ease-in-out infinite; }
+@keyframes fit-foot { 50% { background: #c8ff4d; box-shadow: inset 0 0 30px rgb(255 255 255 / 0.35); } }
+.fit-irelia-line { background: linear-gradient(rgb(166 255 0 / 0.6), rgb(166 255 0 / 0.1)); }
+.fit-irelia-dot { color: rgb(255 255 255 / 0.6); background: #0b120a; border: 1px solid rgb(255 255 255 / 0.2); }
+.fit-irelia-dot--ai { color: #000; background: #a6ff00; border-color: #a6ff00; box-shadow: 0 0 16px -2px rgb(166 255 0 / 0.8); }
+.fit-irelia-dot--tu { color: #a6ff00; border-color: rgb(166 255 0 / 0.6); }
+.fit .ai-chat-glow { filter: none; }
+.fit .ai-chat-glow { box-shadow: 0 0 50px 2px rgb(166 255 0 / 0.45), 18px 18px 50px -14px rgb(166 255 0 / 0.35); }
+.fit .ai-chat-glow::after { background: linear-gradient(135deg, #a6ff00, #e2ff9a 40%, #74c800 80%); }

@@ -10,8 +10,8 @@ import { Icon } from "@/components/ui/Icon";
  * Chat dimostrativa stile WhatsApp: arriva il contatto dalla campagna, Irelia scrive per prima (con i puntini
  * "sta scrivendo"), il cliente indica la fascia oraria, compare "Lead caldo" e poi il promemoria. Poi ricomincia.
  */
-export function AiChat() {
-  const c = site.ai.chat;
+export function AiChat({ chat }: { chat?: typeof site.ai.chat } = {}) {
+  const c = chat ?? site.ai.chat;
   const ref = useRef<HTMLDivElement>(null);
   const n = c.messages.length;
   const total = n + 4; // avviso lead + messaggi + lead caldo + promemoria + pausa

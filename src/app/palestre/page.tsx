@@ -18,6 +18,7 @@ import { FitCompare } from "@/components/fitness/FitCompare";
 import { FitProfilePhone } from "@/components/fitness/FitProfilePhone";
 import { FitTilt } from "@/components/fitness/FitTilt";
 import { fit } from "@/components/fitness/data";
+import { AiChat } from "@/components/sections/AiChat";
 
 /**
  * Landing per palestre e centri fitness. Non è nel menu, nel footer né nella sitemap e non va indicizzata:
@@ -101,8 +102,8 @@ export default function PalestrePage() {
           <div>
             <Reveal y={12} blur={0}><Kicker>Per palestre e centri fitness</Kicker></Reveal>
             <Reveal y={18} blur={6} delay={0.1}>
-              <h1 id="fit-title" className="fit-h mt-5 text-[clamp(2.5rem,1.5rem+4vw,5rem)] leading-[0.92] text-white">
-                Hai un&apos;attività di fitness e vuoi <G>più clienti</G>?
+              <h1 id="fit-title" className="fit-h mt-5 text-[clamp(2.1rem,1.2rem+3.4vw,4.25rem)] leading-[0.94] text-white">
+                <span className="whitespace-nowrap">Hai un&apos;attività</span> di fitness e vuoi <G>più clienti</G>?
               </h1>
             </Reveal>
             <Reveal y={12} blur={0} delay={0.2}>
@@ -297,6 +298,50 @@ export default function PalestrePage() {
 
       <Sep />
 
+      {/* IRELIA */}
+      <section aria-labelledby="fit-irelia" className="fit-bg-glow relative isolate overflow-hidden py-20 lg:py-28">
+        <div className="fit-squares" aria-hidden="true" />
+        <div className="container-x relative grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+          <div>
+            <Reveal y={12} blur={0}>
+              <Kicker>Il nostro vantaggio competitivo</Kicker>
+              <Title id="fit-irelia">Irelia, l&apos;AI che <G>non ti fa perdere</G> nessun cliente.</Title>
+              <p className="mt-5 max-w-xl text-[1.0625rem] text-white/70">{site.ai.line}</p>
+            </Reveal>
+            <Reveal y={0} blur={0} className="mt-7">
+              <dl className="grid max-w-lg grid-cols-3 gap-2.5">
+                {site.ai.console.stats.map((st, k) => (
+                  <div key={st.label} className="fit-pop fit-stat relative overflow-hidden rounded-xl px-3 py-3.5" style={{ "--i": k } as React.CSSProperties}>
+                    <dd><CountUp {...st} className="fit-num block whitespace-nowrap text-[clamp(1.4rem,1rem+1.2vw,2rem)] leading-none" duration={1.2} /></dd>
+                    <dt className="mt-1.5 text-[0.75rem] font-semibold text-white/70">{st.label}</dt>
+                  </div>
+                ))}
+              </dl>
+            </Reveal>
+            <Reveal y={0} blur={0} className="mt-7">
+              <ol className="relative space-y-2 pl-1">
+                <span aria-hidden="true" className="fit-irelia-line absolute bottom-4 left-[1.1rem] top-4 w-px" />
+                {site.ai.steps.map((st, k) => (
+                  <li key={st.title} className="fit-pop relative flex items-center gap-3" style={{ "--i": k + 3 } as React.CSSProperties}>
+                    <span className={`fit-irelia-dot relative z-[1] grid h-9 w-9 shrink-0 place-items-center rounded-lg ${st.who === "ai" ? "fit-irelia-dot--ai" : st.who === "tu" ? "fit-irelia-dot--tu" : ""}`}>
+                      <Icon name={st.icon} className="h-4 w-4" strokeWidth={2.2} />
+                    </span>
+                    <span className="text-[0.9375rem] font-semibold text-white">{st.title}</span>
+                    <span className={`ml-auto shrink-0 rounded-md px-2 py-0.5 text-[0.625rem] font-bold uppercase tracking-wider ${st.who === "ai" ? "bg-fit-300 text-black" : st.who === "tu" ? "border border-white/25 text-white/80" : "text-white/45"}`}>{st.who === "ai" ? "Irelia" : st.who === "tu" ? "Tu" : "Campagna"}</span>
+                  </li>
+                ))}
+              </ol>
+            </Reveal>
+          </div>
+          <Reveal from="right" blur={0}>
+            <AiChat chat={fit.chat} />
+          </Reveal>
+        </div>
+        <div className="container-x"><CtaRow text="Vuoi Irelia anche nella tua palestra?" /></div>
+      </section>
+
+      <Sep />
+
       {/* RIPRESE */}
       <section aria-labelledby="fit-shoot" className="fit-band relative isolate overflow-hidden py-20 lg:py-28">
         <div className="container-x">
@@ -348,11 +393,11 @@ export default function PalestrePage() {
       <Sep />
 
       {/* FAQ */}
-      <section aria-labelledby="fit-faq" className="fit-bg-beams relative isolate overflow-hidden py-20 lg:py-24">
+      <section aria-labelledby="fit-faq" className="fit-bg-beams relative isolate overflow-hidden py-16 lg:py-20">
         <div className="container-x">
-          <Reveal y={12} blur={0} className="mb-10 text-center">
+          <Reveal y={12} blur={0} className="mb-8 text-center">
             <Kicker>Domande frequenti</Kicker>
-            <Title id="fit-faq">Le domande <G>che ci fanno</G>.</Title>
+            <Title id="fit-faq" className="text-[clamp(1.75rem,1.3rem+1.8vw,2.75rem)]">Le domande <G>che ci fanno</G>.</Title>
           </Reveal>
           <Reveal y={12} blur={0}><FitFaq /></Reveal>
           <CtaRow text="Hai un'altra domanda? Parliamone in call, è gratuita." />

@@ -46,9 +46,13 @@ export function FitCompare() {
           </li>
         ))}
       </ul>
-      <p className={cn("fit-table-foot px-4 py-3 text-center text-[0.8125rem] font-bold uppercase tracking-[0.16em] sm:px-6", all && "fit-table-foot--on")}>
-        {all ? "Tutto acceso: ecco dove puoi arrivare" : "Scorri: ogni riga si accende da sola"}
-      </p>
+      {all ? (
+        <a href="#contatti" className="fit-table-foot fit-table-foot--on flex items-center justify-center gap-2 px-4 py-3.5 text-center text-[0.875rem] font-bold uppercase tracking-[0.12em] sm:px-6">
+          Ti abbiamo convinto? Prenota la tua call gratuita <Icon name="arrow-right" className="h-4 w-4" strokeWidth={2.8} />
+        </a>
+      ) : (
+        <p className="fit-table-foot px-4 py-3.5 text-center text-[0.8125rem] font-bold uppercase tracking-[0.16em] sm:px-6">Scorri: ogni riga si accende da sola</p>
+      )}
     </div>
   );
 }
