@@ -20,7 +20,7 @@ import { HeroFx } from "@/components/ui/HeroFx";
 
 export const metadata: Metadata = {
   title: "Gestione social media",
-  description: "Più visibilità al tuo profilo con il minimo impegno: call iniziali, script pronti, riprese sul posto o in autonomia, editing, pubblicazione e report. Base consigliata: 12 contenuti al mese.",
+  description: "Più visibilità al tuo profilo con il minimo impegno: script pronti, riprese, editing, pubblicazione e report. Base consigliata: 12 contenuti al mese.",
   alternates: { canonical: "/social" },
 };
 

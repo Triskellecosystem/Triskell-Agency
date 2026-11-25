@@ -13,7 +13,7 @@ import { HeroFx } from "@/components/ui/HeroFx";
 
 export const metadata: Metadata = {
   title: "Risultati",
-  description: "Clienti reali, numeri reali: lead, prenotazioni e fatturato ottenuti con Triskell Agency.",
+  description: "Clienti reali, numeri reali: lead, prenotazioni e fatturato ottenuti con Triskell Agency grazie a social, campagne Meta e Google e automazioni.",
   alternates: { canonical: "/risultati" },
 };
 

@@ -98,7 +98,7 @@ export function PhoneFan() {
       </div>
       <div className="absolute inset-x-0 bottom-0 z-30 flex justify-center gap-1.5">
         {shots.map((s, i) => (
-          <button key={s.id} type="button" aria-label={s.alt} onClick={() => setFront(i)} className={cn("h-1.5 rounded-full transition-all duration-500", i === front ? "w-6 bg-gold-300" : "w-1.5 bg-white/25")} />
+          <button key={s.id} type="button" aria-label={s.alt} onClick={() => setFront(i)} className={cn("h-1.5 rounded-full transition-all duration-500 relative after:absolute after:-inset-x-1 after:-inset-y-4 after:content-['']", i === front ? "w-6 bg-gold-300" : "w-1.5 bg-white/25")} />
         ))}
       </div>
     </div>

@@ -11,7 +11,7 @@ import { SectionBg } from "@/components/ui/SectionBg";
 
 export const metadata: Metadata = {
   title: "Chi siamo",
-  description: "Il team di Triskell Agency: Tomaso, founder (marketing e AI), e William, web designer e creative developer.",
+  description: "Il team di Triskell Agency, agenzia di marketing e AI: Tomaso, founder (marketing e AI), e William, web designer e creative developer.",
   alternates: { canonical: "/chi-siamo" },
 };
 

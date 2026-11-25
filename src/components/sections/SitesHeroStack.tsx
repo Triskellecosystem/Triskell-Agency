@@ -71,7 +71,7 @@ export function SitesHeroStack() {
       })}
       <div className="absolute -bottom-9 left-1/2 flex -translate-x-1/2 gap-1.5">
         {items.map((it, i) => (
-          <button key={it.id} type="button" aria-label={`Sito ${i + 1}`} onClick={() => setCur(i)} className={cn("h-1.5 rounded-full transition-all duration-300", i === cur ? "w-6 bg-gold-300" : "w-1.5 bg-white/30 hover:bg-white/60")} />
+          <button key={it.id} type="button" aria-label={`Mostra il sito ${i + 1}`} onClick={() => setCur(i)} className={cn("h-1.5 rounded-full transition-all duration-300 relative after:absolute after:-inset-x-1 after:-inset-y-4 after:content-['']", i === cur ? "w-6 bg-gold-300" : "w-1.5 bg-white/30 hover:bg-white/60")} />
         ))}
       </div>
     </div>

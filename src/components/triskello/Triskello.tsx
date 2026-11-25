@@ -193,7 +193,7 @@ export function Triskello() {
 
       {hello && !open && (
         <div role="status" className="triski-bubble absolute bottom-[calc(100%+0.75rem)] right-0 w-[16rem] max-w-[calc(100vw-1.5rem)] rounded-2xl rounded-br-sm border border-azure-300/50 bg-night-raised/95 p-3.5 text-[0.875rem] leading-snug text-fg shadow-[0_16px_40px_-10px_rgb(0_0_0/0.8)] backdrop-blur">
-          <button type="button" onClick={dismiss} aria-label="Chiudi il messaggio" className="absolute -right-2 -top-2 grid h-6 w-6 place-items-center rounded-full border border-line-strong bg-night text-[0.75rem] text-fg-2 hover:text-fg">×</button>
+          <button type="button" onClick={dismiss} aria-label="Chiudi il messaggio" className="absolute -right-2 -top-2 grid h-6 w-6 place-items-center after:absolute after:-inset-2.5 after:content-[''] rounded-full border border-line-strong bg-night text-[0.75rem] text-fg-2 hover:text-fg">×</button>
           {TRISKELLO_HELLO}
         </div>
       )}

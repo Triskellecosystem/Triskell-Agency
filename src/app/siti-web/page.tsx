@@ -15,7 +15,7 @@ import { SectionGlow } from "@/components/ui/SectionGlow";
 
 export const metadata: Metadata = {
   title: "Siti web",
-  description: "Come creiamo il tuo sito e tutti i siti che abbiamo realizzato: call iniziale, stile scelto insieme, struttura e testi, prima versione, revisioni, pubblicazione e assistenza.",
+  description: "Siti web su misura per la tua attività: call iniziale, stile scelto insieme, testi, revisioni, pubblicazione e assistenza. Guarda i siti realizzati.",
   alternates: { canonical: "/siti-web" },
 };
 
