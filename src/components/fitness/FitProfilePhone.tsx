@@ -30,7 +30,7 @@ export function FitProfilePhone() {
             <div className="flex items-center gap-4 px-3.5">
               <span className="fit-story grid h-[4.4rem] w-[4.4rem] shrink-0 place-items-center rounded-full p-[2.5px]">
                 <span className="relative block h-full w-full overflow-hidden rounded-full border-2 border-black bg-black">
-                  <Image src="/fitness/mark.webp" alt="" fill sizes="4.4rem" className="object-contain p-1.5" />
+                  <Image src="/fitness/mark.webp" alt="" fill sizes="4.4rem" loading="eager" className="object-contain p-1.5" />
                 </span>
               </span>
               <div className="grid flex-1 grid-cols-3 text-center">
@@ -72,7 +72,7 @@ export function FitProfilePhone() {
             <ul className="grid grid-cols-3 gap-[2px]">
               {[0, 4, 1, 5, 3, 8].map((i) => (
                 <li key={i} className="fit-tile relative aspect-square overflow-hidden bg-[#111]" style={{ "--i": i } as React.CSSProperties}>
-                  <Image src={i === 4 ? "/fitness/post-gym.webp" : `/fitness/post-${i}.webp`} alt="" fill sizes="6.5rem" className="object-cover" />
+                  <Image src={i === 4 ? "/fitness/post-gym.webp" : `/fitness/post-${i}.webp`} alt="" fill sizes="(max-width: 640px) 30vw, 6.5rem" loading="eager" className="object-cover" />
                   {(i === 1 || i === 5 || i === 7) && <Icon name="film" className="absolute right-1 top-1 h-3 w-3 text-white drop-shadow" strokeWidth={2.4} />}
                 </li>
               ))}

@@ -2881,3 +2881,84 @@ body:has(.fit-page) .triski-root { --color-gold-300: #a6ff00; --color-gold-200: 
 .fit-shoots-sec { padding-top: 5rem !important; padding-bottom: 4.5rem !important; }
 .fit-shoots-sec .fit-phone.aspect-\[9\/16\] { height: min(54svh, 29rem); width: auto; }
 @media (max-width: 639px) { .fit-shoots-sec .fit-phone.aspect-\[9\/16\] { height: auto; width: 100%; } .fit-shoots-sec .w-fit { width: 100%; } }
+
+/* ===== Landing palestre: telefono ===== */
+@media (max-width: 639px) {
+  .fit { font-size: 0.875rem; }
+  .fit .fit-sub { display: none; }
+  .fit .fit-sub-hero { font-size: 0.9rem !important; margin-top: 1rem; }
+  .fit section { padding-top: 2.75rem !important; padding-bottom: 2.75rem !important; }
+  .fit .fit-hero { padding-top: 5.25rem !important; }
+  .fit h2.fit-h { font-size: 1.6rem !important; line-height: 1.02 !important; }
+  .fit h1.fit-h { font-size: 2rem !important; }
+  .fit-kicker { font-size: 0.625rem; }
+  .fit-squares { animation: none; opacity: 0.45; background-size: 48px 48px; }
+  .fit-bg-aurora::before, .fit-bg-aurora2::before { animation: none; }
+  .fit-btn { padding: 0.75rem 1.1rem; font-size: 0.8125rem; }
+  .fit .mt-10 { margin-top: 1.5rem; }
+  .fit .mt-12 { margin-top: 1.75rem; }
+  .fit .mt-14 { margin-top: 2rem; }
+
+  /* apertura: foto più piccola */
+  .fit-hero-card { width: 58vw !important; }
+  .fit-tilt-body .fit-chip { transform: translateZ(40px); }
+  .fit-chip-in { padding: 0.35rem 0.55rem 0.35rem 0.4rem !important; gap: 0.4rem !important; border-radius: 0.7rem; }
+  .fit-chip-in .fit-num { font-size: 0.95rem !important; }
+  .fit-chip-txt { font-size: 0.5625rem; gap: 0.1rem; }
+  .fit-bars { width: 1.4rem !important; height: 1.3rem !important; gap: 2px; }
+  .fit-ring-svg { width: 1.6rem !important; height: 1.6rem !important; }
+  .fit-faces i, .fit-faces b { width: 0.95rem !important; height: 0.95rem !important; font-size: 0.45rem; border-width: 1px; }
+  .fit-tilt-body .fit-chip--1 { left: -16%; } .fit-tilt-body .fit-chip--2 { right: -18%; } .fit-tilt-body .fit-chip--3 { left: -14%; }
+  .fit-strip span { font-size: 0.875rem !important; }
+
+  /* dove sei ora: schede chiare Ora → Con noi */
+  .fit-table { border-radius: 1rem; }
+  .fit-row { padding: 0.75rem 0.9rem; gap: 0.3rem; }
+  .fit-row-now, .fit-row-next { font-size: 0.8125rem !important; display: flex; flex-direction: column; gap: 0.15rem; }
+  .fit-row-arrow { display: none !important; }
+  .fit-row-lab { font-size: 0.5625rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; }
+  .fit-row-lab--now { color: #ff7a7a; }
+  .fit-row-lab--next { color: #a6ff00; }
+  .fit-table-foot { font-size: 0.6875rem !important; padding: 0.7rem !important; }
+  .fit-answer { padding: 1.5rem 1rem !important; }
+  .fit-answer .fit-h { font-size: 1.35rem !important; }
+
+  /* numeri */
+  .fit-stat--sm { padding: 0.75rem !important; }
+  .fit-stat--sm .fit-num { font-size: 1.35rem !important; }
+
+  /* metodo */
+  .fit-eq .fit-card { padding: 0.75rem 0.9rem; }
+  .fit-eq .fit-card .fit-h { font-size: 1.05rem; }
+  .fit-eq .fit-card span span:last-child { font-size: 0.75rem; }
+  .fit-eq .fit-op span { width: 2rem; height: 2rem; font-size: 1.1rem; }
+  .fit-res { padding: 1rem 1.1rem; }
+  .fit-res .fit-h { font-size: 1.35rem; }
+
+  /* pacchetti sintetici */
+  .fit-pack { padding: 1rem 1.1rem !important; }
+  .fit-pack > span.my-5, .fit-pack > span.space-y-2, .fit-pack > span.mt-auto { display: none; }
+  .fit-pack .fit-num { font-size: 2.4rem !important; }
+  .fit-pack .fit-h.text-\[1\.5rem\] { font-size: 1.1rem; }
+  .fit-pack--star { transform: none !important; }
+  .fit-switch button { padding: 0.45rem 0.9rem; font-size: 0.75rem; }
+
+  /* segretaria AI */
+  .fit-ai [class*="h-[23rem]"] { height: 11.5rem !important; }
+  .fit-ai .max-w-\[21rem\] { max-width: 17rem; }
+  .fit-tl { gap: 0.45rem; }
+  .fit-tl-dot { width: 2rem; height: 2rem; }
+
+  /* CRM: solo titoli dei vantaggi */
+  .fit-crm-col ul { min-height: 9rem; }
+  .fit .fit-card > span.mt-2 { display: none; }
+
+  /* profilo */
+  .fit-iphone { transform: none; }
+
+  /* recensioni: 2 e poi "leggi tutte" */
+  .fit-reviews .rv-list[data-all="0"] > li:nth-child(n+3) { display: none; }
+  .fit-reviews [class*="max-w-[20rem]"] { max-width: 11.5rem !important; }
+  .fit-reviews #recensioni-title { font-size: 1.5rem; }
+  .fit-reviews section > div > header p:last-child { display: none; }
+}

@@ -152,7 +152,7 @@ export function Reviews() {
               </span>
             </div>
           </Reveal>
-          <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+          <ul data-all={all ? "1" : "0"} className="rv-list mt-4 grid gap-3 sm:grid-cols-2">
             {shown.map((r, i) => (
               <li key={r.name} className="rv-card gl-card flex flex-col rounded-[1.25rem] p-4" style={{ "--i": i % 4 } as React.CSSProperties}>
                 <div className="flex items-center gap-3">

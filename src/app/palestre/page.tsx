@@ -109,7 +109,7 @@ export default function PalestrePage() {
               </h1>
             </Reveal>
             <Reveal y={12} blur={0} delay={0.2}>
-              <p className="mt-6 max-w-xl text-[clamp(1rem,0.9rem+0.4vw,1.25rem)] leading-relaxed text-white/75">
+              <p className="fit-sub-hero mt-6 max-w-xl text-[clamp(1rem,0.9rem+0.4vw,1.25rem)] leading-relaxed text-white/75">
                 Siamo la soluzione al tuo caso: <strong className="text-white">social, campagne e automazioni pensati solo per il fitness</strong>, con risultati misurati su palestre vere.
               </p>
             </Reveal>
@@ -167,7 +167,7 @@ export default function PalestrePage() {
           <Reveal y={12} blur={0} className="mx-auto max-w-3xl text-center">
             <Kicker>Ti riconosci?</Kicker>
             <Title id="fit-pains">Dove sei ora e <G>dove puoi arrivare</G>.</Title>
-            <p className="mx-auto mt-4 max-w-2xl text-[1.0625rem] text-white/70">Le situazioni che ci raccontano le palestre ogni giorno,<br className="max-sm:hidden" /> e come cambiano quando lavoriamo insieme.</p>
+            <p className="mx-auto mt-4 max-w-2xl text-[1.0625rem] text-white/70 fit-sub">Le situazioni che ci raccontano le palestre ogni giorno,<br className="max-sm:hidden" /> e come cambiano quando lavoriamo insieme.</p>
           </Reveal>
           <Reveal y={16} blur={0} className="mx-auto mt-10 max-w-5xl">
             <FitCompare />
@@ -224,7 +224,7 @@ export default function PalestrePage() {
           <Reveal y={12} blur={0} className="text-center">
             <Kicker>Metodo Triskell Fitness</Kicker>
             <Title id="fit-metodo" className="mx-auto max-w-4xl">Social + Campagne = <G>più iscritti</G></Title>
-            <p className="mx-auto mt-4 max-w-2xl text-[1.0625rem] text-white/70">Il profilo dà fiducia, le campagne portano persone, la segretaria AI non ne perde nessuna. Un solo team per tutto.</p>
+            <p className="mx-auto mt-4 max-w-2xl text-[1.0625rem] text-white/70 fit-sub">Il profilo dà fiducia, le campagne portano persone, la segretaria AI non ne perde nessuna. Un solo team per tutto.</p>
           </Reveal>
           <Reveal y={0} blur={0} className="mt-12">
             <div className="fit-eq grid items-stretch gap-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1.15fr]">
@@ -267,7 +267,7 @@ export default function PalestrePage() {
           <Reveal y={12} blur={0}>
             <Kicker>Il profilo che costruiamo</Kicker>
             <Title id="fit-feed">Un profilo che fa venire <G>voglia di allenarsi</G> da te.</Title>
-            <p className="mt-5 max-w-lg text-[1.0625rem] text-white/70">Stile riconoscibile, contenuti che spiegano e motivano, storie in evidenza ordinate. Chi arriva dalla campagna trova una palestra seria e prenota la prova.</p>
+            <p className="mt-5 max-w-lg text-[1.0625rem] text-white/70 fit-sub">Stile riconoscibile, contenuti che spiegano e motivano, storie in evidenza ordinate. Chi arriva dalla campagna trova una palestra seria e prenota la prova.</p>
             <ul className="mt-6 grid max-w-lg grid-cols-2 gap-2">
               {[["video", "Reel dinamici"], ["image", "Post informativi"], ["repeat", "Storie e dietro le quinte"], ["users", "Risultati dei clienti"]].map(([ic, t]) => (
                 <li key={t} className="fit-card flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-[0.875rem] font-semibold text-white">
@@ -294,7 +294,7 @@ export default function PalestrePage() {
           <Reveal y={12} blur={0} className="text-center">
             <Kicker>I pacchetti</Kicker>
             <Title id="fit-pack" className="mx-auto max-w-3xl">Social + Campagne, <G>in base ai contenuti</G> che ti servono.</Title>
-            <p className="mx-auto mt-4 max-w-2xl text-[1.0625rem] text-white/70">Scegli quanti contenuti al mese vuoi pubblicare: le campagne e la gestione crescono insieme. Con il pacchetto da 6 mesi hai la scontistica maggiore.</p>
+            <p className="mx-auto mt-4 max-w-2xl text-[1.0625rem] text-white/70 fit-sub">Scegli quanti contenuti al mese vuoi pubblicare: le campagne e la gestione crescono insieme. Con il pacchetto da 6 mesi hai la scontistica maggiore.</p>
           </Reveal>
           <Reveal y={12} blur={0} className="mt-10">
             <FitPackages />
@@ -312,7 +312,7 @@ export default function PalestrePage() {
             <Reveal y={12} blur={0}>
               <Kicker>Il nostro vantaggio competitivo</Kicker>
               <Title id="fit-ai" className="text-[clamp(1.9rem,1.3rem+2vw,3rem)]">La segretaria AI che <G>non ti fa perdere</G> nessun cliente.</Title>
-              <p className="mt-4 max-w-xl text-[1rem] text-white/70">Arriva un contatto dalla campagna: l&apos;assistente AI gli scrive subito su WhatsApp, raccoglie quando vuole essere richiamato e tu chiami un cliente già pronto.</p>
+              <p className="mt-4 max-w-xl text-[1rem] text-white/70 fit-sub">Arriva un contatto dalla campagna: l&apos;assistente AI gli scrive subito su WhatsApp, raccoglie quando vuole essere richiamato e tu chiami un cliente già pronto.</p>
             </Reveal>
             <Reveal y={0} blur={0} className="mt-5">
               <dl className="grid max-w-md grid-cols-3 gap-2">
@@ -371,7 +371,7 @@ export default function PalestrePage() {
             <Reveal y={12} blur={0}>
               <Kicker>Il CRM per la tua palestra</Kicker>
               <Title id="fit-crm">Tutti i tuoi contatti <G>in un posto solo</G>.</Title>
-              <p className="mt-5 max-w-xl text-[1.0625rem] text-white/70">Il CRM è l&apos;archivio intelligente dei tuoi clienti: ogni persona che ti scrive finisce lì, con nome, provenienza e a che punto è. Così sai sempre chi richiamare, chi ha fatto la prova e chi si è iscritto.</p>
+              <p className="mt-5 max-w-xl text-[1.0625rem] text-white/70 fit-sub">Il CRM è l&apos;archivio intelligente dei tuoi clienti: ogni persona che ti scrive finisce lì, con nome, provenienza e a che punto è. Così sai sempre chi richiamare, chi ha fatto la prova e chi si è iscritto.</p>
             </Reveal>
             <Reveal y={0} blur={0} className="mt-7">
               <ul className="grid gap-2.5 sm:grid-cols-2">
@@ -424,7 +424,7 @@ export default function PalestrePage() {
           <Reveal y={12} blur={0} className="max-w-3xl">
             <Kicker>Casi studio fitness</Kicker>
             <Title id="fit-cases">Palestre vere, <G>numeri veri</G>.</Title>
-            <p className="mt-4 max-w-2xl text-[1.0625rem] text-white/70">Solo progetti nel mondo fitness e wellness. Apri ogni caso per vedere la sfida, cosa abbiamo fatto e i risultati.</p>
+            <p className="mt-4 max-w-2xl text-[1.0625rem] text-white/70 fit-sub">Solo progetti nel mondo fitness e wellness. Apri ogni caso per vedere la sfida, cosa abbiamo fatto e i risultati.</p>
           </Reveal>
           <Reveal y={0} blur={0} className="mt-10">
             <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

@@ -38,22 +38,23 @@ export function FitGrid({ cell = 64, density = 0.035, className }: { cell?: numb
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, w, h);
       // quadrati accesi
-      if (!reduced && Math.random() < density * (dt / 16) * 6) {
+      const mob = w < 640;
+      if (!reduced && Math.random() < density * (dt / 16) * (mob ? 1.2 : 6)) {
         const k = Math.floor(Math.random() * heat.length);
         heat[k] = 0.55 + Math.random() * 0.45;
       }
       for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) {
         const k = j * cols + i, v = heat[k]!;
         if (v <= 0.01) continue;
-        ctx.fillStyle = `rgba(166,255,0,${(v * 0.22).toFixed(3)})`;
+        ctx.fillStyle = `rgba(166,255,0,${(v * (w < 640 ? 0.1 : 0.22)).toFixed(3)})`;
         ctx.fillRect(i * c + 1, j * c + 1, c - 2, c - 2);
-        ctx.strokeStyle = `rgba(190,255,60,${(v * 0.7).toFixed(3)})`;
+        ctx.strokeStyle = `rgba(190,255,60,${(v * (w < 640 ? 0.35 : 0.7)).toFixed(3)})`;
         ctx.lineWidth = 1;
         ctx.strokeRect(i * c + 1.5, j * c + 1.5, c - 3, c - 3);
-        heat[k] = v * Math.pow(0.965, dt / 16);
+        heat[k] = v * Math.pow(w < 640 ? 0.985 : 0.965, dt / 16);
       }
       // griglia
-      ctx.strokeStyle = "rgba(166,255,0,0.07)";
+      ctx.strokeStyle = w < 640 ? "rgba(166,255,0,0.035)" : "rgba(166,255,0,0.07)";
       ctx.lineWidth = 1;
       ctx.beginPath();
       for (let i = 0; i <= cols; i++) { ctx.moveTo(i * c + 0.5, 0); ctx.lineTo(i * c + 0.5, h); }

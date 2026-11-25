@@ -11,7 +11,60 @@ const N = fit.funnel.length;
  * Da un contenuto a un nuovo iscritto, come la spirale dei siti dell'agency: la sezione resta ferma mentre scorri,
  * la spirale gira e scende portando davanti un passo alla volta. A lato l'elenco dei passi segue l'avanzamento.
  */
+/** Su telefono: timeline verticale semplice, i passi si accendono man mano che scorri. */
+function FitFunnelMobile() {
+  const ref = useRef<HTMLOListElement>(null);
+  const [lit, setLit] = useState(-1);
+  useEffect(() => {
+    const ol = ref.current;
+    if (!ol) return;
+    let raf = 0;
+    const check = () => {
+      raf = 0;
+      let n = -1;
+      [...ol.children].forEach((li, i) => { if (li.getBoundingClientRect().top < innerHeight * 0.7) n = i; });
+      setLit(n);
+    };
+    const on = () => { if (!raf) raf = requestAnimationFrame(check); };
+    window.addEventListener("scroll", on, { passive: true });
+    check();
+    return () => { window.removeEventListener("scroll", on); cancelAnimationFrame(raf); };
+  }, []);
+  return (
+    <div className="container-x py-12">
+      <p className="fit-kicker inline-flex items-center gap-2 rounded-md px-2.5 py-1 text-[0.625rem] font-bold uppercase tracking-[0.2em]"><span className="h-1.5 w-1.5 rounded-sm bg-fit-300" />Il percorso</p>
+      <h2 id="fit-path" className="fit-h mt-3 text-[1.6rem] leading-[1] text-white">Da un contenuto a un <span className="fit-glow">nuovo iscritto</span>.</h2>
+      <ol ref={ref} className="relative mt-6 space-y-2.5">
+        <span aria-hidden="true" className="absolute bottom-5 left-[1.15rem] top-5 w-0.5 bg-fit-300/20" />
+        <span aria-hidden="true" className="absolute left-[1.15rem] top-5 w-0.5 bg-fit-300 shadow-[0_0_8px_#a6ff00] transition-[height] duration-500" style={{ height: `${Math.max(0, lit) / (N - 1) * 100}%`, maxHeight: "calc(100% - 2.5rem)" }} />
+        {fit.funnel.map((s, i) => (
+          <li key={s.title} className="relative flex items-center gap-3">
+            <span className={cn("fit-node relative z-[1] grid h-[2.3rem] w-[2.3rem] shrink-0 place-items-center rounded-lg", i < lit && "fit-node--done", i === lit && "fit-node--on")}>
+              <Icon name={s.icon} className="h-4 w-4" strokeWidth={2} />
+            </span>
+            <span className="min-w-0">
+              <span className={cn("fit-h block text-[0.875rem]", i <= lit ? "text-white" : "text-white/45")}>0{i + 1} · {s.title}</span>
+              <span className={cn("block text-[0.75rem] leading-snug transition-colors", i <= lit ? "text-white/65" : "text-white/30")}>{s.text}</span>
+            </span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
 export function FitFunnel() {
+  const [mobile, setMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const f = () => setMobile(mq.matches);
+    f(); mq.addEventListener("change", f);
+    return () => mq.removeEventListener("change", f);
+  }, []);
+  return mobile ? <FitFunnelMobile /> : <FitFunnelDesktop />;
+}
+
+function FitFunnelDesktop() {
   const box = useRef<HTMLDivElement>(null);
   const [p, setP] = useState(0);
   useEffect(() => {

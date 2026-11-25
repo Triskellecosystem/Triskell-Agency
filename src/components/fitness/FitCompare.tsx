@@ -40,9 +40,9 @@ export function FitCompare() {
       <ul ref={ref}>
         {fit.compare.map((r, i) => (
           <li key={r.now} className={cn("fit-row grid grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 py-4 sm:px-6", i <= lit && "fit-row--on")}>
-            <span className="fit-row-now text-[0.875rem] leading-snug text-white/55 sm:text-[0.9375rem]">{r.now}</span>
+            <span className="fit-row-now text-[0.875rem] leading-snug text-white/55 sm:text-[0.9375rem]"><span className="fit-row-lab fit-row-lab--now sm:hidden">Ora</span>{r.now}</span>
             <span className="fit-row-arrow grid h-8 w-8 place-items-center rounded-full"><Icon name="arrow-right" className="h-4 w-4" strokeWidth={2.6} /></span>
-            <span className="fit-row-next text-[0.875rem] font-semibold leading-snug sm:text-[0.9375rem]">{r.next}</span>
+            <span className="fit-row-next text-[0.875rem] font-semibold leading-snug sm:text-[0.9375rem]"><span className="fit-row-lab fit-row-lab--next sm:hidden">Con noi</span>{r.next}</span>
           </li>
         ))}
       </ul>
