@@ -94,15 +94,15 @@ export default function PalestrePage() {
       </div>
 
       {/* HERO */}
-      <section aria-labelledby="fit-title" className="fit-hero relative isolate overflow-hidden pb-20 pt-28 sm:pt-32 lg:pb-28">
+      <section aria-labelledby="fit-title" className="fit-hero relative isolate flex items-center overflow-hidden pb-14 pt-24 lg:min-h-[100svh] lg:pb-10 lg:pt-20">
         <FitGrid />
         <span aria-hidden="true" className="fit-hero-glow" />
         <div className="container-x relative grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <Reveal y={12} blur={0}><Kicker>Per palestre e centri fitness</Kicker></Reveal>
             <Reveal y={18} blur={6} delay={0.1}>
-              <h1 id="fit-title" className="fit-h mt-5 text-[clamp(2.25rem,1.4rem+3.6vw,4.5rem)] leading-[0.95] text-white">
-                Hai una palestra o ti occupi di fitness e vorresti <G>più clienti</G>?
+              <h1 id="fit-title" className="fit-h mt-5 text-[clamp(2.5rem,1.5rem+4vw,5rem)] leading-[0.92] text-white">
+                Hai un&apos;attività di fitness e vuoi <G>più clienti</G>?
               </h1>
             </Reveal>
             <Reveal y={12} blur={0} delay={0.2}>
@@ -127,8 +127,8 @@ export default function PalestrePage() {
             </Reveal>
           </div>
 
-          <Reveal from="scale" blur={0} className="relative mx-auto w-full max-w-[23rem] lg:max-w-[25rem]">
-            <FitTilt max={10}>
+          <Reveal from="scale" blur={0} className="relative mx-auto w-fit">
+            <FitTilt max={18}>
               <div className="fit-tilt-body relative">
                 <span aria-hidden="true" className="fit-ring fit-ring--a" />
                 <span aria-hidden="true" className="fit-ring fit-ring--b" />
@@ -166,7 +166,7 @@ export default function PalestrePage() {
           <Reveal y={12} blur={0} className="mx-auto max-w-3xl text-center">
             <Kicker>Ti riconosci?</Kicker>
             <Title id="fit-pains">Dove sei ora e <G>dove puoi arrivare</G>.</Title>
-            <p className="mx-auto mt-4 max-w-2xl text-[1.0625rem] text-white/70">A sinistra le situazioni che ci raccontano le palestre ogni giorno. A destra come cambiano quando lavoriamo insieme.</p>
+            <p className="mx-auto mt-4 max-w-2xl text-[1.0625rem] text-white/70">Le situazioni che ci raccontano le palestre ogni giorno, e come cambiano quando lavoriamo insieme.</p>
           </Reveal>
           <Reveal y={16} blur={0} className="mx-auto mt-10 max-w-5xl">
             <FitCompare />
@@ -175,7 +175,7 @@ export default function PalestrePage() {
             <FitGrid cell={40} density={0.06} />
             <p className="relative text-[0.8125rem] font-bold uppercase tracking-[0.22em] text-fit-300">Noi rispondiamo a una domanda sola</p>
             <p className="fit-h relative mx-auto mt-4 max-w-4xl text-[clamp(1.6rem,1.1rem+2.2vw,3rem)] leading-[1.04] text-white">
-              «Come faccio a fare <G>più iscritti</G> per la mia palestra, per la mia attività di fitness, <G>ogni mese</G>?»
+              «Come faccio ad avere <G>più clienti</G> ogni mese?»
             </p>
             <Link href="#contatti" className="fit-btn fit-btn--pulse relative mt-7">
               <Icon name="calendar" className="h-5 w-5" strokeWidth={2.2} /> Scoprilo in una call gratuita
@@ -352,7 +352,7 @@ export default function PalestrePage() {
         <div className="container-x">
           <Reveal y={12} blur={0} className="mb-10 text-center">
             <Kicker>Domande frequenti</Kicker>
-            <Title id="fit-faq">Le domande che <G>ci fanno le palestre</G>.</Title>
+            <Title id="fit-faq">Le domande <G>che ci fanno</G>.</Title>
           </Reveal>
           <Reveal y={12} blur={0}><FitFaq /></Reveal>
           <CtaRow text="Hai un'altra domanda? Parliamone in call, è gratuita." />

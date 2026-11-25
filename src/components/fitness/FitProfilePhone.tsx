@@ -7,7 +7,7 @@ const HL = [["chart", "Risultati"], ["dumbbell", "Corsi"], ["users", "Coach"], [
 /** Profilo Instagram realistico di una palestra dentro un telefono 3D che segue mouse e dito. */
 export function FitProfilePhone() {
   return (
-    <FitTilt className="mx-auto w-full max-w-[20rem]" max={14}>
+    <FitTilt className="mx-auto w-full max-w-[19rem]" max={24}>
       <div className="fit-tilt-body relative">
         <span aria-hidden="true" className="fit-phone-halo" />
         <div className="fit-iphone relative rounded-[2.9rem] p-[0.55rem]">
@@ -43,10 +43,9 @@ export function FitProfilePhone() {
             <div className="mt-2.5 px-3.5 text-[0.6875rem] leading-[1.35]">
               <p className="font-bold">La Tua Palestra · Fitness Club</p>
               <p className="text-white/55">Palestra</p>
-              <p>🏋️ Sala pesi, corsi e personal trainer</p>
-              <p>🔥 Prova gratuita di 7 giorni</p>
-              <p>📍 Via dello Sport 10</p>
-              <p className="font-semibold text-[#e0f1ff]">🔗 tuapalestra.it/prova</p>
+              <p>Sala pesi, corsi e personal trainer</p>
+              <p>Prova gratuita di 7 giorni ↓</p>
+              <p className="font-semibold text-[#e0f1ff]">tuapalestra.it/prova</p>
             </div>
             {/* pulsanti */}
             <div className="mt-2.5 grid grid-cols-[1fr_1fr_auto] gap-1.5 px-3.5">
@@ -71,8 +70,8 @@ export function FitProfilePhone() {
             </div>
             {/* griglia */}
             <ul className="grid grid-cols-3 gap-[2px]">
-              {Array.from({ length: 9 }, (_, i) => (
-                <li key={i} className="fit-tile relative aspect-[4/5] overflow-hidden bg-[#111]" style={{ "--i": i } as React.CSSProperties}>
+              {[0, 4, 1, 5, 3, 8].map((i) => (
+                <li key={i} className="fit-tile relative aspect-square overflow-hidden bg-[#111]" style={{ "--i": i } as React.CSSProperties}>
                   <Image src={i === 4 ? "/fitness/post-gym.webp" : `/fitness/post-${i}.webp`} alt="" fill sizes="6.5rem" className="object-cover" />
                   {(i === 1 || i === 5 || i === 7) && <Icon name="film" className="absolute right-1 top-1 h-3 w-3 text-white drop-shadow" strokeWidth={2.4} />}
                 </li>

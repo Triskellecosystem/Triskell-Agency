@@ -2709,3 +2709,43 @@ body:has(.fit-page) [data-scroll-progress] { background: linear-gradient(90deg, 
 .fit #contatti .opacity-20 { filter: hue-rotate(40deg) saturate(1.6); }
 .fit #contatti a[href^="https://wa.me"] { border-color: rgb(166 255 0 / 0.7) !important; box-shadow: 0 0 26px -8px rgb(166 255 0 / 0.7) !important; }
 .fit #contatti [class*="rgb(247_200_92"] { box-shadow: 0 0 24px -6px rgb(166 255 0 / 0.6) !important; background: rgb(166 255 0 / 0.08) !important; }
+
+/* Palestre v3 */
+.fit-hero > .container-x { width: 100%; }
+.fit-hero-card { width: min(74vw, 20rem); height: auto; }
+@media (min-width: 1024px) { .fit-hero-card { width: auto; height: min(calc(100svh - 10rem), 46rem); } }
+.fit-tilt { perspective: 850px; }
+.fit-tilt-body .fit-hero-card { transform: translateZ(40px); }
+.fit-tilt-body .fit-chip { transform: translateZ(130px); }
+.fit-tilt-body .fit-ring { transform: translateZ(-120px); }
+.fit-tilt-body .fit-chip--3 { bottom: 10%; }
+/* Triskello in verde sulla landing palestre (stesso robottino) */
+body:has(.fit-page) .triski-root > button { border-color: rgb(166 255 0 / 0.75); box-shadow: 0 10px 34px -6px rgb(0 0 0 / 0.8), 0 0 30px -4px rgb(166 255 0 / 0.75); }
+body:has(.fit-page) .triski-root > button > span { background: #a6ff00; }
+body:has(.fit-page) #tr-head stop:first-child { stop-color: #f6ffe6; }
+body:has(.fit-page) #tr-head stop:last-child { stop-color: #cff59a; }
+body:has(.fit-page) #tr-body stop:first-child { stop-color: #9be22e; }
+body:has(.fit-page) #tr-body stop:last-child { stop-color: #4f9a0c; }
+body:has(.fit-page) .triski [stroke="#6fc3ec"] { stroke: #8fd84a; }
+body:has(.fit-page) .triski [stroke="#8ccbec"] { stroke: #9fdc5a; }
+body:has(.fit-page) .triski-eyes ellipse, body:has(.fit-page) .triski-mouth { fill: #17330a; stroke: #17330a; }
+body:has(.fit-page) .triski-mouth { fill: none; }
+body:has(.fit-page) .triski-root section, body:has(.fit-page) .triski-bubble { border-color: rgb(166 255 0 / 0.5) !important; }
+body:has(.fit-page) .triski-root section header { background: linear-gradient(160deg, #1d3a0c, #0c140b) !important; }
+body:has(.fit-page) .triski-root { --color-gold-300: #a6ff00; --color-gold-200: #ccff5c; --gradient-gold-btn: linear-gradient(180deg, #d9ff7a, #a6ff00 45%, #74c800); --color-night: #050805; --color-night-raised: #0c140b; --color-azure-300: #a6ff00; }
+.fit-row { position: relative; }
+.fit-row::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, transparent, rgb(166 255 0 / 0.22), transparent); transform: translateX(-100%); opacity: 0; }
+.fit-row--on::after { animation: fit-row-flash 0.9s var(--ease-out-expo); }
+@keyframes fit-row-flash { 0% { transform: translateX(-100%); opacity: 1; } 100% { transform: translateX(100%); opacity: 0; } }
+.fit-row--on { background: rgb(166 255 0 / 0.05); }
+.fit-row--on .fit-row-next { color: #fff; text-shadow: 0 0 18px rgb(166 255 0 / 0.45); }
+.fit-row-next { color: rgb(255 255 255 / 0.3); }
+.fit-table { transition: box-shadow 0.6s, border-color 0.6s; }
+.fit-table--all { border-color: #a6ff00; box-shadow: 0 0 80px -16px rgb(166 255 0 / 0.75); }
+.fit-table-foot { border-top: 1px solid rgb(166 255 0 / 0.15); color: rgb(255 255 255 / 0.4); transition: all 0.5s; }
+.fit-table-foot--on { color: #000; background: #a6ff00; }
+@media (max-width: 639px) {
+  .fit-row-arrow { display: grid !important; width: 1.5rem; height: 1.5rem; transform: rotate(90deg); margin: 0.1rem 0; }
+}
+.fit-iphone { transform: translateZ(50px); }
+.fit-phone-halo { transform: translateZ(-140px); }
