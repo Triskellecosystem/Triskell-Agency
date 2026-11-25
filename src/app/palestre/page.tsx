@@ -133,7 +133,7 @@ export default function PalestrePage() {
           </div>
 
           <Reveal from="scale" blur={0} className="relative mx-auto w-fit">
-            <FitTilt max={18}>
+            <FitTilt max={14}>
               <div className="fit-tilt-body relative">
                 <span aria-hidden="true" className="fit-ring fit-ring--a" />
                 <span aria-hidden="true" className="fit-ring fit-ring--b" />
@@ -337,7 +337,7 @@ export default function PalestrePage() {
                   ["calendar", "Fissate la prova", "tu"],
                   ["bell", "L'AI lo ricorda", "ai"],
                 ] as const).map(([ic, t, who], k) => (
-                  <li key={t} data-lit="" className="fit-tl-li fit-pop relative flex items-center gap-3 sm:flex-col sm:items-center sm:gap-1.5 sm:text-center" style={{ "--i": k + 3 } as React.CSSProperties}>
+                  <li key={t} data-lit="" style={{ "--k": k } as React.CSSProperties} className="fit-tl-li relative flex items-center gap-3 sm:flex-col sm:items-center sm:gap-1.5 sm:text-center">
                     <span className={`fit-tl-dot relative z-[1] grid h-10 w-10 shrink-0 place-items-center rounded-full ${who === "ai" ? "fit-tl-dot--ai" : who === "tu" ? "fit-tl-dot--tu" : ""}`}>
                       <Icon name={ic} className="h-4 w-4" strokeWidth={2.2} />
                       <span className="fit-tl-n">{k + 1}</span>
@@ -366,11 +366,11 @@ export default function PalestrePage() {
       <section aria-labelledby="fit-crm" className="fit-bg-rays relative isolate overflow-hidden py-20 lg:py-28">
         <div className="fit-squares" aria-hidden="true" />
         <div className="container-x relative grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
-          <Reveal y={0} blur={0} className="order-2 lg:order-1">
+          <Reveal from="far-left" y={0} blur={0} className="order-2 lg:order-1">
             <FitCrm />
           </Reveal>
           <div className="order-1 lg:order-2">
-            <Reveal y={12} blur={0}>
+            <Reveal from="far-right" y={0} blur={0}>
               <Kicker>Il CRM per la tua palestra</Kicker>
               <Title id="fit-crm">Tutti i tuoi contatti <G>in un posto solo</G>.</Title>
               <p className="mt-5 max-w-xl text-[1.0625rem] text-white/70 fit-sub">Il CRM è l&apos;archivio intelligente dei tuoi clienti: ogni persona che ti scrive finisce lì, con nome, provenienza e a che punto è. Così sai sempre chi richiamare, chi ha fatto la prova e chi si è iscritto.</p>
@@ -383,7 +383,7 @@ export default function PalestrePage() {
                   ["refresh", "Rinnovi e abbonamenti", "Avvisi automatici prima della scadenza: meno abbandoni."],
                   ["chart", "Sai cosa funziona", "Da quale campagna arriva ogni iscritto e quanto ti costa."],
                 ] as const).map(([ic, t, d], i) => (
-                  <li key={t} className="fit-pop fit-card rounded-xl p-4" style={{ "--i": i } as React.CSSProperties}>
+                  <li key={t} className="fit-slide fit-card rounded-xl p-4" style={{ "--i": i, "--dir": i % 2 ? 1 : -1 } as React.CSSProperties}>
                     <span className="flex items-center gap-2.5"><span className="fit-ico grid h-9 w-9 shrink-0 place-items-center rounded-lg"><Icon name={ic} className="h-4 w-4" strokeWidth={2.2} /></span><span className="text-[0.9375rem] font-bold text-white">{t}</span></span>
                     <span className="mt-2 block text-[0.8125rem] leading-snug text-white/65">{d}</span>
                   </li>

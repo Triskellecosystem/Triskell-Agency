@@ -7,7 +7,7 @@ const HL = [["chart", "Risultati"], ["dumbbell", "Corsi"], ["users", "Coach"], [
 /** Profilo Instagram realistico di una palestra dentro un telefono 3D che segue mouse e dito. */
 export function FitProfilePhone() {
   return (
-    <FitTilt className="mx-auto w-full max-w-[19rem]" max={24}>
+    <FitTilt className="mx-auto w-full max-w-[19rem]" max={16}>
       <div className="fit-tilt-body relative">
         <span aria-hidden="true" className="fit-phone-halo" />
         <div className="fit-iphone relative rounded-[2.9rem] p-[0.55rem]">
